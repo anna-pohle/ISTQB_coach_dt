@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ISTQB Coach - Syllabus Vorschau</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        /* Rainbow System - Dark Mode Optimized */
+        .chapter {
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 40px;
+
+            /* Default Hue (150 = Emerald/Green - Warmer/Richer) */
+            --hue: 150;
+
+            /* Adjusted Palette: Rich & Warm */
+            --chapter-color: hsl(var(--hue), 70%, 55%);
+            /* Rich, Saturated */
+            --section-color: hsl(var(--hue), 60%, 70%);
+            /* Lighter */
+            --subsection-color: hsl(var(--hue), 50%, 85%);
+            /* Light */
+            --content-color: hsl(var(--hue), 30%, 96%);
+            /* Lightest Shade (Citation) */
+
+            --bg-tint: hsla(var(--hue), 40%, 30%, 0.1);
+            /* Subtle background tint */
+            --border-accent: hsl(var(--hue), 50%, 35%);
+            /* Dark colored border */
+        }
+
+        .chapter-title {
+            font-size: 1.6rem;
+            color: var(--chapter-color);
+            margin-bottom: 20px;
+            font-weight: 800;
+            background: var(--bg-primary);
+            padding: 20px 0;
+            border-bottom: 3px solid var(--chapter-color);
+            position: sticky;
+            top: 0;
+            z-index: 30;
+            /* Highest */
+            box-shadow: 0 4px 20px -10px rgba(0, 0, 0, 0.5);
+            /* Shadow for depth */
+        }
+
+        .section {
+            background: linear-gradient(to right, var(--bg-tint), transparent);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            /* No padding here, handled by title/content */
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            color: var(--section-color);
+            font-weight: 700;
+            cursor: pointer;
+            user-select: none;
+
+            /* Sticky Level 2 */
+            position: sticky;
+            top: 75px;
+            /* Fits under chapter title */
+            background: var(--bg-primary);
+            z-index: 20;
+
+            padding: 12px 16px;
+            border-left: 6px solid var(--section-color);
+            border-bottom: 1px solid var(--border-color);
+            border-radius: 0 6px 6px 0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title:hover {
+            background: var(--bg-secondary);
+            padding-left: 20px;
+            /* Slight movement feedback */
+            transition: padding 0.2s ease;
+        }
+
+        .section .content-wrapper {
+            padding: 0 16px 16px 16px;
+        }
+
+        .subsection {
+            margin-top: 20px;
+            margin-left: 10px;
+            padding-left: 15px;
+            border-left: 2px solid var(--subsection-color);
+        }
+
+        .subsection-title {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--subsection-color);
+            margin-bottom: 10px;
+            cursor: pointer;
+            user-select: none;
+            opacity: 0.9;
+
+            /* Sticky Level 3 */
+            position: sticky;
+            top: 130px;
+            /* Chapter(0->80?) + Section(75->50?) approx. Needs tuning. */
+            z-index: 10;
+            background: var(--bg-primary);
+            /* Ensure opacity over content */
+            padding: 8px 0;
+            border-bottom: 2px solid var(--bg-secondary);
+            /* Subtle separator */
+        }
+
+        .subsection-title:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        .key-points {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .key-points li {
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--section-color);
+            /* Connect to section color */
+            border-radius: 0 6px 6px 0;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--text-primary);
+        }
+
+        .key-points li:hover {
+            background: var(--bg-card);
+            transform: translateX(4px);
+            border-left-width: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .specific-text {
+            background: var(--bg-card);
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.3s ease;
+            line-height: 1.7;
+            color: var(--content-color);
+            /* Updated to LIGHTEST shade */
+            font-size: 1.05rem;
+        }
+
+        .coach-note {
+            background: hsla(var(--hue), 40%, 20%, 0.3);
+            /* Dark, tinted background */
+            border-left: 4px solid var(--chapter-color);
+            padding: 16px;
+            margin-top: 20px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+        }
+
+        .coach-note-label {
+            font-weight: bold;
+            color: var(--chapter-color);
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+            margin-bottom: 24px;
+            padding: 0 10px;
+        }
+
+        .keyword {
+            background: hsla(var(--hue), 30%, 30%, 0.4);
+            border: 1px solid var(--section-color);
+            color: var(--text-primary);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .full-text {
+            display: none;
+        }
+
+        /* Legacy */
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .btn-nav {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-nav:hover {
+            background: var(--accent-primary);
+            color: #000;
+            border-color: var(--accent-primary);
+        }
+
+        .search-wrap {
+            margin-bottom: 20px;
+        }
+        .search-wrap label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+        .search-input {
+            width: 100%;
+            max-width: 400px;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm, 8px);
+            border: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+        .search-input::placeholder {
+            color: var(--text-muted);
+        }
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 2px rgba(0, 212, 170, 0.2);
+        }
+        mark.search-hit {
+            background: hsl(45, 90%, 50%);
+            color: #000;
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+        .search-no-match {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav-bar">
+        <a href="index.html" class="btn-nav">🏠 Home</a>
+        <div style="flex-grow:1"></div>
+        <a href="index.html" class="btn-nav">✍️ Zu den Prüfungsfragen</a>
+    </div>
+    <h1>📚 ISTQB CTFL v4.0.2 - Syllabus Vorschau</h1>
+    <p>Klicken Sie auf die Titel oder die grünen Punkte, um Inhalte anzuzeigen.</p>
+    <div class="search-wrap">
+        <label for="search-input">Suchen in Kapiteln, Key Points und Coach-Notes</label>
+        <input type="search" id="search-input" class="search-input" placeholder="Begriff eingeben …" aria-label="Suchen im Syllabus" autocomplete="off">
+    </div>
+    <div id="content"></div>
+
+    <script src="js/syllabus-data.js"></script>
+    <script>
+        const content = document.getElementById('content');
+        const searchInput = document.getElementById('search-input');
+
+        const hues = [150, 205, 270, 330, 25, 45]; // Emerald, Ocean, Purple, Berry, Orange, Gold
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        function highlightText(text, query) {
+            const safe = escapeHtml(text);
+            if (!query || !query.trim()) return safe;
+            const q = query.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            const re = new RegExp(`(${q})`, 'gi');
+            return safe.replace(re, '<mark class="search-hit">$1</mark>');
+        }
+
+        function matchesText(text, query) {
+            if (!text || !query || !query.trim()) return false;
+            const n = (text + '').toLowerCase();
+            const q = query.trim().toLowerCase();
+            if (n.includes(q)) return true;
+            var i = 0;
+            for (var j = 0; j < n.length && i < q.length; j++) {
+                if (n[j] === q[i]) i++;
+            }
+            return i === q.length;
+        }
+
+        function getMatchMap(query) {
+            if (!query || !query.trim()) return null;
+            const set = new Set();
+            const q = query.trim();
+            syllabusData.chapters.forEach((ch, ci) => {
+                let chText = (ch.title || '') + ' ' + (ch.keywords || []).join(' ');
+                if (matchesText(chText, q)) set.add(ci);
+                if (ch.subchapters) {
+                    ch.subchapters.forEach((sub, si) => {
+                        let subText = (sub.id || '') + ' ' + (sub.title || '') + ' ' + (sub.introText || '');
+                        (sub.keyPoints || []).forEach(p => {
+                            if (typeof p === 'object') subText += ' ' + (p.title || '') + ' ' + (p.content || '') + ' ' + (p.coachNote || '');
+                            else subText += ' ' + p;
+                        });
+                        if (matchesText(subText, q)) {
+                            set.add(ci);
+                            set.add(ci + '-' + si);
+                        }
+                        if (sub.subsections) {
+                            sub.subsections.forEach((ss, ssi) => {
+                                let ssText = (ss.id || '') + ' ' + (ss.title || '');
+                                (ss.keyPoints || []).forEach(p => {
+                                    if (typeof p === 'object') ssText += ' ' + (p.title || '') + ' ' + (p.content || '') + ' ' + (p.coachNote || '');
+                                    else ssText += ' ' + p;
+                                });
+                                if (matchesText(ssText, q)) {
+                                    set.add(ci);
+                                    set.add(ci + '-' + si);
+                                    set.add(ci + '-' + si + '-' + ssi);
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+            return set;
+        }
+
+        function renderContent(searchQuery, matchMap) {
+            const q = searchQuery && searchQuery.trim() ? searchQuery.trim() : null;
+            let fullHtml = '';
+            syllabusData.chapters.forEach((chapter, cIdx) => {
+                const chapterHidden = q && matchMap && !matchMap.has(cIdx);
+                const hue = hues[cIdx] !== undefined ? hues[cIdx] : (cIdx * 60) % 360;
+                fullHtml += `<div class="chapter ${chapterHidden ? 'search-no-match' : ''}" style="--hue: ${hue}">`;
+                fullHtml += `<div class="chapter-title">${chapter.icon} Kapitel ${chapter.id}: ${highlightText(chapter.title, q)}</div>`;
+                fullHtml += `<div style="margin-bottom: 15px; color: var(--text-muted);">⏱️ ${chapter.duration} | 📊 ${chapter.weight}</div>`;
+                if (chapter.keywords) fullHtml += `<div class="keywords">${chapter.keywords.map(k => `<span class="keyword">${highlightText(k, q)}</span>`).join('')}</div>`;
+                if (chapter.placeholder) {
+                    fullHtml += `<div style="padding: 20px; background: var(--bg-card); border-radius: 8px; margin-top: 16px; color: var(--accent-warning);">⚠️ ${chapter.message}</div>`;
+                }
+                if (chapter.subchapters) {
+                    chapter.subchapters.forEach((sub, sIdx) => {
+                        const sectionHidden = q && matchMap && !matchMap.has(cIdx + '-' + sIdx);
+                        fullHtml += `<div class="section ${sectionHidden ? 'search-no-match' : ''}" onclick="toggleSection(this, event)" style="position: relative;">`;
+                        fullHtml += `<div class="section-title">${highlightText(sub.id + ' ' + sub.title, q)} ▼</div>`;
+                        fullHtml += `<div class="content-wrapper">`;
+                        if (sub.introText) fullHtml += `<div style="margin-bottom: 15px; color: var(--text-secondary); font-style: italic;">${highlightText(sub.introText, q)}</div>`;
+                        if (sub.keyPoints) {
+                            fullHtml += `<ul class="key-points">${sub.keyPoints.map(p => {
+                                const isObj = typeof p === 'object';
+                                const title = isObj ? p.title : p;
+                                const content = isObj ? p.content : (sub.fullText || "");
+                                const coachNote = isObj && p.coachNote ? p.coachNote : null;
+                                const noteHtml = coachNote ? `<div class="coach-note"><span class="coach-note-label">💡 Lern-Coach (Prüfungsfokus):</span>${highlightText(coachNote, q)}</div>` : '';
+                                return `<li onclick="toggleSpecificText(this, event)">
+                                    <div style="font-weight: 500;">${highlightText(title, q)}</div>
+                                    ${isObj ? `<div class="specific-text" onclick="event.stopPropagation()" style="display:none; margin-top:10px; padding-top:10px; border-top:1px solid currentColor; font-weight:normal; font-size: 0.9rem; line-height: 1.6;">
+                                        ${content ? `<div style="margin-bottom:12px; font-style: italic;">„${highlightText(content, q)}“</div>` : ''}
+                                        ${noteHtml}
+                                    </div>` : ''}
+                                </li>`;
+                            }).join('')}</ul>`;
+                        }
+                        const hasObjects = sub.keyPoints && sub.keyPoints.some(p => typeof p === 'object');
+                        if (sub.fullText && !hasObjects) fullHtml += `<div class="full-text">${sub.fullText}</div>`;
+                        if (sub.subsections) {
+                            sub.subsections.forEach((ss, ssIdx) => {
+                                const subsecHidden = q && matchMap && !matchMap.has(cIdx + '-' + sIdx + '-' + ssIdx);
+                                fullHtml += `<div class="subsection ${subsecHidden ? 'search-no-match' : ''}">`;
+                                fullHtml += `<div class="subsection-title" onclick="this.nextElementSibling.classList.toggle('hidden')">${highlightText(ss.id + ' ' + ss.title, q)} ▼</div>`;
+                                fullHtml += `<div class="content-wrapper">`;
+                                if (ss.keyPoints) {
+                                    fullHtml += `<ul class="key-points">${ss.keyPoints.map(p => {
+                                        const isObj = typeof p === 'object';
+                                        const title = isObj ? p.title : p;
+                                        const content = isObj ? p.content : "";
+                                        const coachNote = isObj && p.coachNote ? p.coachNote : null;
+                                        const noteHtml = coachNote ? `<div class="coach-note"><span class="coach-note-label">💡 Lern-Coach (Prüfungsfokus):</span>${highlightText(coachNote, q)}</div>` : '';
+                                        return `<li onclick="toggleSpecificText(this, event)">
+                                            <div style="font-weight: 500;">${highlightText(title, q)}</div>
+                                            ${isObj ? `<div class="specific-text" onclick="event.stopPropagation()" style="display:none; margin-top:10px; padding-top:10px; border-top:1px solid currentColor; font-weight:normal; font-size: 0.9rem; line-height: 1.6;">
+                                                ${content ? `<div style="margin-bottom:12px; font-style: italic;">„${highlightText(content, q)}“</div>` : ''}
+                                                ${noteHtml}
+                                            </div>` : ''}
+                                        </li>`;
+                                    }).join('')}</ul>`;
+                                }
+                                if (ss.fullText) fullHtml += `<div class="full-text">${ss.fullText}</div>`;
+                                fullHtml += `</div></div>`;
+                            });
+                        }
+                        fullHtml += `</div></div>`;
+                    });
+                }
+                fullHtml += `</div>`;
+            });
+            content.innerHTML = fullHtml;
+        }
+
+        let searchDebounce;
+        searchInput.addEventListener('input', function () {
+            clearTimeout(searchDebounce);
+            searchDebounce = setTimeout(function () {
+                const query = searchInput.value;
+                const matchMap = getMatchMap(query);
+                renderContent(query, matchMap);
+            }, 280);
+        });
+
+        renderContent(null, null);
+
+        function toggleSpecificText(li, event) {
+            // Toggle local text
+            const textDiv = li.querySelector('.specific-text');
+            if (textDiv) {
+                const isHidden = textDiv.style.display === 'none';
+                textDiv.style.display = isHidden ? 'block' : 'none';
+                // Optional: Change styling of LI
+                li.style.background = isHidden ? 'var(--bg-card)' : 'var(--bg-secondary)';
+            }
+        }
+
+        function toggleFullText(li, event) {
+            event.stopPropagation();
+            const wrapper = li.closest('.content-wrapper');
+            const fullText = wrapper.querySelector('.full-text');
+            if (fullText) {
+                fullText.classList.toggle('show');
+            }
+        }
+
+        function toggleSection(sectionEl, event) {
+            if (event.target.closest('.key-points') || event.target.closest('.subsection') || event.target.closest('.keywords')) {
+                return;
+            }
+            const wrapper = sectionEl.querySelector('.content-wrapper');
+            if (wrapper) wrapper.classList.toggle('hidden');
+        }
+    </script>
+</body>
+
+</html>

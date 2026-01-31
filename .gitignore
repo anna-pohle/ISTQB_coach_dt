@@ -1,0 +1,28 @@
+# Quelldateien - nicht für das Hosting benötigt
+gtb_exams/
+*.pdf
+
+# Persönliche Notizen und Entwicklungsdateien
+USER_INTENTIONEN.md
+SYLLABUS_LUECKEN.md
+handoff_ai.md
+parse_gtb_questions.py
+
+# Nicht benötigte Bilder (Duplikate/Rohdaten)
+images/exam_*.jpeg
+images/page_*.png
+
+# Entwicklungs- und temporäre Dateien
+*.pyc
+__pycache__/
+.DS_Store
+*.swp
+*.swo
+*~
+
+# IDE
+.idea/
+.vscode/
+
+# Temporäre CSS-Dateien
+css/styles_temp.css

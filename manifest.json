@@ -1,0 +1,12 @@
+{
+  "name": "ISTQB Coach – CTFL v4.0",
+  "short_name": "ISTQB Coach",
+  "description": "Lerncoach für die ISTQB CTFL v4.0.2 Prüfung (German Testing Board). Syllabus, Prüfungsfragen, Offline nutzbar.",
+  "start_url": "index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#0f0f1a",
+  "background_color": "#0f0f1a",
+  "lang": "de",
+  "icons": []
+}
