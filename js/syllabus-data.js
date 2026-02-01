@@ -421,6 +421,18 @@ const syllabusData = Object.freeze({
                             title: "Retrospektiven",
                             content: "Regelmäßige Reflexion des Teams zur Prozessverbesserung.",
                             coachNote: "🎯 Prüfungsfalle – Retrospektiven:\n\nZweck: Kontinuierliche PROZESSVERBESSERUNG\n\n❌ FALSCH als Hauptzweck:\n• 'Team loben und motivieren'\n• 'Kunden gefallen'\n• 'Endnutzer-Feedback einholen'"
+                        },
+                        {
+                            title: "DevOps",
+                            quote: "DevOps ist ein organisatorischer Ansatz, der Entwicklung und Betrieb zusammenbringt.",
+                            content: "Fördert CI/CD (Continuous Integration/Delivery), schnelle Rückmeldungen, Testautomatisierung. Vorteile: schnelleres Feedback, stabilere Testumgebungen.",
+                            coachNote: "🎯 Prüfungsfalle – DevOps:\n\nVorteile:\n• Schnelles Feedback zur Codequalität\n• Automatisierte CI/CD-Prozesse\n• Stabile Testumgebungen\n• Shift-Left-Förderung\n\n❌ DevOps ersetzt NICHT Unabhängigkeit des Testens!"
+                        },
+                        {
+                            title: "Shift-Left",
+                            quote: "Shift-Left bedeutet, dass Testaktivitäten früher im SDLC durchgeführt werden.",
+                            content: "Frühe Reviews, frühe Testplanung, TDD. Ziel: Fehler früher finden = billiger beheben.",
+                            coachNote: "🎯 Shift-Left-Beispiele:\n\n✅ Shift-Left:\n• Anforderungen reviewen VOR Akzeptanz\n• Tests schreiben VOR Code (TDD)\n• Performance früh testen\n\n❌ KEIN Shift-Left:\n'Tests erst am Ende'"
                         }
                     ]
                 },
