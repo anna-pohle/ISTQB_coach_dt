@@ -1156,6 +1156,21 @@
         .syllabus-structure .hidden { display: none !important; }
         .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
         .syllabus-structure .search-no-match { display: none !important; }
+        
+        /* Lesezeichen */
+        .bookmark-btn { background: transparent; border: none; cursor: pointer; font-size: 1rem; padding: 4px 8px; opacity: 0.5; transition: all 0.2s; border-radius: var(--radius-sm); }
+        .bookmark-btn:hover { opacity: 1; background: rgba(251, 191, 36, 0.1); }
+        .bookmark-btn.bookmarked { opacity: 1; color: var(--accent-warning); }
+        .bookmarks-panel { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 16px; margin-bottom: 20px; }
+        .bookmarks-panel-title { font-size: 0.9rem; font-weight: 600; color: var(--accent-warning); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .bookmarks-list { display: flex; flex-direction: column; gap: 8px; }
+        .bookmark-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; background: var(--bg-secondary); border-radius: var(--radius-md); cursor: pointer; transition: all 0.2s; }
+        .bookmark-item:hover { background: var(--bg-primary); border: 1px solid var(--accent-warning); }
+        .bookmark-item-title { font-size: 0.85rem; flex: 1; }
+        .bookmark-item-chapter { font-size: 0.75rem; color: var(--text-muted); margin-right: 8px; }
+        .bookmark-remove { background: transparent; border: none; color: var(--text-muted); cursor: pointer; padding: 4px; font-size: 0.9rem; }
+        .bookmark-remove:hover { color: var(--accent-error); }
+        .no-bookmarks { text-align: center; color: var(--text-muted); font-size: 0.85rem; padding: 20px; }
         .syllabus-structure .search-wrap { margin-bottom: 16px; }
         .syllabus-structure .search-input { width: 100%; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-secondary); color: var(--text-primary); font-size: 0.95rem; }
         .syllabus-structure .search-input:focus { outline: none; border-color: var(--accent-primary); }
@@ -1207,8 +1222,8 @@
     <div class="app-container" id="app" role="main" aria-live="polite" aria-atomic="false"></div>
     <div id="sr-announcer" class="sr-only" aria-live="assertive" aria-atomic="true"></div>
     
-    <script src="js/syllabus-data.js?v=26"></script>
-    <script src="js/questions-data.js?v=26"></script>
+    <script src="js/syllabus-data.js?v=27"></script>
+    <script src="js/questions-data.js?v=27"></script>
     <script>
     'use strict';
     
@@ -1248,7 +1263,11 @@
             structureSearchQuery: '',
             planDuration: '4weeks',
             // Per-chapter stats
-            chapterStats: { 1: { answered: 0, correct: 0 }, 2: { answered: 0, correct: 0 }, 3: { answered: 0, correct: 0 }, 4: { answered: 0, correct: 0 }, 5: { answered: 0, correct: 0 }, 6: { answered: 0, correct: 0 } }
+            chapterStats: { 1: { answered: 0, correct: 0 }, 2: { answered: 0, correct: 0 }, 3: { answered: 0, correct: 0 }, 4: { answered: 0, correct: 0 }, 5: { answered: 0, correct: 0 }, 6: { answered: 0, correct: 0 } },
+            // Spaced Repetition: {questionId: {wrongCount: n, lastWrong: timestamp}}
+            wrongQuestions: {},
+            // Lesezeichen: [{chapterId, sectionId, subsectionId, title, timestamp}]
+            bookmarks: []
         });
         
         // Storage keys - centralized to prevent typos
@@ -1259,7 +1278,9 @@
             ANSWERED: 'istqb_answered',
             CORRECT: 'istqb_correct',
             ACHIEVEMENTS: 'istqb_achievements',
-            CHAPTER_STATS: 'istqb_chapterStats'
+            CHAPTER_STATS: 'istqb_chapterStats',
+            WRONG_QUESTIONS: 'istqb_wrongQuestions',   // Spaced Repetition: falsch beantwortete Fragen
+            BOOKMARKS: 'istqb_bookmarks'               // Lesezeichen für Lehrplan
         });
         
         // Timer reference
@@ -1468,6 +1489,20 @@
                         state.chapterStats = JSON.parse(storedChapterStats);
                     } catch { /* keep default */ }
                 }
+                // Spaced Repetition
+                const storedWrongQuestions = localStorage.getItem(STORAGE_KEYS.WRONG_QUESTIONS);
+                if (storedWrongQuestions) {
+                    try {
+                        state.wrongQuestions = JSON.parse(storedWrongQuestions);
+                    } catch { /* keep default */ }
+                }
+                // Bookmarks
+                const storedBookmarks = localStorage.getItem(STORAGE_KEYS.BOOKMARKS);
+                if (storedBookmarks) {
+                    try {
+                        state.bookmarks = JSON.parse(storedBookmarks);
+                    } catch { /* keep default */ }
+                }
             } catch (e) {
                 console.warn('Failed to load state from localStorage:', e);
             }
@@ -1482,9 +1517,151 @@
                 localStorage.setItem(STORAGE_KEYS.CORRECT, state.correctAnswers);
                 localStorage.setItem(STORAGE_KEYS.ACHIEVEMENTS, JSON.stringify(state.achievements));
                 localStorage.setItem(STORAGE_KEYS.CHAPTER_STATS, JSON.stringify(state.chapterStats));
+                localStorage.setItem(STORAGE_KEYS.WRONG_QUESTIONS, JSON.stringify(state.wrongQuestions));
+                localStorage.setItem(STORAGE_KEYS.BOOKMARKS, JSON.stringify(state.bookmarks));
             } catch (e) {
                 console.warn('Failed to save state to localStorage:', e);
             }
+        }
+        
+        /**
+         * Spaced Repetition: Trackt falsch beantwortete Fragen
+         * @param {string} questionId - ID der Frage
+         * @param {boolean} isCorrect - War die Antwort korrekt?
+         */
+        function trackQuestionResult(questionId, isCorrect) {
+            if (!state.wrongQuestions) state.wrongQuestions = {};
+            
+            if (isCorrect) {
+                // Bei richtiger Antwort: wrongCount reduzieren (aber nicht unter 0)
+                if (state.wrongQuestions[questionId]) {
+                    state.wrongQuestions[questionId].wrongCount = Math.max(0, state.wrongQuestions[questionId].wrongCount - 1);
+                    if (state.wrongQuestions[questionId].wrongCount === 0) {
+                        delete state.wrongQuestions[questionId];
+                    }
+                }
+            } else {
+                // Bei falscher Antwort: wrongCount erhöhen
+                if (!state.wrongQuestions[questionId]) {
+                    state.wrongQuestions[questionId] = { wrongCount: 0, lastWrong: 0 };
+                }
+                state.wrongQuestions[questionId].wrongCount++;
+                state.wrongQuestions[questionId].lastWrong = Date.now();
+            }
+        }
+        
+        /**
+         * Spaced Repetition: Priorisiert Fragen basierend auf Fehlerhäufigkeit
+         * Fragen mit mehr Fehlern erscheinen häufiger
+         * @param {Array} questions - Array von Fragen
+         * @param {number} count - Gewünschte Anzahl
+         * @returns {Array} - Priorisierte Fragen
+         */
+        function selectQuestionsWithSpacedRepetition(questions, count) {
+            if (!state.wrongQuestions || Object.keys(state.wrongQuestions).length === 0) {
+                // Keine Fehler-Historie: normale Shuffle
+                return shuffleArray([...questions]).slice(0, count);
+            }
+            
+            // Berechne Priorität für jede Frage
+            const withPriority = questions.map(q => {
+                const wrongData = state.wrongQuestions[q.id];
+                let priority = 1; // Basis-Priorität
+                
+                if (wrongData) {
+                    // Je öfter falsch, desto höher die Priorität (max 5x)
+                    priority += Math.min(wrongData.wrongCount, 4);
+                    
+                    // Zeitfaktor: Länger nicht gesehene Fragen bekommen Bonus
+                    const daysSinceWrong = (Date.now() - wrongData.lastWrong) / (1000 * 60 * 60 * 24);
+                    if (daysSinceWrong > 1 && daysSinceWrong < 7) {
+                        priority += 1; // 1-7 Tage her: optimaler Wiederholungszeitpunkt
+                    }
+                }
+                
+                return { question: q, priority };
+            });
+            
+            // Gewichtete Auswahl: Fragen mit höherer Priorität erscheinen häufiger
+            const selected = [];
+            const pool = [...withPriority];
+            
+            while (selected.length < count && pool.length > 0) {
+                // Erstelle gewichtetes Array
+                const totalWeight = pool.reduce((sum, p) => sum + p.priority, 0);
+                let random = Math.random() * totalWeight;
+                
+                for (let i = 0; i < pool.length; i++) {
+                    random -= pool[i].priority;
+                    if (random <= 0) {
+                        selected.push(pool[i].question);
+                        pool.splice(i, 1);
+                        break;
+                    }
+                }
+            }
+            
+            return shuffleArray(selected);
+        }
+        
+        /**
+         * Lesezeichen: Fügt ein Lesezeichen hinzu oder entfernt es
+         * @param {number} chapterId - Kapitel-ID
+         * @param {string} sectionId - Abschnitts-ID (z.B. "1.1")
+         * @param {string} title - Titel des Abschnitts
+         */
+        function toggleBookmark(chapterId, sectionId, title) {
+            if (!state.bookmarks) state.bookmarks = [];
+            
+            const existingIdx = state.bookmarks.findIndex(b => 
+                b.chapterId === chapterId && b.sectionId === sectionId
+            );
+            
+            if (existingIdx >= 0) {
+                // Entfernen
+                state.bookmarks.splice(existingIdx, 1);
+            } else {
+                // Hinzufügen
+                state.bookmarks.push({
+                    chapterId,
+                    sectionId,
+                    title,
+                    timestamp: Date.now()
+                });
+            }
+            
+            saveState();
+            render();
+        }
+        
+        /**
+         * Prüft ob ein Lesezeichen existiert
+         */
+        function isBookmarked(chapterId, sectionId) {
+            if (!state.bookmarks) return false;
+            return state.bookmarks.some(b => 
+                b.chapterId === chapterId && b.sectionId === sectionId
+            );
+        }
+        
+        /**
+         * Scrollt zu einem Lesezeichen
+         */
+        function scrollToBookmark(chapterId, sectionId) {
+            // Kapitel aufklappen
+            state.expandedChapters[chapterId] = true;
+            render();
+            
+            // Kurz warten, dann scrollen
+            setTimeout(() => {
+                const element = document.querySelector(`[data-section-id="${sectionId}"]`);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    // Kurz highlighten
+                    element.style.outline = '2px solid var(--accent-warning)';
+                    setTimeout(() => { element.style.outline = ''; }, 2000);
+                }
+            }, 100);
         }
         
         function getChapterAccuracy(chapter) {
@@ -1584,14 +1761,8 @@
                 ? [...questions] 
                 : questions.filter(q => q.chapter === state.selectedChapter);
             
-            // Doppeltes Shuffle für bessere Zufälligkeit
-            qs = shuffleArray(shuffleArray(qs));
-            
-            // Zusätzliche Randomisierung basierend auf Timestamp
-            const now = Date.now();
-            qs.sort(() => (Math.random() - 0.5) + ((now % 100) / 1000));
-            
-            return qs.slice(0, state.practiceSize);
+            // Spaced Repetition: Priorisiere früher falsch beantwortete Fragen
+            return selectQuestionsWithSpacedRepetition(qs, state.practiceSize);
         }
         
         // Timer functions
@@ -1936,6 +2107,16 @@
             
             let html = '<div class="view active" role="region" aria-label="Lehrplan-Struktur"><div class="syllabus-structure">';
             html += '<h2 class="section-title">CTFL v4.0.2 Lehrplan</h2>';
+            
+            // Lesezeichen-Panel anzeigen wenn welche vorhanden
+            if (state.bookmarks && state.bookmarks.length > 0) {
+                html += '<div class="bookmarks-panel"><div class="bookmarks-panel-title">🔖 Meine Lesezeichen (' + state.bookmarks.length + ')</div><div class="bookmarks-list">';
+                state.bookmarks.forEach((b, bIdx) => {
+                    html += '<div class="bookmark-item" data-bookmark-jump="' + b.chapterId + '|' + b.sectionId + '"><span class="bookmark-item-chapter">Kap. ' + b.chapterId + '</span><span class="bookmark-item-title">' + escapeHtml(b.title) + '</span><button class="bookmark-remove" data-bookmark-remove="' + bIdx + '" title="Lesezeichen entfernen">✕</button></div>';
+                });
+                html += '</div></div>';
+            }
+            
             html += '<div class="syllabus-source-info"><p>📖 <strong>Lernhilfe</strong> basierend auf dem offiziellen deutschen Lehrplan.</p><a href="https://www.german-testing-board.info/lehrplaene/istqbr-certified-tester-schema/" target="_blank" rel="noopener">📄 Offiziellen Lehrplan beim GTB herunterladen →</a><p class="source-note">© German Testing Board e.V., Austrian Testing Board, Swiss Testing Board</p></div>';
             html += '<div class="search-wrap"><label for="structure-search-input">Suchen in Kapiteln, Key Points und Coach-Notes</label><input type="search" id="structure-search-input" class="search-input" placeholder="Begriff eingeben …" aria-label="Suchen im Syllabus" value="' + escapeHtml(state.structureSearchQuery || '') + '" autocomplete="off"><div id="structure-search-result-info" class="search-result-info" aria-live="polite" role="status"></div></div>';
             html += '<div id="structure-content">';
@@ -1968,8 +2149,9 @@
                     chapter.subchapters.forEach((sub, sIdx) => {
                         const sectionHidden = q && matchMap && !matchMap.has(cIdx + '-' + sIdx);
                         var sectId = toSectionId(sub.id);
-                        html += '<div class="section ' + (sectionHidden ? 'search-no-match' : '') + '" id="' + sectId + '" data-section style="position:relative;">';
-                        html += '<div class="section-title" data-section-title>' + highlightStructureText(sub.id + ' ' + sub.title, q) + ' ▼</div>';
+                        const isBookmarkedSec = isBookmarked(chapter.id, sub.id);
+                        html += '<div class="section ' + (sectionHidden ? 'search-no-match' : '') + '" id="' + sectId + '" data-section data-section-id="' + sub.id + '" style="position:relative;">';
+                        html += '<div class="section-title" data-section-title style="display:flex;align-items:center;gap:8px;">' + highlightStructureText(sub.id + ' ' + sub.title, q) + ' <button class="bookmark-btn ' + (isBookmarkedSec ? 'bookmarked' : '') + '" data-bookmark-toggle="' + chapter.id + '|' + sub.id + '|' + escapeHtml(sub.id + ' ' + sub.title) + '" title="' + (isBookmarkedSec ? 'Lesezeichen entfernen' : 'Lesezeichen setzen') + '">' + (isBookmarkedSec ? '🔖' : '☆') + '</button><span style="flex:1;"></span>▼</div>';
                         html += '<div class="content-wrapper">';
                         if (sub.page) html += '<div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:8px;">📄 Lehrplan Seite ' + sub.page + '</div>';
                         if (sub.quote) html += '<div class="syllabus-quote">' + highlightStructureText(sub.quote, q) + '<span class="syllabus-quote-source">— CTFL v4.0.2 Lehrplan, S. ' + (sub.page || '?') + '</span></div>';
@@ -2014,7 +2196,7 @@
                 }
                 html += '</div></div>';
             });
-            html += '</div><div class="structure-floating-buttons" role="group" aria-label="Sprungnavigation"><button type="button" class="float-btn" id="btn-to-chapter">📌<span class="btn-text">Kapitel</span></button><button type="button" class="float-btn" id="btn-to-app">⬆️<span class="btn-text">Anfang</span></button></div></div></div>';
+            html += '</div><div class="structure-floating-buttons" role="group" aria-label="Sprungnavigation"><button type="button" class="float-btn" id="btn-to-chapter">📌<span class="btn-text">Zum Kapitelanfang</span></button><button type="button" class="float-btn" id="btn-to-app">⬆️<span class="btn-text">Zum Seitenanfang</span></button></div></div></div>';
             return html;
         }
         
@@ -2681,6 +2863,41 @@
                 appContainer._globalDelegateAttached = true;
                 appContainer.addEventListener('click', function globalClickHandler(e) {
                     
+                    // ========== LESEZEICHEN ==========
+                    const bookmarkToggle = e.target.closest('[data-bookmark-toggle]');
+                    if (bookmarkToggle) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const parts = bookmarkToggle.getAttribute('data-bookmark-toggle').split('|');
+                        if (parts.length >= 3) {
+                            toggleBookmark(parseInt(parts[0], 10), parts[1], parts[2]);
+                        }
+                        return;
+                    }
+                    
+                    const bookmarkJump = e.target.closest('[data-bookmark-jump]');
+                    if (bookmarkJump && !e.target.closest('.bookmark-remove')) {
+                        e.preventDefault();
+                        const parts = bookmarkJump.getAttribute('data-bookmark-jump').split('|');
+                        if (parts.length >= 2) {
+                            scrollToBookmark(parseInt(parts[0], 10), parts[1]);
+                        }
+                        return;
+                    }
+                    
+                    const bookmarkRemove = e.target.closest('[data-bookmark-remove]');
+                    if (bookmarkRemove) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const idx = parseInt(bookmarkRemove.getAttribute('data-bookmark-remove'), 10);
+                        if (state.bookmarks && state.bookmarks[idx]) {
+                            state.bookmarks.splice(idx, 1);
+                            saveState();
+                            render();
+                        }
+                        return;
+                    }
+                    
                     // ========== QUIZ START ==========
                     const startBtn = e.target.closest('#start-quiz');
                     if (startBtn) {
@@ -2927,10 +3144,13 @@
                         isCorrect = quiz.selectedAnswer === q.correct;
                     }
                     
+                    // Spaced Repetition: Track result
+                    trackQuestionResult(q.id, isCorrect);
+                    
                     if (isCorrect) {
                         quiz.score++;
                         state.correctAnswers++;
-                        state.points += 10;
+                        state.points += CONFIG.POINTS_PER_CORRECT;
                         state.chapterStats[chapter].correct++;
                         quiz.currentStreak = (quiz.currentStreak || 0) + 1;
                     } else {
@@ -3050,10 +3270,15 @@
                     }
                     state.chapterStats[chapter].answered++;
                     
-                    if (idx === q.correct) {
+                    const isCorrect = idx === q.correct;
+                    
+                    // Spaced Repetition: Track result
+                    trackQuestionResult(q.id, isCorrect);
+                    
+                    if (isCorrect) {
                         quiz.score++;
                         state.correctAnswers++;
-                        state.points += 10;
+                        state.points += CONFIG.POINTS_PER_CORRECT;
                         state.chapterStats[chapter].correct++;
                     }
                     
@@ -3160,6 +3385,8 @@
                         state.achievements = [];
                         state.chapterStats = { 1: { answered: 0, correct: 0 }, 2: { answered: 0, correct: 0 }, 3: { answered: 0, correct: 0 }, 4: { answered: 0, correct: 0 }, 5: { answered: 0, correct: 0 }, 6: { answered: 0, correct: 0 } };
                         state.currentQuiz = null;
+                        state.wrongQuestions = {};
+                        state.bookmarks = [];
                         
                         alert('✅ Fortschritt zurückgesetzt!');
                         render();

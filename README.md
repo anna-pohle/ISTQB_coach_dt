@@ -14,12 +14,14 @@ Eine **Progressive Web App (PWA)** zum Lernen und Üben für die ISTQB Foundatio
 - **111 Prüfungsfragen** aus den offiziellen GTB Sample Exams (Set A-F)
 - **Übungsmodus** - Lerne in deinem Tempo mit sofortigem Feedback
 - **Prüfungsmodus** - Simuliere die echte Prüfung (40 Fragen, 60 Min, 65% zum Bestehen)
+- **Spaced Repetition** - Falsch beantwortete Fragen erscheinen häufiger
 - **Intelligente Hinweise** - Verstehe die Fallen in jeder Frage
 - **Antworten werden gemischt** - Kein Auswendiglernen von Positionen
 - **Tastaturnavigation** - Antworte schnell mit A/B/C/D-Tasten
 
 ### Lehrplan
 - **Alle 6 Kapitel** aufklappbar mit Unterkapiteln und Lernzielen
+- **Lesezeichen** - Markiere wichtige Stellen zum Wiederfinden
 - **Originalzitate** aus dem Lehrplan mit Seitenzahlen
 - **Abbildungen** aus dem Syllabus (Testpyramide, Testquadranten, Zustandsdiagramm)
 - **Coach-Notes** mit Prüfungstipps und Eselsbrücken
