@@ -1143,6 +1143,9 @@
         .syllabus-structure .syllabus-quote::before { content: '„'; font-size: 1.2rem; color: var(--section-color); margin-right: 4px; }
         .syllabus-structure .syllabus-quote::after { content: '"'; font-size: 1.2rem; color: var(--section-color); margin-left: 2px; }
         .syllabus-structure .syllabus-quote-source { display: block; font-style: normal; font-size: 0.75rem; color: var(--text-muted); margin-top: 6px; }
+        .syllabus-structure .syllabus-image img { transition: transform 0.3s; border: 1px solid var(--border-color); }
+        .syllabus-structure .syllabus-image img.zoomed { transform: scale(1.5); position: relative; z-index: 100; box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
+        .syllabus-structure .syllabus-image img:hover { opacity: 0.95; }
         .syllabus-structure .coach-note { background: hsla(var(--hue), 40%, 20%, 0.3); border-left: 4px solid var(--chapter-color); padding: 12px; margin-top: 14px; border-radius: 6px; font-size: 0.9rem; color: var(--text-primary); line-height: 1.5; white-space: normal; }
         .syllabus-structure .coach-note .coach-note-body { word-break: break-word; }
         .syllabus-structure .coach-note-label { font-weight: bold; color: var(--chapter-color); display: block; margin-bottom: 6px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
@@ -1202,8 +1205,8 @@
 <body>
     <div class="app-container" id="app" role="main"></div>
     
-    <script src="js/syllabus-data.js?v=22"></script>
-    <script src="js/questions-data.js?v=22"></script>
+    <script src="js/syllabus-data.js?v=23"></script>
+    <script src="js/questions-data.js?v=23"></script>
     <script>
     'use strict';
     
@@ -1957,6 +1960,7 @@
                         html += '<div class="content-wrapper">';
                         if (sub.page) html += '<div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:8px;">📄 Lehrplan Seite ' + sub.page + '</div>';
                         if (sub.quote) html += '<div class="syllabus-quote">' + highlightStructureText(sub.quote, q) + '<span class="syllabus-quote-source">— CTFL v4.0.2 Lehrplan, S. ' + (sub.page || '?') + '</span></div>';
+                        if (sub.image) html += '<div class="syllabus-image"><img src="' + sub.image + '" alt="' + sub.title + '" style="max-width:100%;border-radius:8px;margin:12px 0;cursor:pointer;" onclick="this.classList.toggle(\'zoomed\')" /><div style="font-size:0.7rem;color:var(--text-muted);text-align:center;">Abbildung aus CTFL v4.0.2 Lehrplan, S. ' + (sub.page || '?') + '</div></div>';
                         if (sub.keyPoints) {
                             html += '<ul class="key-points">' + sub.keyPoints.map(p => {
                                 const isObj = typeof p === 'object';
@@ -1978,6 +1982,7 @@
                                 html += '<div class="content-wrapper">';
                                 if (ss.page) html += '<div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:8px;">📄 Lehrplan Seite ' + ss.page + '</div>';
                                 if (ss.quote) html += '<div class="syllabus-quote">' + highlightStructureText(ss.quote, q) + '<span class="syllabus-quote-source">— CTFL v4.0.2 Lehrplan, S. ' + (ss.page || '?') + '</span></div>';
+                                if (ss.image) html += '<div class="syllabus-image"><img src="' + ss.image + '" alt="' + ss.title + '" style="max-width:100%;border-radius:8px;margin:12px 0;cursor:pointer;" onclick="this.classList.toggle(\'zoomed\')" /><div style="font-size:0.7rem;color:var(--text-muted);text-align:center;">Abbildung aus CTFL v4.0.2 Lehrplan, S. ' + (ss.page || '?') + '</div></div>';
                                 if (ss.keyPoints) {
                                     html += '<ul class="key-points">' + ss.keyPoints.map(p => {
                                         const isObj = typeof p === 'object';

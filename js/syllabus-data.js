@@ -570,18 +570,21 @@ const syllabusData = Object.freeze({
                         },
                         {
                             title: "Walkthrough",
-                            content: "Autor leitet die Sitzung. Hauptzweck: Kommunikation und Schulung der Teilnehmer. Dokumentation optional.",
-                            coachNote: "⚠️ Prüfungsfalle – Wer leitet das Review?\n\n• Walkthrough → AUTOR leitet\n• Inspektion → Moderator leitet\n• Technisches Review → Moderator leitet\n\n💡 Erkennungstrick: 'Autor leitet' in der Antwort = Walkthrough"
+                            quote: "Walkthroughs werden vom Autor geleitet und dienen hauptsächlich der Kommunikation und Schulung.",
+                            content: "Autor leitet die Sitzung. Hauptzweck: Kommunikation, Schulung, Vertrauen aufbauen, neue Ideen. Dokumentation optional.",
+                            coachNote: "🎯 Prüfungsfalle – Walkthrough erkennen:\n\n✅ Erkennungsmerkmale:\n• AUTOR leitet (nicht Moderator!)\n• Zweck: Kommunikation/Schulung\n• Vertrauen aufbauen, Ideen generieren\n\n❌ NICHT Walkthrough wenn:\n• Moderator leitet → Tech. Review/Inspektion\n• Metriken sammeln → Inspektion"
                         },
                         {
                             title: "Technisches Review",
-                            content: "Fachorientierte Prüfung durch Peers. Leitung oft durch erfahrenen Moderator (nicht Autor). Befunde werden dokumentiert.",
-                            coachNote: "Technisches Review = Experten prüfen technische Inhalte."
+                            quote: "Beim technischen Review wird ein Konsens angestrebt und es werden technische Qualitätsprobleme identifiziert.",
+                            content: "Fachorientierte Prüfung durch Peers. Moderator leitet (nicht Autor!). Ziel: Konsens erreichen, technische Probleme lösen, neue Ideen.",
+                            coachNote: "🎯 Prüfungsfalle – Technisches Review:\n\n✅ Erkennungsmerkmale:\n• MODERATOR leitet\n• Ziel: KONSENS + Entscheidungen\n• Qualifizierte Gutachter\n• Technische Korrektheit prüfen"
                         },
                         {
                             title: "Inspektion",
-                            content: "Formales Review mit definierten Rollen (Moderator, Autor, Leser, Prüfer). Eingangs-/Endekriterien, Befundbericht.",
-                            coachNote: "Inspektion = strengste Form. Rollen, Checklisten, Metriken."
+                            quote: "Die Inspektion ist die formellste Art des Reviews. Sie verwendet definierte Rollen und sammelt Metriken zur Prozessverbesserung.",
+                            content: "Formalstes Review mit definierten Rollen (Moderator, Autor, Leser, Prüfer, Protokollant). Eingangs-/Endekriterien, Metriken, Checklisten.",
+                            coachNote: "🎯 Prüfungsfalle – Inspektion erkennen:\n\n✅ Erkennungsmerkmale:\n• MODERATOR leitet\n• Metriken werden gesammelt!\n• Formale Rollen definiert\n• Checklisten, Ein-/Endekriterien\n• Ziel: MAX. Fehlerzustände finden\n\n💡 'Metriken' in Antwort = Inspektion"
                         }
                     ],
                     subsections: [
@@ -654,13 +657,40 @@ const syllabusData = Object.freeze({
                         },
                         {
                             title: "Entscheidungstabellentest",
-                            content: "Bedingungen und Aktionen in Tabelle. Jede gültige Kombination wird getestet. Undurchführbare Kombinationen ausschließen.",
-                            coachNote: "Undurchführbare Kombinationen (z.B. Ziel nicht vereinbart aber erreicht) nicht als Testfall zählen."
+                            quote: "Eine Entscheidungstabelle besteht aus Bedingungen, deren Kombinationen, und den resultierenden Aktionen.",
+                            content: "Spalten = Regeln (Testfälle). Zeilen = Bedingungen + Aktionen. Notation: J=Ja, N=Nein, -=irrelevant.",
+                            coachNote: "🎯 Prüfungsfalle – Entscheidungstabelle:\n\n📊 Anzahl Testfälle zählen:\n• Nur DURCHFÜHRBARE Spalten zählen!\n• '-' = Bedingung egal (nicht 2 Testfälle)\n• Undurchführbar = überspringen\n\n❌ FALSCH:\n• Alle 2^n Kombinationen\n• '-' als eigene Testfälle\n\n💡 Wenn Tabelle gegeben: Spalten zählen (abzgl. undurchführbar)"
                         },
                         {
                             title: "Zustandsübergangstest",
-                            content: "System hat Zustände und Übergänge. Testfälle decken gültige (oder ungültige) Zustandsübergänge ab. 0-Switch = jeder Übergang einmal.",
-                            coachNote: "0-Switch-Überdeckung = alle gültigen ÜBERGÄNGE einmal durchlaufen, nicht nur Zustände."
+                            content: "System hat Zustände und Übergänge. Testfälle decken gültige (oder ungültige) Zustandsübergänge ab.",
+                            coachNote: "🎯 Prüfungsfalle – Überdeckungskriterien:\n\n• Alle Zustände: Jeder Zustand mindestens 1x besucht\n• 0-Switch (gültige Übergänge): Jeder GÜLTIGE Übergang 1x\n• Alle Übergänge: Gültige UND ungültige Übergänge\n\n⚠️ Ungültige Übergänge: nur 1 pro Testfall (Fehlermaskierung vermeiden!)"
+                        }
+                    ],
+                    subsections: [
+                        {
+                            id: "4.2.4",
+                            title: "Zustandsübergangstest (Details)",
+                            page: 49,
+                            image: "images/syllabus_zustandsuebergang.png",
+                            quote: "Ein Zustandsübergangsdiagramm zeigt die möglichen Softwarezustände sowie die Art und Weise, wie die Software in einen Zustand eintritt, diesen verlässt und zwischen den Zuständen übergeht.",
+                            keyPoints: [
+                                {
+                                    title: "Überdeckung aller Zustände",
+                                    content: "Alle Zustände werden mindestens einmal besucht. Formel: (besuchte Zustände ÷ Gesamtzahl Zustände) × 100%",
+                                    coachNote: "Schwächstes Kriterium - findet nicht alle Übergangsfehler."
+                                },
+                                {
+                                    title: "0-Switch-Überdeckung (gültige Übergänge)",
+                                    content: "Alle GÜLTIGEN Übergänge werden mindestens einmal ausgeführt. Formel: (ausgeführte gültige Übergänge ÷ Gesamtzahl gültige Übergänge) × 100%",
+                                    coachNote: "🎯 Prüfungsfokus: 0-Switch = nur GÜLTIGE Übergänge, nicht Zustände!"
+                                },
+                                {
+                                    title: "Überdeckung aller Übergänge",
+                                    content: "Gültige UND ungültige Übergänge werden getestet. Ungültige Übergänge: nur 1 pro Testfall, um Fehlermaskierung zu vermeiden.",
+                                    coachNote: "Stärkstes Kriterium - findet auch fehlende Fehlerbehandlung."
+                                }
+                            ]
                         }
                     ]
                 },
@@ -842,6 +872,9 @@ const syllabusData = Object.freeze({
                         {
                             id: "5.1.6",
                             title: "Testpyramide",
+                            page: 60,
+                            image: "images/syllabus_testpyramide.png",
+                            quote: "Die Testpyramide ist ein Modell, das die verschiedenen Tests zeigt, die einen unterschiedlichen Grad an Granularität haben können.",
                             keyPoints: [
                                 {
                                     title: "Modell für Testgranularität",
@@ -863,6 +896,9 @@ const syllabusData = Object.freeze({
                         {
                             id: "5.1.7",
                             title: "Testquadranten",
+                            page: 61,
+                            image: "images/syllabus_testquadranten.png",
+                            quote: "Die von Brian Marick definierten Testquadranten gruppieren die Teststufen mit den entsprechenden Testarten, Aktivitäten, Testverfahren und Arbeitsergebnissen in der agilen Softwareentwicklung.",
                             keyPoints: [
                                 {
                                     title: "Marick's Testquadranten",
