@@ -1303,6 +1303,7 @@
             practiceSize: 10,
             expandedChapter: null,
             expandedChapters: {},
+            expandedSections: {},    // Hierarchische Ausklapp-States: {'1-0': true, '1-0-2': true}
             structureSearchQuery: '',
             planDuration: '4weeks',
             // Per-chapter stats
@@ -1711,8 +1712,24 @@
          * Scrollt zu einem Lesezeichen
          */
         function scrollToBookmark(chapterId, sectionId) {
+            // Kapitel-Index finden
+            const cIdx = syllabusData.chapters.findIndex(c => c.id === chapterId);
+            if (cIdx === -1) return;
+            
             // Kapitel aufklappen
-            state.expandedChapters[chapterId] = true;
+            if (!state.expandedChapters) state.expandedChapters = {};
+            state.expandedChapters[cIdx] = true;
+            
+            // Sektion-Index finden und aufklappen
+            const chapter = syllabusData.chapters[cIdx];
+            if (chapter.subchapters) {
+                const sIdx = chapter.subchapters.findIndex(s => s.id === sectionId);
+                if (sIdx !== -1) {
+                    if (!state.expandedSections) state.expandedSections = {};
+                    state.expandedSections[cIdx + '-' + sIdx] = true;
+                }
+            }
+            
             render();
             
             // Kurz warten, dann scrollen
@@ -2168,15 +2185,12 @@
             const target = hits[currentSearchHitIndex];
             if (!target) return;
             
-            // Alle übergeordneten Elemente aufklappen
+            // Alle übergeordneten Elemente aufklappen (CSS-basiert für Suche)
             let parent = target.parentElement;
             while (parent) {
-                // Content-Wrapper aufklappen
-                if (parent.classList && parent.classList.contains('hidden')) {
-                    parent.classList.remove('hidden');
-                }
+                // Content-Wrapper aufklappen (style-basiert)
                 if (parent.classList && parent.classList.contains('content-wrapper')) {
-                    parent.classList.remove('hidden');
+                    parent.style.display = 'block';
                 }
                 // Specific-text aufklappen
                 if (parent.classList && parent.classList.contains('specific-text')) {
@@ -2184,14 +2198,9 @@
                     const li = parent.closest('li');
                     if (li) li.style.background = 'var(--bg-card)';
                 }
-                // Kapitel aufklappen
+                // Kapitel-Content aufklappen
                 if (parent.classList && parent.classList.contains('chapter-content')) {
                     parent.style.display = 'block';
-                    const chapterEl = parent.closest('.chapter');
-                    if (chapterEl) {
-                        const idx = parseInt(chapterEl.getAttribute('data-chapter-idx'), 10);
-                        if (!isNaN(idx)) state.expandedChapters[idx] = true;
-                    }
                 }
                 parent = parent.parentElement;
             }
@@ -2259,13 +2268,16 @@
                 }
                 if (chapter.placeholder) html += '<div style="padding:16px;background:var(--bg-card);border-radius:8px;color:var(--accent-warning);">⚠️ ' + chapter.message + '</div>';
                 if (chapter.subchapters) {
+                    const expandedSections = state.expandedSections || {};
                     chapter.subchapters.forEach((sub, sIdx) => {
                         const sectionHidden = q && matchMap && !matchMap.has(cIdx + '-' + sIdx);
+                        const sectionKey = cIdx + '-' + sIdx;
+                        const isSectionExpanded = expandedSections[sectionKey] || (q && !sectionHidden);
                         var sectId = toSectionId(sub.id);
                         const isBookmarkedSec = isBookmarked(chapter.id, sub.id);
-                        html += '<div class="section ' + (sectionHidden ? 'search-no-match' : '') + '" id="' + sectId + '" data-section data-section-id="' + sub.id + '" style="position:relative;">';
-                        html += '<div class="section-title" data-section-title style="display:flex;align-items:center;gap:8px;">' + highlightStructureText(sub.id + ' ' + sub.title, q) + ' <button class="bookmark-btn ' + (isBookmarkedSec ? 'bookmarked' : '') + '" data-bookmark-toggle="' + chapter.id + '|' + sub.id + '|' + escapeHtml(sub.id + ' ' + sub.title) + '" title="' + (isBookmarkedSec ? 'Lesezeichen entfernen' : 'Lesezeichen setzen') + '">' + (isBookmarkedSec ? '🔖' : '☆') + '</button><span style="flex:1;"></span>▼</div>';
-                        html += '<div class="content-wrapper">';
+                        html += '<div class="section ' + (sectionHidden ? 'search-no-match' : '') + (isSectionExpanded ? ' expanded' : '') + '" id="' + sectId + '" data-section data-section-id="' + sub.id + '" style="position:relative;">';
+                        html += '<div class="section-title" data-toggle-section="' + sectionKey + '" style="display:flex;align-items:center;gap:8px;cursor:pointer;">' + highlightStructureText(sub.id + ' ' + sub.title, q) + ' <button class="bookmark-btn ' + (isBookmarkedSec ? 'bookmarked' : '') + '" data-bookmark-toggle="' + chapter.id + '|' + sub.id + '|' + escapeHtml(sub.id + ' ' + sub.title) + '" title="' + (isBookmarkedSec ? 'Lesezeichen entfernen' : 'Lesezeichen setzen') + '">' + (isBookmarkedSec ? '🔖' : '☆') + '</button><span style="flex:1;"></span>' + (isSectionExpanded ? '▲' : '▼') + '</div>';
+                        html += '<div class="content-wrapper" style="' + (isSectionExpanded ? '' : 'display:none;') + '">';
                         if (sub.page) html += '<div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:8px;">📄 Lehrplan Seite ' + sub.page + '</div>';
                         if (sub.quote) html += '<div class="syllabus-quote">' + highlightStructureText(sub.quote, q) + '<span class="syllabus-quote-source">— CTFL v4.0.2 Lehrplan, S. ' + (sub.page || '?') + '</span></div>';
                         if (sub.image) html += '<div class="syllabus-image"><img src="' + sub.image + '" alt="' + sub.title + '" style="max-width:100%;border-radius:8px;margin:12px 0;cursor:pointer;" onclick="this.classList.toggle(\'zoomed\')" /><div style="font-size:0.7rem;color:var(--text-muted);text-align:center;">' + (sub.imageAttribution ? '📷 ' + sub.imageAttribution : 'Abbildung aus CTFL v4.0.2 Lehrplan, S. ' + (sub.page || '?')) + '</div></div>';
@@ -2284,10 +2296,12 @@
                         if (sub.subsections) {
                             sub.subsections.forEach((ss, ssIdx) => {
                                 const subsecHidden = q && matchMap && !matchMap.has(cIdx + '-' + sIdx + '-' + ssIdx);
+                                const subsecKey = cIdx + '-' + sIdx + '-' + ssIdx;
+                                const isSubsecExpanded = expandedSections[subsecKey] || (q && !subsecHidden);
                                 var subsecId = toSectionId(ss.id);
-                                html += '<div class="subsection ' + (subsecHidden ? 'search-no-match' : '') + '" id="' + subsecId + '">';
-                                html += '<div class="subsection-title" data-subsection-title>' + highlightStructureText(ss.id + ' ' + ss.title, q) + ' ▼</div>';
-                                html += '<div class="content-wrapper">';
+                                html += '<div class="subsection ' + (subsecHidden ? 'search-no-match' : '') + (isSubsecExpanded ? ' expanded' : '') + '" id="' + subsecId + '">';
+                                html += '<div class="subsection-title" data-toggle-subsection="' + subsecKey + '" style="cursor:pointer;">' + highlightStructureText(ss.id + ' ' + ss.title, q) + ' ' + (isSubsecExpanded ? '▲' : '▼') + '</div>';
+                                html += '<div class="content-wrapper" style="' + (isSubsecExpanded ? '' : 'display:none;') + '">';
                                 if (ss.page) html += '<div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:8px;">📄 Lehrplan Seite ' + ss.page + '</div>';
                                 if (ss.quote) html += '<div class="syllabus-quote">' + highlightStructureText(ss.quote, q) + '<span class="syllabus-quote-source">— CTFL v4.0.2 Lehrplan, S. ' + (ss.page || '?') + '</span></div>';
                                 if (ss.image) html += '<div class="syllabus-image"><img src="' + ss.image + '" alt="' + ss.title + '" style="max-width:100%;border-radius:8px;margin:12px 0;cursor:pointer;" onclick="this.classList.toggle(\'zoomed\')" /><div style="font-size:0.7rem;color:var(--text-muted);text-align:center;">' + (ss.imageAttribution ? '📷 ' + ss.imageAttribution : 'Abbildung aus CTFL v4.0.2 Lehrplan, S. ' + (ss.page || '?')) + '</div></div>';
@@ -3157,7 +3171,7 @@
                     }
                     // ========== KAPITEL AUFKLAPPEN (Lehrplan) ==========
                     const chapterHeader = e.target.closest('[data-toggle-chapter]');
-                    if (chapterHeader) {
+                    if (chapterHeader && !e.target.closest('.bookmark-btn')) {
                         const idx = parseInt(chapterHeader.getAttribute('data-toggle-chapter'), 10);
                         if (!state.expandedChapters) state.expandedChapters = {};
                         state.expandedChapters[idx] = !state.expandedChapters[idx];
@@ -3166,20 +3180,24 @@
                         return;
                     }
                     
-                    const sectionTitle = e.target.closest('[data-section-title]');
-                    if (sectionTitle && !e.target.closest('.key-points') && !e.target.closest('.subsection') && !e.target.closest('.keywords')) {
-                        const section = sectionTitle.closest('.section');
-                        if (section) {
-                            const wrapper = section.querySelector('.content-wrapper');
-                            if (wrapper) wrapper.classList.toggle('hidden');
-                        }
+                    // ========== SEKTION AUFKLAPPEN (Lehrplan X.X) ==========
+                    const sectionToggle = e.target.closest('[data-toggle-section]');
+                    if (sectionToggle && !e.target.closest('.bookmark-btn')) {
+                        const key = sectionToggle.getAttribute('data-toggle-section');
+                        if (!state.expandedSections) state.expandedSections = {};
+                        state.expandedSections[key] = !state.expandedSections[key];
+                        render();
                         e.preventDefault();
                         return;
                     }
-                    const subsectionTitle = e.target.closest('[data-subsection-title]');
-                    if (subsectionTitle) {
-                        const next = subsectionTitle.nextElementSibling;
-                        if (next) next.classList.toggle('hidden');
+                    
+                    // ========== SUBSEKTION AUFKLAPPEN (Lehrplan X.X.X) ==========
+                    const subsectionToggle = e.target.closest('[data-toggle-subsection]');
+                    if (subsectionToggle) {
+                        const key = subsectionToggle.getAttribute('data-toggle-subsection');
+                        if (!state.expandedSections) state.expandedSections = {};
+                        state.expandedSections[key] = !state.expandedSections[key];
+                        render();
                         e.preventDefault();
                         return;
                     }
