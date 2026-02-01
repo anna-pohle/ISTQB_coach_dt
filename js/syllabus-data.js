@@ -24,8 +24,7 @@ const syllabusData = Object.freeze({
             id: 1,
             icon: "🎯",
             title: "Grundlagen des Testens",
-            duration: "180 Min.",
-            weight: "~8 Fragen (20%)",
+            questionCount: "8",
             keywords: [
                 "Debugging", "Fehlerwirkung", "Fehlerzustand", "Fehlhandlung", "Grundursache",
                 "Qualität", "Qualitätssicherung", "Testablauf", "Testabschluss", "Testanalyse",
@@ -381,8 +380,7 @@ const syllabusData = Object.freeze({
             id: 2,
             icon: "🔄",
             title: "Testen während des Softwareentwicklungslebenszyklus",
-            duration: "130 Min.",
-            weight: "~5 Fragen (12.5%)",
+            questionCount: "6",
             keywords: [
                 "Abnahmetest", "Black-Box-Test", "Fehlernachtest", "funktionaler Test",
                 "Integrationstest", "Komponentenintegrationstest", "Komponententest",
@@ -504,8 +502,7 @@ const syllabusData = Object.freeze({
             id: 3,
             icon: "📋",
             title: "Statischer Test",
-            duration: "80 Min.",
-            weight: "~3 Fragen (7.5%)",
+            questionCount: "2",
             keywords: [
                 "Anomalie", "dynamischer Test", "formales Review", "informelles Review",
                 "Inspektion", "Review", "statische Analyse", "statischer Test",
@@ -597,8 +594,7 @@ const syllabusData = Object.freeze({
             id: 4,
             icon: "🔬",
             title: "Testanalyse und -entwurf",
-            duration: "390 Min.",
-            weight: "~14 Fragen (35%)",
+            questionCount: "12",
             keywords: [
                 "Abnahmekriterien", "Abnahmetestgetriebene Entwicklung", "Äquivalenzklassenbildung",
                 "Anweisungstest", "Anweisungsüberdeckung", "Black-Box-Testverfahren",
@@ -774,8 +770,7 @@ const syllabusData = Object.freeze({
             id: 5,
             icon: "📊",
             title: "Management der Testaktivitäten",
-            duration: "335 Min.",
-            weight: "~10 Fragen (25%)",
+            questionCount: "10",
             keywords: [
                 "Anomalie", "Eingangskriterium", "Endekriterium", "Fehlermanagement",
                 "Konfigurationsmanagement", "Produkt-Risikoanalyse", "Projektrisiko",
@@ -982,8 +977,7 @@ const syllabusData = Object.freeze({
             id: 6,
             icon: "🛠️",
             title: "Testwerkzeuge",
-            duration: "20 Min.",
-            weight: "~2 Fragen (5%)",
+            questionCount: "2",
             keywords: ["Testautomatisierung", "Testwerkzeug"],
             subchapters: [
                 {

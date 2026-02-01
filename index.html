@@ -1121,9 +1121,10 @@
         .syllabus-structure .chapter { margin-bottom: 16px; border: 1px solid var(--border-color); border-radius: var(--radius-md); overflow: hidden; --hue: 150; --chapter-color: hsl(var(--hue), 70%, 55%); --section-color: hsl(var(--hue), 60%, 70%); --subsection-color: hsl(var(--hue), 50%, 85%); --content-color: hsl(var(--hue), 30%, 96%); --bg-tint: hsla(var(--hue), 40%, 30%, 0.1); --sticky-h1: 78px; --sticky-h2: 48px; --sticky-h3: 36px; }
         .syllabus-structure .chapter-header { display: flex; flex-direction: column; padding: 16px 20px; background: var(--bg-card); cursor: pointer; border-left: 4px solid var(--chapter-color); transition: background 0.2s; }
         .syllabus-structure .chapter-header:hover { background: var(--bg-secondary); }
-        .syllabus-structure .chapter-title { font-size: 1.1rem; line-height: 1.3; color: var(--chapter-color); margin-bottom: 0; font-weight: 700; }
-        .syllabus-structure .chapter-meta { display: flex; gap: 12px; align-items: center; margin-top: 6px; font-size: 0.85rem; color: var(--text-muted); }
-        .syllabus-structure .chapter-toggle-icon { margin-left: auto; color: var(--chapter-color); font-size: 0.8rem; }
+        .syllabus-structure .chapter-title-row { display: flex; align-items: center; gap: 10px; }
+        .syllabus-structure .chapter-title { font-size: 1.1rem; line-height: 1.3; color: var(--chapter-color); margin-bottom: 0; font-weight: 700; text-align: left; }
+        .syllabus-structure .chapter-toggle-icon { color: var(--chapter-color); font-size: 0.8rem; flex-shrink: 0; }
+        .syllabus-structure .chapter-meta { display: flex; gap: 12px; align-items: center; margin-top: 6px; font-size: 0.8rem; color: var(--text-muted); }
         .syllabus-structure .chapter-content { padding: 20px; background: var(--bg-primary); border-top: 1px solid var(--border-color); }
         .syllabus-structure .chapter.expanded { border-color: var(--chapter-color); }
         .syllabus-structure .section { background: linear-gradient(to right, var(--bg-tint), transparent); border-radius: 8px; margin-bottom: 16px; }
@@ -1157,16 +1158,18 @@
         .syllabus-structure .search-result-info .search-jump-btn:disabled { opacity: 0.5; cursor: not-allowed; }
         .syllabus-structure mark.search-hit { background: hsl(45, 90%, 50%); color: #000; padding: 0 2px; border-radius: 2px; }
         .structure-floating-buttons { position: fixed; bottom: 20px; right: 20px; z-index: 100; display: flex; flex-direction: column; gap: 8px; }
-        .structure-floating-buttons .float-btn { padding: 6px 10px; border-radius: var(--radius-md); border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-primary); font-weight: 600; font-size: 0.75rem; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: background 0.2s, transform 0.1s; white-space: nowrap; max-width: 100px; }
-        .structure-floating-buttons .float-btn:hover { background: var(--bg-secondary); }
-        .structure-floating-buttons .float-btn:active { transform: scale(0.98); }
+        .structure-floating-buttons .float-btn { padding: 10px 12px; border-radius: 50%; border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-primary); font-size: 1.2rem; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: all 0.2s; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; }
+        .structure-floating-buttons .float-btn:hover { background: var(--bg-secondary); width: auto; border-radius: var(--radius-md); padding: 10px 14px; }
+        .structure-floating-buttons .float-btn .btn-text { display: none; margin-left: 6px; font-size: 0.8rem; font-weight: 600; }
+        .structure-floating-buttons .float-btn:hover .btn-text { display: inline; }
+        .structure-floating-buttons .float-btn:active { transform: scale(0.95); }
     </style>
 </head>
 <body>
     <div class="app-container" id="app" role="main"></div>
     
-    <script src="js/syllabus-data.js?v=18"></script>
-    <script src="js/questions-data.js?v=18"></script>
+    <script src="js/syllabus-data.js?v=19"></script>
+    <script src="js/questions-data.js?v=19"></script>
     <script>
     'use strict';
     
@@ -1896,8 +1899,8 @@
                 
                 // Kapitel-Header (immer sichtbar, klickbar)
                 html += '<div class="chapter-header" data-toggle-chapter="' + cIdx + '">';
-                html += '<div class="chapter-title" id="chapter-' + chapter.id + '">' + chapter.icon + ' Kapitel ' + chapter.id + ': ' + highlightStructureText(chapter.title, q) + '</div>';
-                html += '<div class="chapter-meta"><span>⏱️ ' + chapter.duration + '</span><span>📊 ' + chapter.weight + '</span><span class="chapter-toggle-icon">' + (isExpanded ? '▲' : '▼') + '</span></div>';
+                html += '<div class="chapter-title-row"><div class="chapter-title" id="chapter-' + chapter.id + '">' + chapter.icon + ' Kapitel ' + chapter.id + ': ' + highlightStructureText(chapter.title, q) + '</div><span class="chapter-toggle-icon">' + (isExpanded ? '▲' : '▼') + '</span></div>';
+                html += '<div class="chapter-meta"><span>ca. ' + chapter.questionCount + ' Fragen je Prüfung</span></div>';
                 html += '</div>';
                 
                 // Kapitel-Inhalt (nur sichtbar wenn expanded)
@@ -1954,7 +1957,7 @@
                 }
                 html += '</div></div>';
             });
-            html += '</div><div class="structure-floating-buttons" role="group" aria-label="Sprungnavigation"><button type="button" class="float-btn" id="btn-to-chapter">📌 Zum Kapitel</button><button type="button" class="float-btn" id="btn-to-app">⬆️ Zum Anfang</button></div></div></div>';
+            html += '</div><div class="structure-floating-buttons" role="group" aria-label="Sprungnavigation"><button type="button" class="float-btn" id="btn-to-chapter">📌<span class="btn-text">Kapitel</span></button><button type="button" class="float-btn" id="btn-to-app">⬆️<span class="btn-text">Anfang</span></button></div></div></div>';
             return html;
         }
         
