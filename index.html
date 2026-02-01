@@ -1139,6 +1139,10 @@
         .syllabus-structure .key-points li { padding: 10px 14px; margin-bottom: 8px; background: var(--bg-secondary); border-left: 3px solid var(--section-color); border-radius: 0 6px 6px 0; cursor: pointer; transition: all 0.2s ease; color: var(--text-primary); }
         .syllabus-structure .key-points li:hover { background: var(--bg-card); }
         .syllabus-structure .specific-text { background: var(--bg-card); padding: 12px; border-radius: 8px; margin-top: 10px; border: 1px solid var(--border-color); line-height: 1.6; color: var(--content-color); font-size: 0.95rem; }
+        .syllabus-structure .syllabus-quote { background: rgba(255,255,255,0.05); border-left: 3px solid var(--section-color); padding: 10px 14px; margin: 10px 0; border-radius: 0 6px 6px 0; font-style: italic; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; }
+        .syllabus-structure .syllabus-quote::before { content: '„'; font-size: 1.2rem; color: var(--section-color); margin-right: 4px; }
+        .syllabus-structure .syllabus-quote::after { content: '"'; font-size: 1.2rem; color: var(--section-color); margin-left: 2px; }
+        .syllabus-structure .syllabus-quote-source { display: block; font-style: normal; font-size: 0.75rem; color: var(--text-muted); margin-top: 6px; }
         .syllabus-structure .coach-note { background: hsla(var(--hue), 40%, 20%, 0.3); border-left: 4px solid var(--chapter-color); padding: 12px; margin-top: 14px; border-radius: 6px; font-size: 0.9rem; color: var(--text-primary); line-height: 1.5; white-space: normal; }
         .syllabus-structure .coach-note .coach-note-body { word-break: break-word; }
         .syllabus-structure .coach-note-label { font-weight: bold; color: var(--chapter-color); display: block; margin-bottom: 6px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
@@ -1168,8 +1172,8 @@
 <body>
     <div class="app-container" id="app" role="main"></div>
     
-    <script src="js/syllabus-data.js?v=19"></script>
-    <script src="js/questions-data.js?v=19"></script>
+    <script src="js/syllabus-data.js?v=20"></script>
+    <script src="js/questions-data.js?v=20"></script>
     <script>
     'use strict';
     
@@ -1921,15 +1925,18 @@
                         html += '<div class="section ' + (sectionHidden ? 'search-no-match' : '') + '" id="' + sectId + '" data-section style="position:relative;">';
                         html += '<div class="section-title" data-section-title>' + highlightStructureText(sub.id + ' ' + sub.title, q) + ' ▼</div>';
                         html += '<div class="content-wrapper">';
-                        if (sub.introText) html += '<div style="margin-bottom:12px;color:var(--text-secondary);font-style:italic;">' + highlightStructureText(sub.introText, q) + '</div>';
+                        if (sub.page) html += '<div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:8px;">📄 Lehrplan Seite ' + sub.page + '</div>';
+                        if (sub.quote) html += '<div class="syllabus-quote">' + highlightStructureText(sub.quote, q) + '<span class="syllabus-quote-source">— CTFL v4.0.2 Lehrplan, S. ' + (sub.page || '?') + '</span></div>';
                         if (sub.keyPoints) {
                             html += '<ul class="key-points">' + sub.keyPoints.map(p => {
                                 const isObj = typeof p === 'object';
                                 const title = isObj ? p.title : p;
                                 const content = isObj ? p.content : (sub.fullText || '');
                                 const coachNote = isObj && p.coachNote ? p.coachNote : null;
+                                const pQuote = isObj && p.quote ? p.quote : null;
+                                const quoteHtml = pQuote ? '<div class="syllabus-quote" style="margin:8px 0;">' + highlightStructureText(pQuote, q) + '</div>' : '';
                                 const noteHtml = coachNote ? '<div class="coach-note"><span class="coach-note-label">💡 Lern-Coach (Prüfungsfokus):</span><span class="coach-note-body">' + formatCoachNoteForDisplay(coachNote, q) + '</span></div>' : '';
-                                return '<li data-keypoint><div style="font-weight:500;">' + highlightStructureText(title, q) + '</div>' + (isObj ? '<div class="specific-text" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid currentColor;font-weight:normal;font-size:0.9rem;line-height:1.6;">' + (content ? '<div style="margin-bottom:12px;color:var(--text-secondary);">' + highlightStructureText(content, q) + '</div>' : '') + noteHtml + '</div>' : '') + '</li>';
+                                return '<li data-keypoint><div style="font-weight:500;">' + highlightStructureText(title, q) + '</div>' + (isObj ? '<div class="specific-text" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid currentColor;font-weight:normal;font-size:0.9rem;line-height:1.6;">' + quoteHtml + (content ? '<div style="margin-bottom:12px;color:var(--text-secondary);">' + highlightStructureText(content, q) + '</div>' : '') + noteHtml + '</div>' : '') + '</li>';
                             }).join('') + '</ul>';
                         }
                         if (sub.subsections) {

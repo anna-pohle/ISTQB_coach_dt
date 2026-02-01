@@ -38,7 +38,7 @@ const syllabusData = Object.freeze({
                     id: "1.1",
                     title: "Was ist Testen?",
                     page: 16,
-                    introText: "Softwaresysteme sind ein integraler Bestandteil unseres täglichen Lebens. Das Testen von Software besteht aus einer Reihe von Aktivitäten zur Entdeckung von Fehlerzuständen und zur Bewertung der Qualität.",
+                    quote: "Das Testen von Software besteht aus einer Reihe von Aktivitäten zur Entdeckung von Fehlerzuständen und zur Bewertung der Qualität von Arbeitsergebnissen der Softwareentwicklung.",
                     keyPoints: [
                         {
                             title: "Testen = mehr als nur Code ausführen",
@@ -47,12 +47,13 @@ const syllabusData = Object.freeze({
                         },
                         {
                             title: "Statisch vs. Dynamisch",
-                            content: "Testen kann dynamisch (Software wird ausgeführt) oder statisch (Software wird nicht ausgeführt, z.B. Reviews) sein.",
+                            quote: "Beim dynamischen Test wird die Software ausgeführt, beim statischen Test hingegen nicht.",
+                            content: "Zum statischen Test gehören Reviews und statische Analysen. Beim dynamischen Test werden verschiedene Testverfahren verwendet.",
                             coachNote: "Eselsbrücke: Dynamisch = 'Motor läuft' 🚗. Statisch = 'Motor aus' (Code/Dokumente lesen) 📄."
                         },
                         {
                             title: "Verifizierung vs. Validierung",
-                            content: "Verifizierung prüft die Spezifikation ('Erfüllt es die Anforderungen?'). Validierung prüft den Benutzerwunsch ('Erfüllt es die Bedürfnisse im Betrieb?').",
+                            quote: "Verifizieren = Prüfen, ob das System die spezifizierten Anforderungen erfüllt. Validieren = Prüfen, ob das System die Bedürfnisse der Benutzer in seiner Betriebsumgebung erfüllt.",
                             coachNote: "Verifizierung: 'Bauen wir das Produkt richtig?' ✅ Validierung: 'Bauen wir das richtige Produkt?' ❤️"
                         }
                     ],
@@ -99,6 +100,8 @@ const syllabusData = Object.freeze({
                 {
                     id: "1.2",
                     title: "Warum ist Testen notwendig?",
+                    page: 18,
+                    quote: "Testen ist ein kosteneffizientes Mittel zur Erkennung von Fehlerzuständen. Diese Fehlerzustände können dann beseitigt werden, so dass das Testen indirekt zu einer höheren Qualität der Testobjekte beiträgt.",
                     keyPoints: [
                         {
                             title: "Kosteneffizienz",
@@ -147,7 +150,8 @@ const syllabusData = Object.freeze({
                         {
                             id: "1.2.3",
                             title: "Fehlerkette",
-                            introText: "Der Weg vom menschlichen Irrtum zum Systemabsturz.",
+                            page: 19,
+                            quote: "Menschen begehen Fehlhandlungen, die zu Fehlerzuständen führen, was wiederum zu Fehlerwirkungen führen kann.",
                             keyPoints: [
                                 {
                                     title: "Fehlhandlung (Mistake)",
@@ -176,10 +180,11 @@ const syllabusData = Object.freeze({
                 {
                     id: "1.3",
                     title: "Die sieben Grundsätze des Testens",
+                    page: 20,
                     keyPoints: [
                         {
                             title: "1. Testen zeigt Anwesenheit von Fehlern",
-                            content: "Testen kann zeigen, dass Fehler da sind, aber nie beweisen, dass keine da sind.",
+                            quote: "Testen kann zeigen, dass Fehlerzustände vorhanden sind, aber nicht beweisen, dass keine Fehlerzustände vorhanden sind.",
                             coachNote: "🎯 Prüfungsfalle – Grundsatz 1:\n\n❌ IMMER FALSCH:\n• 'nachweisen, dass keine Fehler'\n• 'keine Fehlerwirkungen im Betrieb'\n\n✅ Bei Frage nach 'erreichbares Testziel':\n→ 'Risiko verringern und Vertrauen aufbauen'"
                         },
                         {
@@ -217,6 +222,8 @@ const syllabusData = Object.freeze({
                 {
                     id: "1.4",
                     title: "Testprozess",
+                    page: 21,
+                    quote: "Ein Testprozess besteht in der Regel aus den Hauptgruppen: Testplanung, Testüberwachung und -steuerung, Testanalyse, Testentwurf, Testrealisierung, Testdurchführung und Testabschluss.",
                     keyPoints: [
                         {
                             title: "Kontextabhängig",
