@@ -1093,7 +1093,31 @@
             }
         }
 
-        /* Struktur-Ansicht: Syllabus wie in preview.html (Rainbow, Key Points, Coach-Notes) */
+        /* Struktur-Ansicht: Quelleninfo */
+        .syllabus-source-info {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .syllabus-source-info p { margin: 0 0 8px 0; font-size: 0.9rem; color: var(--text-secondary); }
+        .syllabus-source-info a {
+            display: inline-block;
+            padding: 10px 16px;
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin: 8px 0;
+        }
+        .syllabus-source-info a:hover { opacity: 0.9; }
+        .syllabus-source-info .source-note { font-size: 0.75rem; color: var(--text-muted); margin-top: 8px; }
+        
+        /* Struktur-Ansicht: Syllabus */
         .syllabus-structure .chapter { margin-bottom: 16px; border: 1px solid var(--border-color); border-radius: var(--radius-md); overflow: hidden; --hue: 150; --chapter-color: hsl(var(--hue), 70%, 55%); --section-color: hsl(var(--hue), 60%, 70%); --subsection-color: hsl(var(--hue), 50%, 85%); --content-color: hsl(var(--hue), 30%, 96%); --bg-tint: hsla(var(--hue), 40%, 30%, 0.1); --sticky-h1: 78px; --sticky-h2: 48px; --sticky-h3: 36px; }
         .syllabus-structure .chapter-header { display: flex; flex-direction: column; padding: 16px 20px; background: var(--bg-card); cursor: pointer; border-left: 4px solid var(--chapter-color); transition: background 0.2s; }
         .syllabus-structure .chapter-header:hover { background: var(--bg-secondary); }
@@ -1141,8 +1165,8 @@
 <body>
     <div class="app-container" id="app" role="main"></div>
     
-    <script src="js/syllabus-data.js?v=17"></script>
-    <script src="js/questions-data.js?v=17"></script>
+    <script src="js/syllabus-data.js?v=18"></script>
+    <script src="js/questions-data.js?v=18"></script>
     <script>
     'use strict';
     
@@ -1859,6 +1883,7 @@
             
             let html = '<div class="view active" role="region" aria-label="Lehrplan-Struktur"><div class="syllabus-structure">';
             html += '<h2 class="section-title">CTFL v4.0.2 Lehrplan</h2>';
+            html += '<div class="syllabus-source-info"><p>📖 <strong>Lernhilfe</strong> basierend auf dem offiziellen deutschen Lehrplan.</p><a href="https://www.german-testing-board.info/lehrplaene/istqbr-certified-tester-schema/" target="_blank" rel="noopener">📄 Offiziellen Lehrplan beim GTB herunterladen →</a><p class="source-note">© German Testing Board e.V., Austrian Testing Board, Swiss Testing Board</p></div>';
             html += '<div class="search-wrap"><label for="structure-search-input">Suchen in Kapiteln, Key Points und Coach-Notes</label><input type="search" id="structure-search-input" class="search-input" placeholder="Begriff eingeben …" aria-label="Suchen im Syllabus" value="' + escapeHtml(state.structureSearchQuery || '') + '" autocomplete="off"><div id="structure-search-result-info" class="search-result-info" aria-live="polite" role="status"></div></div>';
             html += '<div id="structure-content">';
             

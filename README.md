@@ -10,13 +10,27 @@ Eine **Progressive Web App (PWA)** zum Lernen und Üben für die ISTQB Foundatio
 
 ## Features
 
+### Quiz
 - **111 Prüfungsfragen** aus den offiziellen GTB Sample Exams (Set A-F)
-- **Strukturierter Syllabus** mit allen 6 Kapiteln und Lernzielen
 - **Übungsmodus** - Lerne in deinem Tempo mit sofortigem Feedback
 - **Prüfungsmodus** - Simuliere die echte Prüfung (40 Fragen, 60 Min, 65% zum Bestehen)
 - **Intelligente Hinweise** - Verstehe die Fallen in jeder Frage
+- **Antworten werden gemischt** - Kein Auswendiglernen von Positionen
+
+### Lehrplan
+- **Alle 6 Kapitel** aufklappbar mit Unterkapiteln und Lernzielen
+- **Coach-Notes** mit Prüfungstipps und Eselsbrücken
+- **Suchfunktion** über alle Inhalte
+- **Link zum offiziellen Lehrplan** beim German Testing Board
+
+### Zeitplan
+- **3 wählbare Zeiträume**: 2 Wochen, 4 Wochen, 3 Monate
+- **Quiz-Empfehlungen** pro Zeitraum
 - **Fortschrittstracking** - Punkte, Streak, Statistiken pro Kapitel
+
+### Technisch
 - **Offline-fähig** - Einmal laden, überall lernen
+- **Installierbar** - Als App auf dem Handy
 - **Dark Mode** - Augenschonend lernen
 
 ## Installation auf dem Handy
@@ -24,7 +38,7 @@ Eine **Progressive Web App (PWA)** zum Lernen und Üben für die ISTQB Foundatio
 ### Android
 1. Öffne die App im Chrome-Browser
 2. Tippe auf das Menü (⋮) → "App installieren" oder "Zum Startbildschirm hinzufügen"
-3. Fertig! Die App erscheint wie eine normale App auf deinem Homescreen
+3. Fertig!
 
 ### iOS (iPhone/iPad)
 1. Öffne die App in Safari
@@ -36,7 +50,7 @@ Eine **Progressive Web App (PWA)** zum Lernen und Üben für die ISTQB Foundatio
 
 **[anna-pohle.github.io/ISTQB_coach_dt](https://anna-pohle.github.io/ISTQB_coach_dt)**
 
-Einfach den Link öffnen und loslegen!
+Einfach im Browser öffnen oder aufs Handy installieren!
 
 ## Techstack
 
@@ -45,16 +59,23 @@ Einfach den Link öffnen und loslegen!
 - Web App Manifest für Installation
 - LocalStorage für Fortschrittsspeicherung
 
-## Hinweise
+## Quellen & Hinweise
 
-- Die Fragen stammen aus den **offiziellen GTB Sample Exams** und sind für Übungszwecke gedacht
-- Der Lehrplan basiert auf dem **ISTQB CTFL Syllabus v4.0.2** (deutsche Ausgabe)
-- Diese App ersetzt nicht das Studium des offiziellen Lehrplans!
+- **Prüfungsfragen**: Offizielle GTB Sample Exams (Set A-F)
+- **Lehrplan-Grundlage**: ISTQB CTFL Syllabus v4.0.2 (deutsche Ausgabe)
+- **Offizieller Download**: [german-testing-board.info](https://www.german-testing-board.info/lehrplaene/istqbr-certified-tester-schema/)
+
+**Diese App ersetzt nicht das Studium des offiziellen Lehrplans!**
+
+Die Lehrplan-Inhalte in der App sind Zusammenfassungen und Lernhilfen. Für die vollständigen Originaltexte bitte den offiziellen Lehrplan beim GTB herunterladen.
 
 ## Lizenz
 
-Dieses Projekt ist für **persönliche Lernzwecke** gedacht. Die ISTQB-Inhalte unterliegen dem Copyright des German Testing Board (GTB) und ISTQB.
+Dieses Projekt ist für **persönliche Lernzwecke** gedacht.
+
+Die ISTQB-Inhalte unterliegen dem Copyright:
+© German Testing Board e.V., Austrian Testing Board, Swiss Testing Board
 
 ---
 
-**Viel Erfolg bei der Prüfung!** 🎯
+**Viel Erfolg bei der Prüfung!**

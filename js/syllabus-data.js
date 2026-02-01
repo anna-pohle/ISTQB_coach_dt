@@ -1,15 +1,21 @@
 /**
  * ISTQB CTFL v4.0.2 Lehrplan - Vollständige Kapitelstruktur
- * NUR DEUTSCHE SYLLABUS: Ausschließlich CTFL v4.0.2 DE (German Testing Board).
+ * 
  * Quelle: Deutschsprachiger Lehrplan des German Testing Board
  * Version: 4.0.2 (01.03.2025)
+ * Download: https://www.german-testing-board.info/lehrplaene/istqbr-certified-tester-schema/
  * 
- * Struktur pro Unterkapitel:
- * - keyPoints: Kompakte Bullet-Points mit echten ISTQB-Formulierungen
- * - fullText: Ausklappbarer Volltext aus dem Original-Lehrplan
+ * HINWEIS: Die Inhalte sind Zusammenfassungen zur Prüfungsvorbereitung.
+ * Für den vollständigen Originaltext siehe den offiziellen Lehrplan (Link oben).
+ * Seitenzahlen beziehen sich auf die offizielle PDF-Version.
+ * 
+ * © German Testing Board e.V., Austrian Testing Board, Swiss Testing Board
  */
 
+const SYLLABUS_PDF_URL = "https://www.german-testing-board.info/lehrplaene/istqbr-certified-tester-schema/";
+
 const syllabusData = Object.freeze({
+    pdfUrl: SYLLABUS_PDF_URL,
     chapters: [
         // =========================================================================
         // KAPITEL 1: GRUNDLAGEN DES TESTENS (180 Minuten)
@@ -32,6 +38,7 @@ const syllabusData = Object.freeze({
                 {
                     id: "1.1",
                     title: "Was ist Testen?",
+                    page: 16,
                     introText: "Softwaresysteme sind ein integraler Bestandteil unseres täglichen Lebens. Das Testen von Software besteht aus einer Reihe von Aktivitäten zur Entdeckung von Fehlerzuständen und zur Bewertung der Qualität.",
                     keyPoints: [
                         {
