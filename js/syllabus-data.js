@@ -462,6 +462,8 @@ const syllabusData = Object.freeze({
                     id: "2.2",
                     title: "Teststufen",
                     page: 32,
+                    image: "images/vmodell_cc.png",
+                    imageAttribution: "Herman Bruyninckx, CC BY-SA 3.0, via Wikimedia Commons",
                     quote: "Teststufen sind Gruppen von Testaktivitäten, die gemeinsam organisiert und verwaltet werden. Jede Teststufe ist eine Instanz des Testprozesses.",
                     keyPoints: [
                         {
@@ -942,6 +944,8 @@ const syllabusData = Object.freeze({
                             id: "5.1.6",
                             title: "Testpyramide",
                             page: 60,
+                            image: "images/testpyramide_cc.png",
+                            imageAttribution: "Croncal, CC BY-SA 4.0, via Wikimedia Commons",
                             quote: "Die Testpyramide ist ein Modell, das die verschiedenen Tests zeigt, die einen unterschiedlichen Grad an Granularität haben können.",
                             keyPoints: [
                                 {
@@ -965,6 +969,8 @@ const syllabusData = Object.freeze({
                             id: "5.1.7",
                             title: "Testquadranten",
                             page: 61,
+                            image: "images/testquadranten_cc.jpg",
+                            imageAttribution: "Janet Gregory & Lisa Crispin, Agile Testing Condensed (mit Erlaubnis)",
                             quote: "Die von Brian Marick definierten Testquadranten gruppieren die Teststufen mit den entsprechenden Testarten, Aktivitäten, Testverfahren und Arbeitsergebnissen in der agilen Softwareentwicklung.",
                             keyPoints: [
                                 {

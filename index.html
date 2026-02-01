@@ -1265,8 +1265,8 @@
     <div class="app-container" id="app" role="main" aria-live="polite" aria-atomic="false"></div>
     <div id="sr-announcer" class="sr-only" aria-live="assertive" aria-atomic="true"></div>
     
-    <script src="js/syllabus-data.js?v=31"></script>
-    <script src="js/questions-data.js?v=31"></script>
+    <script src="js/syllabus-data.js?v=33"></script>
+    <script src="js/questions-data.js?v=33"></script>
     <script>
     'use strict';
     
@@ -2268,7 +2268,7 @@
                         html += '<div class="content-wrapper">';
                         if (sub.page) html += '<div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:8px;">📄 Lehrplan Seite ' + sub.page + '</div>';
                         if (sub.quote) html += '<div class="syllabus-quote">' + highlightStructureText(sub.quote, q) + '<span class="syllabus-quote-source">— CTFL v4.0.2 Lehrplan, S. ' + (sub.page || '?') + '</span></div>';
-                        if (sub.image) html += '<div class="syllabus-image"><img src="' + sub.image + '" alt="' + sub.title + '" style="max-width:100%;border-radius:8px;margin:12px 0;cursor:pointer;" onclick="this.classList.toggle(\'zoomed\')" /><div style="font-size:0.7rem;color:var(--text-muted);text-align:center;">Abbildung aus CTFL v4.0.2 Lehrplan, S. ' + (sub.page || '?') + '</div></div>';
+                        if (sub.image) html += '<div class="syllabus-image"><img src="' + sub.image + '" alt="' + sub.title + '" style="max-width:100%;border-radius:8px;margin:12px 0;cursor:pointer;" onclick="this.classList.toggle(\'zoomed\')" /><div style="font-size:0.7rem;color:var(--text-muted);text-align:center;">' + (sub.imageAttribution ? '📷 ' + sub.imageAttribution : 'Abbildung aus CTFL v4.0.2 Lehrplan, S. ' + (sub.page || '?')) + '</div></div>';
                         if (sub.keyPoints) {
                             html += '<ul class="key-points">' + sub.keyPoints.map(p => {
                                 const isObj = typeof p === 'object';
@@ -2290,7 +2290,7 @@
                                 html += '<div class="content-wrapper">';
                                 if (ss.page) html += '<div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:8px;">📄 Lehrplan Seite ' + ss.page + '</div>';
                                 if (ss.quote) html += '<div class="syllabus-quote">' + highlightStructureText(ss.quote, q) + '<span class="syllabus-quote-source">— CTFL v4.0.2 Lehrplan, S. ' + (ss.page || '?') + '</span></div>';
-                                if (ss.image) html += '<div class="syllabus-image"><img src="' + ss.image + '" alt="' + ss.title + '" style="max-width:100%;border-radius:8px;margin:12px 0;cursor:pointer;" onclick="this.classList.toggle(\'zoomed\')" /><div style="font-size:0.7rem;color:var(--text-muted);text-align:center;">Abbildung aus CTFL v4.0.2 Lehrplan, S. ' + (ss.page || '?') + '</div></div>';
+                                if (ss.image) html += '<div class="syllabus-image"><img src="' + ss.image + '" alt="' + ss.title + '" style="max-width:100%;border-radius:8px;margin:12px 0;cursor:pointer;" onclick="this.classList.toggle(\'zoomed\')" /><div style="font-size:0.7rem;color:var(--text-muted);text-align:center;">' + (ss.imageAttribution ? '📷 ' + ss.imageAttribution : 'Abbildung aus CTFL v4.0.2 Lehrplan, S. ' + (ss.page || '?')) + '</div></div>';
                                 if (ss.keyPoints) {
                                     html += '<ul class="key-points">' + ss.keyPoints.map(p => {
                                         const isObj = typeof p === 'object';
