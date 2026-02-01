@@ -124,6 +124,24 @@
             color: var(--accent-warning);
         }
         
+        .header-actions { display: flex; align-items: center; gap: 10px; }
+        .settings-btn { background: var(--bg-card); border: 1px solid var(--border-color); padding: 8px 10px; border-radius: var(--radius-lg); cursor: pointer; font-size: 1.1rem; transition: all 0.2s; }
+        .settings-btn:hover { background: var(--bg-secondary); border-color: var(--accent-primary); }
+        
+        /* Settings Panel */
+        .settings-panel { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .settings-panel.hidden { display: none; }
+        .settings-content { background: var(--bg-primary); border-radius: var(--radius-lg); padding: 24px; max-width: 400px; width: 100%; max-height: 80vh; overflow-y: auto; }
+        .settings-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .settings-section { margin-bottom: 20px; }
+        .settings-section-title { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .settings-option { display: flex; align-items: center; justify-content: space-between; padding: 12px; background: var(--bg-secondary); border-radius: var(--radius-md); margin-bottom: 8px; }
+        .settings-option-label { font-size: 0.9rem; }
+        .settings-close { width: 100%; padding: 12px; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-md); cursor: pointer; font-size: 0.9rem; margin-top: 10px; }
+        .settings-close:hover { background: var(--bg-card); }
+        .settings-danger { background: rgba(239,68,68,0.1); border: 1px solid var(--accent-error); }
+        .settings-danger:hover { background: rgba(239,68,68,0.2); }
+        
         .stats-bar {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -1198,13 +1216,20 @@
         .syllabus-structure .hidden { display: none !important; }
         .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
         .syllabus-structure .search-no-match { display: none !important; }
+        .syllabus-structure .bookmark-filter-hidden { display: none !important; }
         
         /* Lesezeichen */
-        .bookmark-btn { background: transparent; border: none; cursor: pointer; font-size: 1rem; padding: 4px 8px; opacity: 0.5; transition: all 0.2s; border-radius: var(--radius-sm); }
-        .bookmark-btn:hover { opacity: 1; background: rgba(251, 191, 36, 0.1); }
-        .bookmark-btn.bookmarked { opacity: 1; color: var(--accent-warning); }
+        .bookmark-btn { background: transparent; border: none; cursor: pointer; padding: 4px 6px; transition: all 0.2s; border-radius: var(--radius-sm); display: inline-flex; align-items: center; justify-content: center; }
+        .bookmark-btn:hover { background: rgba(251, 191, 36, 0.15); }
+        .bookmark-btn svg { width: 18px; height: 18px; stroke: var(--text-muted); fill: none; stroke-width: 2; transition: all 0.2s; }
+        .bookmark-btn:hover svg { stroke: var(--accent-warning); }
+        .bookmark-btn.bookmarked svg { stroke: var(--accent-warning); fill: var(--accent-warning); }
         .bookmarks-panel { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 16px; margin-bottom: 20px; }
-        .bookmarks-panel-title { font-size: 0.9rem; font-weight: 600; color: var(--accent-warning); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .bookmarks-panel-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 12px; }
+        .bookmarks-panel-title { font-size: 0.9rem; font-weight: 600; color: var(--accent-warning); display: flex; align-items: center; gap: 8px; }
+        .bookmarks-panel-title svg { width: 20px; height: 20px; stroke: var(--accent-warning); fill: var(--accent-warning); }
+        .bookmark-filter-toggle { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; color: var(--text-secondary); cursor: pointer; }
+        .bookmark-filter-toggle input { cursor: pointer; }
         .bookmarks-list { display: flex; flex-direction: column; gap: 8px; }
         .bookmark-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; background: var(--bg-secondary); border-radius: var(--radius-md); cursor: pointer; transition: all 0.2s; }
         .bookmark-item:hover { background: var(--bg-primary); border: 1px solid var(--accent-warning); }
@@ -1222,10 +1247,10 @@
         .syllabus-structure .search-result-info .search-jump-btn:hover { background: var(--accent-primary); color: var(--bg-primary); border-color: var(--accent-primary); }
         .syllabus-structure .search-result-info .search-jump-btn:disabled { opacity: 0.5; cursor: not-allowed; }
         .syllabus-structure mark.search-hit { background: hsl(45, 90%, 50%); color: #000; padding: 0 2px; border-radius: 2px; }
-        .structure-floating-buttons { position: fixed; bottom: 20px; right: 20px; z-index: 100; display: flex; flex-direction: column; gap: 8px; }
-        .structure-floating-buttons .float-btn { padding: 10px 12px; border-radius: 50%; border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-primary); font-size: 1.2rem; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: all 0.2s; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; }
+        .structure-floating-buttons { position: fixed; bottom: 20px; right: 20px; z-index: 100; display: flex; flex-direction: column; gap: 8px; align-items: flex-end; }
+        .structure-floating-buttons .float-btn { padding: 10px; border-radius: 50%; border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-primary); font-size: 1.2rem; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: all 0.2s; width: 44px; height: 44px; display: flex; align-items: center; justify-content: flex-end; flex-direction: row-reverse; }
         .structure-floating-buttons .float-btn:hover { background: var(--bg-secondary); width: auto; border-radius: var(--radius-md); padding: 10px 14px; }
-        .structure-floating-buttons .float-btn .btn-text { display: none; margin-left: 6px; font-size: 0.8rem; font-weight: 600; }
+        .structure-floating-buttons .float-btn .btn-text { display: none; margin-right: 8px; font-size: 0.8rem; font-weight: 600; white-space: nowrap; }
         .structure-floating-buttons .float-btn:hover .btn-text { display: inline; }
         .structure-floating-buttons .float-btn:active { transform: scale(0.95); }
         
@@ -1305,6 +1330,9 @@
             expandedChapters: {},
             expandedSections: {},    // Hierarchische Ausklapp-States: {'1-0': true, '1-0-2': true}
             structureSearchQuery: '',
+            showOnlyBookmarked: false,   // Nur Lesezeichen anzeigen
+            settingsPanelOpen: false,    // Einstellungs-Panel
+            autoBookmarkOnWrong: true,   // Auto-Lesezeichen bei falschen Antworten
             planDuration: '4weeks',
             // Per-chapter stats
             chapterStats: { 1: { answered: 0, correct: 0 }, 2: { answered: 0, correct: 0 }, 3: { answered: 0, correct: 0 }, 4: { answered: 0, correct: 0 }, 5: { answered: 0, correct: 0 }, 6: { answered: 0, correct: 0 } },
@@ -1327,7 +1355,8 @@
             CHAPTER_STATS: 'istqb_chapterStats',
             WRONG_QUESTIONS: 'istqb_wrongQuestions',   // Spaced Repetition: falsch beantwortete Fragen
             BOOKMARKS: 'istqb_bookmarks',              // Lesezeichen für Lehrplan
-            HIGH_CONTRAST: 'istqb_highContrast'        // Hochkontrast-Modus
+            HIGH_CONTRAST: 'istqb_highContrast',       // Hochkontrast-Modus
+            AUTO_BOOKMARK: 'istqb_autoBookmark'        // Auto-Lesezeichen bei falschen Antworten
         });
         
         // Timer reference
@@ -1556,6 +1585,9 @@
                     state.highContrast = true;
                     document.body.classList.add('high-contrast');
                 }
+                // Auto Bookmark
+                const storedAutoBookmark = localStorage.getItem(STORAGE_KEYS.AUTO_BOOKMARK);
+                state.autoBookmarkOnWrong = storedAutoBookmark !== 'false'; // Default: true
             } catch (e) {
                 console.warn('Failed to load state from localStorage:', e);
             }
@@ -1573,6 +1605,7 @@
                 localStorage.setItem(STORAGE_KEYS.WRONG_QUESTIONS, JSON.stringify(state.wrongQuestions));
                 localStorage.setItem(STORAGE_KEYS.BOOKMARKS, JSON.stringify(state.bookmarks));
                 localStorage.setItem(STORAGE_KEYS.HIGH_CONTRAST, state.highContrast);
+                localStorage.setItem(STORAGE_KEYS.AUTO_BOOKMARK, state.autoBookmarkOnWrong);
             } catch (e) {
                 console.warn('Failed to save state to localStorage:', e);
             }
@@ -1669,6 +1702,13 @@
         }
         
         /**
+         * SVG-Icon für Lesezeichen (Bookmark-Flag-Style)
+         */
+        function getBookmarkSvg() {
+            return '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 5c0-1.1.9-2 2-2h10a2 2 0 0 1 2 2v16l-7-3.5L5 21V5z"/></svg>';
+        }
+        
+        /**
          * Lesezeichen: Fügt ein Lesezeichen hinzu oder entfernt es
          * @param {number} chapterId - Kapitel-ID
          * @param {string} sectionId - Abschnitts-ID (z.B. "1.1")
@@ -1706,6 +1746,14 @@
             return state.bookmarks.some(b => 
                 b.chapterId === chapterId && b.sectionId === sectionId
             );
+        }
+        
+        /**
+         * Prüft ob ein Kapitel oder eine seiner Sektionen/Subsektionen ein Lesezeichen hat
+         */
+        function hasAnyBookmarkInChapter(chapterId) {
+            if (!state.bookmarks || state.bookmarks.length === 0) return false;
+            return state.bookmarks.some(b => b.chapterId === chapterId);
         }
         
         /**
@@ -1947,12 +1995,47 @@
         // RENDER FUNCTIONS
         // ========================================================================
         
+        function renderSettingsPanel() {
+            return `
+                <div class="settings-panel${state.settingsPanelOpen ? '' : ' hidden'}" id="settings-panel">
+                    <div class="settings-content">
+                        <div class="settings-title">⚙️ Einstellungen</div>
+                        
+                        <div class="settings-section">
+                            <div class="settings-section-title">Darstellung</div>
+                            <div class="settings-option">
+                                <span class="settings-option-label">Hochkontrast-Modus</span>
+                                <input type="checkbox" id="high-contrast-checkbox" ${state.highContrast ? 'checked' : ''}>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-section">
+                            <div class="settings-section-title">Quiz</div>
+                            <div class="settings-option">
+                                <span class="settings-option-label">Auto-Lesezeichen bei Fehlern</span>
+                                <input type="checkbox" id="auto-bookmark-checkbox" ${state.autoBookmarkOnWrong ? 'checked' : ''}>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-section">
+                            <div class="settings-section-title">Daten</div>
+                            <button class="settings-close settings-danger" id="reset-all-btn">🗑️ Alle Fortschritte zurücksetzen</button>
+                        </div>
+                        
+                        <button class="settings-close" id="settings-close">Schließen</button>
+                    </div>
+                </div>`;
+        }
+        
         function renderHeader() {
             return `
                 <header class="header">
                     <div class="header-top">
                         <div class="logo">ISTQB Coach</div>
-                        <div class="streak-badge" aria-label="Lernsträhne">🔥 ${state.streak} Tage</div>
+                        <div class="header-actions">
+                            <div class="streak-badge" aria-label="Lernsträhne">🔥 ${state.streak} Tage</div>
+                            <button class="settings-btn" id="settings-toggle" aria-label="Einstellungen" title="Einstellungen">⚙️</button>
+                        </div>
                     </div>
                     <div class="stats-bar" role="region" aria-label="Statistiken">
                         <div class="stat-item">
@@ -1968,7 +2051,8 @@
                             <div class="stat-label">Genauigkeit</div>
                         </div>
                     </div>
-                </header>`;
+                </header>
+                ${renderSettingsPanel()}`; 
         }
         
         function renderNav() {
@@ -2232,7 +2316,10 @@
             
             // Lesezeichen-Panel anzeigen wenn welche vorhanden
             if (state.bookmarks && state.bookmarks.length > 0) {
-                html += '<div class="bookmarks-panel"><div class="bookmarks-panel-title">🔖 Meine Lesezeichen (' + state.bookmarks.length + ')</div><div class="bookmarks-list">';
+                html += '<div class="bookmarks-panel">';
+                html += '<div class="bookmarks-panel-header"><div class="bookmarks-panel-title">' + getBookmarkSvg() + ' Meine Lesezeichen (' + state.bookmarks.length + ')</div>';
+                html += '<label class="bookmark-filter-toggle"><input type="checkbox" id="bookmark-filter-checkbox" ' + (state.showOnlyBookmarked ? 'checked' : '') + '> Nur Lesezeichen anzeigen</label></div>';
+                html += '<div class="bookmarks-list">';
                 state.bookmarks.forEach((b, bIdx) => {
                     html += '<div class="bookmark-item" data-bookmark-jump="' + b.chapterId + '|' + b.sectionId + '"><span class="bookmark-item-chapter">Kap. ' + b.chapterId + '</span><span class="bookmark-item-title">' + escapeHtml(b.title) + '</span><button class="bookmark-remove" data-bookmark-remove="' + bIdx + '" title="Lesezeichen entfernen">✕</button></div>';
                 });
@@ -2245,14 +2332,16 @@
             
             syllabusData.chapters.forEach((chapter, cIdx) => {
                 const chapterHidden = q && matchMap && !matchMap.has(cIdx);
+                const bookmarkFilterHidden = state.showOnlyBookmarked && !hasAnyBookmarkInChapter(chapter.id);
                 const hue = STRUCTURE_HUES[cIdx] !== undefined ? STRUCTURE_HUES[cIdx] : (cIdx * 60) % 360;
                 const isExpanded = expandedChapters[cIdx] || (q && !chapterHidden);
                 
-                html += '<div class="chapter ' + (chapterHidden ? 'search-no-match' : '') + (isExpanded ? ' expanded' : '') + '" style="--hue:' + hue + '" data-chapter-idx="' + cIdx + '">';
+                const isChapterBookmarked = isBookmarked(chapter.id, chapter.id);
+                html += '<div class="chapter ' + (chapterHidden ? 'search-no-match' : '') + (bookmarkFilterHidden ? ' bookmark-filter-hidden' : '') + (isExpanded ? ' expanded' : '') + '" style="--hue:' + hue + '" data-chapter-idx="' + cIdx + '">';
                 
                 // Kapitel-Header (immer sichtbar, klickbar)
                 html += '<div class="chapter-header" data-toggle-chapter="' + cIdx + '">';
-                html += '<div class="chapter-title-row"><div class="chapter-title" id="chapter-' + chapter.id + '">' + chapter.icon + ' Kapitel ' + chapter.id + ': ' + highlightStructureText(chapter.title, q) + '</div><span class="chapter-toggle-icon">' + (isExpanded ? '▲' : '▼') + '</span></div>';
+                html += '<div class="chapter-title-row"><div class="chapter-title" id="chapter-' + chapter.id + '">' + chapter.icon + ' Kapitel ' + chapter.id + ': ' + highlightStructureText(chapter.title, q) + '</div><button class="bookmark-btn ' + (isChapterBookmarked ? 'bookmarked' : '') + '" data-bookmark-toggle="' + chapter.id + '|' + chapter.id + '|Kapitel ' + chapter.id + ': ' + escapeHtml(chapter.title) + '" title="' + (isChapterBookmarked ? 'Lesezeichen entfernen' : 'Lesezeichen setzen') + '">' + getBookmarkSvg() + '</button><span class="chapter-toggle-icon">' + (isExpanded ? '▲' : '▼') + '</span></div>';
                 html += '<div class="chapter-meta"><span>ca. ' + chapter.questionCount + ' Fragen je Prüfung</span></div>';
                 html += '</div>';
                 
@@ -2276,7 +2365,7 @@
                         var sectId = toSectionId(sub.id);
                         const isBookmarkedSec = isBookmarked(chapter.id, sub.id);
                         html += '<div class="section ' + (sectionHidden ? 'search-no-match' : '') + (isSectionExpanded ? ' expanded' : '') + '" id="' + sectId + '" data-section data-section-id="' + sub.id + '" style="position:relative;">';
-                        html += '<div class="section-title" data-toggle-section="' + sectionKey + '" style="display:flex;align-items:center;gap:8px;cursor:pointer;">' + highlightStructureText(sub.id + ' ' + sub.title, q) + ' <button class="bookmark-btn ' + (isBookmarkedSec ? 'bookmarked' : '') + '" data-bookmark-toggle="' + chapter.id + '|' + sub.id + '|' + escapeHtml(sub.id + ' ' + sub.title) + '" title="' + (isBookmarkedSec ? 'Lesezeichen entfernen' : 'Lesezeichen setzen') + '">' + (isBookmarkedSec ? '🔖' : '☆') + '</button><span style="flex:1;"></span>' + (isSectionExpanded ? '▲' : '▼') + '</div>';
+                        html += '<div class="section-title" data-toggle-section="' + sectionKey + '" style="display:flex;align-items:center;gap:8px;cursor:pointer;">' + highlightStructureText(sub.id + ' ' + sub.title, q) + ' <button class="bookmark-btn ' + (isBookmarkedSec ? 'bookmarked' : '') + '" data-bookmark-toggle="' + chapter.id + '|' + sub.id + '|' + escapeHtml(sub.id + ' ' + sub.title) + '" title="' + (isBookmarkedSec ? 'Lesezeichen entfernen' : 'Lesezeichen setzen') + '">' + getBookmarkSvg() + '</button><span style="flex:1;"></span>' + (isSectionExpanded ? '▲' : '▼') + '</div>';
                         html += '<div class="content-wrapper" style="' + (isSectionExpanded ? '' : 'display:none;') + '">';
                         if (sub.page) html += '<div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:8px;">📄 Lehrplan Seite ' + sub.page + '</div>';
                         if (sub.quote) html += '<div class="syllabus-quote">' + highlightStructureText(sub.quote, q) + '<span class="syllabus-quote-source">— CTFL v4.0.2 Lehrplan, S. ' + (sub.page || '?') + '</span></div>';
@@ -2298,9 +2387,10 @@
                                 const subsecHidden = q && matchMap && !matchMap.has(cIdx + '-' + sIdx + '-' + ssIdx);
                                 const subsecKey = cIdx + '-' + sIdx + '-' + ssIdx;
                                 const isSubsecExpanded = expandedSections[subsecKey] || (q && !subsecHidden);
+                                const isSubsecBookmarked = isBookmarked(chapter.id, ss.id);
                                 var subsecId = toSectionId(ss.id);
-                                html += '<div class="subsection ' + (subsecHidden ? 'search-no-match' : '') + (isSubsecExpanded ? ' expanded' : '') + '" id="' + subsecId + '">';
-                                html += '<div class="subsection-title" data-toggle-subsection="' + subsecKey + '" style="cursor:pointer;">' + highlightStructureText(ss.id + ' ' + ss.title, q) + ' ' + (isSubsecExpanded ? '▲' : '▼') + '</div>';
+                                html += '<div class="subsection ' + (subsecHidden ? 'search-no-match' : '') + (isSubsecExpanded ? ' expanded' : '') + '" id="' + subsecId + '" data-section-id="' + ss.id + '">';
+                                html += '<div class="subsection-title" data-toggle-subsection="' + subsecKey + '" style="cursor:pointer;display:flex;align-items:center;gap:8px;">' + highlightStructureText(ss.id + ' ' + ss.title, q) + ' <button class="bookmark-btn ' + (isSubsecBookmarked ? 'bookmarked' : '') + '" data-bookmark-toggle="' + chapter.id + '|' + ss.id + '|' + escapeHtml(ss.id + ' ' + ss.title) + '" title="' + (isSubsecBookmarked ? 'Lesezeichen entfernen' : 'Lesezeichen setzen') + '">' + getBookmarkSvg() + '</button><span style="flex:1;"></span>' + (isSubsecExpanded ? '▲' : '▼') + '</div>';
                                 html += '<div class="content-wrapper" style="' + (isSubsecExpanded ? '' : 'display:none;') + '">';
                                 if (ss.page) html += '<div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:8px;">📄 Lehrplan Seite ' + ss.page + '</div>';
                                 if (ss.quote) html += '<div class="syllabus-quote">' + highlightStructureText(ss.quote, q) + '<span class="syllabus-quote-source">— CTFL v4.0.2 Lehrplan, S. ' + (ss.page || '?') + '</span></div>';
@@ -2914,24 +3004,6 @@
                             <div class="achievement-name">Prüfung bestanden</div>
                         </div>
                     </div>
-                    
-                    <div style="margin-top: 32px; padding: 20px; background: var(--bg-card); border-radius: var(--radius-lg); border: 1px solid var(--border-color);">
-                        <h3 style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 12px;">⚙️ Einstellungen</h3>
-                        
-                        <button id="toggle-contrast" style="width: 100%; padding: 12px; background: ${state.highContrast ? 'rgba(0, 212, 170, 0.2)' : 'var(--bg-secondary)'}; border: 1px solid ${state.highContrast ? 'var(--accent-primary)' : 'var(--border-color)'}; border-radius: var(--radius-md); color: var(--text-primary); font-family: inherit; font-size: 0.9rem; font-weight: 600; cursor: pointer; margin-bottom: 12px;">
-                            ${state.highContrast ? '👁️ Hochkontrast: AN' : '👁️ Hochkontrast: AUS'}
-                        </button>
-                        <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 16px; text-align: center;">
-                            Erhöht den Kontrast für bessere Lesbarkeit.
-                        </p>
-                        
-                        <button id="reset-progress" style="width: 100%; padding: 12px; background: rgba(239, 68, 68, 0.1); border: 1px solid var(--accent-error); border-radius: var(--radius-md); color: var(--accent-error); font-family: inherit; font-size: 0.9rem; font-weight: 600; cursor: pointer;">
-                            🗑️ Fortschritt zurücksetzen
-                        </button>
-                        <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 8px; text-align: center;">
-                            Setzt alle Statistiken, Erfolge und Kapitel-Daten auf Null.
-                        </p>
-                    </div>
                 </div>`;
         }
         
@@ -3003,7 +3075,71 @@
                     }
                 }, 280));
             }
+            
+            // Lesezeichen-Filter-Checkbox
+            const bookmarkFilterCheckbox = document.getElementById('bookmark-filter-checkbox');
+            if (bookmarkFilterCheckbox) {
+                bookmarkFilterCheckbox.addEventListener('change', () => {
+                    state.showOnlyBookmarked = bookmarkFilterCheckbox.checked;
+                    render();
+                });
+            }
+            
             if (state.currentView === 'structure') updateStructureSearchInfo();
+            
+            // Settings Panel Event-Handler
+            const settingsToggle = document.getElementById('settings-toggle');
+            const settingsPanel = document.getElementById('settings-panel');
+            const settingsClose = document.getElementById('settings-close');
+            const highContrastCheckbox = document.getElementById('high-contrast-checkbox');
+            const autoBookmarkCheckbox = document.getElementById('auto-bookmark-checkbox');
+            const resetAllBtn = document.getElementById('reset-all-btn');
+            
+            if (settingsToggle) {
+                settingsToggle.addEventListener('click', () => {
+                    state.settingsPanelOpen = true;
+                    render();
+                });
+            }
+            if (settingsClose) {
+                settingsClose.addEventListener('click', () => {
+                    state.settingsPanelOpen = false;
+                    render();
+                });
+            }
+            if (settingsPanel) {
+                settingsPanel.addEventListener('click', (e) => {
+                    if (e.target === settingsPanel) {
+                        state.settingsPanelOpen = false;
+                        render();
+                    }
+                });
+            }
+            if (highContrastCheckbox) {
+                highContrastCheckbox.addEventListener('change', () => {
+                    state.highContrast = highContrastCheckbox.checked;
+                    document.body.classList.toggle('high-contrast', state.highContrast);
+                    saveState();
+                });
+            }
+            if (autoBookmarkCheckbox) {
+                autoBookmarkCheckbox.addEventListener('change', () => {
+                    state.autoBookmarkOnWrong = autoBookmarkCheckbox.checked;
+                    saveState();
+                });
+            }
+            if (resetAllBtn) {
+                resetAllBtn.addEventListener('click', () => {
+                    if (confirm('Wirklich ALLE Fortschritte zurücksetzen?\\n\\nDies löscht:\\n• Alle Statistiken\\n• Alle Erfolge\\n• Kapitel-Genauigkeiten\\n• Streak-Daten\\n• Lesezeichen')) {
+                        Object.values(STORAGE_KEYS).forEach(key => {
+                            localStorage.removeItem(key);
+                        });
+                        Object.assign(state, JSON.parse(JSON.stringify(DEFAULT_STATE)));
+                        state.settingsPanelOpen = false;
+                        render();
+                    }
+                });
+            }
 
             // GLOBALE Event-Delegation für alle interaktiven Elemente (einmalig!)
             if (appContainer && !appContainer._globalDelegateAttached) {
@@ -3309,6 +3445,35 @@
                         // Track wrong answer for review
                         if (!quiz.wrongAnswers) quiz.wrongAnswers = [];
                         quiz.wrongAnswers.push(quiz.currentIndex);
+                        
+                        // Auto-Lesezeichen bei falscher Antwort
+                        if (state.autoBookmarkOnWrong && q.lo) {
+                            const loId = q.lo; // z.B. "FL-1.1.1"
+                            const sectionId = loId.replace('FL-', ''); // "1.1.1"
+                            const chapterId = parseInt(sectionId.split('.')[0], 10);
+                            // Finde den Titel des Abschnitts
+                            const chapterData = syllabusData.chapters.find(c => c.id === chapterId);
+                            if (chapterData && !isBookmarked(chapterId, sectionId)) {
+                                // Suche in subchapters und subsections nach der passenden ID
+                                let title = sectionId;
+                                if (chapterData.subchapters) {
+                                    for (const sub of chapterData.subchapters) {
+                                        if (sub.id === sectionId) {
+                                            title = sub.id + ' ' + sub.title;
+                                            break;
+                                        }
+                                        if (sub.subsections) {
+                                            const ss = sub.subsections.find(s => s.id === sectionId);
+                                            if (ss) {
+                                                title = ss.id + ' ' + ss.title;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                                toggleBookmark(chapterId, sectionId, title + ' (Auto)');
+                            }
+                        }
                     }
                     
                     saveState();
@@ -3514,41 +3679,6 @@
                     
                     state.currentQuiz = null;
                     render();
-                });
-            }
-            
-            // High contrast toggle button
-            const contrastBtn = document.getElementById('toggle-contrast');
-            if (contrastBtn) {
-                contrastBtn.addEventListener('click', toggleHighContrast);
-            }
-            
-            // Reset progress button
-            const resetBtn = document.getElementById('reset-progress');
-            if (resetBtn) {
-                resetBtn.addEventListener('click', () => {
-                    if (confirm('Wirklich ALLE Fortschritte zurücksetzen?\n\nDies löscht:\n• Alle Statistiken\n• Alle Erfolge\n• Kapitel-Genauigkeiten\n• Streak-Daten\n• Lesezeichen')) {
-                        // Clear all localStorage
-                        Object.values(STORAGE_KEYS).forEach(key => {
-                            localStorage.removeItem(key);
-                        });
-                        
-                        // Reset state to defaults
-                        state.points = 0;
-                        state.streak = 0;
-                        state.lastStudyDate = null;
-                        state.questionsAnswered = 0;
-                        state.correctAnswers = 0;
-                        state.achievements = [];
-                        state.chapterStats = { 1: { answered: 0, correct: 0 }, 2: { answered: 0, correct: 0 }, 3: { answered: 0, correct: 0 }, 4: { answered: 0, correct: 0 }, 5: { answered: 0, correct: 0 }, 6: { answered: 0, correct: 0 } };
-                        state.currentQuiz = null;
-                        state.wrongQuestions = {};
-                        state.bookmarks = [];
-                        // Hochkontrast bleibt erhalten (ist eine Accessibility-Einstellung)
-                        
-                        alert('✅ Fortschritt zurückgesetzt!');
-                        render();
-                    }
                 });
             }
         }
