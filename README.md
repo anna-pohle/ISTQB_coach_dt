@@ -31,10 +31,12 @@ Oder auf dem Handy installieren → [Anleitung](#-installation)
 | Feature | Beschreibung |
 |---------|--------------|
 | **Alle 6 Kapitel** | Vollständig nach CTFL v4.0.2 Syllabus |
+| **Konzept-Diagramme** | V-Modell, Testpyramide, Zustandsdiagramme, Risikomatrix u.v.m. |
 | **Coach-Notes** | Prüfungstipps & Eselsbrücken |
-| **Lesezeichen** | Wichtige Stellen markieren |
-| **Suchfunktion** | Schnell Begriffe finden |
+| **Lesezeichen** | Wichtige Stellen markieren & schnell wiederfinden |
+| **Suchfunktion** | Schnell Begriffe finden mit Navigation |
 | **Originalzitate** | Mit Seitenzahlen aus dem Lehrplan |
+| **Hierarchische Navigation** | Kapitel → Sektionen → Details stufenweise aufklappen |
 
 ### 📅 Lernplan
 - **3 Zeiträume:** 2 Wochen / 4 Wochen / 3 Monate
@@ -101,6 +103,7 @@ Vanilla JS · HTML · CSS · Service Worker · LocalStorage
 
 - **Prüfungsfragen:** [GTB Sample Exams](https://www.german-testing-board.info/) (Set A–F, deutsch)
 - **Lehrplan:** ISTQB CTFL Syllabus v4.0.2 (deutsche Ausgabe)
+- **Diagramme:** GTB Sample Exams + CC-lizenzierte Grafiken (Wikimedia Commons, mit Quellenangabe)
 
 > ⚠️ **Diese App ersetzt nicht das Studium des offiziellen Lehrplans!**
 > Die Inhalte sind Zusammenfassungen und Lernhilfen. Den vollständigen Lehrplan gibt es kostenlos beim [German Testing Board](https://www.german-testing-board.info/lehrplaene/istqbr-certified-tester-schema/).
