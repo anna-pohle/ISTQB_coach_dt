@@ -1265,8 +1265,8 @@
     <div class="app-container" id="app" role="main" aria-live="polite" aria-atomic="false"></div>
     <div id="sr-announcer" class="sr-only" aria-live="assertive" aria-atomic="true"></div>
     
-    <script src="js/syllabus-data.js?v=29"></script>
-    <script src="js/questions-data.js?v=29"></script>
+    <script src="js/syllabus-data.js?v=30"></script>
+    <script src="js/questions-data.js?v=30"></script>
     <script>
     'use strict';
     
@@ -3028,6 +3028,15 @@
                         return;
                     }
                     
+                    // ========== ZEITPLAN DAUER WÄHLEN ==========
+                    const durationBtn = e.target.closest('[data-duration]');
+                    if (durationBtn) {
+                        state.planDuration = durationBtn.getAttribute('data-duration');
+                        render();
+                        e.preventDefault();
+                        return;
+                    }
+                    
                     // ========== STRUKTUR-ANSICHT ==========
                     if (state.currentView !== 'structure') return;
                     if (e.target.closest('#btn-search-next')) { e.preventDefault(); scrollToSearchHit('next'); return; }
@@ -3101,15 +3110,6 @@
                         const idx = parseInt(chapterHeader.getAttribute('data-toggle-chapter'), 10);
                         if (!state.expandedChapters) state.expandedChapters = {};
                         state.expandedChapters[idx] = !state.expandedChapters[idx];
-                        render();
-                        e.preventDefault();
-                        return;
-                    }
-                    
-                    // ========== ZEITPLAN DAUER WÄHLEN ==========
-                    const durationBtn = e.target.closest('[data-duration]');
-                    if (durationBtn) {
-                        state.planDuration = durationBtn.getAttribute('data-duration');
                         render();
                         e.preventDefault();
                         return;
