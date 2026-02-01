@@ -1,82 +1,113 @@
-# ISTQB Coach
+# 🎓 ISTQB Coach
 
-**Dein persönlicher Lernbegleiter für die ISTQB Certified Tester Foundation Level (CTFL) v4.0 Prüfung**
+> **Dein Lernbegleiter für die ISTQB CTFL v4.0 Prüfung** – Kostenlos, offline-fähig, auf Deutsch.
+
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-GitHub_Pages-00d4aa?style=for-the-badge)](https://anna-pohle.github.io/ISTQB_coach_dt)
+[![PWA Ready](https://img.shields.io/badge/📱_PWA-Installierbar-7c3aed?style=for-the-badge)](#-installation)
+[![Offline](https://img.shields.io/badge/✈️_Offline-Nutzbar-fbbf24?style=for-the-badge)](#)
 
 ---
 
-## Was ist das?
+## ⚡ Schnellstart
 
-Eine **Progressive Web App (PWA)** zum Lernen und Üben für die ISTQB Foundation Level Zertifizierung. Komplett offline nutzbar, installierbar auf dem Handy, und basierend auf dem **offiziellen deutschen GTB-Lehrplan v4.0.2**.
+**Direkt loslegen:** [anna-pohle.github.io/ISTQB_coach_dt](https://anna-pohle.github.io/ISTQB_coach_dt)
 
-## Features
+Oder auf dem Handy installieren → [Anleitung](#-installation)
 
-### Quiz
-- **111 Prüfungsfragen** aus den offiziellen GTB Sample Exams (Set A-F)
-- **Übungsmodus** - Lerne in deinem Tempo mit sofortigem Feedback
-- **Prüfungsmodus** - Simuliere die echte Prüfung (40 Fragen, 60 Min, 65% zum Bestehen)
-- **Spaced Repetition** - Falsch beantwortete Fragen erscheinen häufiger
-- **Intelligente Hinweise** - Verstehe die Fallen in jeder Frage
-- **Antworten werden gemischt** - Kein Auswendiglernen von Positionen
-- **Tastaturnavigation** - Antworte schnell mit A/B/C/D-Tasten
+---
 
-### Lehrplan
-- **Alle 6 Kapitel** aufklappbar mit Unterkapiteln und Lernzielen
-- **Lesezeichen** - Markiere wichtige Stellen zum Wiederfinden
-- **Originalzitate** aus dem Lehrplan mit Seitenzahlen
-- **Abbildungen** aus dem Syllabus (Testpyramide, Testquadranten, Zustandsdiagramm)
-- **Coach-Notes** mit Prüfungstipps und Eselsbrücken
-- **Suchfunktion** über alle Inhalte
-- **Link zum offiziellen Lehrplan** beim German Testing Board
+## 🎯 Was kann die App?
 
-### Zeitplan
-- **3 wählbare Zeiträume**: 2 Wochen, 4 Wochen, 3 Monate
-- **Quiz-Empfehlungen** pro Zeitraum
-- **Fortschrittstracking** - Punkte, Streak, Statistiken pro Kapitel
+### 📝 Quiz-Modul
+| Feature | Beschreibung |
+|---------|--------------|
+| **111 echte Prüfungsfragen** | Aus den offiziellen GTB Sample Exams (Set A–F) |
+| **Übungsmodus** | Sofortiges Feedback + Erklärungen |
+| **Prüfungsmodus** | 40 Fragen, 60 Min, 65% zum Bestehen |
+| **Spaced Repetition** | Falsche Fragen kommen häufiger dran |
+| **Tastatursteuerung** | A/B/C/D + Enter für schnelles Antworten |
 
-### Technisch
-- **Offline-fähig** - Einmal laden, überall lernen (inkl. Bilder)
-- **Installierbar** - Als App auf dem Handy
-- **Dark Mode** - Augenschonend lernen
-- **Barrierefrei** - Screen-Reader-Unterstützung, Tastaturnavigation
+### 📚 Lehrplan-Modul
+| Feature | Beschreibung |
+|---------|--------------|
+| **Alle 6 Kapitel** | Vollständig nach CTFL v4.0.2 Syllabus |
+| **Coach-Notes** | Prüfungstipps & Eselsbrücken |
+| **Lesezeichen** | Wichtige Stellen markieren |
+| **Suchfunktion** | Schnell Begriffe finden |
+| **Originalzitate** | Mit Seitenzahlen aus dem Lehrplan |
 
-## Installation auf dem Handy
+### 📅 Lernplan
+- **3 Zeiträume:** 2 Wochen / 4 Wochen / 3 Monate
+- **Fortschritts-Tracking:** Punkte, Streak, Kapitel-Statistiken
+- **Erfolge freischalten**
 
-### Android
-1. Öffne die App im Chrome-Browser
-2. Tippe auf das Menü (⋮) → "App installieren" oder "Zum Startbildschirm hinzufügen"
-3. Fertig!
+---
 
-### iOS (iPhone/iPad)
-1. Öffne die App in Safari
-2. Tippe auf das Teilen-Symbol (□↑)
-3. Wähle "Zum Home-Bildschirm"
+## 📱 Installation
+
+Die App funktioniert wie eine native App – ohne App Store!
+
+<details>
+<summary><strong>Android (Chrome)</strong></summary>
+
+1. Öffne [die App](https://anna-pohle.github.io/ISTQB_coach_dt) in Chrome
+2. Tippe auf **⋮** (Menü) → **„App installieren"**
+3. Fertig! Die App erscheint auf deinem Homescreen.
+
+</details>
+
+<details>
+<summary><strong>iPhone / iPad (Safari)</strong></summary>
+
+1. Öffne [die App](https://anna-pohle.github.io/ISTQB_coach_dt) in Safari
+2. Tippe auf **□↑** (Teilen)
+3. Wähle **„Zum Home-Bildschirm"**
 4. Fertig!
 
-## Live-App
+</details>
 
-**[anna-pohle.github.io/ISTQB_coach_dt](https://anna-pohle.github.io/ISTQB_coach_dt)**
+<details>
+<summary><strong>Desktop (Chrome/Edge)</strong></summary>
 
-Einfach im Browser öffnen oder aufs Handy installieren!
+1. Öffne [die App](https://anna-pohle.github.io/ISTQB_coach_dt)
+2. Klicke auf das **Installieren-Symbol** in der Adressleiste (oder Menü → „Installieren")
+3. Fertig!
 
-## Techstack
+</details>
 
-- Vanilla HTML/CSS/JavaScript (keine Dependencies!)
-- Service Worker für Offline-Funktionalität
-- Web App Manifest für Installation
-- LocalStorage für Fortschrittsspeicherung
-- Content Security Policy für Sicherheit
+---
 
-## Quellen & Hinweise
+## ♿ Barrierefreiheit
 
-- **Prüfungsfragen**: Offizielle GTB Sample Exams (Set A-F)
-- **Lehrplan-Grundlage**: ISTQB CTFL Syllabus v4.0.2 (deutsche Ausgabe)
-- **Offizieller Download**: [german-testing-board.info](https://www.german-testing-board.info/lehrplaene/istqbr-certified-tester-schema/)
+- ✅ Tastaturnavigation (Tab, Enter, A/B/C/D)
+- ✅ Screen-Reader-Unterstützung (aria-live, Labels)
+- ✅ Skip-Link zum Hauptinhalt
+- ✅ Hochkontrast-Modus (in Einstellungen)
+- ✅ Zoomen erlaubt
 
-**Diese App ersetzt nicht das Studium des offiziellen Lehrplans!**
+---
 
-Die Lehrplan-Inhalte in der App sind Zusammenfassungen und Lernhilfen mit kurzen Originalzitaten. Für die vollständigen Texte bitte den offiziellen Lehrplan beim GTB herunterladen.
+## 🛠️ Tech-Stack
 
-## Lizenz
+```
+Vanilla JS · HTML · CSS · Service Worker · LocalStorage
+```
+
+**Keine Dependencies.** Keine Build-Tools. Einfach öffnen und nutzen.
+
+---
+
+## 📖 Quellen
+
+- **Prüfungsfragen:** [GTB Sample Exams](https://www.german-testing-board.info/) (Set A–F, deutsch)
+- **Lehrplan:** ISTQB CTFL Syllabus v4.0.2 (deutsche Ausgabe)
+
+> ⚠️ **Diese App ersetzt nicht das Studium des offiziellen Lehrplans!**
+> Die Inhalte sind Zusammenfassungen und Lernhilfen. Den vollständigen Lehrplan gibt es kostenlos beim [German Testing Board](https://www.german-testing-board.info/lehrplaene/istqbr-certified-tester-schema/).
+
+---
+
+## 📜 Lizenz & Copyright
 
 Dieses Projekt ist für **persönliche Lernzwecke** gedacht.
 
@@ -85,4 +116,6 @@ Die ISTQB-Inhalte unterliegen dem Copyright:
 
 ---
 
-**Viel Erfolg bei der Prüfung!**
+<p align="center">
+  <strong>Viel Erfolg bei der Prüfung! 🍀</strong>
+</p>
