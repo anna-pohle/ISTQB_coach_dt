@@ -721,7 +721,6 @@ const syllabusData = Object.freeze({
                             id: "4.2.4",
                             title: "Zustandsübergangstest",
                             page: 48,
-                            image: "images/syllabus_zustandsuebergang.png",
                             quote: "Ein Zustandsdiagramm modelliert das Verhalten eines Systems, indem es seine möglichen Zustände und gültigen Übergänge aufzeigt.",
                             keyPoints: [
                                 {
@@ -943,7 +942,6 @@ const syllabusData = Object.freeze({
                             id: "5.1.6",
                             title: "Testpyramide",
                             page: 60,
-                            image: "images/syllabus_testpyramide.png",
                             quote: "Die Testpyramide ist ein Modell, das die verschiedenen Tests zeigt, die einen unterschiedlichen Grad an Granularität haben können.",
                             keyPoints: [
                                 {
@@ -967,7 +965,6 @@ const syllabusData = Object.freeze({
                             id: "5.1.7",
                             title: "Testquadranten",
                             page: 61,
-                            image: "images/syllabus_testquadranten.png",
                             quote: "Die von Brian Marick definierten Testquadranten gruppieren die Teststufen mit den entsprechenden Testarten, Aktivitäten, Testverfahren und Arbeitsergebnissen in der agilen Softwareentwicklung.",
                             keyPoints: [
                                 {

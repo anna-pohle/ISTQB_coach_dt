@@ -1265,8 +1265,8 @@
     <div class="app-container" id="app" role="main" aria-live="polite" aria-atomic="false"></div>
     <div id="sr-announcer" class="sr-only" aria-live="assertive" aria-atomic="true"></div>
     
-    <script src="js/syllabus-data.js?v=30"></script>
-    <script src="js/questions-data.js?v=30"></script>
+    <script src="js/syllabus-data.js?v=31"></script>
+    <script src="js/questions-data.js?v=31"></script>
     <script>
     'use strict';
     
@@ -2151,16 +2151,66 @@
             infoEl.innerHTML = '<span class="search-result-count">' + count + ' Treffer</span>' +
                 (count > 0 ? ' <button type="button" id="btn-search-prev" class="search-jump-btn" aria-label="Vorheriger Treffer">← Vorheriger</button> <button type="button" id="btn-search-next" class="search-jump-btn" aria-label="Nächster Treffer">Nächster →</button>' : '');
         }
+        // Aktueller Suchindex für Navigation
+        let currentSearchHitIndex = -1;
+        
         function scrollToSearchHit(direction) {
             const hits = Array.from(document.querySelectorAll('.syllabus-structure mark.search-hit'));
             if (hits.length === 0) return;
-            const viewportMid = window.scrollY + window.innerHeight / 2;
+            
+            // Index berechnen
             if (direction === 'next') {
-                const next = hits.find(function(m) { return m.getBoundingClientRect().top + window.scrollY > viewportMid - 50; });
-                (next || hits[0]).scrollIntoView({ behavior: 'smooth', block: 'center' });
+                currentSearchHitIndex = (currentSearchHitIndex + 1) % hits.length;
             } else {
-                const prev = hits.slice().reverse().find(function(m) { return m.getBoundingClientRect().top + window.scrollY < viewportMid + 50; });
-                (prev || hits[hits.length - 1]).scrollIntoView({ behavior: 'smooth', block: 'center' });
+                currentSearchHitIndex = currentSearchHitIndex <= 0 ? hits.length - 1 : currentSearchHitIndex - 1;
+            }
+            
+            const target = hits[currentSearchHitIndex];
+            if (!target) return;
+            
+            // Alle übergeordneten Elemente aufklappen
+            let parent = target.parentElement;
+            while (parent) {
+                // Content-Wrapper aufklappen
+                if (parent.classList && parent.classList.contains('hidden')) {
+                    parent.classList.remove('hidden');
+                }
+                if (parent.classList && parent.classList.contains('content-wrapper')) {
+                    parent.classList.remove('hidden');
+                }
+                // Specific-text aufklappen
+                if (parent.classList && parent.classList.contains('specific-text')) {
+                    parent.style.display = 'block';
+                    const li = parent.closest('li');
+                    if (li) li.style.background = 'var(--bg-card)';
+                }
+                // Kapitel aufklappen
+                if (parent.classList && parent.classList.contains('chapter-content')) {
+                    parent.style.display = 'block';
+                    const chapterEl = parent.closest('.chapter');
+                    if (chapterEl) {
+                        const idx = parseInt(chapterEl.getAttribute('data-chapter-idx'), 10);
+                        if (!isNaN(idx)) state.expandedChapters[idx] = true;
+                    }
+                }
+                parent = parent.parentElement;
+            }
+            
+            // Kurz warten, dann scrollen
+            setTimeout(() => {
+                target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                // Highlight-Effekt
+                target.style.outline = '3px solid var(--accent-primary)';
+                setTimeout(() => { target.style.outline = ''; }, 1500);
+            }, 50);
+            
+            // Trefferanzeige aktualisieren
+            const infoEl = document.getElementById('structure-search-result-info');
+            if (infoEl) {
+                const countSpan = infoEl.querySelector('.search-result-count');
+                if (countSpan) {
+                    countSpan.textContent = `Treffer ${currentSearchHitIndex + 1} von ${hits.length}`;
+                }
             }
         }
         function renderStructure() {
@@ -2928,6 +2978,7 @@
                     const inputValue = structureSearchInput.value;
                     
                     state.structureSearchQuery = inputValue;
+                    currentSearchHitIndex = -1; // Index zurücksetzen bei neuer Suche
                     render();
                     
                     // Fokus und Cursor-Position wiederherstellen
