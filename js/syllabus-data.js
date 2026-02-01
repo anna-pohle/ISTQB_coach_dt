@@ -399,7 +399,8 @@ const syllabusData = Object.freeze({
                 {
                     id: "2.1",
                     title: "Softwareentwicklungslebenszyklus-Modelle",
-                    introText: "Testaktivitäten sind in den SDLC integriert. Das gewählte Lebenszyklusmodell beeinflusst Art und Zeitpunkt des Testens.",
+                    page: 28,
+                    quote: "Ein Softwareentwicklungslebenszyklusmodell beschreibt die Aktivitäten, die in jeder Phase eines Entwicklungsprojekts durchgeführt werden, sowie deren logische und chronologische Beziehung zueinander.",
                     keyPoints: [
                         {
                             title: "Anpassung an den SDLC",
@@ -426,7 +427,8 @@ const syllabusData = Object.freeze({
                 {
                     id: "2.2",
                     title: "Teststufen",
-                    introText: "Teststufen beziehen sich auf das Testobjekt und den Zeitpunkt im Lebenszyklus.",
+                    page: 32,
+                    quote: "Teststufen sind Gruppen von Testaktivitäten, die gemeinsam organisiert und verwaltet werden. Jede Teststufe ist eine Instanz des Testprozesses.",
                     keyPoints: [
                         {
                             title: "Komponententest",
@@ -466,6 +468,8 @@ const syllabusData = Object.freeze({
                 {
                     id: "2.3",
                     title: "Testarten",
+                    page: 33,
+                    quote: "Testarten sind Gruppen von Testaktivitäten, die auf spezifische Qualitätsmerkmale ausgerichtet sind und auf jeder Teststufe durchgeführt werden können.",
                     keyPoints: [
                         {
                             title: "Funktionaler Test",
@@ -487,6 +491,8 @@ const syllabusData = Object.freeze({
                 {
                     id: "2.4",
                     title: "Wartungstest",
+                    page: 35,
+                    quote: "Wartungstest konzentriert sich auf die Prüfung der Änderungen am System sowie auf das Testen der nicht geänderten Teile, die von den Änderungen betroffen sein könnten.",
                     keyPoints: [
                         {
                             title: "Anlässe",
@@ -519,6 +525,8 @@ const syllabusData = Object.freeze({
                 {
                     id: "3.1",
                     title: "Grundlagen des statischen Testens",
+                    page: 38,
+                    quote: "Im Gegensatz zum dynamischen Test, bei dem die Software ausgeführt werden muss, stützt sich der statische Test auf die manuelle Untersuchung von Arbeitsergebnissen (Reviews) oder die werkzeuggestützte Bewertung von Code oder anderen Arbeitsergebnissen (statische Analyse).",
                     keyPoints: [
                         {
                             title: "Statisch = keine Ausführung",
@@ -540,6 +548,8 @@ const syllabusData = Object.freeze({
                 {
                     id: "3.2",
                     title: "Review-Prozess",
+                    page: 40,
+                    quote: "Der Reviewprozess umfasst: Planung, Reviewbeginn, individuelles Review, Kommunikation und Analyse, Behebung und Berichterstattung.",
                     keyPoints: [
                         {
                             title: "Informelles Review",
@@ -579,6 +589,8 @@ const syllabusData = Object.freeze({
                 {
                     id: "3.3",
                     title: "Statische Analyse durch Werkzeuge",
+                    page: 39,
+                    quote: "Die statische Analyse ist für die Erkennung von Fehlerzuständen wichtig, die durch dynamische Tests schwer zu finden sind.",
                     keyPoints: [
                         {
                             title: "Automatische Prüfung",
@@ -615,7 +627,8 @@ const syllabusData = Object.freeze({
                 {
                     id: "4.1",
                     title: "Testanalyse und -entwurf für Black-Box-Testverfahren",
-                    introText: "Black-Box-Verfahren leiten Testfälle aus der Spezifikation ab, ohne Code zu betrachten.",
+                    page: 45,
+                    quote: "Beim Black-Box-Test werden Testfälle auf der Grundlage von Spezifikationen, Dokumentation oder der Erfahrung des Testers abgeleitet, ohne auf die interne Struktur des Systems Bezug zu nehmen.",
                     keyPoints: [
                         {
                             title: "Äquivalenzklassenbildung",
@@ -642,6 +655,8 @@ const syllabusData = Object.freeze({
                 {
                     id: "4.2",
                     title: "Testanalyse und -entwurf für White-Box-Testverfahren",
+                    page: 49,
+                    quote: "Beim White-Box-Test werden die Tests auf der Grundlage der internen Struktur oder Implementierung des Systems abgeleitet. Dazu gehören Code, Architektur und Datenflüsse.",
                     keyPoints: [
                         {
                             title: "Anweisungsüberdeckung",
@@ -663,6 +678,8 @@ const syllabusData = Object.freeze({
                 {
                     id: "4.4",
                     title: "Erfahrungsbasierte Testverfahren",
+                    page: 51,
+                    quote: "Erfahrungsbasierte Testverfahren nutzen das Wissen und die Erfahrung der Tester, um Testfälle abzuleiten.",
                     keyPoints: [
                         {
                             title: "Intuitive Testfallermittlung (Error Guessing)",
@@ -684,7 +701,8 @@ const syllabusData = Object.freeze({
                 {
                     id: "4.5",
                     title: "Auf Zusammenarbeit basierende Testansätze",
-                    introText: "Testansätze, die sich auf Zusammenarbeit und Kommunikation konzentrieren, um Fehlerzustände zu vermeiden.",
+                    page: 53,
+                    quote: "Auf Zusammenarbeit basierende Testansätze konzentrieren sich darauf, Fehlerzustände durch Zusammenarbeit und Kommunikation zwischen verschiedenen Stakeholdern zu vermeiden.",
                     keyPoints: [
                         {
                             title: "Fokus auf Vermeidung",
@@ -789,6 +807,8 @@ const syllabusData = Object.freeze({
                 {
                     id: "5.1",
                     title: "Testplanung",
+                    page: 57,
+                    quote: "Ein Testkonzept beschreibt die Testziele, Ressourcen und Prozesse für ein Testprojekt.",
                     keyPoints: [
                         {
                             title: "Testkonzept",
@@ -864,6 +884,8 @@ const syllabusData = Object.freeze({
                 {
                     id: "5.2",
                     title: "Testüberwachung und Teststeuerung",
+                    page: 64,
+                    quote: "Die Testüberwachung umfasst die laufende Überprüfung aller Testaktivitäten und den Vergleich des tatsächlichen Fortschritts mit dem Plan. Bei der Teststeuerung werden die erforderlichen Korrekturmaßnahmen ergriffen.",
                     keyPoints: [
                         {
                             title: "Testüberwachung",
@@ -940,6 +962,8 @@ const syllabusData = Object.freeze({
                 {
                     id: "5.3",
                     title: "Konfigurationsmanagement",
+                    page: 67,
+                    quote: "Der Zweck des Konfigurationsmanagements ist es, die Integrität der Konfigurationselemente (z.B. Testmittel, Testobjekte) während des gesamten Projektlebenszyklus sicherzustellen.",
                     keyPoints: [
                         {
                             title: "Versionierung",
@@ -951,6 +975,8 @@ const syllabusData = Object.freeze({
                 {
                     id: "5.4",
                     title: "Risikomanagement",
+                    page: 62,
+                    quote: "Risiko beinhaltet die Möglichkeit des Eintritts eines Ereignisses mit negativen Folgen. Das Risikoniveau wird anhand der Eintrittswahrscheinlichkeit und der Schadenshöhe bestimmt.",
                     keyPoints: [
                         {
                             title: "Produktrisiko vs. Projektrisiko",
@@ -967,6 +993,8 @@ const syllabusData = Object.freeze({
                 {
                     id: "5.5",
                     title: "Fehlermanagement",
+                    page: 68,
+                    quote: "Ein Fehlerbericht dokumentiert alle Informationen, die erforderlich sind, um das aufgetretene Problem zu identifizieren, zu analysieren und zu beheben.",
                     keyPoints: [
                         {
                             title: "Lebenszyklus eines Fehlers",
@@ -990,6 +1018,8 @@ const syllabusData = Object.freeze({
                 {
                     id: "6.1",
                     title: "Testwerkzeuge – Kategorien",
+                    page: 71,
+                    quote: "Testwerkzeuge können eine oder mehrere Testaktivitäten unterstützen. Werkzeuge können nach ihrem Zweck kategorisiert werden.",
                     keyPoints: [
                         {
                             title: "Kategorien",
@@ -1006,6 +1036,8 @@ const syllabusData = Object.freeze({
                 {
                     id: "6.2",
                     title: "Effektive Nutzung von Testwerkzeugen",
+                    page: 71,
+                    quote: "Potenzielle Vorteile der Testautomatisierung sind u.a. Zeitersparnis, höhere Konsistenz und Wiederholbarkeit sowie objektive Bewertung. Potenzielle Risiken sind u.a. unrealistische Erwartungen und Wartungsaufwand für Testautomatisierungsmittel.",
                     keyPoints: [
                         {
                             title: "Einführung",

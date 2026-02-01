@@ -1172,8 +1172,8 @@
 <body>
     <div class="app-container" id="app" role="main"></div>
     
-    <script src="js/syllabus-data.js?v=20"></script>
-    <script src="js/questions-data.js?v=20"></script>
+    <script src="js/syllabus-data.js?v=21"></script>
+    <script src="js/questions-data.js?v=21"></script>
     <script>
     'use strict';
     
@@ -1946,6 +1946,8 @@
                                 html += '<div class="subsection ' + (subsecHidden ? 'search-no-match' : '') + '" id="' + subsecId + '">';
                                 html += '<div class="subsection-title" data-subsection-title>' + highlightStructureText(ss.id + ' ' + ss.title, q) + ' ▼</div>';
                                 html += '<div class="content-wrapper">';
+                                if (ss.page) html += '<div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:8px;">📄 Lehrplan Seite ' + ss.page + '</div>';
+                                if (ss.quote) html += '<div class="syllabus-quote">' + highlightStructureText(ss.quote, q) + '<span class="syllabus-quote-source">— CTFL v4.0.2 Lehrplan, S. ' + (ss.page || '?') + '</span></div>';
                                 if (ss.keyPoints) {
                                     html += '<ul class="key-points">' + ss.keyPoints.map(p => {
                                         const isObj = typeof p === 'object';
