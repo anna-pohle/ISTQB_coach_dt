@@ -1154,6 +1154,7 @@
         .syllabus-structure .keywords a.keyword { text-decoration: none; cursor: pointer; transition: background 0.2s, border-color 0.2s; }
         .syllabus-structure .keywords a.keyword:hover { background: hsla(var(--hue), 40%, 40%, 0.6); border-color: var(--chapter-color); }
         .syllabus-structure .hidden { display: none !important; }
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
         .syllabus-structure .search-no-match { display: none !important; }
         .syllabus-structure .search-wrap { margin-bottom: 16px; }
         .syllabus-structure .search-input { width: 100%; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-secondary); color: var(--text-primary); font-size: 0.95rem; }
@@ -1203,10 +1204,11 @@
     </style>
 </head>
 <body>
-    <div class="app-container" id="app" role="main"></div>
+    <div class="app-container" id="app" role="main" aria-live="polite" aria-atomic="false"></div>
+    <div id="sr-announcer" class="sr-only" aria-live="assertive" aria-atomic="true"></div>
     
-    <script src="js/syllabus-data.js?v=25"></script>
-    <script src="js/questions-data.js?v=25"></script>
+    <script src="js/syllabus-data.js?v=26"></script>
+    <script src="js/questions-data.js?v=26"></script>
     <script>
     'use strict';
     
@@ -1216,6 +1218,17 @@
     // ============================================================================
     
     const ISTQBCoach = (function() {
+        'use strict';
+        
+        // === CONFIGURATION CONSTANTS ===
+        const CONFIG = Object.freeze({
+            PASS_THRESHOLD: 65,           // Prozent zum Bestehen
+            EXAM_TIME_MINUTES: 60,        // Prüfungszeit in Minuten
+            DEFAULT_EXAM_SIZE: 40,        // Standard-Prüfungsfragen
+            POINTS_PER_CORRECT: 10,       // Punkte pro richtige Antwort
+            CONFIDENCE_DELAY_MS: 300      // Verzögerung nach Confidence-Auswahl
+        });
+        
         // Private state with immutable defaults
         const DEFAULT_STATE = Object.freeze({
             currentView: 'structure',
@@ -2356,7 +2369,7 @@
             const quiz = state.currentQuiz;
             const answeredCount = quiz.timeUp ? quiz.currentIndex : quiz.questions.length;
             const pct = answeredCount === 0 ? 0 : Math.round((quiz.score / answeredCount) * 100);
-            const passed = pct >= 65;
+            const passed = pct >= CONFIG.PASS_THRESHOLD;
             const isPractice = state.quizMode === 'practice';
             
             // Calculate chapter breakdown from this quiz
@@ -2418,7 +2431,7 @@
                             ${quiz.score} von ${answeredCount} Fragen richtig beantwortet.<br>
                             ${quiz.timeUp ? '<span style="color:var(--accent-warning);">⏰ Zeit abgelaufen!</span><br>' : ''}
                             <span class="${passed ? 'result-pass' : 'result-fail'}">
-                                ${passed ? 'Mindestanforderung von 65% erreicht!' : 'Für die Prüfung werden mindestens 65% benötigt.'}
+                                ${passed ? `Mindestanforderung von ${CONFIG.PASS_THRESHOLD}% erreicht!` : `Für die Prüfung werden mindestens ${CONFIG.PASS_THRESHOLD}% benötigt.`}
                             </span><br>
                             <span style="font-size:0.85rem;color:var(--text-muted);">${timeInfo}</span>
                         </p>
@@ -2431,7 +2444,7 @@
                                 const chInfo = chapters.find(c => c.id === parseInt(ch));
                                 let fillClass = '';
                                 if (chPct < 50) fillClass = 'weak';
-                                else if (chPct < 65) fillClass = 'medium';
+                                else if (chPct < CONFIG.PASS_THRESHOLD) fillClass = 'medium';
                                 return `
                                     <div class="chapter-stat">
                                         <span class="chapter-stat-name">Kap. ${ch}: ${chInfo ? chInfo.title.substring(0, 20) : ''}</span>
@@ -3169,6 +3182,31 @@
             loadState();
             checkStreak();
             render();
+            
+            // Keyboard navigation for quiz (a/b/c/d keys)
+            document.addEventListener('keydown', function(e) {
+                if (!state.currentQuiz || state.currentQuiz.finished) return;
+                if (state.currentView !== 'quiz') return;
+                
+                const keyMap = { 'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5 };
+                const key = e.key.toLowerCase();
+                
+                if (keyMap.hasOwnProperty(key)) {
+                    const btn = document.querySelector(`.answer-btn[data-answer="${keyMap[key]}"]`);
+                    if (btn && !btn.disabled) {
+                        btn.click();
+                        e.preventDefault();
+                    }
+                }
+                // Enter to confirm answer
+                if (e.key === 'Enter') {
+                    const confirmBtn = document.getElementById('confirm-answer');
+                    if (confirmBtn && !confirmBtn.disabled) {
+                        confirmBtn.click();
+                        e.preventDefault();
+                    }
+                }
+            });
             
             // Register Service Worker
             if ('serviceWorker' in navigator) {

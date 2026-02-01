@@ -2,13 +2,20 @@
  * Service Worker für ISTQB Coach – Offline-Nutzung (PWA)
  * Cached: HTML, CSS, JS-Daten. Strategie: Network first (HTML), Cache first (Statik).
  */
-const CACHE_NAME = 'istqb-coach-v21';
+const CACHE_NAME = 'istqb-coach-v22';
 const ASSETS = [
   'index.html',
   'preview.html',
   'css/styles.css',
   'js/syllabus-data.js',
-  'js/questions-data.js'
+  'js/questions-data.js',
+  // Syllabus images
+  'images/syllabus_testpyramide.png',
+  'images/syllabus_testquadranten.png',
+  'images/syllabus_zustandsuebergang.png',
+  // Question images
+  'images/a_q20.png',
+  'images/a_q21.png'
 ];
 
 self.addEventListener('install', function (event) {

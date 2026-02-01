@@ -16,9 +16,12 @@ Eine **Progressive Web App (PWA)** zum Lernen und Üben für die ISTQB Foundatio
 - **Prüfungsmodus** - Simuliere die echte Prüfung (40 Fragen, 60 Min, 65% zum Bestehen)
 - **Intelligente Hinweise** - Verstehe die Fallen in jeder Frage
 - **Antworten werden gemischt** - Kein Auswendiglernen von Positionen
+- **Tastaturnavigation** - Antworte schnell mit A/B/C/D-Tasten
 
 ### Lehrplan
 - **Alle 6 Kapitel** aufklappbar mit Unterkapiteln und Lernzielen
+- **Originalzitate** aus dem Lehrplan mit Seitenzahlen
+- **Abbildungen** aus dem Syllabus (Testpyramide, Testquadranten, Zustandsdiagramm)
 - **Coach-Notes** mit Prüfungstipps und Eselsbrücken
 - **Suchfunktion** über alle Inhalte
 - **Link zum offiziellen Lehrplan** beim German Testing Board
@@ -29,9 +32,10 @@ Eine **Progressive Web App (PWA)** zum Lernen und Üben für die ISTQB Foundatio
 - **Fortschrittstracking** - Punkte, Streak, Statistiken pro Kapitel
 
 ### Technisch
-- **Offline-fähig** - Einmal laden, überall lernen
+- **Offline-fähig** - Einmal laden, überall lernen (inkl. Bilder)
 - **Installierbar** - Als App auf dem Handy
 - **Dark Mode** - Augenschonend lernen
+- **Barrierefrei** - Screen-Reader-Unterstützung, Tastaturnavigation
 
 ## Installation auf dem Handy
 
@@ -58,6 +62,7 @@ Einfach im Browser öffnen oder aufs Handy installieren!
 - Service Worker für Offline-Funktionalität
 - Web App Manifest für Installation
 - LocalStorage für Fortschrittsspeicherung
+- Content Security Policy für Sicherheit
 
 ## Quellen & Hinweise
 
@@ -67,7 +72,7 @@ Einfach im Browser öffnen oder aufs Handy installieren!
 
 **Diese App ersetzt nicht das Studium des offiziellen Lehrplans!**
 
-Die Lehrplan-Inhalte in der App sind Zusammenfassungen und Lernhilfen. Für die vollständigen Originaltexte bitte den offiziellen Lehrplan beim GTB herunterladen.
+Die Lehrplan-Inhalte in der App sind Zusammenfassungen und Lernhilfen mit kurzen Originalzitaten. Für die vollständigen Texte bitte den offiziellen Lehrplan beim GTB herunterladen.
 
 ## Lizenz
 
