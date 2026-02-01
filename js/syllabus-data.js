@@ -61,6 +61,8 @@ const syllabusData = Object.freeze({
                         {
                             id: "1.1.1",
                             title: "Testziele",
+                            page: 16,
+                            quote: "Typische Testziele sind: Bewertung von Arbeitsergebnissen, Auslösen von Fehlerwirkungen, Sicherstellen der Überdeckung, Verringern des Risikos und Aufbauen von Vertrauen in die Qualität.",
                             keyPoints: [
                                 {
                                     title: "Evaluieren & Bewerten",
@@ -82,6 +84,8 @@ const syllabusData = Object.freeze({
                         {
                             id: "1.1.2",
                             title: "Testen und Debugging",
+                            page: 17,
+                            quote: "Testen und Debugging sind getrennte Aktivitäten. Testen kann Fehlerwirkungen auslösen oder direkt Fehlerzustände finden. Debugging umfasst Reproduzieren, Diagnose und Behebung.",
                             keyPoints: [
                                 {
                                     title: "Unterscheidung",
@@ -113,6 +117,8 @@ const syllabusData = Object.freeze({
                         {
                             id: "1.2.1",
                             title: "Der Beitrag des Testens zum Erfolg",
+                            page: 18,
+                            quote: "Testen ist ein kosteneffizientes Mittel zur Erkennung von Fehlerzuständen. Diese können dann beseitigt werden, so dass das Testen indirekt zu einer höheren Qualität beiträgt.",
                             keyPoints: [
                                 {
                                     title: "Qualitätssteuerung",
@@ -129,6 +135,8 @@ const syllabusData = Object.freeze({
                         {
                             id: "1.2.2",
                             title: "Testen und Qualitätssicherung (QS)",
+                            page: 18,
+                            quote: "Testen und Qualitätssicherung sind nicht dasselbe. Testen ist eine Form der Qualitätssteuerung (QC). QS ist prozessorientiert und präventiv.",
                             keyPoints: [
                                 {
                                     title: "Nicht dasselbe!",
@@ -235,6 +243,8 @@ const syllabusData = Object.freeze({
                         {
                             id: "1.4.1",
                             title: "Testaktivitäten (Der ISTQB-Prozess)",
+                            page: 21,
+                            quote: "Ein Testprozess besteht aus: Testplanung, Testüberwachung und -steuerung, Testanalyse, Testentwurf, Testrealisierung, Testdurchführung und Testabschluss.",
                             keyPoints: [
                                 {
                                     title: "1. Planung",
@@ -276,6 +286,8 @@ const syllabusData = Object.freeze({
                         {
                             id: "1.4.2",
                             title: "Testmittel (Testware)",
+                            page: 22,
+                            quote: "Testmittel werden als Arbeitsergebnisse aus den Testaktivitäten erstellt: Testpläne, Testfälle, Testdaten, Testskripte, Testberichte.",
                             keyPoints: [
                                 {
                                     title: "Ergebnisse",
@@ -287,6 +299,8 @@ const syllabusData = Object.freeze({
                         {
                             id: "1.4.4",
                             title: "Verfolgbarkeit zwischen Testbasis und Testmitteln",
+                            page: 23,
+                            quote: "Für eine effektive Testüberwachung ist eine Verfolgbarkeit zwischen Testbasis, Testmitteln, Testergebnissen und Fehlerzuständen wichtig.",
                             keyPoints: [
                                 {
                                     title: "Warum Verfolgbarkeit?",
@@ -308,6 +322,8 @@ const syllabusData = Object.freeze({
                         {
                             id: "1.4.5",
                             title: "Rollen des Testens",
+                            page: 24,
+                            quote: "Zwei Hauptrollen: Testmanagement (Planung, Überwachung, Steuerung, Abschluss) und Testen (Analyse, Entwurf, Realisierung, Durchführung).",
                             keyPoints: [
                                 {
                                     title: "Zwei Hauptrollen",
@@ -335,6 +351,8 @@ const syllabusData = Object.freeze({
                         {
                             id: "1.5.1",
                             title: "Allgemeine Fertigkeiten",
+                            page: 24,
+                            quote: "Tester benötigen: analytische Fähigkeiten, kritisches Denken, Kommunikationsfähigkeit, Teamfähigkeit und Detailgenauigkeit.",
                             keyPoints: [
                                 {
                                     title: "Kommunikation",
@@ -351,6 +369,8 @@ const syllabusData = Object.freeze({
                         {
                             id: "1.5.2",
                             title: "Whole-Team-Ansatz",
+                            page: 25,
+                            quote: "Beim Whole-Team-Ansatz kann jedes Teammitglied eine testbezogene Aufgabe übernehmen. Das ganze Team ist für Qualität verantwortlich.",
                             keyPoints: [
                                 {
                                     title: "Alle zusammen",
@@ -362,6 +382,8 @@ const syllabusData = Object.freeze({
                         {
                             id: "1.5.3",
                             title: "Unabhängigkeit",
+                            page: 26,
+                            quote: "Ein gewisser Grad an Unabhängigkeit macht den Tester effektiver bei der Fehlerfindung, da sich die Voreingenommenheit zwischen Autor und Tester unterscheidet.",
                             keyPoints: [
                                 {
                                     title: "Vorteil",
@@ -467,6 +489,8 @@ const syllabusData = Object.freeze({
                         {
                             id: "2.2.1",
                             title: "Teststufen und Testobjekte",
+                            page: 32,
+                            quote: "Komponententest = isolierte Komponenten. Integrationstest = Schnittstellen. Systemtest = Gesamtsystem. Abnahmetest = Benutzerbedürfnisse.",
                             keyPoints: [
                                 {
                                     title: "Testobjekt pro Stufe",
@@ -591,6 +615,8 @@ const syllabusData = Object.freeze({
                         {
                             id: "3.2.1",
                             title: "Erfolgsfaktoren für Reviews",
+                            page: 43,
+                            quote: "Erfolgsfaktoren: klare Ziele, richtige Teilnehmer, Checklisten, Management-Unterstützung, Review-Kultur und angemessene Schulung.",
                             keyPoints: [
                                 {
                                     title: "Erfolgsfaktoren",
@@ -950,6 +976,8 @@ const syllabusData = Object.freeze({
                         {
                             id: "5.3.1",
                             title: "Beim Testen verwendete Metriken",
+                            page: 65,
+                            quote: "Testmetriken werden erfasst, um den Fortschritt gegenüber Zeitplan und Budget, die Qualität des Testobjekts und die Effektivität der Testaktivitäten zu bewerten.",
                             keyPoints: [
                                 {
                                     title: "Zweck von Testmetriken",
@@ -966,6 +994,8 @@ const syllabusData = Object.freeze({
                         {
                             id: "5.3.2",
                             title: "Testberichte",
+                            page: 65,
+                            quote: "Der Zweck eines Testberichts ist es, Informationen über die Testaktivitäten zusammenzufassen und zu kommunizieren. Zwei Arten: Testfortschrittsbericht und Testabschlussbericht.",
                             keyPoints: [
                                 {
                                     title: "Zweck",
@@ -992,6 +1022,8 @@ const syllabusData = Object.freeze({
                         {
                             id: "5.3.3",
                             title: "Kommunikation des Teststatus",
+                            page: 67,
+                            quote: "Die beste Art der Kommunikation hängt von Stakeholder-Bedürfnissen, Teststrategie und regulatorischen Vorgaben ab: mündlich, Dashboards, E-Mail, oder formale Berichte.",
                             keyPoints: [
                                 {
                                     title: "Kommunikationsarten",
