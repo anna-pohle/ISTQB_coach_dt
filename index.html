@@ -1213,13 +1213,13 @@
         .bookmark-remove { background: transparent; border: none; color: var(--text-muted); cursor: pointer; padding: 4px; font-size: 0.9rem; }
         .bookmark-remove:hover { color: var(--accent-error); }
         .no-bookmarks { text-align: center; color: var(--text-muted); font-size: 0.85rem; padding: 20px; }
-        .syllabus-structure .search-wrap { margin-bottom: 16px; }
+        .syllabus-structure .search-wrap { margin-bottom: 16px; position: sticky; top: 0; z-index: 50; background: var(--bg-primary); padding: 12px 0; margin: 0 -20px 16px -20px; padding: 12px 20px; border-bottom: 1px solid var(--border-color); }
         .syllabus-structure .search-input { width: 100%; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-secondary); color: var(--text-primary); font-size: 0.95rem; }
         .syllabus-structure .search-input:focus { border-color: var(--accent-primary); }
         .syllabus-structure .search-result-info { margin-top: 8px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-secondary); }
         .syllabus-structure .search-result-info .search-result-count { font-weight: 600; color: var(--accent-primary); }
-        .syllabus-structure .search-result-info .search-jump-btn { padding: 4px 10px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-primary); font-size: 0.8rem; cursor: pointer; }
-        .syllabus-structure .search-result-info .search-jump-btn:hover { background: var(--bg-secondary); }
+        .syllabus-structure .search-result-info .search-jump-btn { padding: 6px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-primary); font-size: 0.85rem; cursor: pointer; font-weight: 500; }
+        .syllabus-structure .search-result-info .search-jump-btn:hover { background: var(--accent-primary); color: var(--bg-primary); border-color: var(--accent-primary); }
         .syllabus-structure .search-result-info .search-jump-btn:disabled { opacity: 0.5; cursor: not-allowed; }
         .syllabus-structure mark.search-hit { background: hsl(45, 90%, 50%); color: #000; padding: 0 2px; border-radius: 2px; }
         .structure-floating-buttons { position: fixed; bottom: 20px; right: 20px; z-index: 100; display: flex; flex-direction: column; gap: 8px; }
@@ -1265,8 +1265,8 @@
     <div class="app-container" id="app" role="main" aria-live="polite" aria-atomic="false"></div>
     <div id="sr-announcer" class="sr-only" aria-live="assertive" aria-atomic="true"></div>
     
-    <script src="js/syllabus-data.js?v=28"></script>
-    <script src="js/questions-data.js?v=28"></script>
+    <script src="js/syllabus-data.js?v=29"></script>
+    <script src="js/questions-data.js?v=29"></script>
     <script>
     'use strict';
     
@@ -2923,8 +2923,19 @@
             const structureSearchInput = document.getElementById('structure-search-input');
             if (structureSearchInput) {
                 structureSearchInput.addEventListener('input', debounce(() => {
-                    state.structureSearchQuery = structureSearchInput.value;
+                    // Speichere Cursor-Position vor dem Render
+                    const cursorPos = structureSearchInput.selectionStart;
+                    const inputValue = structureSearchInput.value;
+                    
+                    state.structureSearchQuery = inputValue;
                     render();
+                    
+                    // Fokus und Cursor-Position wiederherstellen
+                    const newInput = document.getElementById('structure-search-input');
+                    if (newInput) {
+                        newInput.focus();
+                        newInput.setSelectionRange(cursorPos, cursorPos);
+                    }
                 }, 280));
             }
             if (state.currentView === 'structure') updateStructureSearchInfo();
