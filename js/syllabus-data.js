@@ -667,54 +667,67 @@ const syllabusData = Object.freeze({
             subchapters: [
                 {
                     id: "4.1",
-                    title: "Testanalyse und -entwurf für Black-Box-Testverfahren",
+                    title: "Black-Box-Testverfahren",
                     page: 45,
                     quote: "Beim Black-Box-Test werden Testfälle auf der Grundlage von Spezifikationen, Dokumentation oder der Erfahrung des Testers abgeleitet, ohne auf die interne Struktur des Systems Bezug zu nehmen.",
                     keyPoints: [
                         {
-                            title: "Äquivalenzklassenbildung",
-                            content: "Eingaben in Klassen einteilen, die gleiches Verhalten erwarten lassen. Ein repräsentativer Wert pro Klasse reduziert Testfälle.",
-                            coachNote: "🎯 Prüfungsfokus – Minimale Testfälle:\n\nRegel: EIN Wert pro Äquivalenzklasse\n(auch ungültige Klassen!)\n\n❌ FALSCH:\n• 'mehr als die minimale Anzahl'\n• Klassen vergessen\n\n💡 Frage: 'Wie viele Testfälle minimal?'\n→ Klassen zählen, je 1 Wert"
-                        },
-                        {
-                            title: "Grenzwertanalyse",
-                            content: "Testfälle an Grenzen von Äquivalenzklassen (z.B. Min, Max, gerade darunter/darüber). 2-Wert: Grenzwert + ein Wert aus angrenzender Klasse.",
-                            coachNote: "🎯 Prüfung – Grenzwertanalyse:\n\n2-Wert-Analyse:\n• Grenzwert + EIN Nachbar aus angrenzender Klasse\n• NICHT beide Nachbarn (das wäre 3-Wert!)\n\n❌ FALSCH:\n• 'keine Grenzwerte'\n• 'nur gültige Werte'\n\n💡 Frage: 'Welche Testwerte für 2-Wert?'\n→ Grenzwert + 1 Wert aus anderer Klasse"
-                        },
-                        {
-                            title: "Entscheidungstabellentest",
-                            quote: "Eine Entscheidungstabelle besteht aus Bedingungen, deren Kombinationen, und den resultierenden Aktionen.",
-                            content: "Spalten = Regeln (Testfälle). Zeilen = Bedingungen + Aktionen. Notation: J=Ja, N=Nein, -=irrelevant.",
-                            coachNote: "🎯 Prüfungsfalle – Entscheidungstabelle:\n\n📊 Anzahl Testfälle zählen:\n• Nur DURCHFÜHRBARE Spalten zählen!\n• '-' = Bedingung egal (nicht 2 Testfälle)\n• Undurchführbar = überspringen\n\n❌ FALSCH:\n• Alle 2^n Kombinationen\n• '-' als eigene Testfälle\n\n💡 Wenn Tabelle gegeben: Spalten zählen (abzgl. undurchführbar)"
-                        },
-                        {
-                            title: "Zustandsübergangstest",
-                            content: "System hat Zustände und Übergänge. Testfälle decken gültige (oder ungültige) Zustandsübergänge ab.",
-                            coachNote: "🎯 Prüfungsfalle – Überdeckungskriterien:\n\n• Alle Zustände: Jeder Zustand mindestens 1x besucht\n• 0-Switch (gültige Übergänge): Jeder GÜLTIGE Übergang 1x\n• Alle Übergänge: Gültige UND ungültige Übergänge\n\n⚠️ Ungültige Übergänge: nur 1 pro Testfall (Fehlermaskierung vermeiden!)"
+                            title: "Überblick",
+                            content: "4 Verfahren: Äquivalenzklassenbildung, Grenzwertanalyse, Entscheidungstabellentest, Zustandsübergangstest.",
+                            coachNote: "Black-Box = Verhalten testen, ohne Code zu sehen."
                         }
                     ],
                     subsections: [
                         {
-                            id: "4.2.4",
-                            title: "Zustandsübergangstest (Details)",
-                            page: 49,
-                            image: "images/syllabus_zustandsuebergang.png",
-                            quote: "Ein Zustandsübergangsdiagramm zeigt die möglichen Softwarezustände sowie die Art und Weise, wie die Software in einen Zustand eintritt, diesen verlässt und zwischen den Zuständen übergeht.",
+                            id: "4.2.1",
+                            title: "Äquivalenzklassenbildung",
+                            page: 45,
+                            quote: "Bei der Äquivalenzklassenbildung werden Daten in Klassen unterteilt, wobei davon ausgegangen wird, dass alle Elemente einer Klasse vom Testobjekt auf die gleiche Weise verarbeitet werden.",
                             keyPoints: [
                                 {
-                                    title: "Überdeckung aller Zustände",
-                                    content: "Alle Zustände werden mindestens einmal besucht. Formel: (besuchte Zustände ÷ Gesamtzahl Zustände) × 100%",
-                                    coachNote: "Schwächstes Kriterium - findet nicht alle Übergangsfehler."
-                                },
+                                    title: "Prinzip",
+                                    content: "Eingaben in Klassen einteilen, die gleiches Verhalten erwarten lassen. Ein repräsentativer Wert pro Klasse reduziert Testfälle.",
+                                    coachNote: "🎯 Prüfungsfokus – Minimale Testfälle:\n\nRegel: EIN Wert pro Äquivalenzklasse\n(auch ungültige Klassen!)\n\n❌ FALSCH:\n• 'mehr als die minimale Anzahl'\n• Klassen vergessen\n\n💡 Frage: 'Wie viele Testfälle minimal?'\n→ Klassen zählen, je 1 Wert"
+                                }
+                            ]
+                        },
+                        {
+                            id: "4.2.2",
+                            title: "Grenzwertanalyse",
+                            page: 46,
+                            quote: "Die Grenzwertanalyse basiert auf der Überprüfung der Grenzen von Äquivalenzklassen. Bei der 2-Wert-Analyse gibt es für jeden Grenzwert zwei Überdeckungselemente: den Grenzwert und seinen engsten Nachbarn.",
+                            keyPoints: [
                                 {
-                                    title: "0-Switch-Überdeckung (gültige Übergänge)",
-                                    content: "Alle GÜLTIGEN Übergänge werden mindestens einmal ausgeführt. Formel: (ausgeführte gültige Übergänge ÷ Gesamtzahl gültige Übergänge) × 100%",
-                                    coachNote: "🎯 Prüfungsfokus: 0-Switch = nur GÜLTIGE Übergänge, nicht Zustände!"
-                                },
+                                    title: "2-Wert vs. 3-Wert",
+                                    content: "2-Wert: Grenzwert + ein Nachbar aus angrenzender Klasse. 3-Wert: Grenzwert + beide Nachbarn.",
+                                    coachNote: "🎯 Prüfung – Grenzwertanalyse:\n\n2-Wert-Analyse:\n• Grenzwert + EIN Nachbar aus angrenzender Klasse\n• NICHT beide Nachbarn (das wäre 3-Wert!)\n\n❌ FALSCH:\n• 'keine Grenzwerte'\n• 'nur gültige Werte'"
+                                }
+                            ]
+                        },
+                        {
+                            id: "4.2.3",
+                            title: "Entscheidungstabellentest",
+                            page: 47,
+                            quote: "Entscheidungstabellen werden zum Testen der Umsetzung von Anforderungen verwendet, die angeben, wie verschiedene Kombinationen von Bedingungen zu unterschiedlichen Ergebnissen führen.",
+                            keyPoints: [
                                 {
-                                    title: "Überdeckung aller Übergänge",
-                                    content: "Gültige UND ungültige Übergänge werden getestet. Ungültige Übergänge: nur 1 pro Testfall, um Fehlermaskierung zu vermeiden.",
-                                    coachNote: "Stärkstes Kriterium - findet auch fehlende Fehlerbehandlung."
+                                    title: "Notation",
+                                    content: "Spalten = Regeln (Testfälle). Zeilen = Bedingungen + Aktionen. J=Ja, N=Nein, -=irrelevant, N/A=undurchführbar.",
+                                    coachNote: "🎯 Prüfungsfalle – Entscheidungstabelle:\n\n📊 Anzahl Testfälle zählen:\n• Nur DURCHFÜHRBARE Spalten zählen!\n• '-' = Bedingung egal (nicht 2 Testfälle)\n• Undurchführbar = überspringen\n\n💡 Wenn Tabelle gegeben: Spalten zählen (abzgl. undurchführbar)"
+                                }
+                            ]
+                        },
+                        {
+                            id: "4.2.4",
+                            title: "Zustandsübergangstest",
+                            page: 48,
+                            image: "images/syllabus_zustandsuebergang.png",
+                            quote: "Ein Zustandsdiagramm modelliert das Verhalten eines Systems, indem es seine möglichen Zustände und gültigen Übergänge aufzeigt.",
+                            keyPoints: [
+                                {
+                                    title: "Überdeckungskriterien",
+                                    content: "Alle Zustände: jeden Zustand 1x. 0-Switch: jeden gültigen Übergang 1x. Alle Übergänge: gültige + ungültige.",
+                                    coachNote: "🎯 Prüfungsfalle – Überdeckungskriterien:\n\n• Alle Zustände: Jeder Zustand mindestens 1x besucht\n• 0-Switch (gültige Übergänge): Jeder GÜLTIGE Übergang 1x\n• Alle Übergänge: Gültige UND ungültige Übergänge\n\n⚠️ Ungültige Übergänge: nur 1 pro Testfall (Fehlermaskierung vermeiden!)"
                                 }
                             ]
                         }
@@ -722,24 +735,55 @@ const syllabusData = Object.freeze({
                 },
                 {
                     id: "4.2",
-                    title: "Testanalyse und -entwurf für White-Box-Testverfahren",
+                    title: "White-Box-Testverfahren",
                     page: 49,
                     quote: "Beim White-Box-Test werden die Tests auf der Grundlage der internen Struktur oder Implementierung des Systems abgeleitet. Dazu gehören Code, Architektur und Datenflüsse.",
                     keyPoints: [
                         {
-                            title: "Anweisungsüberdeckung",
-                            content: "Prozentsatz der ausgeführten Anweisungen. Formel: (ausgeführte Anweisungen ÷ ausführbare Anweisungen) × 100%.",
-                            coachNote: "🎯 Prüfungsfalle – Anweisungsüberdeckung:\n\n✅ RICHTIG: Prozentsatz ausgeführter Anweisungen\n\n❌ FALSCH (typische Fallen):\n• 'Anzahl Testfälle'\n• 'Fehlerwirkungen'\n• Antworten ohne '%'\n\n💡 Formel: (ausgeführt ÷ ausführbar) × 100%"
+                            title: "Überblick",
+                            content: "Testet die interne Struktur. Überdeckungsmaße: Anweisungs- und Zweigüberdeckung.",
+                            coachNote: "White-Box = Code sehen und Struktur testen."
+                        }
+                    ],
+                    subsections: [
+                        {
+                            id: "4.3.1",
+                            title: "Anweisungstest und Anweisungsüberdeckung",
+                            page: 50,
+                            quote: "Beim Anweisungstest sind die Überdeckungselemente ausführbare Anweisungen. Die Überdeckung wird als Anzahl der durch die Testfälle ausgeführten Anweisungen, geteilt durch die Gesamtzahl der ausführbaren Anweisungen, gemessen.",
+                            keyPoints: [
+                                {
+                                    title: "Formel",
+                                    content: "Anweisungsüberdeckung = (ausgeführte Anweisungen ÷ ausführbare Anweisungen) × 100%",
+                                    coachNote: "🎯 Prüfungsfalle – Anweisungsüberdeckung:\n\n✅ RICHTIG: Prozentsatz ausgeführter Anweisungen\n\n❌ FALSCH (typische Fallen):\n• 'Anzahl Testfälle'\n• 'Fehlerwirkungen'\n• Antworten ohne '%'"
+                                }
+                            ]
                         },
                         {
-                            title: "Zweigüberdeckung",
-                            content: "Jeder Zweig (True/False) jeder Entscheidung muss mindestens einmal ausgeführt werden. Stärker als Anweisungsüberdeckung.",
-                            coachNote: "🎯 Prüfungsfalle – Zweigüberdeckung:\n\n📌 Was ist ein 'Zweig'?\nBei einer if-Bedingung gibt es ZWEI Wege:\n• TRUE-Zweig (Bedingung erfüllt)\n• FALSE-Zweig (Bedingung nicht erfüllt)\n\n✅ 100% Zweigüberdeckung = BEIDE Wege getestet\n\n⚠️ Typische Prüfungsfragen:\n• 'Wie viele Testfälle für 100% Zweigüberdeckung?' → Zähle alle Entscheidungen, mind. 2 pro if\n• Zweigüberdeckung ist STÄRKER als Anweisungsüberdeckung\n• 100% Zweig → 100% Anweisung (aber nicht umgekehrt!)"
+                            id: "4.3.2",
+                            title: "Zweigtest und Zweigüberdeckung",
+                            page: 50,
+                            quote: "Ein Zweig ist ein Kontrollübergang zwischen zwei Knoten im Kontrollflussgraph. Bei 100% Zweigüberdeckung werden alle Zweige (TRUE und FALSE) jeder Entscheidung ausgeführt.",
+                            keyPoints: [
+                                {
+                                    title: "Stärker als Anweisungsüberdeckung",
+                                    content: "Jeder Zweig (True/False) jeder Entscheidung muss mindestens einmal ausgeführt werden. 100% Zweig → 100% Anweisung (aber nicht umgekehrt!).",
+                                    coachNote: "🎯 Prüfungsfalle – Zweigüberdeckung:\n\n📌 Was ist ein 'Zweig'?\nBei einer if-Bedingung gibt es ZWEI Wege:\n• TRUE-Zweig (Bedingung erfüllt)\n• FALSE-Zweig (Bedingung nicht erfüllt)\n\n✅ 100% Zweigüberdeckung = BEIDE Wege getestet\n\n⚠️ Zweigüberdeckung ist STÄRKER als Anweisungsüberdeckung"
+                                }
+                            ]
                         },
                         {
-                            title: "White-Box-Schwäche",
-                            content: "White-Box-Tests können nur vorhandenen Code prüfen. Fehlende Implementierung (fehlende Anforderung) wird nicht gefunden.",
-                            coachNote: "⚠️ Prüfungsfalle – White-Box-Schwäche:\n\n❌ IMMER FALSCH:\n'White-Box kann fehlende Implementierung identifizieren'\n\n💡 Merke:\nWhite-Box testet NUR vorhandenen Code.\nWas nicht da ist, findet es nicht!"
+                            id: "4.3.3",
+                            title: "Wert des White-Box-Tests",
+                            page: 51,
+                            quote: "Eine grundlegende Stärke aller White-Box-Testverfahren ist, dass die gesamte Softwareimplementierung berücksichtigt wird. Eine Schwäche ist, dass fehlende Implementierung nicht gefunden wird.",
+                            keyPoints: [
+                                {
+                                    title: "Stärke & Schwäche",
+                                    content: "Stärke: Gesamte Implementierung wird geprüft. Schwäche: Fehlende Anforderungen/Code werden NICHT gefunden.",
+                                    coachNote: "⚠️ Prüfungsfalle – White-Box-Schwäche:\n\n❌ IMMER FALSCH:\n'White-Box kann fehlende Implementierung identifizieren'\n\n💡 Merke:\nWhite-Box testet NUR vorhandenen Code.\nWas nicht da ist, findet es nicht!"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -1059,14 +1103,63 @@ const syllabusData = Object.freeze({
                     quote: "Risiko beinhaltet die Möglichkeit des Eintritts eines Ereignisses mit negativen Folgen. Das Risikoniveau wird anhand der Eintrittswahrscheinlichkeit und der Schadenshöhe bestimmt.",
                     keyPoints: [
                         {
-                            title: "Produktrisiko vs. Projektrisiko",
-                            content: "Produktrisiko: Qualitätsrisiko (Fehler im Produkt). Projektrisiko: Termin, Budget, Ressourcen (z.B. Scope Creep, Lieferanten).",
-                            coachNote: "🎯 Prüfungsfalle – Risiko-Unterscheidung:\n\n📁 PROJEKTRISIKO (Rahmen):\n• Scope Creep\n• Budgetkürzung\n• Drittanbieter-Probleme\n\n🔧 PRODUKTRISIKO (Software selbst):\n• Langsame Antwortzeit unter Last\n• Sicherheitslücken\n• Funktionsfehler"
+                            title: "Überblick",
+                            content: "Risikomanagement umfasst: Risikoidentifizierung, Risikobewertung und Risikosteuerung.",
+                            coachNote: "Risiko = Wahrscheinlichkeit × Auswirkung"
+                        }
+                    ],
+                    subsections: [
+                        {
+                            id: "5.2.1",
+                            title: "Risikodefinition und Risikoattribute",
+                            page: 62,
+                            quote: "Ein Risiko ist ein potenzielles Ereignis, dessen Eintreten eine nachteilige Auswirkung verursacht. Risikoniveau = Eintrittswahrscheinlichkeit × Schadensausmaß.",
+                            keyPoints: [
+                                {
+                                    title: "Formel",
+                                    content: "Risikoniveau = Eintrittswahrscheinlichkeit × Schadensausmaß (Auswirkung).",
+                                    coachNote: "🎯 Prüfungsfokus: Risikoniveau = Wahrscheinlichkeit × Auswirkung!"
+                                }
+                            ]
                         },
                         {
-                            title: "Risikoexposition",
-                            content: "Risikoexposition = Wahrscheinlichkeit × Auswirkung. Risikomatrix zur Priorisierung (z.B. mittel × hoch = hoch).",
-                            coachNote: "Risikostufe: mittel × hoch = hoch. Nicht verwechseln mit Risikobehandlung."
+                            id: "5.2.2",
+                            title: "Projektrisiken und Produktrisiken",
+                            page: 62,
+                            quote: "Projektrisiken beziehen sich auf Management und Steuerung des Projekts. Produktrisiken stehen im Zusammenhang mit den Qualitätsmerkmalen des Produkts.",
+                            keyPoints: [
+                                {
+                                    title: "Unterscheidung",
+                                    content: "Projektrisiko: Termin, Budget, Ressourcen, Scope Creep. Produktrisiko: Funktionsfehler, Performance, Sicherheit.",
+                                    coachNote: "🎯 Prüfungsfalle – Risiko-Unterscheidung:\n\n📁 PROJEKTRISIKO (Rahmen):\n• Scope Creep\n• Budgetkürzung\n• Drittanbieter-Probleme\n\n🔧 PRODUKTRISIKO (Software selbst):\n• Langsame Antwortzeit\n• Sicherheitslücken\n• Funktionsfehler"
+                                }
+                            ]
+                        },
+                        {
+                            id: "5.2.3",
+                            title: "Produktrisikoanalyse",
+                            page: 63,
+                            quote: "Ziel der Produktrisikoanalyse ist es, ein Bewusstsein für das Produktrisiko zu schaffen, um den Testaufwand so zu fokussieren, dass die verbleibende Risikostufe minimiert wird.",
+                            keyPoints: [
+                                {
+                                    title: "Prozess",
+                                    content: "Risikoidentifizierung (Liste erstellen) + Risikobewertung (Kategorisierung, Wahrscheinlichkeit, Auswirkung, Priorisierung).",
+                                    coachNote: "🎯 Prüfungsfalle – Risikoanalyse:\n\nRisikoanalyse beeinflusst Gründlichkeit und Umfang:\n• Hohes Risiko → gründlichere Tests\n• Niedriges Risiko → weniger gründlich\n\n❌ FALSCH: 'Risikoidentifizierung' allein beeinflusst Testumfang"
+                                }
+                            ]
+                        },
+                        {
+                            id: "5.2.4",
+                            title: "Produktrisikosteuerung",
+                            page: 64,
+                            quote: "Die Steuerung umfasst Risikominderung (präventive Maßnahmen, Tests für hohe Risiken zuerst) und Risikoüberwachung (kontinuierliche Bewertung).",
+                            keyPoints: [
+                                {
+                                    title: "Maßnahmen",
+                                    content: "Risikominderung: hohe Risiken zuerst testen. Risikoüberwachung: neue Risiken erkennen, Risikostufen anpassen.",
+                                    coachNote: "Risikobasiertes Testen = hohe Risiken früh und gründlich testen."
+                                }
+                            ]
                         }
                     ]
                 },
