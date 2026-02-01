@@ -710,6 +710,8 @@ const syllabusData = Object.freeze({
                             id: "4.2.3",
                             title: "Entscheidungstabellentest",
                             page: 47,
+                            image: "images/a_q20.png",
+                            imageAttribution: "GTB Sample Exam A, Frage 22",
                             quote: "Entscheidungstabellen werden zum Testen der Umsetzung von Anforderungen verwendet, die angeben, wie verschiedene Kombinationen von Bedingungen zu unterschiedlichen Ergebnissen führen.",
                             keyPoints: [
                                 {
@@ -723,6 +725,8 @@ const syllabusData = Object.freeze({
                             id: "4.2.4",
                             title: "Zustandsübergangstest",
                             page: 48,
+                            image: "images/f_q23.png",
+                            imageAttribution: "GTB Sample Exam F, Frage 23",
                             quote: "Ein Zustandsdiagramm modelliert das Verhalten eines Systems, indem es seine möglichen Zustände und gültigen Übergänge aufzeigt.",
                             keyPoints: [
                                 {
@@ -764,6 +768,8 @@ const syllabusData = Object.freeze({
                             id: "4.3.2",
                             title: "Zweigtest und Zweigüberdeckung",
                             page: 50,
+                            image: "images/c_q24.png",
+                            imageAttribution: "GTB Sample Exam C, Frage 24",
                             quote: "Ein Zweig ist ein Kontrollübergang zwischen zwei Knoten im Kontrollflussgraph. Bei 100% Zweigüberdeckung werden alle Zweige (TRUE und FALSE) jeder Entscheidung ausgeführt.",
                             keyPoints: [
                                 {
@@ -1103,6 +1109,8 @@ const syllabusData = Object.freeze({
                     id: "5.4",
                     title: "Risikomanagement",
                     page: 62,
+                    image: "images/risikomatrix_5x5_cc.jpg",
+                    imageAttribution: "U3115299, CC BY-SA 4.0, via Wikimedia Commons",
                     quote: "Risiko beinhaltet die Möglichkeit des Eintritts eines Ereignisses mit negativen Folgen. Das Risikoniveau wird anhand der Eintrittswahrscheinlichkeit und der Schadenshöhe bestimmt.",
                     keyPoints: [
                         {
@@ -1170,6 +1178,8 @@ const syllabusData = Object.freeze({
                     id: "5.5",
                     title: "Fehlermanagement",
                     page: 68,
+                    image: "images/bug_lifecycle_bugzilla_cc.png",
+                    imageAttribution: "Bugzilla Project, LGPL, via Wikimedia Commons",
                     quote: "Ein Fehlerbericht dokumentiert alle Informationen, die erforderlich sind, um das aufgetretene Problem zu identifizieren, zu analysieren und zu beheben.",
                     keyPoints: [
                         {
