@@ -455,8 +455,9 @@ const examQuestions = Object.freeze([
         lo: "FL-4.2.3",
         kLevel: 3,
         chapter: 4,
-        text: "Neu eingestellte Mitarbeitende können individuelle Ziele mit ihren Vorgesetzten vereinbaren, an deren Erreichung die Auszahlung einer Prämie gekoppelt ist. Die Prämie wird aber erst ausgezahlt, wenn sie länger als ein Jahr beschäftigt sind.\n\nDie Entscheidungstabelle zeigt 5 Testfälle T1-T5. Welcher der folgenden Testfälle beschreibt eine in der Praxis gültige, durchführbare Situation und fehlt in der Entscheidungstabelle?\n\nT1: >1 Jahr=J, Ziel=N, Erreicht=N, Prämie=N\nT2: >1 Jahr=N, Ziel=N, Erreicht=N, Prämie=N\nT3: >1 Jahr=N, Ziel=J, Erreicht=J, Prämie=N\nT4: >1 Jahr=J, Ziel=J, Erreicht=J, Prämie=J\nT5: >1 Jahr=N, Ziel=J, Erreicht=N, Prämie=N",
+        text: "Neu eingestellte Mitarbeitende können individuelle Ziele mit ihren Vorgesetzten vereinbaren, an deren Erreichung die Auszahlung einer Prämie gekoppelt ist. Die Prämie wird aber erst ausgezahlt, wenn sie länger als ein Jahr beschäftigt sind.\n\nWelcher der folgenden Testfälle beschreibt eine in der Praxis gültige, durchführbare Situation und fehlt in der dargestellten Entscheidungstabelle?",
         hint: "Wählen Sie EINE Option.",
+        image: "images/a_q20.png",
         answers: [
             "Bedingung1 = 'J', Bedingung2 = 'N', Bedingung3 = 'J', Aktion = 'N'",
             "Bedingung1 = 'J', Bedingung2 = 'J', Bedingung3 = 'N', Aktion = 'J'",
@@ -843,8 +844,8 @@ const examQuestions = Object.freeze([
         lo: "FL-1.4.5",
         kLevel: 2,
         chapter: 1,
-        text: "Welche der folgenden Aussagen über die verschiedenen Testrollen trifft AM EHESTEN zu?",
-        hint: "Wählen Sie EINE Option.",
+        text: "Welche der folgenden Aussagen über die verschiedenen Testrollen (in unterschiedlichen Entwicklungsmodellen) trifft AM EHESTEN zu?",
+        hint: "Wählen Sie EINE Option. Beachte: Die Antworten beziehen sich auf verschiedene Entwicklungsmodelle.",
         answers: [
             "In der agilen Softwareentwicklung ist das Testmanagement hauptsächlich Aufgabe des Teams, während das Testen hauptsächlich Aufgabe einer Person außerhalb des Teams ist.",
             "Die Testrolle ist hauptsächlich für die Testüberwachung und Teststeuerung verantwortlich, während die Testmanagementrolle hauptsächlich für die Testplanung und -durchführung verantwortlich ist.",
@@ -853,7 +854,7 @@ const examQuestions = Object.freeze([
         ],
         correct: 2,
         feedback: {
-            trap: "Option a) dreht die Rollen um – in Agile testet das TEAM, nicht externe Personen.",
+            trap: "Ablenkungen verwechseln Tester- und Testmanager-Aufgaben oder drehen die Rollen um.",
             principle: "Agile Teams: Testmanagement teils im Team, teils extern (für teamübergreifende Aufgaben).",
             explanation: "In agilen Teams führt das Team selbst einige Testmanagementaufgaben durch. Teamübergreifende Aufgaben werden von einem externen Testmanager koordiniert.",
             reference: "Lehrplan 1.4.5"
