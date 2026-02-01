@@ -459,15 +459,15 @@
         }
         
         .multiple-choice-hint {
-            background: rgba(245, 158, 11, 0.15);
-            border: 1px solid rgba(245, 158, 11, 0.4);
+            background: rgba(0, 212, 170, 0.1);
+            border: 1px solid rgba(0, 212, 170, 0.3);
             padding: 10px 14px;
             border-radius: var(--radius-sm);
             margin-bottom: 12px;
             font-size: 0.9rem;
-            color: #f59e0b;
+            color: var(--accent-primary);
             text-align: center;
-            font-weight: 600;
+            font-weight: 500;
         }
         .question-image {
             margin: 16px 0;
@@ -987,6 +987,26 @@
             border: 1px solid var(--border-color);
         }
         
+        .plan-duration-btn {
+            flex: 1;
+            padding: 10px 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            color: var(--text-secondary);
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .plan-duration-btn:hover { background: var(--bg-secondary); }
+        .plan-duration-btn.active {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+            border-color: var(--accent-primary);
+        }
+        
         .plan-week {
             display: flex;
             align-items: center;
@@ -1074,8 +1094,14 @@
         }
 
         /* Struktur-Ansicht: Syllabus wie in preview.html (Rainbow, Key Points, Coach-Notes) */
-        .syllabus-structure .chapter { margin-bottom: 32px; border-bottom: 1px solid var(--border-color); padding-bottom: 24px; --hue: 150; --chapter-color: hsl(var(--hue), 70%, 55%); --section-color: hsl(var(--hue), 60%, 70%); --subsection-color: hsl(var(--hue), 50%, 85%); --content-color: hsl(var(--hue), 30%, 96%); --bg-tint: hsla(var(--hue), 40%, 30%, 0.1); --sticky-h1: 78px; --sticky-h2: 48px; --sticky-h3: 36px; }
-        .syllabus-structure .chapter-title { font-size: 1.35rem; line-height: 1.25; color: var(--chapter-color); margin-bottom: 0; font-weight: 800; background: var(--bg-primary); padding: 12px 20px; border-bottom: 3px solid var(--chapter-color); position: sticky; top: 0; z-index: 20; box-shadow: 0 2px 8px rgba(0,0,0,0.2); margin-left: -20px; margin-right: -20px; min-height: 3.2em; box-sizing: border-box; display: flex; align-items: center; flex-wrap: wrap; }
+        .syllabus-structure .chapter { margin-bottom: 16px; border: 1px solid var(--border-color); border-radius: var(--radius-md); overflow: hidden; --hue: 150; --chapter-color: hsl(var(--hue), 70%, 55%); --section-color: hsl(var(--hue), 60%, 70%); --subsection-color: hsl(var(--hue), 50%, 85%); --content-color: hsl(var(--hue), 30%, 96%); --bg-tint: hsla(var(--hue), 40%, 30%, 0.1); --sticky-h1: 78px; --sticky-h2: 48px; --sticky-h3: 36px; }
+        .syllabus-structure .chapter-header { display: flex; flex-direction: column; padding: 16px 20px; background: var(--bg-card); cursor: pointer; border-left: 4px solid var(--chapter-color); transition: background 0.2s; }
+        .syllabus-structure .chapter-header:hover { background: var(--bg-secondary); }
+        .syllabus-structure .chapter-title { font-size: 1.1rem; line-height: 1.3; color: var(--chapter-color); margin-bottom: 0; font-weight: 700; }
+        .syllabus-structure .chapter-meta { display: flex; gap: 12px; align-items: center; margin-top: 6px; font-size: 0.85rem; color: var(--text-muted); }
+        .syllabus-structure .chapter-toggle-icon { margin-left: auto; color: var(--chapter-color); font-size: 0.8rem; }
+        .syllabus-structure .chapter-content { padding: 20px; background: var(--bg-primary); border-top: 1px solid var(--border-color); }
+        .syllabus-structure .chapter.expanded { border-color: var(--chapter-color); }
         .syllabus-structure .section { background: linear-gradient(to right, var(--bg-tint), transparent); border-radius: 8px; margin-bottom: 16px; }
         .syllabus-structure > h2.section-title { position: relative; }
         .syllabus-structure .section .section-title { font-size: 1.1rem; line-height: 1.3; color: var(--section-color); font-weight: 700; cursor: pointer; user-select: none; position: sticky; top: var(--sticky-h1); z-index: 15; background: var(--bg-primary); padding: 10px 20px; border-left: 5px solid var(--section-color); border-bottom: 1px solid var(--border-color); border-radius: 0 6px 6px 0; margin-bottom: 12px; margin-left: -20px; margin-right: -20px; padding-left: 25px; min-height: var(--sticky-h2); box-sizing: border-box; box-shadow: 0 2px 8px rgba(0,0,0,0.15); display: flex; align-items: center; }
@@ -1115,8 +1141,8 @@
 <body>
     <div class="app-container" id="app" role="main"></div>
     
-    <script src="js/syllabus-data.js?v=16"></script>
-    <script src="js/questions-data.js?v=16"></script>
+    <script src="js/syllabus-data.js?v=17"></script>
+    <script src="js/questions-data.js?v=17"></script>
     <script>
     'use strict';
     
@@ -1141,7 +1167,9 @@
             examSize: 40,
             practiceSize: 10,
             expandedChapter: null,
+            expandedChapters: {},
             structureSearchQuery: '',
+            planDuration: '4weeks',
             // Per-chapter stats
             chapterStats: { 1: { answered: 0, correct: 0 }, 2: { answered: 0, correct: 0 }, 3: { answered: 0, correct: 0 }, 4: { answered: 0, correct: 0 }, 5: { answered: 0, correct: 0 }, 6: { answered: 0, correct: 0 } }
         });
@@ -1621,7 +1649,7 @@
                     <button class="nav-btn ${state.currentView === 'structure' ? 'active' : ''}" 
                             data-view="structure" aria-pressed="${state.currentView === 'structure'}">
                         <span class="nav-icon" aria-hidden="true">📚</span>
-                        <span>Struktur</span>
+                        <span>Lehrplan</span>
                     </button>
                     <button class="nav-btn ${state.currentView === 'quiz' ? 'active' : ''}" 
                             data-view="quiz" aria-pressed="${state.currentView === 'quiz'}">
@@ -1631,7 +1659,7 @@
                     <button class="nav-btn ${state.currentView === 'plan' ? 'active' : ''}" 
                             data-view="plan" aria-pressed="${state.currentView === 'plan'}">
                         <span class="nav-icon" aria-hidden="true">📅</span>
-                        <span>4-Wochen</span>
+                        <span>Zeitplan</span>
                     </button>
                 </nav>`;
         }
@@ -1827,16 +1855,29 @@
         function renderStructure() {
             const q = (state.structureSearchQuery || '').trim();
             const matchMap = getStructureMatchMap(state.structureSearchQuery);
+            const expandedChapters = state.expandedChapters || {};
+            
             let html = '<div class="view active" role="region" aria-label="Lehrplan-Struktur"><div class="syllabus-structure">';
-            html += '<h2 class="section-title">CTFL v4.0.2 Lehrplan (offizielle Terminologie)</h2>';
+            html += '<h2 class="section-title">CTFL v4.0.2 Lehrplan</h2>';
             html += '<div class="search-wrap"><label for="structure-search-input">Suchen in Kapiteln, Key Points und Coach-Notes</label><input type="search" id="structure-search-input" class="search-input" placeholder="Begriff eingeben …" aria-label="Suchen im Syllabus" value="' + escapeHtml(state.structureSearchQuery || '') + '" autocomplete="off"><div id="structure-search-result-info" class="search-result-info" aria-live="polite" role="status"></div></div>';
             html += '<div id="structure-content">';
+            
             syllabusData.chapters.forEach((chapter, cIdx) => {
                 const chapterHidden = q && matchMap && !matchMap.has(cIdx);
                 const hue = STRUCTURE_HUES[cIdx] !== undefined ? STRUCTURE_HUES[cIdx] : (cIdx * 60) % 360;
-                html += '<div class="chapter ' + (chapterHidden ? 'search-no-match' : '') + '" style="--hue:' + hue + '">';
+                const isExpanded = expandedChapters[cIdx] || (q && !chapterHidden);
+                
+                html += '<div class="chapter ' + (chapterHidden ? 'search-no-match' : '') + (isExpanded ? ' expanded' : '') + '" style="--hue:' + hue + '" data-chapter-idx="' + cIdx + '">';
+                
+                // Kapitel-Header (immer sichtbar, klickbar)
+                html += '<div class="chapter-header" data-toggle-chapter="' + cIdx + '">';
                 html += '<div class="chapter-title" id="chapter-' + chapter.id + '">' + chapter.icon + ' Kapitel ' + chapter.id + ': ' + highlightStructureText(chapter.title, q) + '</div>';
-                html += '<div style="margin-bottom:12px;color:var(--text-muted);">⏱️ ' + chapter.duration + ' | 📊 ' + chapter.weight + '</div>';
+                html += '<div class="chapter-meta"><span>⏱️ ' + chapter.duration + '</span><span>📊 ' + chapter.weight + '</span><span class="chapter-toggle-icon">' + (isExpanded ? '▲' : '▼') + '</span></div>';
+                html += '</div>';
+                
+                // Kapitel-Inhalt (nur sichtbar wenn expanded)
+                html += '<div class="chapter-content" style="' + (isExpanded ? '' : 'display:none;') + '">';
+                
                 if (chapter.keywords) {
                     html += '<div class="keywords">' + chapter.keywords.map(function(k) {
                         var targetId = findSectionIdForKeyword(chapter, k);
@@ -1886,7 +1927,7 @@
                         html += '</div></div>';
                     });
                 }
-                html += '</div>';
+                html += '</div></div>';
             });
             html += '</div><div class="structure-floating-buttons" role="group" aria-label="Sprungnavigation"><button type="button" class="float-btn" id="btn-to-chapter">📌 Zum Kapitel</button><button type="button" class="float-btn" id="btn-to-app">⬆️ Zum Anfang</button></div></div></div>';
             return html;
@@ -2059,9 +2100,7 @@
                         <div class="question-chapter">Kap. ${q.chapter}: ${chapterInfo?.title || ''} • ${q.lo}</div>
                         <p class="question-text">${escapeHtml(q.text)}</p>
                         ${q.image ? `<div class="question-image"><img src="${q.image}" alt="Diagramm zur Frage" loading="lazy" onclick="this.classList.toggle('expanded')"></div>` : ''}
-                        ${q.warning ? `<div class="question-warning">${escapeHtml(q.warning)}</div>` : ''}
-                        
-                        ${isMultipleChoice ? `<div class="multiple-choice-hint">⚠️ Wähle ${q.multipleCorrect.length} Antworten!</div>` : ''}
+                        ${isMultipleChoice ? `<div class="multiple-choice-hint">📝 Diese Frage hat ${q.multipleCorrect.length} richtige Antworten</div>` : (q.warning ? `<div class="question-warning">${escapeHtml(q.warning)}</div>` : '')}
                         <div class="answers-list" role="group" aria-label="Antwortoptionen">
                             ${(() => {
                                 // Hole die gemischte Reihenfolge für diese Frage
@@ -2389,24 +2428,63 @@
         }
         
         function renderPlan() {
-            const weeks = [
-                { title: "Grundlagen & SDLC", tasks: ["Kapitel 1: Grundlagen (180 Min)", "Kapitel 2: Testen im SDLC (130 Min)", "Fehlerkette: Fehlhandlung → Fehlerzustand → Fehlerwirkung", "Quiz: 2× täglich"] },
-                { title: "Statischer Test & Testentwurf I", tasks: ["Kapitel 3: Statischer Test (80 Min)", "Kapitel 4: Black-Box-Verfahren (195 Min)", "Review-Arten auswendig lernen", "Äquivalenzklassen & Grenzwerte üben"] },
-                { title: "Testentwurf II & Management", tasks: ["Kapitel 4: White-Box & Erfahrungsbasiert (195 Min)", "Kapitel 5: Testmanagement (335 Min)", "Drei-Punkt-Schätzung berechnen", "Produkt- vs. Projektrisiken"] },
-                { title: "Werkzeuge & Prüfung", tasks: ["Kapitel 6: Testwerkzeuge (20 Min)", "Alle Musterprüfungen durcharbeiten", "40 Fragen in 60 Min simulieren", "Schwächen gezielt nacharbeiten"] }
-            ];
+            const selectedDuration = state.planDuration || '4weeks';
+            
+            // Lernpläne für verschiedene Zeiträume
+            const plans = {
+                '2weeks': {
+                    title: '2-Wochen Intensivplan',
+                    quizTip: '📝 Empfehlung: 15-20 Prüfungsfragen pro Tag',
+                    units: [
+                        { label: 'Woche 1', title: 'Theorie komplett', tasks: ['Kapitel 1: Grundlagen (180 Min)', 'Kapitel 2: Testen im SDLC (130 Min)', 'Kapitel 3: Statischer Test (80 Min)', 'Kapitel 4: Testentwurf (390 Min)', 'Täglich: 20 Quiz-Fragen'] },
+                        { label: 'Woche 2', title: 'Management & Prüfung', tasks: ['Kapitel 5: Testmanagement (335 Min)', 'Kapitel 6: Testwerkzeuge (20 Min)', '3× Prüfungssimulation (40 Fragen)', 'Schwächen gezielt nacharbeiten', 'Täglich: 20 Quiz-Fragen'] }
+                    ]
+                },
+                '4weeks': {
+                    title: '4-Wochen Lernplan',
+                    quizTip: '📝 Empfehlung: 10 Prüfungsfragen pro Tag',
+                    units: [
+                        { label: 'Woche 1', title: 'Grundlagen & SDLC', tasks: ['Kapitel 1: Grundlagen (180 Min)', 'Kapitel 2: Testen im SDLC (130 Min)', 'Fehlerkette verstehen', 'Quiz: 2× täglich (10 Fragen)'] },
+                        { label: 'Woche 2', title: 'Statischer Test & Testentwurf I', tasks: ['Kapitel 3: Statischer Test (80 Min)', 'Kapitel 4: Black-Box-Verfahren', 'Review-Arten auswendig lernen', 'Quiz: 2× täglich (10 Fragen)'] },
+                        { label: 'Woche 3', title: 'Testentwurf II & Management', tasks: ['Kapitel 4: White-Box & Erfahrungsbasiert', 'Kapitel 5: Testmanagement (335 Min)', 'Drei-Punkt-Schätzung üben', 'Quiz: 2× täglich (10 Fragen)'] },
+                        { label: 'Woche 4', title: 'Werkzeuge & Prüfung', tasks: ['Kapitel 6: Testwerkzeuge (20 Min)', '4× Prüfungssimulation', 'Schwächen nacharbeiten', 'Quiz: 2× täglich (10 Fragen)'] }
+                    ]
+                },
+                '3months': {
+                    title: '3-Monats Lernplan',
+                    quizTip: '📝 Empfehlung: 5 Prüfungsfragen pro Tag, am Wochenende mehr',
+                    units: [
+                        { label: 'Monat 1', title: 'Fundament legen', tasks: ['Kapitel 1: Grundlagen gründlich durcharbeiten', 'Kapitel 2: SDLC verstehen', 'Kapitel 3: Statischer Test', 'Wöchentlich: 1 Quiz (10 Fragen)', 'Begriffe in Karteikarten sammeln'] },
+                        { label: 'Monat 2', title: 'Testentwurf meistern', tasks: ['Kapitel 4: Alle Testentwurfsverfahren', 'Äquivalenzklassen & Grenzwerte üben', 'Entscheidungstabellen erstellen', 'Zustandsdiagramme analysieren', 'Wöchentlich: 2 Quizze (10 Fragen)'] },
+                        { label: 'Monat 3', title: 'Management & Prüfung', tasks: ['Kapitel 5: Testmanagement komplett', 'Kapitel 6: Testwerkzeuge', '6× Prüfungssimulation', 'Alle Kapitel wiederholen', 'Täglich: 10 Quiz-Fragen'] }
+                    ]
+                }
+            };
+            
+            const plan = plans[selectedDuration];
             
             return `
                 <div class="view active" role="region" aria-label="Lernplan">
-                    <h2 class="section-title">4-Wochen Lernplan</h2>
-                    ${weeks.map((w, idx) => `
+                    <h2 class="section-title">Zeitplan</h2>
+                    
+                    <div class="plan-duration-selector" style="display:flex;gap:8px;margin-bottom:20px;">
+                        <button class="plan-duration-btn ${selectedDuration === '2weeks' ? 'active' : ''}" data-duration="2weeks">2 Wochen</button>
+                        <button class="plan-duration-btn ${selectedDuration === '4weeks' ? 'active' : ''}" data-duration="4weeks">4 Wochen</button>
+                        <button class="plan-duration-btn ${selectedDuration === '3months' ? 'active' : ''}" data-duration="3months">3 Monate</button>
+                    </div>
+                    
+                    <div style="background:rgba(0,212,170,0.1);border:1px solid rgba(0,212,170,0.3);border-radius:var(--radius-md);padding:12px 16px;margin-bottom:20px;font-size:0.9rem;color:var(--accent-primary);">
+                        ${plan.quizTip}
+                    </div>
+                    
+                    ${plan.units.map((u, idx) => `
                         <article class="plan-card">
                             <div class="plan-week">
-                                <span class="plan-week-badge">Woche ${idx + 1}</span>
-                                <span class="plan-week-title">${escapeHtml(w.title)}</span>
+                                <span class="plan-week-badge">${u.label}</span>
+                                <span class="plan-week-title">${escapeHtml(u.title)}</span>
                             </div>
                             <div class="plan-tasks">
-                                ${w.tasks.map(t => `
+                                ${u.tasks.map(t => `
                                     <div class="plan-task">
                                         <span class="plan-task-check" aria-hidden="true">○</span>
                                         <span>${escapeHtml(t)}</span>
@@ -2633,6 +2711,26 @@
                         }
                         return;
                     }
+                    // ========== KAPITEL AUFKLAPPEN (Lehrplan) ==========
+                    const chapterHeader = e.target.closest('[data-toggle-chapter]');
+                    if (chapterHeader) {
+                        const idx = parseInt(chapterHeader.getAttribute('data-toggle-chapter'), 10);
+                        if (!state.expandedChapters) state.expandedChapters = {};
+                        state.expandedChapters[idx] = !state.expandedChapters[idx];
+                        render();
+                        e.preventDefault();
+                        return;
+                    }
+                    
+                    // ========== ZEITPLAN DAUER WÄHLEN ==========
+                    const durationBtn = e.target.closest('[data-duration]');
+                    if (durationBtn) {
+                        state.planDuration = durationBtn.getAttribute('data-duration');
+                        render();
+                        e.preventDefault();
+                        return;
+                    }
+                    
                     const sectionTitle = e.target.closest('[data-section-title]');
                     if (sectionTitle && !e.target.closest('.key-points') && !e.target.closest('.subsection') && !e.target.closest('.keywords')) {
                         const section = sectionTitle.closest('.section');
