@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#1a1a2e">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline';">
@@ -32,6 +32,48 @@
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        /* Accessibility: Sichtbarer Fokus für Tastaturnavigation */
+        *:focus-visible {
+            outline: 2px solid var(--accent-primary);
+            outline-offset: 2px;
+        }
+        
+        /* Fokus-Ring für Buttons und interaktive Elemente */
+        button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible {
+            outline: 2px solid var(--accent-primary);
+            outline-offset: 2px;
+            box-shadow: 0 0 0 4px rgba(0, 212, 170, 0.2);
+        }
+        
+        /* Skip-Link für Tastaturnavigation */
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+            padding: 12px 24px;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            text-decoration: none;
+            z-index: 9999;
+            transition: top 0.2s;
+        }
+        .skip-link:focus {
+            top: 10px;
+        }
+        
+        /* Hochkontrast-Modus */
+        body.high-contrast {
+            --text-muted: #a0aec0;
+            --text-secondary: #cbd5e1;
+            --border-color: #64748b;
+        }
+        body.high-contrast .coach-note { border-width: 2px; }
+        body.high-contrast .chapter-card { border-width: 2px; }
+        body.high-contrast .answer-btn { border-width: 2px; }
         
         body {
             font-family: 'Space Grotesk', -apple-system, sans-serif;
@@ -1173,7 +1215,7 @@
         .no-bookmarks { text-align: center; color: var(--text-muted); font-size: 0.85rem; padding: 20px; }
         .syllabus-structure .search-wrap { margin-bottom: 16px; }
         .syllabus-structure .search-input { width: 100%; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-secondary); color: var(--text-primary); font-size: 0.95rem; }
-        .syllabus-structure .search-input:focus { outline: none; border-color: var(--accent-primary); }
+        .syllabus-structure .search-input:focus { border-color: var(--accent-primary); }
         .syllabus-structure .search-result-info { margin-top: 8px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-secondary); }
         .syllabus-structure .search-result-info .search-result-count { font-weight: 600; color: var(--accent-primary); }
         .syllabus-structure .search-result-info .search-jump-btn { padding: 4px 10px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-primary); font-size: 0.8rem; cursor: pointer; }
@@ -1219,11 +1261,12 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
     <div class="app-container" id="app" role="main" aria-live="polite" aria-atomic="false"></div>
     <div id="sr-announcer" class="sr-only" aria-live="assertive" aria-atomic="true"></div>
     
-    <script src="js/syllabus-data.js?v=27"></script>
-    <script src="js/questions-data.js?v=27"></script>
+    <script src="js/syllabus-data.js?v=28"></script>
+    <script src="js/questions-data.js?v=28"></script>
     <script>
     'use strict';
     
@@ -1267,7 +1310,9 @@
             // Spaced Repetition: {questionId: {wrongCount: n, lastWrong: timestamp}}
             wrongQuestions: {},
             // Lesezeichen: [{chapterId, sectionId, subsectionId, title, timestamp}]
-            bookmarks: []
+            bookmarks: [],
+            // Hochkontrast-Modus
+            highContrast: false
         });
         
         // Storage keys - centralized to prevent typos
@@ -1280,7 +1325,8 @@
             ACHIEVEMENTS: 'istqb_achievements',
             CHAPTER_STATS: 'istqb_chapterStats',
             WRONG_QUESTIONS: 'istqb_wrongQuestions',   // Spaced Repetition: falsch beantwortete Fragen
-            BOOKMARKS: 'istqb_bookmarks'               // Lesezeichen für Lehrplan
+            BOOKMARKS: 'istqb_bookmarks',              // Lesezeichen für Lehrplan
+            HIGH_CONTRAST: 'istqb_highContrast'        // Hochkontrast-Modus
         });
         
         // Timer reference
@@ -1503,6 +1549,12 @@
                         state.bookmarks = JSON.parse(storedBookmarks);
                     } catch { /* keep default */ }
                 }
+                // High Contrast
+                const storedHighContrast = localStorage.getItem(STORAGE_KEYS.HIGH_CONTRAST);
+                if (storedHighContrast === 'true') {
+                    state.highContrast = true;
+                    document.body.classList.add('high-contrast');
+                }
             } catch (e) {
                 console.warn('Failed to load state from localStorage:', e);
             }
@@ -1519,9 +1571,20 @@
                 localStorage.setItem(STORAGE_KEYS.CHAPTER_STATS, JSON.stringify(state.chapterStats));
                 localStorage.setItem(STORAGE_KEYS.WRONG_QUESTIONS, JSON.stringify(state.wrongQuestions));
                 localStorage.setItem(STORAGE_KEYS.BOOKMARKS, JSON.stringify(state.bookmarks));
+                localStorage.setItem(STORAGE_KEYS.HIGH_CONTRAST, state.highContrast);
             } catch (e) {
                 console.warn('Failed to save state to localStorage:', e);
             }
+        }
+        
+        /**
+         * Hochkontrast-Modus umschalten
+         */
+        function toggleHighContrast() {
+            state.highContrast = !state.highContrast;
+            document.body.classList.toggle('high-contrast', state.highContrast);
+            saveState();
+            render();
         }
         
         /**
@@ -2790,6 +2853,14 @@
                     
                     <div style="margin-top: 32px; padding: 20px; background: var(--bg-card); border-radius: var(--radius-lg); border: 1px solid var(--border-color);">
                         <h3 style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 12px;">⚙️ Einstellungen</h3>
+                        
+                        <button id="toggle-contrast" style="width: 100%; padding: 12px; background: ${state.highContrast ? 'rgba(0, 212, 170, 0.2)' : 'var(--bg-secondary)'}; border: 1px solid ${state.highContrast ? 'var(--accent-primary)' : 'var(--border-color)'}; border-radius: var(--radius-md); color: var(--text-primary); font-family: inherit; font-size: 0.9rem; font-weight: 600; cursor: pointer; margin-bottom: 12px;">
+                            ${state.highContrast ? '👁️ Hochkontrast: AN' : '👁️ Hochkontrast: AUS'}
+                        </button>
+                        <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 16px; text-align: center;">
+                            Erhöht den Kontrast für bessere Lesbarkeit.
+                        </p>
+                        
                         <button id="reset-progress" style="width: 100%; padding: 12px; background: rgba(239, 68, 68, 0.1); border: 1px solid var(--accent-error); border-radius: var(--radius-md); color: var(--accent-error); font-family: inherit; font-size: 0.9rem; font-weight: 600; cursor: pointer;">
                             🗑️ Fortschritt zurücksetzen
                         </button>
@@ -2813,7 +2884,7 @@
             appContainer.innerHTML = `
                 ${renderHeader()}
                 ${renderNav()}
-                <main class="content">${content}</main>
+                <main class="content" id="main-content" tabindex="-1">${content}</main>
             `;
             
             attachEvents();
@@ -3366,11 +3437,17 @@
                 });
             }
             
+            // High contrast toggle button
+            const contrastBtn = document.getElementById('toggle-contrast');
+            if (contrastBtn) {
+                contrastBtn.addEventListener('click', toggleHighContrast);
+            }
+            
             // Reset progress button
             const resetBtn = document.getElementById('reset-progress');
             if (resetBtn) {
                 resetBtn.addEventListener('click', () => {
-                    if (confirm('Wirklich ALLE Fortschritte zurücksetzen?\n\nDies löscht:\n• Alle Statistiken\n• Alle Erfolge\n• Kapitel-Genauigkeiten\n• Streak-Daten')) {
+                    if (confirm('Wirklich ALLE Fortschritte zurücksetzen?\n\nDies löscht:\n• Alle Statistiken\n• Alle Erfolge\n• Kapitel-Genauigkeiten\n• Streak-Daten\n• Lesezeichen')) {
                         // Clear all localStorage
                         Object.values(STORAGE_KEYS).forEach(key => {
                             localStorage.removeItem(key);
@@ -3387,6 +3464,7 @@
                         state.currentQuiz = null;
                         state.wrongQuestions = {};
                         state.bookmarks = [];
+                        // Hochkontrast bleibt erhalten (ist eine Accessibility-Einstellung)
                         
                         alert('✅ Fortschritt zurückgesetzt!');
                         render();
