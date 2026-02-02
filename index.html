@@ -1333,6 +1333,7 @@
             expandedChapter: null,
             expandedChapters: {},
             expandedSections: {},    // Hierarchische Ausklapp-States: {'1-0': true, '1-0-2': true}
+            expandedKeyPoints: {},   // Key-Points Ausklapp-States: {'1-0-3': true, '1-0-2-1': true}
             structureSearchQuery: '',
             showOnlyBookmarked: false,   // Nur Lesezeichen anzeigen
             settingsPanelOpen: false,    // Einstellungs-Panel
@@ -2375,7 +2376,10 @@
                         if (sub.quote) html += '<div class="syllabus-quote">' + highlightStructureText(sub.quote, q) + '<span class="syllabus-quote-source">— CTFL v4.0.2 Lehrplan, S. ' + (sub.page || '?') + '</span></div>';
                         if (sub.image) html += '<div class="syllabus-image"><img src="' + sub.image + '" alt="' + sub.title + '" style="max-width:100%;border-radius:8px;margin:12px 0;cursor:pointer;" onclick="this.classList.toggle(\'zoomed\')" /><div style="font-size:0.7rem;color:var(--text-muted);text-align:center;">' + (sub.imageAttribution ? '📷 ' + sub.imageAttribution : 'Abbildung aus CTFL v4.0.2 Lehrplan, S. ' + (sub.page || '?')) + '</div></div>';
                         if (sub.keyPoints) {
-                            html += '<ul class="key-points">' + sub.keyPoints.map(p => {
+                            const expandedKps = state.expandedKeyPoints || {};
+                            html += '<ul class="key-points">' + sub.keyPoints.map((p, kpIdx) => {
+                                const kpKey = cIdx + '-' + sIdx + '-' + kpIdx;
+                                const isKpExpanded = expandedKps[kpKey];
                                 const isObj = typeof p === 'object';
                                 const title = isObj ? p.title : p;
                                 const content = isObj ? p.content : (sub.fullText || '');
@@ -2383,7 +2387,7 @@
                                 const pQuote = isObj && p.quote ? p.quote : null;
                                 const quoteHtml = pQuote ? '<div class="syllabus-quote" style="margin:8px 0;">' + highlightStructureText(pQuote, q) + '</div>' : '';
                                 const noteHtml = coachNote ? '<div class="coach-note"><span class="coach-note-label">💡 Lern-Coach (Prüfungsfokus):</span><span class="coach-note-body">' + formatCoachNoteForDisplay(coachNote, q) + '</span></div>' : '';
-                                return '<li data-keypoint><div style="font-weight:500;">' + highlightStructureText(title, q) + '</div>' + (isObj ? '<div class="specific-text" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid currentColor;font-weight:normal;font-size:0.9rem;line-height:1.6;">' + quoteHtml + (content ? '<div style="margin-bottom:12px;color:var(--text-secondary);">' + highlightStructureText(content, q) + '</div>' : '') + noteHtml + '</div>' : '') + '</li>';
+                                return '<li data-keypoint data-kp-key="' + kpKey + '" style="background:' + (isKpExpanded ? 'var(--bg-card)' : 'var(--bg-secondary)') + ';"><div style="font-weight:500;">' + highlightStructureText(title, q) + '</div>' + (isObj ? '<div class="specific-text" style="' + (isKpExpanded ? '' : 'display:none;') + 'margin-top:10px;padding-top:10px;border-top:1px solid currentColor;font-weight:normal;font-size:0.9rem;line-height:1.6;">' + quoteHtml + (content ? '<div style="margin-bottom:12px;color:var(--text-secondary);">' + highlightStructureText(content, q) + '</div>' : '') + noteHtml + '</div>' : '') + '</li>';
                             }).join('') + '</ul>';
                         }
                         if (sub.subsections) {
@@ -2400,13 +2404,16 @@
                                 if (ss.quote) html += '<div class="syllabus-quote">' + highlightStructureText(ss.quote, q) + '<span class="syllabus-quote-source">— CTFL v4.0.2 Lehrplan, S. ' + (ss.page || '?') + '</span></div>';
                                 if (ss.image) html += '<div class="syllabus-image"><img src="' + ss.image + '" alt="' + ss.title + '" style="max-width:100%;border-radius:8px;margin:12px 0;cursor:pointer;" onclick="this.classList.toggle(\'zoomed\')" /><div style="font-size:0.7rem;color:var(--text-muted);text-align:center;">' + (ss.imageAttribution ? '📷 ' + ss.imageAttribution : 'Abbildung aus CTFL v4.0.2 Lehrplan, S. ' + (ss.page || '?')) + '</div></div>';
                                 if (ss.keyPoints) {
-                                    html += '<ul class="key-points">' + ss.keyPoints.map(p => {
+                                    const expandedKps = state.expandedKeyPoints || {};
+                                    html += '<ul class="key-points">' + ss.keyPoints.map((p, kpIdx) => {
+                                        const kpKey = cIdx + '-' + sIdx + '-' + ssIdx + '-' + kpIdx;
+                                        const isKpExpanded = expandedKps[kpKey];
                                         const isObj = typeof p === 'object';
                                         const title = isObj ? p.title : p;
                                         const content = isObj ? p.content : '';
                                         const coachNote = isObj && p.coachNote ? p.coachNote : null;
                                         const noteHtml = coachNote ? '<div class="coach-note"><span class="coach-note-label">💡 Lern-Coach (Prüfungsfokus):</span><span class="coach-note-body">' + formatCoachNoteForDisplay(coachNote, q) + '</span></div>' : '';
-                                        return '<li data-keypoint><div style="font-weight:500;">' + highlightStructureText(title, q) + '</div>' + (isObj ? '<div class="specific-text" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid currentColor;font-weight:normal;font-size:0.9rem;line-height:1.6;">' + (content ? '<div style="margin-bottom:12px;color:var(--text-secondary);">' + highlightStructureText(content, q) + '</div>' : '') + noteHtml + '</div>' : '') + '</li>';
+                                        return '<li data-keypoint data-kp-key="' + kpKey + '" style="background:' + (isKpExpanded ? 'var(--bg-card)' : 'var(--bg-secondary)') + ';"><div style="font-weight:500;">' + highlightStructureText(title, q) + '</div>' + (isObj ? '<div class="specific-text" style="' + (isKpExpanded ? '' : 'display:none;') + 'margin-top:10px;padding-top:10px;border-top:1px solid currentColor;font-weight:normal;font-size:0.9rem;line-height:1.6;">' + (content ? '<div style="margin-bottom:12px;color:var(--text-secondary);">' + highlightStructureText(content, q) + '</div>' : '') + noteHtml + '</div>' : '') + '</li>';
                                     }).join('') + '</ul>';
                                 }
                                 html += '</div></div>';
@@ -3402,11 +3409,11 @@
                     }
                     const li = e.target.closest('.key-points li[data-keypoint]');
                     if (li && !e.target.closest('.specific-text')) {
-                        const textDiv = li.querySelector('.specific-text');
-                        if (textDiv) {
-                            const isHidden = textDiv.style.display === 'none';
-                            textDiv.style.display = isHidden ? 'block' : 'none';
-                            li.style.background = isHidden ? 'var(--bg-card)' : 'var(--bg-secondary)';
+                        const kpKey = li.getAttribute('data-kp-key');
+                        if (kpKey) {
+                            if (!state.expandedKeyPoints) state.expandedKeyPoints = {};
+                            state.expandedKeyPoints[kpKey] = !state.expandedKeyPoints[kpKey];
+                            render();
                         }
                         e.preventDefault();
                     }
