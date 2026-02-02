@@ -285,23 +285,38 @@ const syllabusData = Object.freeze({
                         },
                         {
                             id: "1.4.2",
-                            title: "Testmittel (Testware)",
-                            page: 22,
-                            quote: "Testmittel werden als Arbeitsergebnisse aus den Testaktivitäten erstellt: Testpläne, Testfälle, Testdaten, Testskripte, Testberichte.",
+                            title: "Testprozess im Kontext",
+                            page: 23,
+                            quote: "Der Testprozess ist kein feststehendes Schema, sondern muss an den Kontext angepasst werden: SDLC, Risiken, Domäne, Budget, Zeit, Komplexität.",
                             keyPoints: [
                                 {
-                                    title: "Ergebnisse",
-                                    content: "Testmittel sind die Arbeitsergebnisse (Testpläne, Testfälle, Berichte).",
-                                    coachNote: "Ordnung ist das halbe Leben – auch beim Testen (Konfigurationsmanagement!)."
+                                    title: "Kontextfaktoren",
+                                    content: "Der Testprozess wird beeinflusst durch: Softwareentwicklungslebenszyklus (SDLC), Produkt- und Projektrisiken, Geschäftsdomäne, operative Einschränkungen (Budget, Zeit, Komplexität).",
+                                    coachNote: "🎯 Prüfungsfalle:\n\n'Welcher Faktor beeinflusst den Testprozess?'\n\n✅ RICHTIG: SDLC, Risiken, Domäne, Budget, Zeit\n❌ FALSCH: Persönliche Vorlieben, Wetter"
+                                },
+                                {
+                                    title: "SDLC-Anpassung",
+                                    content: "Der Testprozess muss zum SDLC passen: Agile Projekte haben kurze Iterationen, Wasserfall hat längere Phasen. Die Teststrategie, der Zeitpunkt des Testens und die Dokumentation variieren entsprechend.",
+                                    coachNote: "Agil = mehr iterativ, weniger Doku. Wasserfall = mehr sequenziell, mehr formale Dokumente."
+                                },
+                                {
+                                    title: "Keine Einheitslösung",
+                                    content: "Es gibt keinen universellen Testprozess, der für alle Projekte passt. Der Testprozess muss immer an die spezifischen Bedürfnisse und Einschränkungen des Projekts angepasst werden.",
+                                    coachNote: "Der Testprozess ist ein RAHMEN, keine starre Vorschrift."
                                 }
                             ]
                         },
                         {
                             id: "1.4.3",
-                            title: "Testmittel je Testaktivität",
+                            title: "Testmittel (Testware)",
                             page: 22,
-                            quote: "Jede Testaktivität erzeugt spezifische Arbeitsergebnisse (Testmittel).",
+                            quote: "Testmittel werden als Arbeitsergebnisse aus den Testaktivitäten erstellt: Testpläne, Testfälle, Testdaten, Testskripte, Testberichte.",
                             keyPoints: [
+                                {
+                                    title: "Was sind Testmittel?",
+                                    content: "Testmittel sind die Arbeitsergebnisse der Testaktivitäten: Testpläne, Testfälle, Testdaten, Testskripte, Testberichte.",
+                                    coachNote: "Ordnung ist das halbe Leben – auch beim Testen (Konfigurationsmanagement!)."
+                                },
                                 {
                                     title: "Testanalyse → Testbedingungen",
                                     content: "Die Testanalyse produziert priorisierte Testbedingungen (was soll getestet werden?).",
@@ -1027,6 +1042,52 @@ const syllabusData = Object.freeze({
                                     title: "Testansatz im Testkonzept",
                                     content: "Der Testansatz beschreibt WIE getestet wird: Teststufen, Testarten, Testverfahren und Überdeckungskriterien (z.B. '100% Zweigüberdeckung für kritische Komponenten').",
                                     coachNote: "🎯 Prüfungsfalle:\n\n'100% Zweigüberdeckung muss erreicht werden' → Gehört zum TESTANSATZ im Testkonzept\n\nNICHT zu: Testumgebung, Risikoverzeichnis, Kontext"
+                                }
+                            ]
+                        },
+                        {
+                            id: "5.1.2",
+                            title: "Die Beiträge des Testers zur Iterations- und Release-Planung",
+                            page: 58,
+                            quote: "In iterativer Entwicklung beteiligt sich der Tester an der Release-Planung (grobe Schätzungen) und Iterationsplanung (detaillierte User-Story-Analyse).",
+                            keyPoints: [
+                                {
+                                    title: "Release-Planung",
+                                    content: "Tester tragen zur Release-Planung bei durch: Identifikation testbarer User-Storys, Risikobewertung, Testaufwandsschätzung, Definition des Testansatzes.",
+                                    coachNote: "🎯 Release-Planung: Grobe Planung über mehrere Iterationen. Tester bewerten RISIKEN und schätzen AUFWAND."
+                                },
+                                {
+                                    title: "Iterationsplanung",
+                                    content: "Tester tragen zur Iterationsplanung bei durch: Detaillierte Risikoanalyse für User-Storys, Bestimmung der Testbarkeit, Aufbrechen in Testaufgaben, Schätzung des Testaufwands, Definition von Akzeptanzkriterien.",
+                                    coachNote: "🎯 Iterationsplanung: Detaillierte Planung für EINE Iteration. Tester helfen bei AKZEPTANZKRITERIEN."
+                                },
+                                {
+                                    title: "Testbarkeit prüfen",
+                                    content: "Tester prüfen, ob User-Storys testbar sind. Eine User-Story muss klar definierte Akzeptanzkriterien haben, damit sie testbar ist.",
+                                    coachNote: "Keine klaren Akzeptanzkriterien = nicht testbar = Nacharbeit nötig!"
+                                }
+                            ]
+                        },
+                        {
+                            id: "5.1.3",
+                            title: "Eingangskriterien und Endekriterien",
+                            page: 58,
+                            quote: "Eingangskriterien definieren die Voraussetzungen für das Starten einer Aktivität. Endekriterien definieren, wann eine Aktivität als abgeschlossen gilt.",
+                            keyPoints: [
+                                {
+                                    title: "Eingangskriterien (Entry Criteria)",
+                                    content: "Voraussetzungen zum Starten einer Testaktivität: z.B. Verfügbarkeit der Testumgebung, Verfügbarkeit der Testwerkzeuge, Verfügbarkeit des Testobjekts, Verfügbarkeit der Testdaten.",
+                                    coachNote: "🎯 Eingangskriterien = 'Dürfen wir starten?'\n\nBeispiele:\n• Testumgebung bereit\n• Build verfügbar\n• Testdaten vorhanden"
+                                },
+                                {
+                                    title: "Endekriterien (Exit Criteria)",
+                                    content: "Bedingungen zum Beenden einer Testaktivität: z.B. definierte Überdeckung erreicht, Anzahl offener Fehler unter Schwellwert, geschätzte Fehlerdichte niedrig genug.",
+                                    coachNote: "🎯 Endekriterien = 'Sind wir fertig?'\n\nBeispiele:\n• 100% Anweisungsüberdeckung erreicht\n• Keine kritischen offenen Fehler\n• Alle geplanten Testfälle durchgeführt"
+                                },
+                                {
+                                    title: "Typische Anwendung",
+                                    content: "Eingangskriterien für Testdurchführung: Code eingecheckt, Smoke-Test bestanden. Endekriterien für Release: Keine Blocker, definierte Testabdeckung erreicht.",
+                                    coachNote: "In agilen Projekten oft als 'Definition of Ready' und 'Definition of Done' bezeichnet."
                                 }
                             ]
                         },
