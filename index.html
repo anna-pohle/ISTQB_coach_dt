@@ -969,8 +969,10 @@
         }
         .chapter-stat-name {
             flex: 1;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-secondary);
+            line-height: 1.3;
+            word-break: break-word;
         }
         .chapter-stat-bar {
             width: 80px;
@@ -3184,7 +3186,7 @@
                                 else if (chPct < CONFIG.PASS_THRESHOLD) fillClass = 'medium';
                                 return `
                                     <div class="chapter-stat">
-                                        <span class="chapter-stat-name">Kap. ${ch}: ${chInfo ? chInfo.title.substring(0, 20) : ''}</span>
+                                        <span class="chapter-stat-name">Kap. ${ch}: ${chInfo ? chInfo.title : ''}</span>
                                         <div class="chapter-stat-bar">
                                             <div class="chapter-stat-fill ${fillClass}" style="width:${chPct}%"></div>
                                         </div>
