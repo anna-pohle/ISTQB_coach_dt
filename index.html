@@ -1827,6 +1827,61 @@
         }
         
         /**
+         * Migrates bookmarks with generic titles to proper syllabus titles
+         */
+        function migrateBookmarkTitles() {
+            if (!state.bookmarks || state.bookmarks.length === 0) return;
+            
+            let changed = false;
+            state.bookmarks.forEach(b => {
+                // Check if title is generic
+                const isGeneric = !b.title || 
+                    b.title === b.sectionId ||
+                    b.title.startsWith('Abschnitt ') ||
+                    (b.title.startsWith('Kapitel ') && b.title !== b.sectionId);
+                
+                if (isGeneric) {
+                    // Find proper title from syllabus
+                    const chapterData = syllabusData.chapters.find(c => c.id === b.chapterId);
+                    if (chapterData && chapterData.subchapters) {
+                        // Try exact match
+                        for (const sub of chapterData.subchapters) {
+                            if (sub.id === b.sectionId) {
+                                b.title = sub.title;
+                                changed = true;
+                                break;
+                            }
+                            if (sub.subsections) {
+                                const ss = sub.subsections.find(s => s.id === b.sectionId);
+                                if (ss) {
+                                    b.title = ss.title;
+                                    changed = true;
+                                    break;
+                                }
+                            }
+                        }
+                        
+                        // Fallback: parent section
+                        if (isGeneric && !changed) {
+                            const parentId = b.sectionId.split('.').slice(0, 2).join('.');
+                            for (const sub of chapterData.subchapters) {
+                                if (sub.id === parentId) {
+                                    b.title = sub.title;
+                                    changed = true;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            
+            if (changed) {
+                saveState();
+            }
+        }
+        
+        /**
          * Hochkontrast-Modus umschalten
          */
         function toggleHighContrast() {
@@ -4827,6 +4882,7 @@
             }
             
             loadState();
+            migrateBookmarkTitles();  // Fix old bookmarks with generic titles
             checkStreak();
             render();
             
