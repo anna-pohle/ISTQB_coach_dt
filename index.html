@@ -2450,7 +2450,7 @@
                             <div class="stat-label">Fragen</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-value">${getAccuracy()}%</div>
+                            <div class="stat-value">${state.questionsAnswered > 0 ? getAccuracy() + '%' : '–'}</div>
                             <div class="stat-label">Genauigkeit</div>
                         </div>
                     </div>
@@ -2967,7 +2967,7 @@
                                     <option value="0" ${state.selectedChapter === 0 ? 'selected' : ''}>Alle Kapitel (gemischt)</option>
                                     ${chapters.map(ch => {
                                         const acc = getChapterAccuracy(ch.id);
-                                        const accText = acc !== null ? ` (${acc}%)` : '';
+                                        const accText = acc !== null ? ` (${acc}%)` : ' (–)';
                                         return `<option value="${ch.id}" ${state.selectedChapter === ch.id ? 'selected' : ''}>
                                             ${ch.id}. ${escapeHtml(ch.title)}${accText}
                                         </option>`;
