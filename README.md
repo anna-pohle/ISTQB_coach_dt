@@ -24,7 +24,8 @@ Oder auf dem Handy installieren → [Anleitung](#-installation)
 | **111 echte Prüfungsfragen** | Aus den offiziellen GTB Sample Exams (Set A–F) |
 | **Übungsmodus** | Sofortiges Feedback + Erklärungen |
 | **Prüfungsmodus** | 40 Fragen, 60 Min, 65% zum Bestehen |
-| **Spaced Repetition** | Falsche Fragen kommen häufiger dran |
+| **Spaced Repetition** | Intelligentes Lernsystem: Falsche, unsichere oder mit Hinweis beantwortete Fragen kommen häufiger dran |
+| **Confidence-Tracking** | Im Übungsmodus: Selbsteinschätzung (sicher/unsicher/geraten) beeinflusst Wiederholungshäufigkeit |
 | **Tastatursteuerung** | A/B/C/D + Enter für schnelles Antworten |
 
 ### 📚 Lehrplan-Modul
@@ -35,7 +36,7 @@ Oder auf dem Handy installieren → [Anleitung](#-installation)
 | **Coach-Notes** | Prüfungstipps & Eselsbrücken |
 | **Lesezeichen** | Auf allen Ebenen (Kapitel, Sektion, Unterabschnitt) |
 | **Lesezeichen-Filter** | Nur markierte Abschnitte anzeigen |
-| **Quiz-Lesezeichen** | Bei Quiz-Auswertung Abschnitte zu Fehlern speichern |
+| **Quiz-Lesezeichen** | Bei Quiz-Auswertung Abschnitte zu Fehlern speichern (mit Kapitelüberschrift) |
 | **Suchfunktion** | Schnell Begriffe finden mit Navigation |
 | **Originalzitate** | Mit Seitenzahlen aus dem Lehrplan |
 | **Hierarchische Navigation** | Kapitel → Sektionen → Details stufenweise aufklappen |
