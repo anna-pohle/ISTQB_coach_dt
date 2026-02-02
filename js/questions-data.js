@@ -2106,7 +2106,7 @@ const examQuestions = Object.freeze([
         lo: "FL-4.2.3",
         kLevel: 3,
         chapter: 4,
-        text: "Sie testen ein CRM-System für einen Fahrrad-Tagesverleih mit folgenden Anforderungen:\n• Jeder kann ausleihen, aber nur Mitglieder erhalten 20% Rabatt\n• Bei versäumter Rückgabefrist entfällt der Rabatt\n• Nach 15 Ausleihen erhalten Mitglieder ein T-Shirt\n\nEine Entscheidungstabelle wurde erstellt. Bei Regel R8 (Nicht-Mitglied, Frist versäumt, 15. Ausleihe) steht ein 'X' bei Geschenk-T-Shirt.\n\nWelche Regel entspricht NICHT den Anforderungen?",
+        text: "Sie testen ein CRM-System für einen Fahrrad-Tagesverleih mit folgenden Anforderungen:\n• Jeder kann ausleihen, aber nur Mitglieder erhalten 20% Rabatt\n• Bei versäumter Rückgabefrist entfällt der Rabatt\n• Nach 15 Ausleihen erhalten Mitglieder ein T-Shirt\n\nEine Entscheidungstabelle mit Regeln R1-R8 wurde erstellt:\n• R2: Mitglied, Frist eingehalten, <15 Ausleihen → Rabatt\n• R4: Mitglied, Frist versäumt, 15. Ausleihe → T-Shirt, kein Rabatt\n• R6: Nicht-Mitglied, Frist eingehalten → kein Rabatt, kein T-Shirt\n• R8: Nicht-Mitglied, Frist versäumt, 15. Ausleihe → T-Shirt markiert\n\nWelche Regel entspricht NICHT den Anforderungen?",
         hint: "Wählen Sie EINE Option.",
         answers: [
             "R4",
