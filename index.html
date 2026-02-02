@@ -3444,11 +3444,19 @@
                 }
                 
                 if (!isCorrect) {
+                    // Ensure selected is always a valid array of indices (filter out null/undefined)
+                    let selectedArray = [];
+                    if (Array.isArray(selectedAnswer)) {
+                        selectedArray = selectedAnswer.filter(x => x !== null && x !== undefined);
+                    } else if (selectedAnswer !== null && selectedAnswer !== undefined) {
+                        selectedArray = [selectedAnswer];
+                    }
+                    
                     wrongAnswers.push({
                         question: q.text,
                         answers: q.answers,
                         correct: isMultipleChoice ? q.multipleCorrect : [q.correct],
-                        selected: Array.isArray(selectedAnswer) ? selectedAnswer : [selectedAnswer],
+                        selected: selectedArray,
                         feedback: q.feedback,
                         chapter: q.chapter,
                         lo: q.lo,
@@ -3556,6 +3564,7 @@
                                             <div class="wrong-item-q" style="font-size:0.9rem;margin-bottom:12px;">${escapeHtml(w.question)}</div>
                                             ${w.image ? `<div class="wrong-item-image"><img src="${w.image}" alt="Diagramm" loading="lazy"></div>` : ''}
                                             <div class="wrong-item-answers">
+                                                ${w.selected.length === 0 ? '<div style="color:var(--text-muted);font-size:0.8rem;margin-bottom:8px;">⚠️ Keine Antwort gewählt</div>' : ''}
                                                 ${w.answers.map((a, aIdx) => {
                                                     const isCorrect = w.correct.includes(aIdx);
                                                     const isSelected = w.selected.includes(aIdx);
