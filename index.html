@@ -153,6 +153,33 @@
         .settings-danger { background: rgba(239,68,68,0.1); border: 1px solid var(--accent-error); }
         .settings-danger:hover { background: rgba(239,68,68,0.2); }
         
+        /* Stats Dashboard Modal */
+        .stats-dashboard { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .stats-dashboard.hidden { display: none; }
+        .stats-dashboard-content { background: var(--bg-primary); border-radius: var(--radius-lg); padding: 24px; max-width: 500px; width: 100%; max-height: 85vh; overflow-y: auto; }
+        .stats-dashboard-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .stats-dashboard-section { margin-bottom: 20px; }
+        .stats-dashboard-section-title { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .points-rule { display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--bg-secondary); border-radius: var(--radius-md); margin-bottom: 8px; }
+        .points-rule-icon { font-size: 1.5rem; flex-shrink: 0; }
+        .points-rule-text { flex: 1; }
+        .points-rule-value { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--accent-primary); font-size: 1.1rem; }
+        .points-rule-value.bonus { color: var(--accent-warning); }
+        .points-rule-value.special { color: var(--accent-secondary); }
+        .dashboard-stat-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; background: var(--bg-secondary); border-radius: var(--radius-sm); margin-bottom: 6px; }
+        .dashboard-stat-label { font-size: 0.85rem; color: var(--text-secondary); }
+        .dashboard-stat-value { font-family: 'JetBrains Mono', monospace; font-weight: 600; color: var(--text-primary); }
+        .dashboard-chart { display: flex; gap: 4px; align-items: flex-end; height: 60px; margin-top: 12px; padding: 8px; background: var(--bg-secondary); border-radius: var(--radius-sm); }
+        .dashboard-chart-bar { flex: 1; background: var(--accent-primary); border-radius: 2px 2px 0 0; min-height: 4px; position: relative; }
+        .dashboard-chart-bar:hover::after { content: attr(data-label); position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: var(--bg-card); padding: 4px 8px; border-radius: 4px; font-size: 0.7rem; white-space: nowrap; }
+        .chapter-accuracy-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+        .chapter-accuracy-label { width: 60px; font-size: 0.8rem; color: var(--text-muted); }
+        .chapter-accuracy-track { flex: 1; height: 20px; background: var(--bg-card); border-radius: 10px; overflow: hidden; position: relative; }
+        .chapter-accuracy-fill { height: 100%; border-radius: 10px; transition: width 0.5s ease; }
+        .chapter-accuracy-text { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-size: 0.75rem; font-weight: 600; }
+        .stats-dashboard-close { width: 100%; padding: 12px; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-md); cursor: pointer; font-size: 0.9rem; margin-top: 10px; }
+        .stats-dashboard-close:hover { background: var(--bg-card); }
+        
         .stats-bar {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -164,6 +191,17 @@
             padding: 12px;
             border-radius: var(--radius-md);
             text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+        .stat-item:hover {
+            background: var(--bg-secondary);
+            border-color: var(--accent-primary);
+            transform: translateY(-2px);
+        }
+        .stat-item:active {
+            transform: translateY(0);
         }
         
         .stat-value {
@@ -1517,7 +1555,9 @@
             // Lesezeichen: [{chapterId, sectionId, subsectionId, title, timestamp}]
             bookmarks: [],
             // Hochkontrast-Modus
-            highContrast: false
+            highContrast: false,
+            // Dashboard-Modal
+            activeDashboard: null
         });
         
         // Storage keys - centralized to prevent typos
@@ -2427,6 +2467,263 @@
                 </div>`;
         }
         
+        /**
+         * Renders the Points Dashboard explaining the scoring system
+         */
+        function renderPointsDashboard() {
+            const speedBonusEarned = state.points - (state.correctAnswers * CONFIG.POINTS_PER_CORRECT) - 
+                (state.achievements.includes('exam_passed') ? 100 : 0);
+            
+            return `
+                <div class="stats-dashboard${state.activeDashboard === 'points' ? '' : ' hidden'}" id="points-dashboard">
+                    <div class="stats-dashboard-content">
+                        <div class="stats-dashboard-title">🏆 Punktesystem</div>
+                        
+                        <div class="stats-dashboard-section">
+                            <div class="stats-dashboard-section-title">So sammelst du Punkte</div>
+                            
+                            <div class="points-rule">
+                                <div class="points-rule-icon">✅</div>
+                                <div class="points-rule-text">Richtige Antwort</div>
+                                <div class="points-rule-value">+${CONFIG.POINTS_PER_CORRECT}</div>
+                            </div>
+                            
+                            <div class="points-rule">
+                                <div class="points-rule-icon">⚡</div>
+                                <div class="points-rule-text">Speed-Bonus (≤30 Sek.)</div>
+                                <div class="points-rule-value bonus">+3</div>
+                            </div>
+                            
+                            <div class="points-rule">
+                                <div class="points-rule-icon">⚡</div>
+                                <div class="points-rule-text">Speed-Bonus (≤60 Sek.)</div>
+                                <div class="points-rule-value bonus">+2</div>
+                            </div>
+                            
+                            <div class="points-rule">
+                                <div class="points-rule-icon">⚡</div>
+                                <div class="points-rule-text">Speed-Bonus (≤90 Sek.)</div>
+                                <div class="points-rule-value bonus">+1</div>
+                            </div>
+                            
+                            <div class="points-rule">
+                                <div class="points-rule-icon">🎓</div>
+                                <div class="points-rule-text">Prüfung erstmals bestanden</div>
+                                <div class="points-rule-value special">+100</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stats-dashboard-section">
+                            <div class="stats-dashboard-section-title">Punkteabzug?</div>
+                            <div style="padding:12px;background:rgba(16,185,129,0.1);border-radius:var(--radius-md);color:var(--text-secondary);font-size:0.9rem;">
+                                ✨ <strong>Nein!</strong> Es gibt keine Punktabzüge. Falsche Antworten geben 0 Punkte, aber du verlierst nie Punkte.
+                            </div>
+                        </div>
+                        
+                        <div class="stats-dashboard-section">
+                            <div class="stats-dashboard-section-title">Deine Statistik</div>
+                            <div class="dashboard-stat-row">
+                                <span class="dashboard-stat-label">Gesamtpunkte</span>
+                                <span class="dashboard-stat-value">${state.points}</span>
+                            </div>
+                            <div class="dashboard-stat-row">
+                                <span class="dashboard-stat-label">Aus richtigen Antworten</span>
+                                <span class="dashboard-stat-value">${state.correctAnswers * CONFIG.POINTS_PER_CORRECT}</span>
+                            </div>
+                            <div class="dashboard-stat-row">
+                                <span class="dashboard-stat-label">Speed-Bonus gesammelt</span>
+                                <span class="dashboard-stat-value" style="color:var(--accent-warning);">${Math.max(0, speedBonusEarned)}</span>
+                            </div>
+                            ${state.achievements.includes('exam_passed') ? `
+                                <div class="dashboard-stat-row">
+                                    <span class="dashboard-stat-label">Prüfungs-Bonus</span>
+                                    <span class="dashboard-stat-value" style="color:var(--accent-secondary);">+100</span>
+                                </div>
+                            ` : ''}
+                        </div>
+                        
+                        <button class="stats-dashboard-close" id="close-dashboard">Schließen</button>
+                    </div>
+                </div>`;
+        }
+        
+        /**
+         * Renders the Questions Dashboard with activity statistics
+         */
+        function renderQuestionsDashboard() {
+            const totalQuestions = questionsData.length;
+            const answeredPct = totalQuestions > 0 ? Math.round((state.questionsAnswered / totalQuestions) * 100) : 0;
+            
+            // Calculate chapter distribution
+            const chapterDistribution = {};
+            let maxChapterAnswered = 0;
+            for (let c = 1; c <= 6; c++) {
+                const stats = state.chapterStats[c] || { answered: 0, correct: 0 };
+                chapterDistribution[c] = stats.answered;
+                if (stats.answered > maxChapterAnswered) maxChapterAnswered = stats.answered;
+            }
+            
+            // Questions per chapter in pool
+            const questionsPerChapter = {};
+            questionsData.forEach(q => {
+                questionsPerChapter[q.chapter] = (questionsPerChapter[q.chapter] || 0) + 1;
+            });
+            
+            return `
+                <div class="stats-dashboard${state.activeDashboard === 'questions' ? '' : ' hidden'}" id="questions-dashboard">
+                    <div class="stats-dashboard-content">
+                        <div class="stats-dashboard-title">📊 Fragen-Statistik</div>
+                        
+                        <div class="stats-dashboard-section">
+                            <div class="stats-dashboard-section-title">Übersicht</div>
+                            <div class="dashboard-stat-row">
+                                <span class="dashboard-stat-label">Fragen beantwortet</span>
+                                <span class="dashboard-stat-value">${state.questionsAnswered}</span>
+                            </div>
+                            <div class="dashboard-stat-row">
+                                <span class="dashboard-stat-label">Davon richtig</span>
+                                <span class="dashboard-stat-value" style="color:var(--accent-success);">${state.correctAnswers}</span>
+                            </div>
+                            <div class="dashboard-stat-row">
+                                <span class="dashboard-stat-label">Fragen im Pool</span>
+                                <span class="dashboard-stat-value">${totalQuestions}</span>
+                            </div>
+                            <div class="dashboard-stat-row">
+                                <span class="dashboard-stat-label">Lernsträhne</span>
+                                <span class="dashboard-stat-value">🔥 ${state.streak} Tage</span>
+                            </div>
+                        </div>
+                        
+                        <div class="stats-dashboard-section">
+                            <div class="stats-dashboard-section-title">Fragen pro Kapitel (beantwortet)</div>
+                            ${Object.entries(chapterDistribution).map(([ch, count]) => {
+                                const pct = maxChapterAnswered > 0 ? (count / maxChapterAnswered) * 100 : 0;
+                                const color = CHAPTER_COLORS[ch]?.hex || 'var(--accent-primary)';
+                                return `
+                                    <div class="chapter-accuracy-bar">
+                                        <span class="chapter-accuracy-label">Kap. ${ch}</span>
+                                        <div class="chapter-accuracy-track">
+                                            <div class="chapter-accuracy-fill" style="width:${pct}%;background:${color};"></div>
+                                            <span class="chapter-accuracy-text" style="color:var(--text-primary);">${count}</span>
+                                        </div>
+                                    </div>`;
+                            }).join('')}
+                        </div>
+                        
+                        <div class="stats-dashboard-section">
+                            <div class="stats-dashboard-section-title">Fragen-Pool nach Kapitel</div>
+                            ${Object.entries(questionsPerChapter).sort((a,b) => parseInt(a[0]) - parseInt(b[0])).map(([ch, count]) => {
+                                const color = CHAPTER_COLORS[ch]?.hex || 'var(--accent-primary)';
+                                const label = CHAPTER_COLORS[ch]?.label || 'Kapitel ' + ch;
+                                return `
+                                    <div class="dashboard-stat-row">
+                                        <span class="dashboard-stat-label" style="color:${color};">Kap. ${ch}</span>
+                                        <span class="dashboard-stat-value">${count} Fragen</span>
+                                    </div>`;
+                            }).join('')}
+                        </div>
+                        
+                        <button class="stats-dashboard-close" id="close-dashboard">Schließen</button>
+                    </div>
+                </div>`;
+        }
+        
+        /**
+         * Renders the Accuracy Dashboard with performance statistics
+         */
+        function renderAccuracyDashboard() {
+            const overallAccuracy = state.questionsAnswered > 0 
+                ? Math.round((state.correctAnswers / state.questionsAnswered) * 100) 
+                : 0;
+            
+            // Calculate per-chapter accuracy
+            const chapterAccuracies = [];
+            for (let c = 1; c <= 6; c++) {
+                const stats = state.chapterStats[c] || { answered: 0, correct: 0 };
+                const acc = stats.answered > 0 ? Math.round((stats.correct / stats.answered) * 100) : null;
+                chapterAccuracies.push({ chapter: c, accuracy: acc, answered: stats.answered, correct: stats.correct });
+            }
+            
+            // Find weakest and strongest chapters
+            const answeredChapters = chapterAccuracies.filter(c => c.accuracy !== null);
+            const weakest = answeredChapters.length > 0 
+                ? answeredChapters.reduce((min, c) => c.accuracy < min.accuracy ? c : min) 
+                : null;
+            const strongest = answeredChapters.length > 0 
+                ? answeredChapters.reduce((max, c) => c.accuracy > max.accuracy ? c : max) 
+                : null;
+            
+            return `
+                <div class="stats-dashboard${state.activeDashboard === 'accuracy' ? '' : ' hidden'}" id="accuracy-dashboard">
+                    <div class="stats-dashboard-content">
+                        <div class="stats-dashboard-title">🎯 Genauigkeit</div>
+                        
+                        <div class="stats-dashboard-section">
+                            <div class="stats-dashboard-section-title">Gesamtleistung</div>
+                            <div style="text-align:center;padding:20px;background:var(--bg-secondary);border-radius:var(--radius-md);margin-bottom:12px;">
+                                <div style="font-size:2.5rem;font-weight:700;color:${overallAccuracy >= 65 ? 'var(--accent-success)' : overallAccuracy >= 50 ? 'var(--accent-warning)' : 'var(--accent-error)'};">
+                                    ${state.questionsAnswered > 0 ? overallAccuracy + '%' : '–'}
+                                </div>
+                                <div style="font-size:0.85rem;color:var(--text-muted);margin-top:4px;">
+                                    ${state.correctAnswers} von ${state.questionsAnswered} richtig
+                                </div>
+                            </div>
+                            <div style="padding:10px 12px;background:${overallAccuracy >= 65 ? 'rgba(16,185,129,0.1)' : 'rgba(239,68,68,0.1)'};border-radius:var(--radius-sm);font-size:0.85rem;text-align:center;">
+                                ${overallAccuracy >= 65 
+                                    ? '✅ Über der Bestehensgrenze (65%)' 
+                                    : state.questionsAnswered > 0 
+                                        ? '📚 Unter der Bestehensgrenze (65%) – weiter üben!' 
+                                        : 'Beantworte Fragen, um deine Genauigkeit zu sehen.'}
+                            </div>
+                        </div>
+                        
+                        <div class="stats-dashboard-section">
+                            <div class="stats-dashboard-section-title">Genauigkeit je Kapitel</div>
+                            ${chapterAccuracies.map(({ chapter, accuracy, answered, correct }) => {
+                                const color = CHAPTER_COLORS[chapter]?.hex || 'var(--accent-primary)';
+                                const fillColor = accuracy === null ? 'var(--border-color)' 
+                                    : accuracy >= 65 ? 'var(--accent-success)' 
+                                    : accuracy >= 50 ? 'var(--accent-warning)' 
+                                    : 'var(--accent-error)';
+                                return `
+                                    <div class="chapter-accuracy-bar">
+                                        <span class="chapter-accuracy-label" style="color:${color};">Kap. ${chapter}</span>
+                                        <div class="chapter-accuracy-track">
+                                            <div class="chapter-accuracy-fill" style="width:${accuracy !== null ? accuracy : 0}%;background:${fillColor};"></div>
+                                            <span class="chapter-accuracy-text" style="color:var(--text-primary);">
+                                                ${accuracy !== null ? accuracy + '%' : '–'}
+                                            </span>
+                                        </div>
+                                    </div>`;
+                            }).join('')}
+                        </div>
+                        
+                        ${weakest && strongest && weakest.chapter !== strongest.chapter ? `
+                            <div class="stats-dashboard-section">
+                                <div class="stats-dashboard-section-title">Analyse</div>
+                                <div class="dashboard-stat-row" style="background:rgba(239,68,68,0.1);">
+                                    <span class="dashboard-stat-label">⚠️ Schwächstes Kapitel</span>
+                                    <span class="dashboard-stat-value">Kap. ${weakest.chapter} (${weakest.accuracy}%)</span>
+                                </div>
+                                <div class="dashboard-stat-row" style="background:rgba(16,185,129,0.1);">
+                                    <span class="dashboard-stat-label">💪 Stärkstes Kapitel</span>
+                                    <span class="dashboard-stat-value">Kap. ${strongest.chapter} (${strongest.accuracy}%)</span>
+                                </div>
+                            </div>
+                        ` : ''}
+                        
+                        <button class="stats-dashboard-close" id="close-dashboard">Schließen</button>
+                    </div>
+                </div>`;
+        }
+        
+        /**
+         * Renders the active dashboard based on state.activeDashboard
+         */
+        function renderDashboards() {
+            return renderPointsDashboard() + renderQuestionsDashboard() + renderAccuracyDashboard();
+        }
+        
         function renderHeader() {
             return `
                 <header class="header">
@@ -2441,21 +2738,22 @@
                         </div>
                     </div>
                     <div class="stats-bar" role="region" aria-label="Statistiken">
-                        <div class="stat-item">
+                        <div class="stat-item" data-dashboard="points" title="Klicken für Details">
                             <div class="stat-value">${state.points}</div>
                             <div class="stat-label">Punkte</div>
                         </div>
-                        <div class="stat-item">
+                        <div class="stat-item" data-dashboard="questions" title="Klicken für Details">
                             <div class="stat-value">${state.questionsAnswered}</div>
                             <div class="stat-label">Fragen</div>
                         </div>
-                        <div class="stat-item">
+                        <div class="stat-item" data-dashboard="accuracy" title="Klicken für Details">
                             <div class="stat-value">${state.questionsAnswered > 0 ? getAccuracy() + '%' : '–'}</div>
                             <div class="stat-label">Genauigkeit</div>
                         </div>
                     </div>
                 </header>
-                ${renderSettingsPanel()}`; 
+                ${renderSettingsPanel()}
+                ${renderDashboards()}`; 
         }
         
         function renderNav() {
@@ -3831,6 +4129,32 @@
                     }
                 });
             }
+            
+            // Stats Dashboard Event-Handler
+            document.querySelectorAll('.stat-item[data-dashboard]').forEach(item => {
+                item.addEventListener('click', () => {
+                    state.activeDashboard = item.dataset.dashboard;
+                    render();
+                });
+            });
+            
+            const closeDashboardBtn = document.getElementById('close-dashboard');
+            if (closeDashboardBtn) {
+                closeDashboardBtn.addEventListener('click', () => {
+                    state.activeDashboard = null;
+                    render();
+                });
+            }
+            
+            // Close dashboard on backdrop click
+            document.querySelectorAll('.stats-dashboard').forEach(dashboard => {
+                dashboard.addEventListener('click', (e) => {
+                    if (e.target === dashboard) {
+                        state.activeDashboard = null;
+                        render();
+                    }
+                });
+            });
 
             // GLOBALE Event-Delegation für alle interaktiven Elemente (einmalig!)
             if (appContainer && !appContainer._globalDelegateAttached) {
