@@ -35,7 +35,7 @@ Oder auf dem Handy installieren → [Anleitung](#-installation)
 | **Coach-Notes** | Prüfungstipps & Eselsbrücken |
 | **Lesezeichen** | Auf allen Ebenen (Kapitel, Sektion, Unterabschnitt) |
 | **Lesezeichen-Filter** | Nur markierte Abschnitte anzeigen |
-| **Auto-Lesezeichen** | Bei Fehlern im Quiz automatisch den Abschnitt merken |
+| **Quiz-Lesezeichen** | Bei Quiz-Auswertung Abschnitte zu Fehlern speichern |
 | **Suchfunktion** | Schnell Begriffe finden mit Navigation |
 | **Originalzitate** | Mit Seitenzahlen aus dem Lehrplan |
 | **Hierarchische Navigation** | Kapitel → Sektionen → Details stufenweise aufklappen |
@@ -86,7 +86,6 @@ Die App funktioniert wie eine native App – ohne App Store!
 
 Über das **Zahnrad-Symbol** (neben der Streak-Anzeige) erreichst du:
 - Hochkontrast-Modus
-- Auto-Lesezeichen bei Fehlern (an/aus)
 - Fortschritt zurücksetzen
 
 ---

@@ -1346,7 +1346,6 @@
             structureSearchQuery: '',
             showOnlyBookmarked: false,   // Nur Lesezeichen anzeigen
             settingsPanelOpen: false,    // Einstellungs-Panel
-            autoBookmarkOnWrong: true,   // Auto-Lesezeichen bei falschen Antworten
             planDuration: '4weeks',
             // Per-chapter stats
             chapterStats: { 1: { answered: 0, correct: 0 }, 2: { answered: 0, correct: 0 }, 3: { answered: 0, correct: 0 }, 4: { answered: 0, correct: 0 }, 5: { answered: 0, correct: 0 }, 6: { answered: 0, correct: 0 } },
@@ -1369,8 +1368,7 @@
             CHAPTER_STATS: 'istqb_chapterStats',
             WRONG_QUESTIONS: 'istqb_wrongQuestions',   // Spaced Repetition: falsch beantwortete Fragen
             BOOKMARKS: 'istqb_bookmarks',              // Lesezeichen für Lehrplan
-            HIGH_CONTRAST: 'istqb_highContrast',       // Hochkontrast-Modus
-            AUTO_BOOKMARK: 'istqb_autoBookmark'        // Auto-Lesezeichen bei falschen Antworten
+            HIGH_CONTRAST: 'istqb_highContrast'        // Hochkontrast-Modus
         });
         
         // Timer reference
@@ -1599,9 +1597,6 @@
                     state.highContrast = true;
                     document.body.classList.add('high-contrast');
                 }
-                // Auto Bookmark
-                const storedAutoBookmark = localStorage.getItem(STORAGE_KEYS.AUTO_BOOKMARK);
-                state.autoBookmarkOnWrong = storedAutoBookmark !== 'false'; // Default: true
             } catch (e) {
                 console.warn('Failed to load state from localStorage:', e);
             }
@@ -1619,7 +1614,6 @@
                 localStorage.setItem(STORAGE_KEYS.WRONG_QUESTIONS, JSON.stringify(state.wrongQuestions));
                 localStorage.setItem(STORAGE_KEYS.BOOKMARKS, JSON.stringify(state.bookmarks));
                 localStorage.setItem(STORAGE_KEYS.HIGH_CONTRAST, state.highContrast);
-                localStorage.setItem(STORAGE_KEYS.AUTO_BOOKMARK, state.autoBookmarkOnWrong);
             } catch (e) {
                 console.warn('Failed to save state to localStorage:', e);
             }
@@ -1728,7 +1722,7 @@
          * @param {string} sectionId - Abschnitts-ID (z.B. "1.1")
          * @param {string} title - Titel des Abschnitts
          */
-        function toggleBookmark(chapterId, sectionId, title) {
+        function toggleBookmark(chapterId, sectionId, title, isAuto = false) {
             if (!state.bookmarks) state.bookmarks = [];
             
             const existingIdx = state.bookmarks.findIndex(b => 
@@ -1744,7 +1738,8 @@
                     chapterId,
                     sectionId,
                     title,
-                    timestamp: Date.now()
+                    timestamp: Date.now(),
+                    isAuto: isAuto
                 });
             }
             
@@ -2023,13 +2018,6 @@
                             </div>
                         </div>
                         
-                        <div class="settings-section">
-                            <div class="settings-section-title">Quiz</div>
-                            <div class="settings-option">
-                                <span class="settings-option-label">Auto-Lesezeichen bei Fehlern</span>
-                                <input type="checkbox" id="auto-bookmark-checkbox" ${state.autoBookmarkOnWrong ? 'checked' : ''}>
-                            </div>
-                        </div>
                         
                         <div class="settings-section">
                             <div class="settings-section-title">Daten</div>
@@ -2376,7 +2364,7 @@
                     html += '<div class="bookmark-item-header" data-bookmark-expand="' + b.chapterId + '|' + b.sectionId + '">';
                     html += '<span class="bookmark-item-indicator" style="background:hsl(' + hue + ', 70%, 55%);"></span>';
                     html += '<span class="bookmark-item-id">' + escapeHtml(b.sectionId) + '</span>';
-                    html += '<span class="bookmark-item-title">' + escapeHtml(b.title.replace(b.sectionId + ' ', '').replace(' (Auto)', '')) + '</span>';
+                    html += '<span class="bookmark-item-title">' + escapeHtml(b.title.replace(b.sectionId + ' ', '')) + (b.isAuto ? ' <span style="font-size:0.7rem;color:var(--text-muted);font-weight:normal;">(automatisch)</span>' : '') + '</span>';
                     html += '<span class="bookmark-item-toggle">' + (isExpanded ? '▲' : '▼') + '</span>';
                     html += '<button class="bookmark-remove" data-bookmark-remove="' + bIdx + '" title="Lesezeichen entfernen">✕</button>';
                     html += '</div>';
@@ -2979,6 +2967,9 @@
                                     </div>
                                 `).join('')}
                             </div>
+                            <button class="add-bookmarks-btn" id="add-wrong-bookmarks" style="margin-top:16px;width:100%;padding:12px;background:rgba(251,191,36,0.15);border:1px solid var(--accent-warning);border-radius:var(--radius-md);color:var(--accent-warning);cursor:pointer;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px;">
+                                ${getBookmarkSvg()} Abschnitte als Lesezeichen speichern
+                            </button>
                         ` : `
                             <div style="margin-top:20px;padding:16px;background:rgba(16,185,129,0.1);border-radius:var(--radius-md);text-align:center;">
                                 <div style="font-size:1.5rem;">🌟</div>
@@ -3180,7 +3171,6 @@
             const settingsPanel = document.getElementById('settings-panel');
             const settingsClose = document.getElementById('settings-close');
             const highContrastCheckbox = document.getElementById('high-contrast-checkbox');
-            const autoBookmarkCheckbox = document.getElementById('auto-bookmark-checkbox');
             const resetAllBtn = document.getElementById('reset-all-btn');
             
             if (settingsToggle) {
@@ -3207,12 +3197,6 @@
                 highContrastCheckbox.addEventListener('change', () => {
                     state.highContrast = highContrastCheckbox.checked;
                     document.body.classList.toggle('high-contrast', state.highContrast);
-                    saveState();
-                });
-            }
-            if (autoBookmarkCheckbox) {
-                autoBookmarkCheckbox.addEventListener('change', () => {
-                    state.autoBookmarkOnWrong = autoBookmarkCheckbox.checked;
                     saveState();
                 });
             }
@@ -3596,35 +3580,6 @@
                         // Track wrong answer for review
                         if (!quiz.wrongAnswers) quiz.wrongAnswers = [];
                         quiz.wrongAnswers.push(quiz.currentIndex);
-                        
-                        // Auto-Lesezeichen bei falscher Antwort
-                        if (state.autoBookmarkOnWrong && q.lo) {
-                            const loId = q.lo; // z.B. "FL-1.1.1"
-                            const sectionId = loId.replace('FL-', ''); // "1.1.1"
-                            const chapterId = parseInt(sectionId.split('.')[0], 10);
-                            // Finde den Titel des Abschnitts
-                            const chapterData = syllabusData.chapters.find(c => c.id === chapterId);
-                            if (chapterData && !isBookmarked(chapterId, sectionId)) {
-                                // Suche in subchapters und subsections nach der passenden ID
-                                let title = sectionId;
-                                if (chapterData.subchapters) {
-                                    for (const sub of chapterData.subchapters) {
-                                        if (sub.id === sectionId) {
-                                            title = sub.id + ' ' + sub.title;
-                                            break;
-                                        }
-                                        if (sub.subsections) {
-                                            const ss = sub.subsections.find(s => s.id === sectionId);
-                                            if (ss) {
-                                                title = ss.id + ' ' + ss.title;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                }
-                                toggleBookmark(chapterId, sectionId, title + ' (Auto)');
-                            }
-                        }
                     }
                     
                     saveState();
@@ -3830,6 +3785,55 @@
                     
                     state.currentQuiz = null;
                     render();
+                });
+            }
+            
+            // Add wrong answers as bookmarks
+            const addWrongBookmarksBtn = document.getElementById('add-wrong-bookmarks');
+            if (addWrongBookmarksBtn) {
+                addWrongBookmarksBtn.addEventListener('click', () => {
+                    const quiz = state.currentQuiz;
+                    if (!quiz || !quiz.wrongAnswers) return;
+                    
+                    let added = 0;
+                    quiz.wrongAnswers.forEach(idx => {
+                        const q = quiz.questions[idx];
+                        if (!q || !q.lo) return;
+                        
+                        const sectionId = q.lo.replace('FL-', '');
+                        const chapterId = parseInt(sectionId.split('.')[0], 10);
+                        
+                        if (isBookmarked(chapterId, sectionId)) return;
+                        
+                        // Finde den Titel des Abschnitts
+                        const chapterData = syllabusData.chapters.find(c => c.id === chapterId);
+                        let title = sectionId;
+                        if (chapterData && chapterData.subchapters) {
+                            for (const sub of chapterData.subchapters) {
+                                if (sub.id === sectionId) {
+                                    title = sub.id + ' ' + sub.title;
+                                    break;
+                                }
+                                if (sub.subsections) {
+                                    const ss = sub.subsections.find(s => s.id === sectionId);
+                                    if (ss) {
+                                        title = ss.id + ' ' + ss.title;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        
+                        toggleBookmark(chapterId, sectionId, title, true);
+                        added++;
+                    });
+                    
+                    // Button als erledigt markieren
+                    addWrongBookmarksBtn.innerHTML = '✓ ' + added + ' Lesezeichen hinzugefügt';
+                    addWrongBookmarksBtn.style.background = 'rgba(16,185,129,0.15)';
+                    addWrongBookmarksBtn.style.borderColor = 'var(--accent-success)';
+                    addWrongBookmarksBtn.style.color = 'var(--accent-success)';
+                    addWrongBookmarksBtn.disabled = true;
                 });
             }
         }
