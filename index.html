@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#1a1a2e">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline';">
-    <title>ISTQB Coach – CTFL v4.0</title>
+    <title>ISTQB Coach – CTFL v4.0.2 Lehrplan Deutsch</title>
     <link rel="manifest" href="manifest.json">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -102,6 +102,11 @@
             margin-bottom: 16px;
         }
         
+        .logo-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
         .logo {
             font-size: 1.5rem;
             font-weight: 700;
@@ -109,6 +114,12 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+        }
+        .logo-subtitle {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            letter-spacing: 0.3px;
         }
         
         .streak-badge {
@@ -1311,8 +1322,9 @@
         .bookmark-btn.bookmarked svg { stroke: var(--accent-warning); fill: var(--accent-warning); }
         .bookmarks-panel { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 16px; margin-bottom: 20px; }
         .bookmarks-panel-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 12px; }
-        .bookmarks-panel-title { font-size: 0.9rem; font-weight: 600; color: var(--accent-warning); display: flex; align-items: center; gap: 8px; }
-        .bookmarks-panel-title svg { width: 20px; height: 20px; stroke: var(--accent-warning); fill: var(--accent-warning); }
+        .bookmarks-panel-title { font-size: 1rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        .bookmarks-panel-title .title-text { background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .bookmarks-panel-title svg { width: 20px; height: 20px; stroke: url(#bookmark-gradient); fill: url(#bookmark-gradient); }
         .bookmark-filter-toggle { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; color: var(--text-secondary); cursor: pointer; }
         .bookmark-filter-toggle input { cursor: pointer; }
         .bookmarks-list { display: flex; flex-direction: column; gap: 10px; }
@@ -1854,6 +1866,14 @@
         }
         
         /**
+         * SVG-Icon für Lesezeichen mit Gradient (für Überschrift)
+         */
+        function getBookmarkSvgGradient(size) {
+            const s = size || 20;
+            return '<svg width="' + s + '" height="' + s + '" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 5c0-1.1.9-2 2-2h10a2 2 0 0 1 2 2v16l-7-3.5L5 21V5z" fill="url(#bookmark-gradient)" stroke="url(#bookmark-gradient)"/></svg>';
+        }
+        
+        /**
          * Lesezeichen: Fügt ein Lesezeichen hinzu oder entfernt es
          * @param {number} chapterId - Kapitel-ID
          * @param {string} sectionId - Abschnitts-ID (z.B. "1.1")
@@ -2227,7 +2247,10 @@
             return `
                 <header class="header">
                     <div class="header-top">
-                        <div class="logo">ISTQB Coach</div>
+                        <div class="logo-wrapper">
+                            <div class="logo">ISTQB Coach</div>
+                            <div class="logo-subtitle">für CTFL v4.0.2 Lehrplan Deutsch</div>
+                        </div>
                         <div class="header-actions">
                             <div class="streak-badge" aria-label="Lernsträhne">🔥 ${state.streak} Tage</div>
                             <button class="settings-btn" id="settings-toggle" aria-label="Einstellungen" title="Einstellungen">⚙️</button>
@@ -2520,7 +2543,8 @@
                 });
                 
                 html += '<div class="bookmarks-panel">';
-                html += '<div class="bookmarks-panel-header"><div class="bookmarks-panel-title">' + getBookmarkSvg() + ' Meine Lesezeichen (' + state.bookmarks.length + ')</div>';
+                html += '<svg width="0" height="0"><defs><linearGradient id="bookmark-gradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#00d4aa"/><stop offset="100%" style="stop-color:#7c3aed"/></linearGradient></defs></svg>';
+                html += '<div class="bookmarks-panel-header"><div class="bookmarks-panel-title">' + getBookmarkSvgGradient() + ' <span class="title-text">Meine Lesezeichen (' + state.bookmarks.length + ')</span></div>';
                 html += '<label class="bookmark-filter-toggle"><input type="checkbox" id="bookmark-filter-checkbox" ' + (state.showOnlyBookmarked ? 'checked' : '') + '> Nur Lesezeichen anzeigen</label></div>';
                 html += '<div class="bookmarks-list">';
                 
