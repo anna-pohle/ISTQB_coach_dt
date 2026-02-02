@@ -24,7 +24,7 @@ Oder auf dem Handy installieren → [Anleitung](#-installation)
 | **111 echte Prüfungsfragen** | Aus den offiziellen GTB Sample Exams (Set A–F) |
 | **Übungsmodus** | Sofortiges Feedback + Erklärungen |
 | **Prüfungsmodus** | 40 Fragen, 60 Min, 65% zum Bestehen |
-| **Spaced Repetition** | Intelligentes Lernsystem: Falsche, unsichere oder mit Hinweis beantwortete Fragen kommen häufiger dran |
+| **Spaced Repetition** | Intelligentes Lernsystem: Falsche/unsichere Fragen häufiger + 30% frische Fragen garantiert |
 | **Confidence-Tracking** | Im Übungsmodus: Selbsteinschätzung (sicher/unsicher/geraten) beeinflusst Wiederholungshäufigkeit |
 | **Zeit-Training** | Floating Timer pro Frage (grün → gelb → rot), Durchschnittszeit am Ende |
 | **Speed-Bonus** | Bonuspunkte für schnelle richtige Antworten (⚡ +1 bis +3) |

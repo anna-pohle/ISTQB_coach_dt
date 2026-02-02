@@ -1550,8 +1550,10 @@
             planDuration: '4weeks',
             // Per-chapter stats
             chapterStats: { 1: { answered: 0, correct: 0 }, 2: { answered: 0, correct: 0 }, 3: { answered: 0, correct: 0 }, 4: { answered: 0, correct: 0 }, 5: { answered: 0, correct: 0 }, 6: { answered: 0, correct: 0 } },
-            // Spaced Repetition: {questionId: {wrongCount: n, lastWrong: timestamp}}
+            // Spaced Repetition: {questionId: {wrongCount: n, lastSeen: timestamp}}
             wrongQuestions: {},
+            // Alle gesehenen Fragen: {questionId: timestamp}
+            seenQuestions: {},
             // Lesezeichen: [{chapterId, sectionId, subsectionId, title, timestamp}]
             bookmarks: [],
             // Hochkontrast-Modus
@@ -1570,6 +1572,7 @@
             ACHIEVEMENTS: 'istqb_achievements',
             CHAPTER_STATS: 'istqb_chapterStats',
             WRONG_QUESTIONS: 'istqb_wrongQuestions',   // Spaced Repetition: falsch beantwortete Fragen
+            SEEN_QUESTIONS: 'istqb_seenQuestions',    // Alle gesehenen Fragen mit Zeitstempel
             BOOKMARKS: 'istqb_bookmarks',              // Lesezeichen für Lehrplan
             HIGH_CONTRAST: 'istqb_highContrast'        // Hochkontrast-Modus
         });
@@ -1791,6 +1794,13 @@
                         state.wrongQuestions = JSON.parse(storedWrongQuestions);
                     } catch { /* keep default */ }
                 }
+                // Gesehene Fragen
+                const storedSeenQuestions = localStorage.getItem(STORAGE_KEYS.SEEN_QUESTIONS);
+                if (storedSeenQuestions) {
+                    try {
+                        state.seenQuestions = JSON.parse(storedSeenQuestions);
+                    } catch { /* keep default */ }
+                }
                 // Bookmarks
                 const storedBookmarks = localStorage.getItem(STORAGE_KEYS.BOOKMARKS);
                 if (storedBookmarks) {
@@ -1819,6 +1829,7 @@
                 localStorage.setItem(STORAGE_KEYS.ACHIEVEMENTS, JSON.stringify(state.achievements));
                 localStorage.setItem(STORAGE_KEYS.CHAPTER_STATS, JSON.stringify(state.chapterStats));
                 localStorage.setItem(STORAGE_KEYS.WRONG_QUESTIONS, JSON.stringify(state.wrongQuestions));
+                localStorage.setItem(STORAGE_KEYS.SEEN_QUESTIONS, JSON.stringify(state.seenQuestions));
                 localStorage.setItem(STORAGE_KEYS.BOOKMARKS, JSON.stringify(state.bookmarks));
                 localStorage.setItem(STORAGE_KEYS.HIGH_CONTRAST, state.highContrast);
             } catch (e) {
@@ -1917,6 +1928,10 @@
          */
         function trackQuestionResult(questionId, isCorrect, confidence, hintUsed) {
             if (!state.wrongQuestions) state.wrongQuestions = {};
+            if (!state.seenQuestions) state.seenQuestions = {};
+            
+            // Tracke dass diese Frage gesehen wurde (für "frische Fragen" Mechanismus)
+            state.seenQuestions[questionId] = Date.now();
             
             // Prioritäts-Logik (je höher, desto mehr Wiederholung nötig):
             // 
@@ -1987,42 +2002,95 @@
         
         /**
          * Spaced Repetition: Priorisiert Fragen basierend auf Lernbedarf
-         * Fragen mit höherem wrongCount (falsch/unsicher) erscheinen häufiger
+         * - Fragen mit höherem wrongCount (falsch/unsicher) erscheinen häufiger
+         * - Garantiert dass ~30% der Fragen "frisch" sind (nie gesehen oder >7 Tage her)
          * @param {Array} questions - Array von Fragen
          * @param {number} count - Gewünschte Anzahl
          * @returns {Array} - Priorisierte Fragen
          */
         function selectQuestionsWithSpacedRepetition(questions, count) {
-            if (!state.wrongQuestions || Object.keys(state.wrongQuestions).length === 0) {
-                // Keine Lern-Historie: normale Shuffle
-                return shuffleArray([...questions]).slice(0, count);
+            const FRESH_THRESHOLD_DAYS = 7;  // Nach 7 Tagen gilt eine Frage als "frisch"
+            const FRESH_QUOTA = 0.3;         // 30% der Fragen sollen frisch sein
+            
+            const now = Date.now();
+            const seenQuestions = state.seenQuestions || {};
+            
+            // Kategorisiere Fragen in "frisch" und "bekannt"
+            const freshQuestions = [];   // Nie gesehen oder > 7 Tage her
+            const knownQuestions = [];   // Kürzlich gesehen (< 7 Tage)
+            
+            questions.forEach(q => {
+                const lastSeen = seenQuestions[q.id] || 0;
+                const daysSince = lastSeen === 0 ? Infinity : (now - lastSeen) / (1000 * 60 * 60 * 24);
+                
+                if (daysSince >= FRESH_THRESHOLD_DAYS) {
+                    freshQuestions.push(q);
+                } else {
+                    knownQuestions.push(q);
+                }
+            });
+            
+            // Berechne wie viele Fragen aus jeder Kategorie
+            const freshCount = Math.min(
+                Math.ceil(count * FRESH_QUOTA),  // Gewünschte Anzahl frischer Fragen
+                freshQuestions.length             // Maximal verfügbare
+            );
+            const knownCount = Math.min(count - freshCount, knownQuestions.length);
+            
+            // Wähle frische Fragen (zufällig)
+            const selectedFresh = shuffleArray([...freshQuestions]).slice(0, freshCount);
+            
+            // Wähle bekannte Fragen (gewichtet nach Spaced Repetition)
+            const selectedKnown = selectWeightedQuestions(knownQuestions, knownCount);
+            
+            // Falls wir nicht genug haben, fülle aus der anderen Kategorie auf
+            let result = [...selectedFresh, ...selectedKnown];
+            
+            if (result.length < count) {
+                const remaining = count - result.length;
+                const usedIds = new Set(result.map(q => q.id));
+                const unused = questions.filter(q => !usedIds.has(q.id));
+                result = result.concat(shuffleArray(unused).slice(0, remaining));
             }
+            
+            return shuffleArray(result);
+        }
+        
+        /**
+         * Hilfsfunktion: Gewichtete Auswahl basierend auf wrongCount
+         * @param {Array} questions - Array von Fragen
+         * @param {number} count - Gewünschte Anzahl
+         * @returns {Array} - Ausgewählte Fragen
+         */
+        function selectWeightedQuestions(questions, count) {
+            if (questions.length === 0 || count === 0) return [];
+            
+            const wrongQuestions = state.wrongQuestions || {};
             
             // Berechne Priorität für jede Frage
             const withPriority = questions.map(q => {
-                const learnData = state.wrongQuestions[q.id];
+                const learnData = wrongQuestions[q.id];
                 let priority = 1; // Basis-Priorität
                 
                 if (learnData) {
                     // Je höher wrongCount, desto höher die Priorität (max 6x)
                     priority += Math.min(learnData.wrongCount, 5);
                     
-                    // Zeitfaktor: Länger nicht gesehene Fragen bekommen Bonus
-                    const daysSinceSeen = (Date.now() - (learnData.lastSeen || learnData.lastWrong || 0)) / (1000 * 60 * 60 * 24);
+                    // Zeitfaktor: 1-7 Tage her = optimaler Wiederholungszeitpunkt
+                    const daysSinceSeen = (Date.now() - (learnData.lastSeen || 0)) / (1000 * 60 * 60 * 24);
                     if (daysSinceSeen > 1 && daysSinceSeen < 7) {
-                        priority += 1; // 1-7 Tage her: optimaler Wiederholungszeitpunkt
+                        priority += 1;
                     }
                 }
                 
                 return { question: q, priority };
             });
             
-            // Gewichtete Auswahl: Fragen mit höherer Priorität erscheinen häufiger
+            // Gewichtete Auswahl
             const selected = [];
             const pool = [...withPriority];
             
             while (selected.length < count && pool.length > 0) {
-                // Erstelle gewichtetes Array
                 const totalWeight = pool.reduce((sum, p) => sum + p.priority, 0);
                 let random = Math.random() * totalWeight;
                 
@@ -2036,7 +2104,7 @@
                 }
             }
             
-            return shuffleArray(selected);
+            return selected;
         }
         
         /**
