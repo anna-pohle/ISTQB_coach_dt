@@ -39,6 +39,7 @@ Oder auf dem Handy installieren → [Anleitung](#-installation)
 | **Suchfunktion** | Schnell Begriffe finden mit Navigation |
 | **Originalzitate** | Mit Seitenzahlen aus dem Lehrplan |
 | **Hierarchische Navigation** | Kapitel → Sektionen → Details stufenweise aufklappen |
+| **Alles aus-/einklappen** | Buttons für schnellen Überblick oder Details |
 
 ### 📅 Lernplan
 - **3 Zeiträume:** 2 Wochen / 4 Wochen / 3 Monate
