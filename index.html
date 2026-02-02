@@ -1827,88 +1827,74 @@
         }
         
         /**
-         * Migrates bookmarks with generic titles to proper syllabus titles
+         * Migrates bookmarks with outdated sectionIds or generic titles
+         * - Fixes 3-part sectionIds (e.g., "5.1.4") to 2-part (e.g., "5.1")
+         * - Updates generic titles like "Abschnitt X.X.X" to proper syllabus titles
+         * - Removes duplicates that arise from sectionId consolidation
          */
         function migrateBookmarkTitles() {
-            if (!state.bookmarks || state.bookmarks.length === 0) {
-                console.log('No bookmarks to migrate');
-                return;
-            }
-            
-            console.log('Checking', state.bookmarks.length, 'bookmarks for migration');
-            console.log('Current bookmarks:', JSON.stringify(state.bookmarks, null, 2));
+            if (!state.bookmarks || state.bookmarks.length === 0) return;
             
             let anyChanged = false;
             state.bookmarks.forEach(b => {
-                // Check if title is generic (including "(automatisch)" suffix)
-                const title = b.title || '';
-                const isGeneric = !title || 
-                    title === b.sectionId ||
-                    title.includes('Abschnitt ') ||
-                    /^Kapitel \d/.test(title);
-                
-                console.log('Bookmark:', b.sectionId, 'title:', title, 'isGeneric:', isGeneric);
-                
-                if (!isGeneric) return;
-                
-                // Find proper title from syllabus
                 const chapterData = syllabusData.chapters.find(c => c.id === b.chapterId);
-                if (!chapterData) {
-                    console.log('  No chapter data found for', b.chapterId);
-                    return;
+                if (!chapterData) return;
+                
+                // Fix 3-part sectionIds that don't exist in syllabus
+                if (b.sectionId.split('.').length > 2) {
+                    const parentId = b.sectionId.split('.').slice(0, 2).join('.');
+                    if (chapterData.subchapters) {
+                        const parentSection = chapterData.subchapters.find(s => s.id === parentId);
+                        if (parentSection) {
+                            b.sectionId = parentId;
+                            b.title = parentSection.title;  // Ohne Suffix, wird später hinzugefügt
+                            anyChanged = true;
+                        }
+                    }
                 }
                 
-                let newTitle = null;
+                // Fix generic titles and double "(automatisch)" suffix
+                let title = b.title || '';
+                // Entferne alle "(automatisch)" Suffixe erstmal
+                title = title.replace(/\s*\(automatisch\)/g, '').trim();
                 
-                // Try exact match in subchapters
-                if (chapterData.subchapters) {
+                const isGeneric = title.includes('Abschnitt ') || /^Kapitel \d/.test(title) || !title;
+                if (isGeneric && chapterData.subchapters) {
                     for (const sub of chapterData.subchapters) {
                         if (sub.id === b.sectionId) {
-                            newTitle = sub.title;
-                            console.log('  Found exact match:', newTitle);
+                            title = sub.title;
+                            anyChanged = true;
                             break;
-                        }
-                        if (sub.subsections) {
-                            const ss = sub.subsections.find(s => s.id === b.sectionId);
-                            if (ss) {
-                                newTitle = ss.title;
-                                console.log('  Found in subsections:', newTitle);
-                                break;
-                            }
-                        }
-                    }
-                    
-                    // Fallback: parent section (e.g., "5.1" for "5.1.4")
-                    if (!newTitle && b.sectionId.split('.').length > 2) {
-                        const parentId = b.sectionId.split('.').slice(0, 2).join('.');
-                        console.log('  Trying parent ID:', parentId);
-                        for (const sub of chapterData.subchapters) {
-                            if (sub.id === parentId) {
-                                newTitle = sub.title;
-                                console.log('  Found parent match:', newTitle);
-                                break;
-                            }
                         }
                     }
                 }
                 
-                // Apply new title if found
-                if (newTitle) {
-                    // Preserve "(automatisch)" suffix if present
-                    const wasAuto = title.includes('(automatisch)');
-                    b.title = wasAuto ? newTitle + ' (automatisch)' : newTitle;
+                // Setze bereinigten Titel (Suffix wird beim Rendern hinzugefügt)
+                if (b.title !== title) {
+                    b.title = title;
                     anyChanged = true;
-                    console.log('  MIGRATED:', b.sectionId, '->', b.title);
-                } else {
-                    console.log('  No new title found for', b.sectionId);
                 }
             });
             
+            // Entferne Duplikate (gleiche chapterId + sectionId)
+            const seen = new Set();
+            const uniqueBookmarks = [];
+            for (const b of state.bookmarks) {
+                const key = b.chapterId + '-' + b.sectionId;
+                if (!seen.has(key)) {
+                    seen.add(key);
+                    uniqueBookmarks.push(b);
+                } else {
+                    anyChanged = true;
+                }
+            }
+            
+            if (uniqueBookmarks.length !== state.bookmarks.length) {
+                state.bookmarks = uniqueBookmarks;
+            }
+            
             if (anyChanged) {
                 saveState();
-                console.log('Bookmarks saved after migration');
-            } else {
-                console.log('No bookmarks needed migration');
             }
         }
         
@@ -4841,51 +4827,52 @@
                         const q = quiz.questions[idx];
                         if (!q || !q.lo) return;
                         
-                        const sectionId = q.lo.replace('FL-', '');
+                        let sectionId = q.lo.replace('FL-', '');
                         const chapterId = parseInt(sectionId.split('.')[0], 10);
-                        
-                        if (isBookmarked(chapterId, sectionId)) return;
                         
                         // Finde den Titel des Abschnitts (mit Fallback zu übergeordnetem Abschnitt)
                         const chapterData = syllabusData.chapters.find(c => c.id === chapterId);
                         let title = '';
-                        let foundSection = null;
+                        let foundExact = false;
                         
                         if (chapterData && chapterData.subchapters) {
                             // Versuche exakte Übereinstimmung
                             for (const sub of chapterData.subchapters) {
                                 if (sub.id === sectionId) {
                                     title = sub.title;
-                                    foundSection = sub;
+                                    foundExact = true;
                                     break;
                                 }
                                 if (sub.subsections) {
                                     const ss = sub.subsections.find(s => s.id === sectionId);
                                     if (ss) {
                                         title = ss.title;
-                                        foundSection = ss;
+                                        foundExact = true;
                                         break;
                                     }
                                 }
                             }
                             
-                            // Fallback: Suche übergeordneten Abschnitt (z.B. "5.1" für "5.1.4")
-                            if (!foundSection) {
+                            // Fallback: Verwende übergeordneten Abschnitt (z.B. "5.1" für "5.1.4")
+                            if (!foundExact) {
                                 const parentId = sectionId.split('.').slice(0, 2).join('.');
                                 for (const sub of chapterData.subchapters) {
                                     if (sub.id === parentId) {
                                         title = sub.title;
-                                        foundSection = sub;
+                                        sectionId = parentId;  // WICHTIG: Auch sectionId anpassen!
                                         break;
                                     }
                                 }
                             }
                         }
                         
-                        // Letzter Fallback: Kapitel-Titel mit LO
+                        // Letzter Fallback: Kapitel-Titel
                         if (!title) {
                             title = chapterData ? chapterData.title : 'Kapitel ' + chapterId;
                         }
+                        
+                        // Prüfe ob bereits Lesezeichen existiert (mit ggf. gekürzter sectionId)
+                        if (isBookmarked(chapterId, sectionId)) return;
                         
                         toggleBookmark(chapterId, sectionId, title, true);
                         added++;
