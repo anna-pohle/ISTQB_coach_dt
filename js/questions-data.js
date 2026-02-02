@@ -32,7 +32,7 @@ const examQuestions = Object.freeze([
         kLevel: 1,
         chapter: 1,
         text: "Welche der folgenden Aussagen beschreibt ein erreichbares Testziel?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Denke an die Grundsätze des Testens: Was kann Testen NICHT leisten? Welche Aussagen versprechen zu viel?",
         answers: [
             "Es lässt sich nachweisen, dass das zu prüfende System keine Fehlerzustände mehr hat.",
             "Es lässt sich nachweisen, dass es nach der produktiven Inbetriebnahme des Systems keine Fehlerwirkungen geben wird.",
@@ -54,7 +54,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Was ist der Hauptunterschied zwischen Testen und Debuggen?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Wer macht was? Tester vs. Entwickler - welche Aktivität gehört zu wem?",
         answers: [
             "Testen ist der Prozess der Fehlersuche, während Debugging der Prozess der Fehlerbehebung ist.",
             "Beim Testen werden Anforderungen überprüft, während beim Debugging der Entwurf überprüft wird.",
@@ -76,7 +76,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Sie sind Mitglied eines Teams, das ein neues System testet. Ihnen ist aufgefallen, dass seit mehreren Iterationen keine Änderungen an den bestehenden Regressionstestfällen vorgenommen und keine neuen Fehler durch einen Regressionstest aufgedeckt wurden. Ihr Vorgesetzter ist zufrieden, aber Sie sind es nicht.\n\nWelcher Grundsatz des Testens erklärt Ihre Skepsis in dieser Situation AM BESTEN?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Was passiert, wenn man immer dieselben Tests wiederholt? Denke an das 'Pesticide Paradox'.",
         answers: [
             "Alte Tests verlieren an Wirksamkeit.",
             "Trugschluss: \"Keine Fehler\" bedeuten ein brauchbares System.",
@@ -98,7 +98,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Sie arbeiten in einem Team, das eine mobile Anwendung für Essensbestellungen entwickelt. In der aktuellen Iteration hat das Team beschlossen, die Zahlungsfunktionalität zu implementieren.\n\nWelche der folgenden Aktivitäten gehören zur Testanalyse?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Testanalyse = WAS soll getestet werden? (Testbedingungen definieren). Unterscheide von Planung, Entwurf und Durchführung.",
         answers: [
             "Die Aufwandsschätzung für den Test der Integration der mobilen Anwendung mit dem Zahlungsdienst durchführen.",
             "Die Entscheidung, ob getestet wird, inwieweit Zahlungen zwischen mehreren Nutzern aufgeteilt werden können.",
@@ -120,7 +120,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Welche der folgenden Aussagen beschreibt AM BESTEN, wie ein Mehrwert durch Etablierung und Aufrechterhaltung der Verfolgbarkeit zwischen Testbasis und den Testmitteln erzielt wird?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Verfolgbarkeit verbindet Anforderungen mit Tests. Was kann man damit MESSEN oder NACHWEISEN?",
         answers: [
             "Wartungstests können basierend auf Änderungen der ursprünglichen Anforderungen vollständig automatisiert werden.",
             "Es kann effizienter bestimmt werden, ob die angestrebte Überdeckung auch tatsächlich erreicht wurde.",
@@ -142,7 +142,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Welche der folgenden Aussagen vergleicht AM BESTEN die verschiedenen Rollen beim Testen?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Tester = praktische Testarbeit (Analyse, Entwurf, Ausführung). Testmanager = Koordination, Planung, Berichterstattung.",
         answers: [
             "Die Rolle des Testens führt Testfälle aus, die Testmanagementrolle plant und überwacht die Testaktivitäten und meldet die Abweichungen an alle Tester.",
             "Die Rolle des Testens führt die Aktivitäten der Testanalyse sowie des Testentwurfs aus und erstellt und führt Testfälle aus, die Testmanagementrolle koordiniert die Testressourcen und berichtet an die Stakeholder.",
@@ -164,7 +164,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Welche der folgenden Aussagen erklärt AM BESTEN einen Vorteil der Unabhängigkeit des Testens?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Warum ist ein 'frischer Blick' wertvoll? Was kann ein unabhängiger Tester, was der Entwickler selbst nicht kann?",
         answers: [
             "Der Einsatz eines unabhängigen Testteams ermöglicht es der Projektleitung, dem Testteam die Verantwortung für die Qualität des Endprodukts zu übertragen.",
             "Wenn man sich ein externes Testteam leisten kann, dann hat das den Vorteil, dass dieses externe Team nicht so leicht von den Bedenken des Projektmanagements beeinflusst werden kann.",
@@ -186,7 +186,7 @@ const examQuestions = Object.freeze([
         kLevel: 1,
         chapter: 1,
         text: "Wie zeigt sich der Whole-Team-Ansatz in der Interaktion zwischen Testern und Fachbereichsvertretern?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Whole-Team = alle arbeiten ZUSAMMEN. Bei welcher Testart ist die Zusammenarbeit mit Fachbereich besonders wichtig?",
         answers: [
             "Fachbereichsvertreter entscheiden gemeinsam mit der Projektleitung über die Ansätze zur Testautomatisierung.",
             "Tester helfen Fachbereichsvertretern bei der Festlegung der Teststrategie.",
@@ -210,7 +210,7 @@ const examQuestions = Object.freeze([
         kLevel: 1,
         chapter: 2,
         text: "Welche der folgenden Aussagen beschreibt AM BESTEN eine gute Praktik für das Testen, die für alle Softwareentwicklungslebenszyklen gilt?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Denke an den Grundsatz 'Frühes Testen spart Zeit und Geld'. Was bedeutet das für den Zeitpunkt des Testens?",
         answers: [
             "Testen sollte erst nach Abschluss der Entwicklung durchgeführt werden.",
             "Testen sollte unter Federführung der Entwicklung durchgeführt werden.",
@@ -232,7 +232,7 @@ const examQuestions = Object.freeze([
         kLevel: 1,
         chapter: 2,
         text: "Welche der folgenden Aussagen beschreibt AM BESTEN den Ansatz der abnahmetestgetriebenen Entwicklung (ATDD)?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "ATDD, BDD, TDD unterscheiden: ATDD = Akzeptanzkriterien, BDD = GIVEN/WHEN/THEN, TDD = Tests vor Code.",
         answers: [
             "In der ATDD werden Akzeptanzkriterien typischerweise basierend auf dem Format GIVEN/WHEN/THEN erstellt.",
             "Bei ATDD werden zunächst die Testfälle entwickelt und dann die Software inkrementell gegen die Testfälle und definierten Akzeptanzkriterien implementiert.",
@@ -254,7 +254,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 2,
         text: "Welche der folgenden Aussagen ist KEIN Beispiel für den Shift-Left-Ansatz?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Shift-Left = Testaktivitäten FRÜHER im Prozess. Welche Option beschreibt SPÄTES Testen?",
         answers: [
             "Benutzeranforderungen werden überprüft, bevor sie von den Stakeholdern formell akzeptiert werden.",
             "Komponententestfälle werden erstellt, bevor der zugehörige Code programmiert wird.",
@@ -276,7 +276,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 2,
         text: "Welches der folgenden Argumente ist AM BESTEN geeignet, um Ihren Vorgesetzten davon zu überzeugen, am Ende eines jeden Releasezyklus eine Retrospektive durchzuführen?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Was ist der Hauptzweck einer Retrospektive? Denke an kontinuierliche Verbesserung.",
         answers: [
             "Retrospektiven sind heutzutage sehr beliebt und unsere Kunden würden es zu schätzen wissen.",
             "Die regelmäßige Durchführung von Retrospektiven spart dem Unternehmen Geld, da die Vertreter der Endnutzer kein unmittelbares Feedback geben.",
@@ -298,7 +298,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 2,
         text: "Welche Arten von Fehlerzuständen (1-4) werden in welchen Teststufen (A-D) AM EHESTEN gefunden?\n\n1. Fehlerzustände, wenn das Systemverhalten von den geschäftlichen Anforderungen abweicht\n2. Fehlerzustände in der Kommunikation zwischen Komponenten\n3. Fehlerzustände in einer isolierten Komponente\n4. Fehlerzustände in einer nicht korrekt implementierten User-Story\n\nA. Komponententest | B. Komponentenintegrationstest | C. Systemtest | D. Abnahmetest",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Ordne: Geschäftlich→Abnahme, Kommunikation→Integration, Isoliert→Komponente, User-Story→System.",
         answers: [
             "1D, 2B, 3A, 4C",
             "1D, 2B, 3C, 4A",
@@ -320,7 +320,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 2,
         text: "Die Teststrategie Ihres Unternehmens sieht vor, dass die Datenmigration zum Nachfolgesystem getestet werden muss, sobald ein System außer Betrieb genommen wird.\n\nMit welcher Testaktivität wird diese Anforderung AM EHESTEN erfüllt?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Welche Testart wird bei Änderungen, Migrationen oder Ablösungen eines Systems durchgeführt?",
         answers: [
             "Wartungstest",
             "Regressionstest",
@@ -344,7 +344,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 3,
         text: "Welcher der folgenden Punkte ist ein Vorteil von frühem und häufigem Feedback durch Stakeholder?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Frühes Feedback = Frühe Problemerkennung. Was kann man damit vermeiden?",
         answers: [
             "Es verbessert den Testprozess für zukünftige Projekte.",
             "Es zwingt die Kunden dazu, ihre Anforderungen basierend auf den abgestimmten Risiken zu priorisieren.",
@@ -366,7 +366,7 @@ const examQuestions = Object.freeze([
         kLevel: 1,
         chapter: 3,
         text: "Die in Ihrem Unternehmen durchgeführten Reviews weisen die folgenden Eigenschaften auf:\n• Der Hauptzweck ist die Kommunikation oder die Schulung der Gutachter.\n• Die Sitzung wird vom Autor des Arbeitsergebnisses geleitet.\n• Es gibt eine individuelle Vorbereitung der Reviewer.\n• Ein Reviewbericht kann erstellt werden.\n\nWelche der folgenden Arten eines Reviews wird AM EHESTEN verwendet?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Wer leitet das Meeting? Bei welchem Review-Typ ist das der AUTOR? Und wann steht Schulung im Vordergrund?",
         answers: [
             "Informelles Review",
             "Walkthrough",
@@ -412,7 +412,7 @@ const examQuestions = Object.freeze([
         kLevel: 3,
         chapter: 4,
         text: "Sie testen die Software für eine unbeaufsichtigte amerikanische Zapfsäule. Nachdem die Zapfpistole abgehoben und die gewünschte Kraftstoffsorte ausgewählt wurde, gibt der Kunde die gewünschte Kraftstoffmenge in Gallonen über ein Tastenfeld ein. Das Tastenfeld erlaubt nur die Eingabe von Ziffern. Pro Zapfvorgang kann zwischen 0,1 und 50,0 Gallonen getankt werden.\n\nWelche der folgenden Antworten repräsentiert eine minimale Menge von Eingabewerten, die alle gültigen und ungültigen Äquivalenzklassen für die Kraftstoffmenge überdeckt?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Wie viele Äquivalenzklassen gibt es? Ungültig niedrig, gültig, ungültig hoch = 3 Klassen. Minimal = 1 Wert pro Klasse.",
         answers: [
             "0,0; 20,0; 60,0",
             "0,0; 0,1; 50,0",
@@ -434,7 +434,7 @@ const examQuestions = Object.freeze([
         kLevel: 3,
         chapter: 4,
         text: "Sie testen ein E-Commerce-System für Lebensmittel. Die kleinste gültige Bestellmenge ist 0,5 Einheiten und die größte gültige Bestellmenge 25,0 Einheiten. Die Genauigkeit beträgt 0,1 Einheiten.\n\nWelche der folgenden Eingabewerte decken nur die Grenzwerte mit der 2-Wert-Grenzwertanalyse für die Bestellmenge ab?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "2-Wert-GWA: Pro Grenze nur 2 Werte (Grenzwert + direkter ungültiger Nachbar). Also: 2 Grenzen × 2 Werte = 4 Werte total.",
         answers: [
             "0,3; 24,9; 25,2",
             "0,4; 0,5; 0,6; 24,9; 25,0; 25,1",
@@ -456,7 +456,7 @@ const examQuestions = Object.freeze([
         kLevel: 3,
         chapter: 4,
         text: "Neu eingestellte Mitarbeitende können individuelle Ziele mit ihren Vorgesetzten vereinbaren, an deren Erreichung die Auszahlung einer Prämie gekoppelt ist. Die Prämie wird aber erst ausgezahlt, wenn sie länger als ein Jahr beschäftigt sind.\n\nWelcher der folgenden Testfälle beschreibt eine in der Praxis gültige, durchführbare Situation und fehlt in der dargestellten Entscheidungstabelle?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Prüfe: Welche Kombination ist realistisch UND fehlt in der Tabelle? Kann ein Ziel erreicht werden, wenn keins vereinbart wurde?",
         image: "images/a_q20.png",
         answers: [
             "Bedingung1 = 'J', Bedingung2 = 'N', Bedingung3 = 'J', Aktion = 'N'",
@@ -1252,7 +1252,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 4,
         text: "Sie möchten Verzweigungstests auf den Code anwenden, der durch ein Kontrollflussdiagramm dargestellt wird.\n\n[Siehe Diagramm im Bild]\n\nWie viele Überdeckungselemente müssen Sie testen?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Zähle die Entscheidungsknoten (Rauten) und deren ausgehende Kanten. Jede Entscheidung hat 2 Ausgänge (true/false).",
         image: "images/c_q24.png",
         answers: [
             "2",
@@ -1262,9 +1262,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "Nicht die Anzahl der Knoten zählen – Zweige (Branches) sind die Kanten!",
-            principle: "Zweigüberdeckung = Alle ausgehenden Kanten von Entscheidungsknoten.",
-            explanation: "Bei 2 IF-Entscheidungen mit je 2 Ausgängen sind das 4 Zweige (Überdeckungselemente).",
+            trap: "Nicht die Anzahl der Knoten zählen – Überdeckungselemente sind hier die ZWEIGE (Kanten)!",
+            principle: "Bei Zweigtests: Überdeckungselemente = Zweige = ausgehende Kanten von Entscheidungen (Rauten).",
+            explanation: "Im Diagramm gibt es 2 Entscheidungsknoten (Rauten), jeder hat 2 Ausgänge (true/false). Also: 2 × 2 = 4 Überdeckungselemente (Zweige).",
             reference: "Lehrplan 4.3.2"
         }
     },
@@ -2175,7 +2175,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 4,
         text: "Welche der folgenden Aussagen über Zweigtests ist zutreffend?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Denke an die Beziehung zwischen Anweisungs- und Zweigüberdeckung: Welche schließt welche ein? Und: Kann man ohne Testausführung überhaupt etwas überdecken?",
         answers: [
             "Wenn ein Programm nur bedingungslose Kontrollübergänge enthält, kann eine 100 %ige Zweigüberdeckung erreicht werden, ohne einen einzigen Testfall ausführen zu müssen.",
             "Wenn ein Zweig mit einem Testfall ausgeführt wird, werden alle Fehlerzustände darin aufgedeckt.",
