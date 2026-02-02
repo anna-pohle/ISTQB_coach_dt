@@ -232,7 +232,7 @@ const examQuestions = Object.freeze([
         kLevel: 1,
         chapter: 2,
         text: "Welche der folgenden Aussagen beschreibt AM BESTEN den Ansatz der abnahmetestgetriebenen Entwicklung (ATDD)?",
-        hint: "ATDD, BDD, TDD unterscheiden: ATDD = Akzeptanzkriterien, BDD = GIVEN/WHEN/THEN, TDD = Tests vor Code.",
+        hint: "Bei ATDD werden Tests VOR der Implementierung aus etwas abgeleitet – aber aus was genau? Und in welcher Phase des SDLC geschieht das?",
         answers: [
             "In der ATDD werden Akzeptanzkriterien typischerweise basierend auf dem Format GIVEN/WHEN/THEN erstellt.",
             "Bei ATDD werden zunächst die Testfälle entwickelt und dann die Software inkrementell gegen die Testfälle und definierten Akzeptanzkriterien implementiert.",
@@ -935,7 +935,7 @@ const examQuestions = Object.freeze([
         kLevel: 1,
         chapter: 2,
         text: "Welches der folgenden Beispiele ist ein Test-First-Ansatz für die Entwicklung?",
-        hint: "Test-First-Ansätze: TDD, ATDD, BDD. Welche davon steht zur Auswahl?",
+        hint: "Welche Begriffe werden im Lehrplan GENAU als Test-First-Ansätze genannt? Nicht alle Optionen entsprechen der offiziellen Terminologie!",
         answers: [
             "Komponententestgetriebene Entwicklung",
             "Integrationstestgetriebene Entwicklung",
@@ -944,8 +944,8 @@ const examQuestions = Object.freeze([
         ],
         correct: 3,
         feedback: {
-            trap: "Es gibt keine 'Integrationstestgetriebene' oder 'Systemtestgetriebene' Entwicklung als etablierte Methode.",
-            principle: "Test-First-Ansätze: TDD (Komponententests), ATDD (Akzeptanztests), BDD.",
+            trap: "Vorsicht: TDD nutzt zwar Komponententests, heißt aber 'Testgetriebene Entwicklung' – NICHT 'Komponententestgetriebene'. Die anderen Begriffe existieren gar nicht als etablierte Methoden.",
+            principle: "Offizielle Test-First-Ansätze im Lehrplan: TDD (Testgetriebene Entwicklung), ATDD (Akzeptanztestgetriebene Entwicklung), BDD (Verhaltensgetriebene Entwicklung).",
             explanation: "ATDD (Acceptance Test-Driven Development) ist ein Test-First-Ansatz, bei dem Tests aus Akzeptanzkriterien abgeleitet werden.",
             reference: "Lehrplan 2.1.3"
         }
@@ -1927,7 +1927,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 2,
         text: "Welche der folgenden Aussagen über Fehlernachtests und Regressionstests ist korrekt?",
-        hint: "Fehlernachtest = Ist der Fehler WEG? Regression = Nichts anderes KAPUTT gemacht?",
+        hint: "Denke an das ZIEL beider Tests: Was prüft der Fehlernachtest? Was prüft der Regressionstest? Und wie verändert sich die MENGE beider Tests im Projektverlauf?",
         answers: [
             "Die Anzahl der Regressionstests nimmt mit dem Projektfortschritt zu, wohingegen die Anzahl der Fehlernachtests mit dem Projektfortschritt abnimmt.",
             "Regressionstests werden erstellt und durchgeführt, wenn das Testobjekt korrigiert wird, während Fehlernachtests immer dann durchgeführt werden, wenn das Testobjekt erweitert wird.",
