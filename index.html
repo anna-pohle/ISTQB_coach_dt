@@ -2068,9 +2068,15 @@
             }, 100);
         }
         
+        /**
+         * Gets accuracy for a chapter (minimum 3 questions required)
+         * @param {number} chapter - Chapter number (1-6)
+         * @returns {number|null} Accuracy percentage or null if < 3 questions answered
+         */
         function getChapterAccuracy(chapter) {
             const stats = state.chapterStats[chapter];
-            if (!stats || stats.answered === 0) return null;
+            // Require minimum 3 questions for meaningful percentage
+            if (!stats || stats.answered < 3) return null;
             return Math.round((stats.correct / stats.answered) * 100);
         }
         
