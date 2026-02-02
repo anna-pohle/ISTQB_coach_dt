@@ -1230,12 +1230,20 @@
         .bookmarks-panel-title svg { width: 20px; height: 20px; stroke: var(--accent-warning); fill: var(--accent-warning); }
         .bookmark-filter-toggle { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; color: var(--text-secondary); cursor: pointer; }
         .bookmark-filter-toggle input { cursor: pointer; }
-        .bookmarks-list { display: flex; flex-direction: column; gap: 8px; }
-        .bookmark-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; background: var(--bg-secondary); border-radius: var(--radius-md); cursor: pointer; transition: all 0.2s; }
-        .bookmark-item:hover { background: var(--bg-primary); border: 1px solid var(--accent-warning); }
+        .bookmarks-list { display: flex; flex-direction: column; gap: 10px; }
+        .bookmark-item-expandable { border: 1px solid var(--border-color); border-radius: var(--radius-md); overflow: hidden; border-left: 4px solid hsl(var(--bm-hue, 150), 70%, 55%); }
+        .bookmark-item-header { display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: var(--bg-secondary); cursor: pointer; transition: all 0.2s; }
+        .bookmark-item-header:hover { background: hsla(var(--bm-hue, 150), 40%, 50%, 0.15); }
+        .bookmark-item-indicator { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+        .bookmark-item-id { font-size: 0.75rem; font-weight: 600; color: hsl(var(--bm-hue, 150), 70%, 55%); min-width: 40px; }
         .bookmark-item-title { font-size: 0.85rem; flex: 1; }
-        .bookmark-item-chapter { font-size: 0.75rem; color: var(--text-muted); margin-right: 8px; }
-        .bookmark-remove { background: transparent; border: none; color: var(--text-muted); cursor: pointer; padding: 4px; font-size: 0.9rem; }
+        .bookmark-item-toggle { font-size: 0.7rem; color: var(--text-muted); }
+        .bookmark-item-content { padding: 12px 16px; background: var(--bg-card); border-top: 1px solid var(--border-color); }
+        .bookmark-item-content .syllabus-quote { font-size: 0.85rem; margin-bottom: 10px; }
+        .bookmark-item-content .key-points { padding-left: 16px; margin: 0; }
+        .bookmark-item-content .key-points li { font-size: 0.85rem; }
+        .bookmark-item-content .coach-note { font-size: 0.8rem; }
+        .bookmark-remove { background: transparent; border: none; color: var(--text-muted); cursor: pointer; padding: 4px 8px; font-size: 0.9rem; margin-left: auto; }
         .bookmark-remove:hover { color: var(--accent-error); }
         .no-bookmarks { text-align: center; color: var(--text-muted); font-size: 0.85rem; padding: 20px; }
         .syllabus-structure .search-wrap { margin-bottom: 16px; position: sticky; top: 0; z-index: 50; background: var(--bg-primary); padding: 12px 0; margin: 0 -20px 16px -20px; padding: 12px 20px; border-bottom: 1px solid var(--border-color); }
@@ -1334,6 +1342,7 @@
             expandedChapters: {},
             expandedSections: {},    // Hierarchische Ausklapp-States: {'1-0': true, '1-0-2': true}
             expandedKeyPoints: {},   // Key-Points Ausklapp-States: {'1-0-3': true, '1-0-2-1': true}
+            expandedBookmarks: {},   // Lesezeichen Ausklapp-States: {'4-4.2.3': true}
             structureSearchQuery: '',
             showOnlyBookmarked: false,   // Nur Lesezeichen anzeigen
             settingsPanelOpen: false,    // Einstellungs-Panel
@@ -2321,13 +2330,81 @@
             
             // Lesezeichen-Panel anzeigen wenn welche vorhanden
             if (state.bookmarks && state.bookmarks.length > 0) {
+                // Sortiere Lesezeichen nach Kapitel und Abschnitt
+                const sortedBookmarks = [...state.bookmarks].sort((a, b) => {
+                    if (a.chapterId !== b.chapterId) return a.chapterId - b.chapterId;
+                    // Sortiere nach sectionId (z.B. "4.2.3" < "4.3.1")
+                    return a.sectionId.localeCompare(b.sectionId, undefined, { numeric: true });
+                });
+                
                 html += '<div class="bookmarks-panel">';
                 html += '<div class="bookmarks-panel-header"><div class="bookmarks-panel-title">' + getBookmarkSvg() + ' Meine Lesezeichen (' + state.bookmarks.length + ')</div>';
                 html += '<label class="bookmark-filter-toggle"><input type="checkbox" id="bookmark-filter-checkbox" ' + (state.showOnlyBookmarked ? 'checked' : '') + '> Nur Lesezeichen anzeigen</label></div>';
                 html += '<div class="bookmarks-list">';
-                state.bookmarks.forEach((b, bIdx) => {
-                    html += '<div class="bookmark-item" data-bookmark-jump="' + b.chapterId + '|' + b.sectionId + '"><span class="bookmark-item-chapter">Kap. ' + b.chapterId + '</span><span class="bookmark-item-title">' + escapeHtml(b.title) + '</span><button class="bookmark-remove" data-bookmark-remove="' + bIdx + '" title="Lesezeichen entfernen">✕</button></div>';
+                
+                sortedBookmarks.forEach((b) => {
+                    const bIdx = state.bookmarks.findIndex(bm => bm.chapterId === b.chapterId && bm.sectionId === b.sectionId);
+                    const cIdx = syllabusData.chapters.findIndex(c => c.id === b.chapterId);
+                    const hue = cIdx >= 0 && STRUCTURE_HUES[cIdx] !== undefined ? STRUCTURE_HUES[cIdx] : (cIdx * 60) % 360;
+                    const isExpanded = state.expandedBookmarks && state.expandedBookmarks[b.chapterId + '-' + b.sectionId];
+                    
+                    // Finde den Abschnitt im Syllabus
+                    let sectionContent = null;
+                    if (cIdx >= 0) {
+                        const chapter = syllabusData.chapters[cIdx];
+                        // Prüfe ob es das Kapitel selbst ist
+                        if (b.sectionId === String(b.chapterId)) {
+                            sectionContent = chapter;
+                        } else if (chapter.subchapters) {
+                            for (const sub of chapter.subchapters) {
+                                if (sub.id === b.sectionId) {
+                                    sectionContent = sub;
+                                    break;
+                                }
+                                if (sub.subsections) {
+                                    const ss = sub.subsections.find(s => s.id === b.sectionId);
+                                    if (ss) {
+                                        sectionContent = ss;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                    html += '<div class="bookmark-item-expandable" style="--bm-hue:' + hue + ';">';
+                    html += '<div class="bookmark-item-header" data-bookmark-expand="' + b.chapterId + '|' + b.sectionId + '">';
+                    html += '<span class="bookmark-item-indicator" style="background:hsl(' + hue + ', 70%, 55%);"></span>';
+                    html += '<span class="bookmark-item-id">' + escapeHtml(b.sectionId) + '</span>';
+                    html += '<span class="bookmark-item-title">' + escapeHtml(b.title.replace(b.sectionId + ' ', '').replace(' (Auto)', '')) + '</span>';
+                    html += '<span class="bookmark-item-toggle">' + (isExpanded ? '▲' : '▼') + '</span>';
+                    html += '<button class="bookmark-remove" data-bookmark-remove="' + bIdx + '" title="Lesezeichen entfernen">✕</button>';
+                    html += '</div>';
+                    
+                    if (isExpanded && sectionContent) {
+                        html += '<div class="bookmark-item-content">';
+                        if (sectionContent.page) html += '<div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:8px;">📄 Lehrplan Seite ' + sectionContent.page + '</div>';
+                        if (sectionContent.quote) html += '<div class="syllabus-quote">' + sectionContent.quote + '</div>';
+                        if (sectionContent.image) html += '<div class="syllabus-image"><img src="' + sectionContent.image + '" alt="' + (sectionContent.title || '') + '" style="max-width:100%;border-radius:8px;margin:12px 0;" /></div>';
+                        if (sectionContent.keyPoints) {
+                            html += '<ul class="key-points" style="margin-top:10px;">';
+                            sectionContent.keyPoints.forEach(p => {
+                                const isObj = typeof p === 'object';
+                                const title = isObj ? p.title : p;
+                                const content = isObj ? p.content : '';
+                                const coachNote = isObj && p.coachNote ? p.coachNote : null;
+                                html += '<li style="margin-bottom:8px;"><strong>' + title + '</strong>';
+                                if (content) html += '<div style="color:var(--text-secondary);font-size:0.85rem;margin-top:4px;">' + content + '</div>';
+                                if (coachNote) html += '<div class="coach-note" style="margin-top:8px;"><span class="coach-note-label">💡 Lern-Coach:</span><span class="coach-note-body">' + coachNote.replace(/\n/g, '<br>') + '</span></div>';
+                                html += '</li>';
+                            });
+                            html += '</ul>';
+                        }
+                        html += '</div>';
+                    }
+                    html += '</div>';
                 });
+                
                 html += '</div></div>';
             }
             
@@ -3169,12 +3246,16 @@
                         return;
                     }
                     
-                    const bookmarkJump = e.target.closest('[data-bookmark-jump]');
-                    if (bookmarkJump && !e.target.closest('.bookmark-remove')) {
+                    // Lesezeichen ausklappen (nicht springen)
+                    const bookmarkExpand = e.target.closest('[data-bookmark-expand]');
+                    if (bookmarkExpand && !e.target.closest('.bookmark-remove')) {
                         e.preventDefault();
-                        const parts = bookmarkJump.getAttribute('data-bookmark-jump').split('|');
+                        const parts = bookmarkExpand.getAttribute('data-bookmark-expand').split('|');
                         if (parts.length >= 2) {
-                            scrollToBookmark(parseInt(parts[0], 10), parts[1]);
+                            const key = parts[0] + '-' + parts[1];
+                            if (!state.expandedBookmarks) state.expandedBookmarks = {};
+                            state.expandedBookmarks[key] = !state.expandedBookmarks[key];
+                            render();
                         }
                         return;
                     }
