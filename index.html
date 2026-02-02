@@ -1363,6 +1363,53 @@
         .structure-floating-buttons .float-btn:hover .btn-text { display: inline; }
         .structure-floating-buttons .float-btn:active { transform: scale(0.95); }
         
+        /* ===== UTILITY CLASSES ===== */
+        /* Spacing */
+        .mt-0 { margin-top: 0; }
+        .mt-8 { margin-top: 8px; }
+        .mt-12 { margin-top: 12px; }
+        .mt-16 { margin-top: 16px; }
+        .mt-20 { margin-top: 20px; }
+        .mb-8 { margin-bottom: 8px; }
+        .mb-12 { margin-bottom: 12px; }
+        .mb-16 { margin-bottom: 16px; }
+        .p-12 { padding: 12px; }
+        .p-16 { padding: 16px; }
+        .gap-8 { gap: 8px; }
+        .gap-12 { gap: 12px; }
+        
+        /* Flexbox */
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .flex-wrap { flex-wrap: wrap; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .justify-center { justify-content: center; }
+        .flex-1 { flex: 1; }
+        
+        /* Typography */
+        .text-xs { font-size: 0.75rem; }
+        .text-sm { font-size: 0.85rem; }
+        .text-base { font-size: 1rem; }
+        .text-muted { color: var(--text-muted); }
+        .text-secondary { color: var(--text-secondary); }
+        .text-success { color: var(--accent-success); }
+        .text-warning { color: var(--accent-warning); }
+        .text-error { color: var(--accent-error); }
+        .font-bold { font-weight: 700; }
+        .font-semibold { font-weight: 600; }
+        .text-center { text-align: center; }
+        
+        /* Backgrounds */
+        .bg-card { background: var(--bg-card); }
+        .bg-secondary { background: var(--bg-secondary); }
+        .rounded-md { border-radius: var(--radius-md); }
+        .rounded-lg { border-radius: var(--radius-lg); }
+        
+        /* Visibility */
+        .hidden { display: none !important; }
+        .cursor-pointer { cursor: pointer; }
+        
         /* Responsive Design */
         @media (min-width: 768px) {
             .app-container { max-width: 720px; margin: 0 auto; }
@@ -1413,12 +1460,31 @@
         'use strict';
         
         // === CONFIGURATION CONSTANTS ===
+        /** @constant {Object} CONFIG - Application configuration values */
         const CONFIG = Object.freeze({
-            PASS_THRESHOLD: 65,           // Prozent zum Bestehen
+            PASS_THRESHOLD: 65,           // Prozent zum Bestehen (ISTQB Standard)
             EXAM_TIME_MINUTES: 60,        // Prüfungszeit in Minuten
             DEFAULT_EXAM_SIZE: 40,        // Standard-Prüfungsfragen
             POINTS_PER_CORRECT: 10,       // Punkte pro richtige Antwort
-            CONFIDENCE_DELAY_MS: 300      // Verzögerung nach Confidence-Auswahl
+            CONFIDENCE_DELAY_MS: 300,     // Verzögerung nach Confidence-Auswahl
+            TIME_WARNING_SECONDS: 60,     // Gelbe Warnung ab X Sekunden pro Frage
+            TIME_DANGER_SECONDS: 90,      // Rote Warnung ab X Sekunden pro Frage
+            SPEED_BONUS_FAST: 30,         // Bonus +3 bei <= X Sekunden
+            SPEED_BONUS_MEDIUM: 60,       // Bonus +2 bei <= X Sekunden
+            SPEED_BONUS_SLOW: 90          // Bonus +1 bei <= X Sekunden
+        });
+        
+        /**
+         * @constant {Object} CHAPTER_COLORS - Color definitions for each chapter
+         * Each chapter has: hue (HSL), hex (primary color), label (German name)
+         */
+        const CHAPTER_COLORS = Object.freeze({
+            1: { hue: 150, hex: '#10b981', label: 'Grundlagen des Testens' },
+            2: { hue: 205, hex: '#3b82f6', label: 'Testen im SDLC' },
+            3: { hue: 270, hex: '#8b5cf6', label: 'Statisches Testen' },
+            4: { hue: 330, hex: '#ec4899', label: 'Testanalyse und -entwurf' },
+            5: { hue: 25,  hex: '#f97316', label: 'Management der Testaktivitäten' },
+            6: { hue: 45,  hex: '#eab308', label: 'Testwerkzeuge' }
         });
         
         // Private state with immutable defaults
@@ -1660,6 +1726,10 @@
         // STORAGE FUNCTIONS
         // ========================================================================
         
+        /**
+         * Loads application state from localStorage
+         * Handles corrupted or missing data gracefully with defaults
+         */
         function loadState() {
             try {
                 state.points = safeParseInt(localStorage.getItem(STORAGE_KEYS.POINTS));
@@ -1981,6 +2051,10 @@
         // STREAK MANAGEMENT
         // ========================================================================
         
+        /**
+         * Checks and updates the daily learning streak
+         * Increments streak if user studied yesterday, resets to 1 otherwise
+         */
         function checkStreak() {
             const today = new Date().toDateString();
             if (state.lastStudyDate !== today) {
@@ -1991,6 +2065,10 @@
             }
         }
         
+        /**
+         * Calculates overall accuracy percentage
+         * @returns {number} Accuracy percentage (0-100)
+         */
         function getAccuracy() {
             return state.questionsAnswered === 0 
                 ? 0 
@@ -2010,6 +2088,93 @@
         // ========================================================================
         // QUIZ LOGIC
         // ========================================================================
+        
+        /**
+         * Creates a new quiz state object
+         * @param {Array} questions - Array of question objects
+         * @returns {Object} Initialized quiz state
+         */
+        function createQuizState(questions) {
+            const questionCount = questions.length;
+            const totalTimeSeconds = Math.round(questionCount * 1.5 * 60);
+            
+            // Shuffle answer options for each question
+            const answerMappings = questions.map(q => {
+                const indices = q.answers.map((_, i) => i);
+                return shuffleArray(indices);
+            });
+            
+            return {
+                questions: questions,
+                answerMappings: answerMappings,
+                currentIndex: 0,
+                score: 0,
+                answered: false,
+                confirmed: false,
+                selectedAnswer: null,
+                finished: false,
+                hintShown: false,
+                confidence: null,
+                currentStreak: 0,
+                answers: [],
+                wrongAnswers: [],
+                timeElapsed: 0,
+                timeRemaining: totalTimeSeconds,
+                totalTime: totalTimeSeconds,
+                timeUp: false,
+                shownHalftime: false,
+                // Time tracking per question
+                questionTimes: [],
+                questionStartTime: Date.now(),
+                currentQuestionTime: 0,
+                speedBonus: 0
+            };
+        }
+        
+        /**
+         * Initializes and starts a new quiz
+         * @returns {boolean} True if quiz started successfully
+         */
+        function initializeQuiz() {
+            if (state.currentQuiz) return false;
+            
+            checkStreak();
+            const quizQuestions = getQuestionsForQuiz();
+            
+            if (quizQuestions.length === 0) {
+                alert('Keine Fragen für diese Auswahl verfügbar.');
+                return false;
+            }
+            
+            state.currentQuiz = createQuizState(quizQuestions);
+            render();
+            startTimer();
+            return true;
+        }
+        
+        /**
+         * Advances to the next question or finishes the quiz
+         * @returns {boolean} True if advanced, false if quiz finished
+         */
+        function advanceToNextQuestion() {
+            const quiz = state.currentQuiz;
+            if (!quiz) return false;
+            
+            if (quiz.currentIndex < quiz.questions.length - 1) {
+                quiz.currentIndex++;
+                quiz.answered = false;
+                quiz.confirmed = false;
+                quiz.selectedAnswer = null;
+                quiz.hintShown = false;
+                quiz.confidence = null;
+                resetQuestionTimer();
+                return true;
+            } else {
+                quiz.finished = true;
+                if (timerInterval) clearInterval(timerInterval);
+                return false;
+            }
+        }
         
         function selectWeightedQuestions(count) {
             const byChapter = {};
@@ -2084,6 +2249,7 @@
                         render();
                     } else {
                         updateTimerDisplay();
+                        updateFloatingQuestionTimer();
                     }
                 } else {
                     // Count up (practice mode)
@@ -2118,24 +2284,32 @@
             }
         }
         
+        /**
+         * Updates the floating timer display (works for both practice and exam mode)
+         */
         function updateFloatingQuestionTimer() {
             const floatingTimer = document.querySelector('.floating-question-timer');
             if (!floatingTimer || !state.currentQuiz) return;
             
-            const qTime = state.currentQuiz.currentQuestionTime || 0;
+            const quiz = state.currentQuiz;
+            const isPractice = state.quizMode === 'practice';
             const timerValue = floatingTimer.querySelector('.timer-value');
+            
             if (timerValue) {
-                timerValue.textContent = formatTime(qTime);
+                if (isPractice) {
+                    timerValue.textContent = formatTime(quiz.currentQuestionTime || 0);
+                } else {
+                    timerValue.textContent = formatTime(quiz.timeRemaining || 0);
+                }
             }
             
-            // Update color class based on time
+            // Update color class based on time/progress
             floatingTimer.classList.remove('time-ok', 'time-warning', 'time-danger');
-            if (qTime >= 90) {
-                floatingTimer.classList.add('time-danger');
-            } else if (qTime >= 60) {
-                floatingTimer.classList.add('time-warning');
+            if (isPractice) {
+                const qTime = quiz.currentQuestionTime || 0;
+                floatingTimer.classList.add(getQuestionTimeClass(qTime));
             } else {
-                floatingTimer.classList.add('time-ok');
+                floatingTimer.classList.add(getExamTimeClass(quiz));
             }
         }
         
@@ -2152,14 +2326,24 @@
             state.currentQuiz.currentQuestionTime = 0;
         }
         
+        /**
+         * Calculates speed bonus points for quick correct answers
+         * @param {number} timeSpent - Time spent on question in seconds
+         * @param {boolean} isCorrect - Whether answer was correct
+         * @returns {number} Bonus points (0-3)
+         */
         function calculateSpeedBonus(timeSpent, isCorrect) {
             if (!isCorrect) return 0;
-            if (timeSpent <= 30) return 3; // Super schnell
-            if (timeSpent <= 60) return 2; // Schnell
-            if (timeSpent <= 90) return 1; // Im Zeitplan
+            if (timeSpent <= CONFIG.SPEED_BONUS_FAST) return 3;   // Super schnell
+            if (timeSpent <= CONFIG.SPEED_BONUS_MEDIUM) return 2; // Schnell
+            if (timeSpent <= CONFIG.SPEED_BONUS_SLOW) return 1;   // Im Zeitplan
             return 0;
         }
         
+        /**
+         * Displays animated speed bonus notification
+         * @param {number} bonus - Bonus points to display
+         */
         function showSpeedBonus(bonus) {
             if (bonus <= 0) return;
             const bonusText = bonus >= 2 ? '⚡ Blitzschnell!' : '⚡ Schnell!';
@@ -2295,7 +2479,29 @@
                 </nav>`;
         }
         
-        const STRUCTURE_HUES = [150, 205, 270, 330, 25, 45];
+        /** @constant {number[]} STRUCTURE_HUES - HSL hue values for chapters 1-6 (derived from CHAPTER_COLORS) */
+        const STRUCTURE_HUES = Object.values(CHAPTER_COLORS).map(c => c.hue);
+        
+        /**
+         * Returns color info for a chapter
+         * @param {number} chapterId - Chapter ID (1-6)
+         * @returns {Object} Color object with hue, hex, label
+         */
+        function getChapterColor(chapterId) {
+            return CHAPTER_COLORS[chapterId] || CHAPTER_COLORS[1];
+        }
+        
+        /**
+         * Returns HSL color string for a chapter
+         * @param {number} chapterId - Chapter ID (1-6)
+         * @param {number} [saturation=70] - HSL saturation percentage
+         * @param {number} [lightness=55] - HSL lightness percentage
+         * @returns {string} HSL color string
+         */
+        function getChapterHSL(chapterId, saturation = 70, lightness = 55) {
+            const color = getChapterColor(chapterId);
+            return `hsl(${color.hue}, ${saturation}%, ${lightness}%)`;
+        }
         function highlightStructureText(text, query) {
             if (!text) return '';
             const safe = escapeHtml(text);
@@ -3072,19 +3278,42 @@
                     ` : ''}
                 </div>
                 
-                ${isPractice ? `
-                    <!-- Floating Question Timer (Practice Mode) -->
-                    <div class="floating-question-timer ${getQuestionTimeClass(quiz.currentQuestionTime || 0)}">
-                        <span class="timer-icon">⏱️</span>
-                        <span class="timer-value">${formatTime(quiz.currentQuestionTime || 0)}</span>
-                        <span class="time-label">diese Frage</span>
-                    </div>
-                ` : ''}`;
+                <!-- Floating Timer (both modes) -->
+                <div class="floating-question-timer ${isPractice ? getQuestionTimeClass(quiz.currentQuestionTime || 0) : getExamTimeClass(quiz)}">
+                    <span class="timer-icon">${isPractice ? '⏱️' : '⏰'}</span>
+                    <span class="timer-value">${isPractice ? formatTime(quiz.currentQuestionTime || 0) : formatTime(quiz.timeRemaining || 0)}</span>
+                    <span class="time-label">${isPractice ? 'diese Frage' : 'verbleibend'}</span>
+                </div>`;
         }
         
+        /**
+         * Determines CSS class for question timer based on elapsed time
+         * Uses CONFIG.TIME_WARNING_SECONDS and CONFIG.TIME_DANGER_SECONDS
+         * @param {number} seconds - Time spent on current question
+         * @returns {string} CSS class name ('time-ok', 'time-warning', or 'time-danger')
+         */
         function getQuestionTimeClass(seconds) {
-            if (seconds >= 90) return 'time-danger';
-            if (seconds >= 60) return 'time-warning';
+            if (seconds >= CONFIG.TIME_DANGER_SECONDS) return 'time-danger';
+            if (seconds >= CONFIG.TIME_WARNING_SECONDS) return 'time-warning';
+            return 'time-ok';
+        }
+        
+        /**
+         * Determines CSS class for exam timer based on remaining time and progress
+         * @param {Object} quiz - Current quiz state
+         * @returns {string} CSS class name
+         */
+        function getExamTimeClass(quiz) {
+            if (!quiz) return 'time-ok';
+            const remaining = quiz.timeRemaining || 0;
+            const total = quiz.totalTime || 1;
+            const progress = (quiz.currentIndex + 1) / quiz.questions.length;
+            const timeProgress = 1 - (remaining / total);
+            
+            // Behind schedule: time used > expected for progress
+            if (remaining <= 300) return 'time-danger'; // < 5 min left
+            if (remaining <= 600) return 'time-warning'; // < 10 min left
+            if (timeProgress > progress + 0.15) return 'time-warning'; // 15% behind schedule
             return 'time-ok';
         }
         
@@ -3553,51 +3782,7 @@
                     if (startBtn) {
                         e.preventDefault();
                         e.stopPropagation();
-                        if (state.currentQuiz) return;
-                        
-                        checkStreak();
-                        const quizQuestions = getQuestionsForQuiz();
-                        if (quizQuestions.length === 0) {
-                            alert('Keine Fragen für diese Auswahl verfügbar.');
-                            return;
-                        }
-                        const questionCount = quizQuestions.length;
-                        const totalTimeSeconds = Math.round(questionCount * 1.5 * 60);
-                        
-                        // Für jede Frage die Antwortindizes mischen
-                        const answerMappings = quizQuestions.map(q => {
-                            const indices = q.answers.map((_, i) => i);
-                            return shuffleArray(indices);
-                        });
-                        
-                        state.currentQuiz = {
-                            questions: quizQuestions,
-                            answerMappings: answerMappings, // Gemischte Antwortindizes pro Frage
-                            currentIndex: 0,
-                            score: 0,
-                            answered: false,
-                            confirmed: false,
-                            selectedAnswer: null,
-                            finished: false,
-                            hintShown: false,
-                            confidence: null,
-                            currentStreak: 0,
-                            answers: [],
-                            wrongAnswers: [],
-                            timeElapsed: 0,
-                            timeRemaining: totalTimeSeconds,
-                            totalTime: totalTimeSeconds,
-                            timeUp: false,
-                            shownHalftime: false,
-                            // Time tracking per question
-                            questionTimes: [],
-                            questionStartTime: Date.now(),
-                            currentQuestionTime: 0,
-                            speedBonus: 0
-                        };
-                        
-                        render();
-                        startTimer();
+                        initializeQuiz();
                         return;
                     }
                     
@@ -4202,51 +4387,17 @@
             }
         }
         
-        // Public API
+        // Public API - Exposed methods for external access and testing
         return {
             init,
-            startQuiz: function() {
-                if (state.currentQuiz) return;
-                checkStreak();
-                const questions = getQuestionsForQuiz();
-                if (questions.length === 0) {
-                    alert('Keine Fragen verfügbar.');
-                    return;
-                }
-                const totalTimeSeconds = Math.round(questions.length * 1.5 * 60);
-                // Für jede Frage die Antwortindizes mischen
-                const answerMappings = questions.map(q => {
-                    const indices = q.answers.map((_, i) => i);
-                    return shuffleArray(indices);
-                });
-                
-                state.currentQuiz = {
-                    questions: questions,
-                    answerMappings: answerMappings, // Gemischte Antwortindizes pro Frage
-                    currentIndex: 0,
-                    score: 0,
-                    answered: false,
-                    confirmed: false,
-                    selectedAnswer: null,
-                    finished: false,
-                    hintShown: false,
-                    confidence: null,
-                    currentStreak: 0,
-                    answers: [],
-                    wrongAnswers: [],
-                    timeElapsed: 0,
-                    timeRemaining: totalTimeSeconds,
-                    totalTime: totalTimeSeconds,
-                    timeUp: false,
-                    shownHalftime: false,
-                    // Time tracking per question
-                    questionTimes: [],
-                    questionStartTime: Date.now(),
-                    currentQuestionTime: 0,
-                    speedBonus: 0
-                };
-                render();
-                startTimer();
+            startQuiz: initializeQuiz,
+            // Expose for testing
+            _test: {
+                createQuizState,
+                getQuestionsForQuiz,
+                calculateSpeedBonus,
+                getChapterColor,
+                getChapterHSL
             }
         };
     })();
