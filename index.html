@@ -737,6 +737,89 @@
         .timer-display.danger { color: var(--accent-error); animation: pulse 1s infinite; }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
         
+        /* Floating Question Timer (Practice Mode) */
+        .floating-question-timer {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            background: var(--bg-card);
+            border: 2px solid var(--accent-success);
+            border-radius: var(--radius-lg);
+            padding: 8px 14px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        .floating-question-timer .timer-icon { font-size: 1.1rem; }
+        .floating-question-timer .timer-value { min-width: 40px; }
+        .floating-question-timer.time-ok { border-color: var(--accent-success); color: var(--accent-success); }
+        .floating-question-timer.time-warning { border-color: var(--accent-warning); color: var(--accent-warning); }
+        .floating-question-timer.time-danger { border-color: var(--accent-error); color: var(--accent-error); animation: pulse 1s infinite; }
+        .floating-question-timer .time-label { font-size: 0.7rem; font-weight: 500; opacity: 0.7; }
+        
+        /* Speed Bonus Display */
+        .speed-bonus {
+            position: fixed;
+            bottom: 75px;
+            right: 20px;
+            z-index: 100;
+            background: linear-gradient(135deg, #f59e0b 0%, #eab308 100%);
+            color: #000;
+            border-radius: var(--radius-lg);
+            padding: 8px 14px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            animation: bonusPop 0.5s ease-out, bonusFade 2s ease-in 0.5s forwards;
+            box-shadow: 0 4px 16px rgba(245,158,11,0.4);
+        }
+        @keyframes bonusPop {
+            0% { transform: scale(0) translateY(20px); opacity: 0; }
+            70% { transform: scale(1.1) translateY(-5px); }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
+        @keyframes bonusFade {
+            0% { opacity: 1; }
+            100% { opacity: 0; transform: translateY(-20px); }
+        }
+        
+        /* Time Stats in Result */
+        .time-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 12px;
+            padding: 12px;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+        }
+        .time-stat {
+            text-align: center;
+            padding: 8px 16px;
+            background: var(--bg-card);
+            border-radius: var(--radius-sm);
+        }
+        .time-stat-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+        .time-stat-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .time-stat-value.fast { color: var(--accent-success); }
+        .time-stat-value.medium { color: var(--accent-warning); }
+        .time-stat-value.slow { color: var(--accent-error); }
+        
         .speedometer {
             display: flex;
             align-items: center;
@@ -1981,9 +2064,14 @@
                         updateTimerDisplay();
                     }
                 } else {
-                    // Count up
+                    // Count up (practice mode)
                     state.currentQuiz.timeElapsed++;
+                    // Calculate current question time
+                    if (state.currentQuiz.questionStartTime) {
+                        state.currentQuiz.currentQuestionTime = Math.floor((Date.now() - state.currentQuiz.questionStartTime) / 1000);
+                    }
                     updateTimerDisplay();
+                    updateFloatingQuestionTimer();
                 }
             }, 1000);
         }
@@ -2006,6 +2094,58 @@
             if (state.quizMode === 'exam') {
                 updateSpeedometer();
             }
+        }
+        
+        function updateFloatingQuestionTimer() {
+            const floatingTimer = document.querySelector('.floating-question-timer');
+            if (!floatingTimer || !state.currentQuiz) return;
+            
+            const qTime = state.currentQuiz.currentQuestionTime || 0;
+            const timerValue = floatingTimer.querySelector('.timer-value');
+            if (timerValue) {
+                timerValue.textContent = formatTime(qTime);
+            }
+            
+            // Update color class based on time
+            floatingTimer.classList.remove('time-ok', 'time-warning', 'time-danger');
+            if (qTime >= 90) {
+                floatingTimer.classList.add('time-danger');
+            } else if (qTime >= 60) {
+                floatingTimer.classList.add('time-warning');
+            } else {
+                floatingTimer.classList.add('time-ok');
+            }
+        }
+        
+        function saveQuestionTime() {
+            if (!state.currentQuiz || !state.currentQuiz.questionStartTime) return;
+            const timeSpent = Math.floor((Date.now() - state.currentQuiz.questionStartTime) / 1000);
+            state.currentQuiz.questionTimes.push(timeSpent);
+            return timeSpent;
+        }
+        
+        function resetQuestionTimer() {
+            if (!state.currentQuiz) return;
+            state.currentQuiz.questionStartTime = Date.now();
+            state.currentQuiz.currentQuestionTime = 0;
+        }
+        
+        function calculateSpeedBonus(timeSpent, isCorrect) {
+            if (!isCorrect) return 0;
+            if (timeSpent <= 30) return 3; // Super schnell
+            if (timeSpent <= 60) return 2; // Schnell
+            if (timeSpent <= 90) return 1; // Im Zeitplan
+            return 0;
+        }
+        
+        function showSpeedBonus(bonus) {
+            if (bonus <= 0) return;
+            const bonusText = bonus >= 2 ? '⚡ Blitzschnell!' : '⚡ Schnell!';
+            const bonusEl = document.createElement('div');
+            bonusEl.className = 'speed-bonus';
+            bonusEl.textContent = `${bonusText} +${bonus}`;
+            document.body.appendChild(bonusEl);
+            setTimeout(() => bonusEl.remove(), 2500);
         }
         
         function updateSpeedometer() {
@@ -2904,7 +3044,22 @@
                             ${quiz.currentIndex < quiz.questions.length - 1 ? 'Nächste Frage →' : 'Ergebnis anzeigen'}
                         </button>
                     ` : ''}
-                </div>`;
+                </div>
+                
+                ${isPractice ? `
+                    <!-- Floating Question Timer (Practice Mode) -->
+                    <div class="floating-question-timer ${getQuestionTimeClass(quiz.currentQuestionTime || 0)}">
+                        <span class="timer-icon">⏱️</span>
+                        <span class="timer-value">${formatTime(quiz.currentQuestionTime || 0)}</span>
+                        <span class="time-label">diese Frage</span>
+                    </div>
+                ` : ''}`;
+        }
+        
+        function getQuestionTimeClass(seconds) {
+            if (seconds >= 90) return 'time-danger';
+            if (seconds >= 60) return 'time-warning';
+            return 'time-ok';
         }
         
         function renderQuizResult() {
@@ -2963,6 +3118,17 @@
                 ? `Zeit: ${formatTime(quiz.timeElapsed || 0)}`
                 : `Zeit: ${formatTime((quiz.totalTime || 0) - (quiz.timeRemaining || 0))} von ${formatTime(quiz.totalTime || 0)}`;
             
+            // Calculate average time per question (Practice mode)
+            const questionTimes = quiz.questionTimes || [];
+            const avgTimePerQuestion = questionTimes.length > 0 
+                ? Math.round(questionTimes.reduce((a, b) => a + b, 0) / questionTimes.length)
+                : 0;
+            const targetTime = 90; // 1.5 min per question
+            const avgTimeClass = avgTimePerQuestion <= 60 ? 'fast' : avgTimePerQuestion <= 90 ? 'medium' : 'slow';
+            const fastestTime = questionTimes.length > 0 ? Math.min(...questionTimes) : 0;
+            const slowestTime = questionTimes.length > 0 ? Math.max(...questionTimes) : 0;
+            const speedBonus = quiz.speedBonus || 0;
+            
             return `
                 <div class="view active" role="region" aria-label="Quiz-Ergebnis">
                     <div class="result-card">
@@ -2974,9 +3140,38 @@
                             ${quiz.timeUp ? '<span style="color:var(--accent-warning);">⏰ Zeit abgelaufen!</span><br>' : ''}
                             <span class="${passed ? 'result-pass' : 'result-fail'}">
                                 ${passed ? `Mindestanforderung von ${CONFIG.PASS_THRESHOLD}% erreicht!` : `Für die Prüfung werden mindestens ${CONFIG.PASS_THRESHOLD}% benötigt.`}
-                            </span><br>
-                            <span style="font-size:0.85rem;color:var(--text-muted);">${timeInfo}</span>
+                            </span>
                         </p>
+                        
+                        ${isPractice && questionTimes.length > 0 ? `
+                            <!-- Time Statistics (Practice Mode) -->
+                            <div class="time-stats">
+                                <div class="time-stat">
+                                    <div class="time-stat-value">${formatTime(quiz.timeElapsed || 0)}</div>
+                                    <div class="time-stat-label">Gesamt</div>
+                                </div>
+                                <div class="time-stat">
+                                    <div class="time-stat-value ${avgTimeClass}">${formatTime(avgTimePerQuestion)}</div>
+                                    <div class="time-stat-label">∅/Frage (Ziel: 1:30)</div>
+                                </div>
+                                <div class="time-stat">
+                                    <div class="time-stat-value fast">${formatTime(fastestTime)}</div>
+                                    <div class="time-stat-label">Schnellste</div>
+                                </div>
+                                <div class="time-stat">
+                                    <div class="time-stat-value ${slowestTime > 90 ? 'slow' : ''}">${formatTime(slowestTime)}</div>
+                                    <div class="time-stat-label">Langsamste</div>
+                                </div>
+                                ${speedBonus > 0 ? `
+                                    <div class="time-stat">
+                                        <div class="time-stat-value fast">+${speedBonus}</div>
+                                        <div class="time-stat-label">⚡ Speed-Bonus</div>
+                                    </div>
+                                ` : ''}
+                            </div>
+                        ` : `
+                            <p style="font-size:0.85rem;color:var(--text-muted);margin-top:8px;">${timeInfo}</p>
+                        `}
                         
                         <!-- Chapter Breakdown -->
                         <div class="chapter-breakdown" style="margin-top:20px;">
@@ -3367,7 +3562,12 @@
                             timeRemaining: totalTimeSeconds,
                             totalTime: totalTimeSeconds,
                             timeUp: false,
-                            shownHalftime: false
+                            shownHalftime: false,
+                            // Time tracking per question
+                            questionTimes: [],
+                            questionStartTime: Date.now(),
+                            currentQuestionTime: 0,
+                            speedBonus: 0
                         };
                         
                         render();
@@ -3612,6 +3812,9 @@
                     quiz.confirmed = true;
                     quiz.answered = true;
                     
+                    // Save question time and calculate speed bonus
+                    const timeSpent = saveQuestionTime();
+                    
                     // Store answer for results
                     if (!quiz.answers) quiz.answers = [];
                     quiz.answers[quiz.currentIndex] = quiz.selectedAnswer;
@@ -3645,6 +3848,14 @@
                         state.points += CONFIG.POINTS_PER_CORRECT;
                         state.chapterStats[chapter].correct++;
                         quiz.currentStreak = (quiz.currentStreak || 0) + 1;
+                        
+                        // Speed bonus for quick correct answers
+                        const bonus = calculateSpeedBonus(timeSpent, true);
+                        if (bonus > 0) {
+                            quiz.speedBonus = (quiz.speedBonus || 0) + bonus;
+                            state.points += bonus;
+                            showSpeedBonus(bonus);
+                        }
                     } else {
                         quiz.currentStreak = 0;
                         // Track wrong answer for review
@@ -3675,6 +3886,8 @@
                                 quiz.selectedAnswer = null;
                                 quiz.hintShown = false;
                                 quiz.confidence = null;
+                                // Reset question timer for next question
+                                resetQuestionTimer();
                             } else {
                                 quiz.finished = true;
                                 if (timerInterval) clearInterval(timerInterval);
@@ -3815,6 +4028,8 @@
                         quiz.selectedAnswer = null;
                         quiz.hintShown = false;
                         quiz.confidence = null;
+                        // Reset question timer for next question
+                        resetQuestionTimer();
                     } else {
                         quiz.finished = true;
                         if (timerInterval) clearInterval(timerInterval);
@@ -3997,7 +4212,12 @@
                     timeRemaining: totalTimeSeconds,
                     totalTime: totalTimeSeconds,
                     timeUp: false,
-                    shownHalftime: false
+                    shownHalftime: false,
+                    // Time tracking per question
+                    questionTimes: [],
+                    questionStartTime: Date.now(),
+                    currentQuestionTime: 0,
+                    speedBonus: 0
                 };
                 render();
                 startTimer();

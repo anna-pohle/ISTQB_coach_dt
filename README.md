@@ -26,6 +26,8 @@ Oder auf dem Handy installieren → [Anleitung](#-installation)
 | **Prüfungsmodus** | 40 Fragen, 60 Min, 65% zum Bestehen |
 | **Spaced Repetition** | Intelligentes Lernsystem: Falsche, unsichere oder mit Hinweis beantwortete Fragen kommen häufiger dran |
 | **Confidence-Tracking** | Im Übungsmodus: Selbsteinschätzung (sicher/unsicher/geraten) beeinflusst Wiederholungshäufigkeit |
+| **Zeit-Training** | Floating Timer pro Frage (grün → gelb → rot), Durchschnittszeit am Ende |
+| **Speed-Bonus** | Bonuspunkte für schnelle richtige Antworten (⚡ +1 bis +3) |
 | **Tastatursteuerung** | A/B/C/D + Enter für schnelles Antworten |
 
 ### 📚 Lehrplan-Modul
