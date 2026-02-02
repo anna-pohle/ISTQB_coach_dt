@@ -2551,7 +2551,7 @@
          * Renders the Questions Dashboard with activity statistics
          */
         function renderQuestionsDashboard() {
-            const totalQuestions = questionsData.length;
+            const totalQuestions = questions.length;
             const answeredPct = totalQuestions > 0 ? Math.round((state.questionsAnswered / totalQuestions) * 100) : 0;
             
             // Calculate chapter distribution
@@ -2565,7 +2565,7 @@
             
             // Questions per chapter in pool
             const questionsPerChapter = {};
-            questionsData.forEach(q => {
+            questions.forEach(q => {
                 questionsPerChapter[q.chapter] = (questionsPerChapter[q.chapter] || 0) + 1;
             });
             
