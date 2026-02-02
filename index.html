@@ -1239,8 +1239,12 @@
         .bookmark-remove:hover { color: var(--accent-error); }
         .no-bookmarks { text-align: center; color: var(--text-muted); font-size: 0.85rem; padding: 20px; }
         .syllabus-structure .search-wrap { margin-bottom: 16px; position: sticky; top: 0; z-index: 50; background: var(--bg-primary); padding: 12px 0; margin: 0 -20px 16px -20px; padding: 12px 20px; border-bottom: 1px solid var(--border-color); }
-        .syllabus-structure .search-input { width: 100%; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-secondary); color: var(--text-primary); font-size: 0.95rem; }
+        .syllabus-structure .search-row { display: flex; gap: 10px; align-items: center; }
+        .syllabus-structure .search-input { flex: 1; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-secondary); color: var(--text-primary); font-size: 0.95rem; }
         .syllabus-structure .search-input:focus { border-color: var(--accent-primary); }
+        .syllabus-structure .expand-buttons { display: flex; gap: 6px; flex-shrink: 0; }
+        .syllabus-structure .expand-btn { padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border-color); background: var(--bg-secondary); color: var(--text-secondary); font-size: 0.8rem; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+        .syllabus-structure .expand-btn:hover { background: var(--bg-card); border-color: var(--accent-primary); color: var(--text-primary); }
         .syllabus-structure .search-result-info { margin-top: 8px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-secondary); }
         .syllabus-structure .search-result-info .search-result-count { font-weight: 600; color: var(--accent-primary); }
         .syllabus-structure .search-result-info .search-jump-btn { padding: 6px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-primary); font-size: 0.85rem; cursor: pointer; font-weight: 500; }
@@ -2327,7 +2331,7 @@
             }
             
             html += '<div class="syllabus-source-info"><p>📖 <strong>Lernhilfe</strong> basierend auf dem offiziellen deutschen Lehrplan.</p><a href="https://www.german-testing-board.info/lehrplaene/istqbr-certified-tester-schema/" target="_blank" rel="noopener">📄 Offiziellen Lehrplan beim GTB herunterladen →</a><p class="source-note">© German Testing Board e.V., Austrian Testing Board, Swiss Testing Board</p></div>';
-            html += '<div class="search-wrap"><label for="structure-search-input">Suchen in Kapiteln, Key Points und Coach-Notes</label><input type="search" id="structure-search-input" class="search-input" placeholder="Begriff eingeben …" aria-label="Suchen im Syllabus" value="' + escapeHtml(state.structureSearchQuery || '') + '" autocomplete="off"><div id="structure-search-result-info" class="search-result-info" aria-live="polite" role="status"></div></div>';
+            html += '<div class="search-wrap"><div class="search-row"><label for="structure-search-input" class="visually-hidden">Suchen im Syllabus</label><input type="search" id="structure-search-input" class="search-input" placeholder="🔍 Begriff suchen …" aria-label="Suchen im Syllabus" value="' + escapeHtml(state.structureSearchQuery || '') + '" autocomplete="off"><div class="expand-buttons"><button type="button" id="expand-all-btn" class="expand-btn" title="Alles ausklappen">⊞ Alle</button><button type="button" id="collapse-all-btn" class="expand-btn" title="Alles einklappen">⊟ Alle</button></div></div><div id="structure-search-result-info" class="search-result-info" aria-live="polite" role="status"></div></div>';
             html += '<div id="structure-content">';
             
             syllabusData.chapters.forEach((chapter, cIdx) => {
@@ -3310,7 +3314,21 @@
                     if (chapterHeader && !e.target.closest('.bookmark-btn')) {
                         const idx = parseInt(chapterHeader.getAttribute('data-toggle-chapter'), 10);
                         if (!state.expandedChapters) state.expandedChapters = {};
-                        state.expandedChapters[idx] = !state.expandedChapters[idx];
+                        const willExpand = !state.expandedChapters[idx];
+                        state.expandedChapters[idx] = willExpand;
+                        
+                        // Auto-Expand: Wenn nur 1 Subchapter, diesen auch aufklappen
+                        if (willExpand) {
+                            const chapter = syllabusData.chapters[idx];
+                            if (chapter && chapter.subchapters && chapter.subchapters.length === 1) {
+                                if (!state.expandedSections) state.expandedSections = {};
+                                state.expandedSections[idx + '-0'] = true;
+                                // Wenn auch nur 1 Subsektion, diese auch aufklappen
+                                if (chapter.subchapters[0].subsections && chapter.subchapters[0].subsections.length === 1) {
+                                    state.expandedSections[idx + '-0-0'] = true;
+                                }
+                            }
+                        }
                         render();
                         e.preventDefault();
                         return;
@@ -3321,7 +3339,20 @@
                     if (sectionToggle && !e.target.closest('.bookmark-btn')) {
                         const key = sectionToggle.getAttribute('data-toggle-section');
                         if (!state.expandedSections) state.expandedSections = {};
-                        state.expandedSections[key] = !state.expandedSections[key];
+                        const willExpand = !state.expandedSections[key];
+                        state.expandedSections[key] = willExpand;
+                        
+                        // Auto-Expand: Wenn nur 1 Subsektion, diese auch aufklappen
+                        if (willExpand) {
+                            const [cIdx, sIdx] = key.split('-').map(Number);
+                            const chapter = syllabusData.chapters[cIdx];
+                            if (chapter && chapter.subchapters && chapter.subchapters[sIdx]) {
+                                const section = chapter.subchapters[sIdx];
+                                if (section.subsections && section.subsections.length === 1) {
+                                    state.expandedSections[key + '-0'] = true;
+                                }
+                            }
+                        }
                         render();
                         e.preventDefault();
                         return;
@@ -3333,6 +3364,38 @@
                         const key = subsectionToggle.getAttribute('data-toggle-subsection');
                         if (!state.expandedSections) state.expandedSections = {};
                         state.expandedSections[key] = !state.expandedSections[key];
+                        render();
+                        e.preventDefault();
+                        return;
+                    }
+                    
+                    // ========== ALLES AUS-/EINKLAPPEN ==========
+                    const expandAllBtn = e.target.closest('#expand-all-btn');
+                    if (expandAllBtn) {
+                        if (!state.expandedChapters) state.expandedChapters = {};
+                        if (!state.expandedSections) state.expandedSections = {};
+                        syllabusData.chapters.forEach((chapter, cIdx) => {
+                            state.expandedChapters[cIdx] = true;
+                            if (chapter.subchapters) {
+                                chapter.subchapters.forEach((sub, sIdx) => {
+                                    state.expandedSections[cIdx + '-' + sIdx] = true;
+                                    if (sub.subsections) {
+                                        sub.subsections.forEach((ss, ssIdx) => {
+                                            state.expandedSections[cIdx + '-' + sIdx + '-' + ssIdx] = true;
+                                        });
+                                    }
+                                });
+                            }
+                        });
+                        render();
+                        e.preventDefault();
+                        return;
+                    }
+                    
+                    const collapseAllBtn = e.target.closest('#collapse-all-btn');
+                    if (collapseAllBtn) {
+                        state.expandedChapters = {};
+                        state.expandedSections = {};
                         render();
                         e.preventDefault();
                         return;
