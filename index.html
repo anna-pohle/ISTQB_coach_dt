@@ -1630,42 +1630,80 @@
         }
         
         /**
-         * Spaced Repetition: Trackt Fragen basierend auf Ergebnis UND Confidence
+         * Spaced Repetition: Trackt Fragen basierend auf Ergebnis, Confidence UND Hinweis
          * @param {string} questionId - ID der Frage
          * @param {boolean} isCorrect - War die Antwort korrekt?
-         * @param {string} confidence - 'sure', 'unsure', 'guessed' (optional, nur Practice Mode)
+         * @param {string|null} confidence - 'sure', 'unsure', 'guessed' oder null (optional)
+         * @param {boolean} hintUsed - Wurde ein Hinweis angezeigt?
          */
-        function trackQuestionResult(questionId, isCorrect, confidence) {
+        function trackQuestionResult(questionId, isCorrect, confidence, hintUsed) {
             if (!state.wrongQuestions) state.wrongQuestions = {};
             
-            // Prioritäts-Logik:
-            // Falsch → höchste Priorität (+2)
-            // Richtig + geraten/unsicher → mittlere Priorität (+1)
-            // Richtig + sicher → Priorität entfernen
+            // Prioritäts-Logik (je höher, desto mehr Wiederholung nötig):
+            // 
+            // FALSCH:
+            //   Basis: +2
+            //   + Hinweis benutzt: +1 extra (wusste es trotz Hilfe nicht)
+            //   + sicher gewesen: +1 extra (Selbstüberschätzung)
+            //
+            // RICHTIG:
+            //   + geraten/unsicher: +1
+            //   + Hinweis benutzt: +1 extra
+            //   + geraten/unsicher + Hinweis: +2 (brauchte Hilfe UND unsicher)
+            //   + sicher (ohne Hinweis): -2 (gut gelernt, Priorität senken)
+            //   + sicher + Hinweis: 0 (Hinweis geholfen, neutral)
+            //
+            // Ohne Confidence-Auswahl: confidence = null
+            //   Falsch: +2 (+1 bei Hinweis)
+            //   Richtig ohne Hinweis: -1 (leicht positiv)
+            //   Richtig mit Hinweis: +1 (brauchte Hilfe)
+            
+            let delta = 0;
             
             if (!isCorrect) {
-                // Falsch: Höchste Priorität
-                if (!state.wrongQuestions[questionId]) {
-                    state.wrongQuestions[questionId] = { wrongCount: 0, lastSeen: 0 };
-                }
-                state.wrongQuestions[questionId].wrongCount += 2;
-                state.wrongQuestions[questionId].lastSeen = Date.now();
-            } else if (confidence === 'guessed' || confidence === 'unsure') {
-                // Richtig aber unsicher/geraten: Mittlere Priorität
-                if (!state.wrongQuestions[questionId]) {
-                    state.wrongQuestions[questionId] = { wrongCount: 0, lastSeen: 0 };
-                }
-                state.wrongQuestions[questionId].wrongCount += 1;
-                state.wrongQuestions[questionId].lastSeen = Date.now();
+                // FALSCH
+                delta = 2;
+                if (hintUsed) delta += 1; // Trotz Hinweis falsch
+                if (confidence === 'sure') delta += 1; // War sich sicher, aber falsch
             } else {
-                // Richtig + sicher: Priorität reduzieren
+                // RICHTIG
+                if (confidence === 'guessed' || confidence === 'unsure') {
+                    // Unsicher/geraten
+                    delta = 1;
+                    if (hintUsed) delta += 1; // Brauchte Hinweis UND unsicher
+                } else if (confidence === 'sure') {
+                    // Sicher
+                    if (hintUsed) {
+                        delta = 0; // Hinweis hat geholfen, neutral
+                    } else {
+                        delta = -2; // Wirklich sicher ohne Hilfe → gut gelernt
+                    }
+                } else {
+                    // Keine Confidence ausgewählt (null)
+                    if (hintUsed) {
+                        delta = 1; // Brauchte Hinweis
+                    } else {
+                        delta = -1; // Richtig ohne Hilfe → leicht positiv
+                    }
+                }
+            }
+            
+            // Anwenden
+            if (delta > 0) {
+                if (!state.wrongQuestions[questionId]) {
+                    state.wrongQuestions[questionId] = { wrongCount: 0, lastSeen: 0 };
+                }
+                state.wrongQuestions[questionId].wrongCount += delta;
+                state.wrongQuestions[questionId].lastSeen = Date.now();
+            } else if (delta < 0) {
                 if (state.wrongQuestions[questionId]) {
-                    state.wrongQuestions[questionId].wrongCount = Math.max(0, state.wrongQuestions[questionId].wrongCount - 2);
+                    state.wrongQuestions[questionId].wrongCount = Math.max(0, state.wrongQuestions[questionId].wrongCount + delta);
                     if (state.wrongQuestions[questionId].wrongCount === 0) {
                         delete state.wrongQuestions[questionId];
                     }
                 }
             }
+            // delta === 0: keine Änderung
         }
         
         /**
@@ -3598,8 +3636,8 @@
                         isCorrect = quiz.selectedAnswer === q.correct;
                     }
                     
-                    // Spaced Repetition: Track result with confidence (Practice Mode)
-                    trackQuestionResult(q.id, isCorrect, quiz.confidence || 'sure');
+                    // Spaced Repetition: Track result with confidence + hint (Practice Mode)
+                    trackQuestionResult(q.id, isCorrect, quiz.confidence || null, quiz.hintShown || false);
                     
                     if (isCorrect) {
                         quiz.score++;
@@ -3727,8 +3765,8 @@
                     
                     const isCorrect = idx === q.correct;
                     
-                    // Spaced Repetition: Track result (Exam mode = 'sure' by default)
-                    trackQuestionResult(q.id, isCorrect, 'sure');
+                    // Spaced Repetition: Track result (Exam mode = no confidence, no hint)
+                    trackQuestionResult(q.id, isCorrect, null, false);
                     
                     if (isCorrect) {
                         quiz.score++;
