@@ -866,17 +866,17 @@ const examQuestions = Object.freeze([
         lo: "FL-1.5.2",
         kLevel: 1,
         chapter: 1,
-        text: "Welcher der folgenden Punkte ist ein Vorteil des ganzheitlichen Teamansatzes (Whole-Team-Ansatz)?",
+        text: "Was ist ein typischer Vorteil des ganzheitlichen Teamansatzes (Whole-Team-Ansatz) in agilen Projekten?",
         hint: "Whole-Team = alle arbeiten zusammen, gemeinsame Verantwortung. Was verbessert sich dadurch im TEAM?",
         answers: [
-            "Teams ohne Tester",
-            "Verbesserte Teamdynamik",
-            "Mitglieder des Fachteams",
-            "Größere Teams"
+            "Das Team arbeitet ohne dedizierte Tester.",
+            "Die Teamdynamik wird verbessert.",
+            "Nur Mitglieder des Fachbereichs sind für das Testen zuständig.",
+            "Teams werden durch zusätzliche Rollen vergrößert."
         ],
         correct: 1,
         feedback: {
-            trap: "Option a) ist falsch – Whole-Team bedeutet nicht 'ohne Tester'. Option d) ist kein Vorteil.",
+            trap: "Ohne Tester (a) ist falsch – Whole-Team bedeutet nicht ohne Tester. Nur Fachbereich testet (c) widerspricht dem Teamgedanken. Vergrößerung (d) ist kein Vorteil.",
             principle: "Whole-Team = Bessere Zusammenarbeit = Verbesserte Teamdynamik.",
             explanation: "Der Whole-Team-Ansatz verbessert die Teamdynamik durch gemeinsame Verantwortung für Qualität.",
             reference: "Lehrplan 1.5.2"
