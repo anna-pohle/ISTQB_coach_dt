@@ -3032,14 +3032,268 @@
                 </div>`;
         }
         
+        // ========================================================================
+        // QUIZ QUESTION SUB-COMPONENTS
+        // ========================================================================
+        
+        /**
+         * Renders the time-up overlay when exam time expires
+         * @param {Object} quiz - Current quiz state
+         * @returns {string} HTML string
+         */
+        function renderTimeUpOverlay(quiz) {
+            return `
+                <div class="time-up-overlay">
+                    <div class="time-up-content">
+                        <div class="time-up-icon">⏰</div>
+                        <h2 class="time-up-title">Zeit abgelaufen!</h2>
+                        <p class="time-up-text">Du hast ${quiz.currentIndex} von ${quiz.questions.length} Fragen beantwortet.</p>
+                        <button class="start-btn" id="finish-quiz">Ergebnis anzeigen</button>
+                    </div>
+                </div>`;
+        }
+        
+        /**
+         * Renders the timer bar at the top of quiz questions
+         * @param {Object} quiz - Current quiz state
+         * @param {boolean} isPractice - Whether in practice mode
+         * @returns {string} HTML string
+         */
+        function renderQuizTimerBar(quiz, isPractice) {
+            return `
+                <div class="quiz-timer-bar">
+                    <div class="timer-display">${isPractice ? formatTime(quiz.timeElapsed || 0) : formatTime(quiz.timeRemaining || 0)}</div>
+                    ${!isPractice ? `
+                        <div class="speedometer">
+                            <div class="speedometer-indicator"></div>
+                            <span class="speedometer-text">Im Zeitplan</span>
+                        </div>
+                    ` : `
+                        <div class="streak-display" title="Richtige in Folge">
+                            🔥 ${quiz.currentStreak || 0} in Folge
+                        </div>
+                    `}
+                    <button class="abort-quiz-btn" id="abort-quiz" title="Quiz abbrechen">✕</button>
+                </div>`;
+        }
+        
+        /**
+         * Renders the quiz progress bar
+         * @param {Object} quiz - Current quiz state
+         * @returns {string} HTML string
+         */
+        function renderQuizProgressBar(quiz) {
+            const progress = ((quiz.currentIndex + 1) / quiz.questions.length) * 100;
+            return `
+                <div class="quiz-progress">
+                    <span class="quiz-progress-text">Frage ${quiz.currentIndex + 1}/${quiz.questions.length}</span>
+                    <div class="quiz-progress-bar" role="progressbar" 
+                         aria-valuenow="${quiz.currentIndex + 1}" 
+                         aria-valuemin="1" 
+                         aria-valuemax="${quiz.questions.length}">
+                        <div class="quiz-progress-fill" style="width: ${progress}%"></div>
+                    </div>
+                    <span class="quiz-progress-text">${quiz.score} ✓</span>
+                </div>`;
+        }
+        
+        /**
+         * Renders encouragement message at halftime
+         * @param {Object|null} encouragement - Encouragement data or null
+         * @returns {string} HTML string
+         */
+        function renderEncouragement(encouragement) {
+            if (!encouragement) return '';
+            return `
+                <div class="encouragement">
+                    <div class="encouragement-icon">${encouragement.icon}</div>
+                    <div class="encouragement-text">${encouragement.text}</div>
+                    <div class="encouragement-sub">${encouragement.sub}</div>
+                </div>`;
+        }
+        
+        /**
+         * Renders answer buttons for a question
+         * @param {Object} q - Question object
+         * @param {Object} quiz - Current quiz state
+         * @param {boolean} isPractice - Whether in practice mode
+         * @param {boolean} isMultipleChoice - Whether multiple answers are correct
+         * @param {number[]} selectedAnswers - Array of selected answer indices
+         * @returns {string} HTML string
+         */
+        function renderAnswerButtons(q, quiz, isPractice, isMultipleChoice, selectedAnswers) {
+            const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+            const shuffledIndices = quiz.answerMappings ? quiz.answerMappings[quiz.currentIndex] : q.answers.map((_, i) => i);
+            const correctAnswers = isMultipleChoice ? q.multipleCorrect : [q.correct];
+            
+            return shuffledIndices.map((originalIdx, displayIdx) => {
+                const a = q.answers[originalIdx];
+                let btnClass = 'answer-btn';
+                const isSelected = selectedAnswers.includes(originalIdx);
+                const isCorrect = correctAnswers.includes(originalIdx);
+                
+                if (isPractice) {
+                    if (quiz.confirmed) {
+                        if (isCorrect) btnClass += ' correct';
+                        else if (isSelected) btnClass += ' wrong';
+                    } else if (isSelected) {
+                        btnClass += ' selected';
+                    }
+                } else {
+                    if (quiz.answered) {
+                        if (isCorrect) btnClass += ' correct';
+                        else if (isSelected) btnClass += ' wrong';
+                    }
+                }
+                
+                const disabled = isPractice ? quiz.confirmed : quiz.answered;
+                return `
+                    <button class="${btnClass}" 
+                            data-answer="${originalIdx}"
+                            data-multiple="${isMultipleChoice}"
+                            ${disabled ? 'disabled' : ''}
+                            aria-pressed="${isSelected}">
+                        <span class="answer-letter">${letters[displayIdx]}</span>
+                        <span class="answer-text">${escapeHtml(a)}</span>
+                    </button>`;
+            }).join('');
+        }
+        
+        /**
+         * Renders confidence selection buttons (practice mode)
+         * @param {Object} quiz - Current quiz state
+         * @returns {string} HTML string
+         */
+        function renderConfidenceButtons(quiz) {
+            return `
+                <div class="confidence-section">
+                    <div class="confidence-label">Wie sicher warst du bei dieser Antwort?</div>
+                    <div class="confidence-buttons">
+                        <button class="confidence-btn ${quiz.confidence === 'guessed' ? 'selected' : ''}" data-confidence="guessed">
+                            <div class="confidence-icon">🎲</div>
+                            <div>Geraten</div>
+                        </button>
+                        <button class="confidence-btn ${quiz.confidence === 'unsure' ? 'selected' : ''}" data-confidence="unsure">
+                            <div class="confidence-icon">🤔</div>
+                            <div>Unsicher</div>
+                        </button>
+                        <button class="confidence-btn ${quiz.confidence === 'sure' ? 'selected' : ''}" data-confidence="sure">
+                            <div class="confidence-icon">💪</div>
+                            <div>Sicher</div>
+                        </button>
+                    </div>
+                </div>`;
+        }
+        
+        /**
+         * Checks if the answer is correct (handles both single and multiple choice)
+         * @param {Object} q - Question object
+         * @param {Object} quiz - Current quiz state
+         * @param {boolean} isMultipleChoice - Whether multiple answers are correct
+         * @returns {boolean} True if answer is correct
+         */
+        function isAnswerCorrect(q, quiz, isMultipleChoice) {
+            if (isMultipleChoice) {
+                const selected = Array.isArray(quiz.selectedAnswer) ? [...quiz.selectedAnswer].sort() : [];
+                const correct = [...q.multipleCorrect].sort();
+                return selected.length === correct.length && selected.every((v, i) => v === correct[i]);
+            }
+            return quiz.selectedAnswer === q.correct;
+        }
+        
+        /**
+         * Renders the feedback card after answering
+         * @param {Object} q - Question object
+         * @param {Object} quiz - Current quiz state
+         * @param {boolean} isPractice - Whether in practice mode
+         * @param {boolean} isMultipleChoice - Whether multiple answers are correct
+         * @returns {string} HTML string
+         */
+        function renderFeedbackCard(q, quiz, isPractice, isMultipleChoice) {
+            const isAnswered = isPractice ? quiz.confirmed : quiz.answered;
+            const isWrong = !isAnswerCorrect(q, quiz, isMultipleChoice);
+            const wasUnsure = quiz.confidence === 'guessed' || quiz.confidence === 'unsure';
+            
+            if (!isAnswered || (!isWrong && !wasUnsure)) return '';
+            
+            let selectedAnswerText = '';
+            let correctAnswerText = '';
+            let wrongAnswerExplanation = '';
+            
+            if (isMultipleChoice) {
+                const selected = Array.isArray(quiz.selectedAnswer) ? quiz.selectedAnswer : [];
+                selectedAnswerText = selected.map(i => q.answers[i]).join(', ');
+                correctAnswerText = q.multipleCorrect.map(i => q.answers[i]).join(' + ');
+                wrongAnswerExplanation = `<strong>Die richtigen Antworten sind:</strong> ${escapeHtml(correctAnswerText)}`;
+            } else {
+                selectedAnswerText = q.answers[quiz.selectedAnswer] || '';
+                correctAnswerText = q.answers[q.correct] || '';
+                wrongAnswerExplanation = getWrongAnswerExplanation(q, quiz.selectedAnswer, selectedAnswerText);
+            }
+            
+            return `
+                <div class="feedback-card show" role="alert" aria-live="polite">
+                    ${isWrong ? `
+                        <div class="feedback-section" style="background:rgba(239,68,68,0.1);padding:12px;border-radius:var(--radius-sm);margin-bottom:14px;">
+                            <div class="feedback-label" style="color:var(--accent-error);">❌ Du hast gewählt: "${escapeHtml(selectedAnswerText.substring(0, 80))}${selectedAnswerText.length > 80 ? '...' : ''}"</div>
+                            <div class="feedback-text mistake" style="margin-top:8px;">${wrongAnswerExplanation}</div>
+                        </div>
+                        <div class="feedback-section" style="background:rgba(34,197,94,0.1);padding:12px;border-radius:var(--radius-sm);margin-bottom:14px;">
+                            <div class="feedback-label" style="color:var(--accent-success);">✅ Richtig wäre: "${escapeHtml(correctAnswerText.substring(0, 80))}${correctAnswerText.length > 80 ? '...' : ''}"</div>
+                            <div class="feedback-text correct" style="margin-top:8px;">${escapeHtml(q.feedback.explanation)}</div>
+                        </div>
+                    ` : `
+                        <div class="feedback-section" style="background:rgba(34,197,94,0.1);padding:12px;border-radius:var(--radius-sm);margin-bottom:14px;">
+                            <div class="feedback-label" style="color:var(--accent-success);">✅ Richtig! Hier nochmal zur Sicherheit:</div>
+                            <div class="feedback-text correct" style="margin-top:8px;">${escapeHtml(q.feedback.explanation)}</div>
+                        </div>
+                    `}
+                    <div class="feedback-section">
+                        <div class="feedback-label">🎯 Erkennungsmerkmal für die Prüfung</div>
+                        <div class="feedback-text principle">${escapeHtml(q.feedback.principle)}</div>
+                    </div>
+                    <div class="feedback-section">
+                        <div class="feedback-label">📖 Referenz</div>
+                        <div class="feedback-text reference">${escapeHtml(q.feedback.reference)}</div>
+                    </div>
+                </div>`;
+        }
+        
+        /**
+         * Renders the floating timer element
+         * @param {Object} quiz - Current quiz state
+         * @param {boolean} isPractice - Whether in practice mode
+         * @returns {string} HTML string
+         */
+        function renderFloatingTimer(quiz, isPractice) {
+            const timeClass = isPractice ? getQuestionTimeClass(quiz.currentQuestionTime || 0) : getExamTimeClass(quiz);
+            const timeValue = isPractice ? formatTime(quiz.currentQuestionTime || 0) : formatTime(quiz.timeRemaining || 0);
+            const label = isPractice ? 'diese Frage' : 'verbleibend';
+            const icon = isPractice ? '⏱️' : '⏰';
+            
+            return `
+                <div class="floating-question-timer ${timeClass}">
+                    <span class="timer-icon">${icon}</span>
+                    <span class="timer-value">${timeValue}</span>
+                    <span class="time-label">${label}</span>
+                </div>`;
+        }
+        
+        // ========================================================================
+        // MAIN QUIZ QUESTION RENDERER
+        // ========================================================================
+        
+        /**
+         * Main function to render a quiz question
+         * Uses sub-components for better testability and maintainability
+         * @returns {string} HTML string for the complete quiz question view
+         */
         function renderQuizQuestion() {
             const quiz = state.currentQuiz;
             const q = quiz.questions[quiz.currentIndex];
             const chapterInfo = chapters.find(c => c.id === q.chapter);
-            const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
             const isPractice = state.quizMode === 'practice';
             const isMultipleChoice = Array.isArray(q.multipleCorrect) && q.multipleCorrect.length > 1;
-            // Für Multiple-Choice: selectedAnswer ist ein Array statt einzelner Wert
             const selectedAnswers = isMultipleChoice 
                 ? (Array.isArray(quiz.selectedAnswer) ? quiz.selectedAnswer : [])
                 : [quiz.selectedAnswer].filter(x => x !== null);
@@ -3047,53 +3301,25 @@
             
             // Time-up overlay for exam mode
             if (quiz.timeUp) {
-                return `
-                    <div class="time-up-overlay">
-                        <div class="time-up-content">
-                            <div class="time-up-icon">⏰</div>
-                            <h2 class="time-up-title">Zeit abgelaufen!</h2>
-                            <p class="time-up-text">Du hast ${quiz.currentIndex} von ${quiz.questions.length} Fragen beantwortet.</p>
-                            <button class="start-btn" id="finish-quiz">Ergebnis anzeigen</button>
-                        </div>
-                    </div>`;
+                return renderTimeUpOverlay(quiz);
             }
+            
+            // Build hint section for practice mode
+            const hintSection = isPractice && !quiz.confirmed ? renderHintSection(q, quiz, isMultipleChoice) : '';
+            
+            // Build confidence section for practice mode (after confirming)
+            const confidenceSection = isPractice && quiz.confirmed ? renderConfidenceSectionWithHint(q, quiz, isMultipleChoice) : '';
+            
+            // Build next button
+            const nextButton = (isPractice ? quiz.confirmed : quiz.answered) 
+                ? `<button class="next-btn" id="next-question">${quiz.currentIndex < quiz.questions.length - 1 ? 'Nächste Frage →' : 'Ergebnis anzeigen'}</button>` 
+                : '';
             
             return `
                 <div class="view active" role="region" aria-label="Quiz-Frage">
-                    <!-- Timer Bar -->
-                    <div class="quiz-timer-bar">
-                        <div class="timer-display">${isPractice ? formatTime(quiz.timeElapsed || 0) : formatTime(quiz.timeRemaining || 0)}</div>
-                        ${!isPractice ? `
-                            <div class="speedometer">
-                                <div class="speedometer-indicator"></div>
-                                <span class="speedometer-text">Im Zeitplan</span>
-                            </div>
-                        ` : `
-                            <div class="streak-display" title="Richtige in Folge">
-                                🔥 ${quiz.currentStreak || 0} in Folge
-                            </div>
-                        `}
-                        <button class="abort-quiz-btn" id="abort-quiz" title="Quiz abbrechen">✕</button>
-                    </div>
-                    
-                    ${encouragement ? `
-                        <div class="encouragement">
-                            <div class="encouragement-icon">${encouragement.icon}</div>
-                            <div class="encouragement-text">${encouragement.text}</div>
-                            <div class="encouragement-sub">${encouragement.sub}</div>
-                        </div>
-                    ` : ''}
-                    
-                    <div class="quiz-progress">
-                        <span class="quiz-progress-text">Frage ${quiz.currentIndex + 1}/${quiz.questions.length}</span>
-                        <div class="quiz-progress-bar" role="progressbar" 
-                             aria-valuenow="${quiz.currentIndex + 1}" 
-                             aria-valuemin="1" 
-                             aria-valuemax="${quiz.questions.length}">
-                            <div class="quiz-progress-fill" style="width: ${((quiz.currentIndex + 1) / quiz.questions.length) * 100}%"></div>
-                        </div>
-                        <span class="quiz-progress-text">${quiz.score} ✓</span>
-                    </div>
+                    ${renderQuizTimerBar(quiz, isPractice)}
+                    ${renderEncouragement(encouragement)}
+                    ${renderQuizProgressBar(quiz)}
                     
                     <article class="question-card">
                         <div class="question-chapter">Kap. ${q.chapter}: ${chapterInfo?.title || ''} • ${q.lo}</div>
@@ -3101,189 +3327,53 @@
                         ${q.image ? `<div class="question-image"><img src="${q.image}" alt="Diagramm zur Frage" loading="lazy" onclick="this.classList.toggle('expanded')"></div>` : ''}
                         ${isMultipleChoice ? `<div class="multiple-choice-hint">📝 Diese Frage hat ${q.multipleCorrect.length} richtige Antworten</div>` : (q.warning ? `<div class="question-warning">${escapeHtml(q.warning)}</div>` : '')}
                         <div class="answers-list" role="group" aria-label="Antwortoptionen">
-                            ${(() => {
-                                // Hole die gemischte Reihenfolge für diese Frage
-                                const shuffledIndices = quiz.answerMappings ? quiz.answerMappings[quiz.currentIndex] : q.answers.map((_, i) => i);
-                                const correctAnswers = isMultipleChoice ? q.multipleCorrect : [q.correct];
-                                
-                                return shuffledIndices.map((originalIdx, displayIdx) => {
-                                    const a = q.answers[originalIdx];
-                                    let btnClass = 'answer-btn';
-                                    const isSelected = selectedAnswers.includes(originalIdx);
-                                    const isCorrect = correctAnswers.includes(originalIdx);
-                                    
-                                    if (isPractice) {
-                                        // Practice: show selection, show correct/wrong only after confirm
-                                        if (quiz.confirmed) {
-                                            if (isCorrect) btnClass += ' correct';
-                                            else if (isSelected) btnClass += ' wrong';
-                                        } else if (isSelected) {
-                                            btnClass += ' selected';
-                                        }
-                                    } else {
-                                        // Exam: answered = done
-                                        if (quiz.answered) {
-                                            if (isCorrect) btnClass += ' correct';
-                                            else if (isSelected) btnClass += ' wrong';
-                                        }
-                                    }
-                                    const disabled = isPractice ? quiz.confirmed : quiz.answered;
-                                    return `
-                                        <button class="${btnClass}" 
-                                                data-answer="${originalIdx}"
-                                                data-multiple="${isMultipleChoice}"
-                                                ${disabled ? 'disabled' : ''}
-                                                aria-pressed="${isSelected}">
-                                            <span class="answer-letter">${letters[displayIdx]}</span>
-                                            <span class="answer-text">${escapeHtml(a)}</span>
-                                        </button>`;
-                                }).join('');
-                            })()}
+                            ${renderAnswerButtons(q, quiz, isPractice, isMultipleChoice, selectedAnswers)}
                         </div>
-                        
-                        ${isPractice && !quiz.confirmed ? `
-                            <!-- Practice Mode: Hint & Confirm buttons -->
-                            <div class="hint-section">
-                                ${!quiz.hintShown ? `
-                                    <button class="hint-btn" id="show-hint" ${quiz.selectedAnswer === null ? 'disabled' : ''}>
-                                        💡 Hinweis anzeigen
-                                    </button>
-                                ` : `
-                                    <div class="hint-box">${getHintForQuestion(q)}</div>
-                                `}
-                            </div>
-                            ${(() => {
-                                // Zeige Bestätigen-Button wenn genug Antworten ausgewählt sind
-                                const hasSelection = isMultipleChoice 
-                                    ? (Array.isArray(quiz.selectedAnswer) && quiz.selectedAnswer.length > 0)
-                                    : quiz.selectedAnswer !== null;
-                                const requiredCount = isMultipleChoice ? q.multipleCorrect.length : 1;
-                                const selectedCount = isMultipleChoice 
-                                    ? (Array.isArray(quiz.selectedAnswer) ? quiz.selectedAnswer.length : 0)
-                                    : (quiz.selectedAnswer !== null ? 1 : 0);
-                                
-                                if (!hasSelection) return '';
-                                
-                                const countInfo = isMultipleChoice ? ` (${selectedCount}/${requiredCount} gewählt)` : '';
-                                return `
-                                    <button class="start-btn" id="confirm-answer" style="margin-top:12px;">
-                                        ✓ Antwort bestätigen${countInfo}
-                                    </button>`;
-                            })()}
-                        ` : ''}
-                        
-                        ${isPractice && quiz.confirmed ? `
-                            <!-- Practice Mode: Confidence selection -->
-                            <div class="confidence-section">
-                                <div class="confidence-label">Wie sicher warst du bei dieser Antwort?</div>
-                                <div class="confidence-buttons">
-                                    <button class="confidence-btn ${quiz.confidence === 'guessed' ? 'selected' : ''}" data-confidence="guessed">
-                                        <div class="confidence-icon">🎲</div>
-                                        <div>Geraten</div>
-                                    </button>
-                                    <button class="confidence-btn ${quiz.confidence === 'unsure' ? 'selected' : ''}" data-confidence="unsure">
-                                        <div class="confidence-icon">🤔</div>
-                                        <div>Unsicher</div>
-                                    </button>
-                                    <button class="confidence-btn ${quiz.confidence === 'sure' ? 'selected' : ''}" data-confidence="sure">
-                                        <div class="confidence-icon">💪</div>
-                                        <div>Sicher</div>
-                                    </button>
-                                </div>
-                            </div>
-                            ${(() => {
-                                // Prüfe ob falsch für Hint-Anzeige
-                                let answerIsWrong = false;
-                                if (isMultipleChoice) {
-                                    const selected = Array.isArray(quiz.selectedAnswer) ? [...quiz.selectedAnswer].sort() : [];
-                                    const correct = [...q.multipleCorrect].sort();
-                                    answerIsWrong = !(selected.length === correct.length && selected.every((v, i) => v === correct[i]));
-                                } else {
-                                    answerIsWrong = quiz.selectedAnswer !== q.correct;
-                                }
-                                return quiz.confidence && (answerIsWrong || quiz.confidence === 'guessed' || quiz.confidence === 'unsure') 
-                                    ? `<div class="question-hint" style="margin-top: 12px;">📋 ${escapeHtml(q.hint)}</div>` 
-                                    : '';
-                            })()}
-                        ` : ''}
+                        ${hintSection}
+                        ${confidenceSection}
                     </article>
                     
-                    <!-- Feedback: Nur bei falscher Antwort ODER wenn unsicher/geraten -->
-                    ${(() => {
-                        const isAnswered = isPractice ? quiz.confirmed : quiz.answered;
-                        
-                        // Prüfe Korrektheit (Multiple-Choice oder Single-Choice)
-                        let isWrong = false;
-                        if (isMultipleChoice) {
-                            const selected = Array.isArray(quiz.selectedAnswer) ? [...quiz.selectedAnswer].sort() : [];
-                            const correct = [...q.multipleCorrect].sort();
-                            isWrong = !(selected.length === correct.length && selected.every((v, i) => v === correct[i]));
-                        } else {
-                            isWrong = quiz.selectedAnswer !== q.correct;
-                        }
-                        
-                        const wasUnsure = quiz.confidence === 'guessed' || quiz.confidence === 'unsure';
-                        const showFeedback = isAnswered && (isWrong || wasUnsure);
-                        
-                        if (!showFeedback) return '';
-                        
-                        // Bei falscher Antwort: Spezifische Erklärung für die gewählte Antwort
-                        let selectedAnswerText = '';
-                        let correctAnswerText = '';
-                        let wrongAnswerExplanation = '';
-                        
-                        if (isMultipleChoice) {
-                            const selected = Array.isArray(quiz.selectedAnswer) ? quiz.selectedAnswer : [];
-                            selectedAnswerText = selected.map(i => q.answers[i]).join(', ');
-                            correctAnswerText = q.multipleCorrect.map(i => q.answers[i]).join(' + ');
-                            wrongAnswerExplanation = `<strong>Die richtigen Antworten sind:</strong> ${escapeHtml(correctAnswerText)}`;
-                        } else {
-                            selectedAnswerText = q.answers[quiz.selectedAnswer] || '';
-                            correctAnswerText = q.answers[q.correct] || '';
-                            wrongAnswerExplanation = getWrongAnswerExplanation(q, quiz.selectedAnswer, selectedAnswerText);
-                        }
-                        
-                        return `
-                        <div class="feedback-card show" role="alert" aria-live="polite">
-                            ${isWrong ? `
-                                <div class="feedback-section" style="background:rgba(239,68,68,0.1);padding:12px;border-radius:var(--radius-sm);margin-bottom:14px;">
-                                    <div class="feedback-label" style="color:var(--accent-error);">❌ Du hast gewählt: "${escapeHtml(selectedAnswerText.substring(0, 80))}${selectedAnswerText.length > 80 ? '...' : ''}"</div>
-                                    <div class="feedback-text mistake" style="margin-top:8px;">${wrongAnswerExplanation}</div>
-                                </div>
-                                <div class="feedback-section" style="background:rgba(34,197,94,0.1);padding:12px;border-radius:var(--radius-sm);margin-bottom:14px;">
-                                    <div class="feedback-label" style="color:var(--accent-success);">✅ Richtig wäre: "${escapeHtml(correctAnswerText.substring(0, 80))}${correctAnswerText.length > 80 ? '...' : ''}"</div>
-                                    <div class="feedback-text correct" style="margin-top:8px;">${escapeHtml(q.feedback.explanation)}</div>
-                                </div>
-                            ` : `
-                                <div class="feedback-section" style="background:rgba(34,197,94,0.1);padding:12px;border-radius:var(--radius-sm);margin-bottom:14px;">
-                                    <div class="feedback-label" style="color:var(--accent-success);">✅ Richtig! Hier nochmal zur Sicherheit:</div>
-                                    <div class="feedback-text correct" style="margin-top:8px;">${escapeHtml(q.feedback.explanation)}</div>
-                                </div>
-                            `}
-                            <div class="feedback-section">
-                                <div class="feedback-label">🎯 Erkennungsmerkmal für die Prüfung</div>
-                                <div class="feedback-text principle">${escapeHtml(q.feedback.principle)}</div>
-                            </div>
-                            <div class="feedback-section">
-                                <div class="feedback-label">📖 Referenz</div>
-                                <div class="feedback-text reference">${escapeHtml(q.feedback.reference)}</div>
-                            </div>
-                        </div>`;
-                    })()}
-                    
-                    ${(isPractice ? quiz.confirmed : quiz.answered) ? `
-                        <button class="next-btn" id="next-question">
-                            ${quiz.currentIndex < quiz.questions.length - 1 ? 'Nächste Frage →' : 'Ergebnis anzeigen'}
-                        </button>
-                    ` : ''}
+                    ${renderFeedbackCard(q, quiz, isPractice, isMultipleChoice)}
+                    ${nextButton}
                 </div>
-                
-                <!-- Floating Timer (both modes) -->
-                <div class="floating-question-timer ${isPractice ? getQuestionTimeClass(quiz.currentQuestionTime || 0) : getExamTimeClass(quiz)}">
-                    <span class="timer-icon">${isPractice ? '⏱️' : '⏰'}</span>
-                    <span class="timer-value">${isPractice ? formatTime(quiz.currentQuestionTime || 0) : formatTime(quiz.timeRemaining || 0)}</span>
-                    <span class="time-label">${isPractice ? 'diese Frage' : 'verbleibend'}</span>
-                </div>`;
+                ${renderFloatingTimer(quiz, isPractice)}`;
+        }
+        
+        /**
+         * Renders the hint section with confirm button (practice mode, before confirming)
+         */
+        function renderHintSection(q, quiz, isMultipleChoice) {
+            const hasSelection = isMultipleChoice 
+                ? (Array.isArray(quiz.selectedAnswer) && quiz.selectedAnswer.length > 0)
+                : quiz.selectedAnswer !== null;
+            const requiredCount = isMultipleChoice ? q.multipleCorrect.length : 1;
+            const selectedCount = isMultipleChoice 
+                ? (Array.isArray(quiz.selectedAnswer) ? quiz.selectedAnswer.length : 0)
+                : (quiz.selectedAnswer !== null ? 1 : 0);
+            
+            const hintButton = !quiz.hintShown 
+                ? `<button class="hint-btn" id="show-hint" ${quiz.selectedAnswer === null ? 'disabled' : ''}>💡 Hinweis anzeigen</button>`
+                : `<div class="hint-box">${getHintForQuestion(q)}</div>`;
+            
+            const countInfo = isMultipleChoice ? ` (${selectedCount}/${requiredCount} gewählt)` : '';
+            const confirmButton = hasSelection 
+                ? `<button class="start-btn" id="confirm-answer" style="margin-top:12px;">✓ Antwort bestätigen${countInfo}</button>`
+                : '';
+            
+            return `
+                <div class="hint-section">${hintButton}</div>
+                ${confirmButton}`;
+        }
+        
+        /**
+         * Renders confidence buttons with optional hint display (practice mode, after confirming)
+         */
+        function renderConfidenceSectionWithHint(q, quiz, isMultipleChoice) {
+            const answerIsWrong = !isAnswerCorrect(q, quiz, isMultipleChoice);
+            const showExtraHint = quiz.confidence && (answerIsWrong || quiz.confidence === 'guessed' || quiz.confidence === 'unsure');
+            const extraHint = showExtraHint ? `<div class="question-hint" style="margin-top: 12px;">📋 ${escapeHtml(q.hint)}</div>` : '';
+            
+            return `${renderConfidenceButtons(quiz)}${extraHint}`;
         }
         
         /**
@@ -4391,13 +4481,30 @@
         return {
             init,
             startQuiz: initializeQuiz,
-            // Expose for testing
+            // Expose for testing - these functions can be unit tested independently
             _test: {
+                // Quiz logic
                 createQuizState,
                 getQuestionsForQuiz,
                 calculateSpeedBonus,
+                isAnswerCorrect,
+                advanceToNextQuestion,
+                // UI helpers
                 getChapterColor,
-                getChapterHSL
+                getChapterHSL,
+                getQuestionTimeClass,
+                getExamTimeClass,
+                // Render sub-components
+                renderTimeUpOverlay,
+                renderQuizTimerBar,
+                renderQuizProgressBar,
+                renderAnswerButtons,
+                renderConfidenceButtons,
+                renderFeedbackCard,
+                renderFloatingTimer,
+                // Utility
+                escapeHtml,
+                formatTime
             }
         };
     })();
