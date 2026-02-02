@@ -1,6 +1,6 @@
 # 🎓 ISTQB Coach
 
-> **Dein Lernbegleiter für die ISTQB CTFL v4.0 Prüfung** – Kostenlos, offline-fähig, auf Deutsch.
+> **Dein Lernbegleiter für die ISTQB CTFL v4.0.2 Prüfung** – Kostenlos, offline-fähig, auf Deutsch.
 
 [![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-GitHub_Pages-00d4aa?style=for-the-badge)](https://anna-pohle.github.io/ISTQB_coach_dt)
 [![PWA Ready](https://img.shields.io/badge/📱_PWA-Installierbar-7c3aed?style=for-the-badge)](#-installation)
@@ -110,6 +110,17 @@ Vanilla JS · HTML · CSS · Service Worker · LocalStorage
 ```
 
 **Keine Dependencies.** Keine Build-Tools. Einfach öffnen und nutzen.
+
+### Code-Qualität
+
+| Aspekt | Umsetzung |
+|--------|-----------|
+| **Modularität** | Klare Sektions-Trennung, benannte Funktionen |
+| **DRY** | Zentrale Konstanten (CONFIG, CHAPTER_COLORS, STORAGE_KEYS) |
+| **Testbarkeit** | Kernlogik in reinen Funktionen, Test-API exponiert |
+| **Dokumentation** | JSDoc für alle öffentlichen Funktionen |
+| **Sicherheit** | CSP Header, XSS-Prevention via escapeHtml() |
+| **Performance** | Lazy Loading, Debouncing, Event-Delegation |
 
 ---
 
