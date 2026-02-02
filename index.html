@@ -1832,52 +1832,64 @@
         function migrateBookmarkTitles() {
             if (!state.bookmarks || state.bookmarks.length === 0) return;
             
-            let changed = false;
+            let anyChanged = false;
             state.bookmarks.forEach(b => {
-                // Check if title is generic
-                const isGeneric = !b.title || 
-                    b.title === b.sectionId ||
-                    b.title.startsWith('Abschnitt ') ||
-                    (b.title.startsWith('Kapitel ') && b.title !== b.sectionId);
+                // Check if title is generic (including "(automatisch)" suffix)
+                const title = b.title || '';
+                const isGeneric = !title || 
+                    title === b.sectionId ||
+                    title.includes('Abschnitt ') ||
+                    /^Kapitel \d/.test(title);
                 
-                if (isGeneric) {
-                    // Find proper title from syllabus
-                    const chapterData = syllabusData.chapters.find(c => c.id === b.chapterId);
-                    if (chapterData && chapterData.subchapters) {
-                        // Try exact match
-                        for (const sub of chapterData.subchapters) {
-                            if (sub.id === b.sectionId) {
-                                b.title = sub.title;
-                                changed = true;
+                if (!isGeneric) return;
+                
+                // Find proper title from syllabus
+                const chapterData = syllabusData.chapters.find(c => c.id === b.chapterId);
+                if (!chapterData) return;
+                
+                let newTitle = null;
+                
+                // Try exact match in subchapters
+                if (chapterData.subchapters) {
+                    for (const sub of chapterData.subchapters) {
+                        if (sub.id === b.sectionId) {
+                            newTitle = sub.title;
+                            break;
+                        }
+                        if (sub.subsections) {
+                            const ss = sub.subsections.find(s => s.id === b.sectionId);
+                            if (ss) {
+                                newTitle = ss.title;
                                 break;
                             }
-                            if (sub.subsections) {
-                                const ss = sub.subsections.find(s => s.id === b.sectionId);
-                                if (ss) {
-                                    b.title = ss.title;
-                                    changed = true;
-                                    break;
-                                }
-                            }
                         }
-                        
-                        // Fallback: parent section
-                        if (isGeneric && !changed) {
-                            const parentId = b.sectionId.split('.').slice(0, 2).join('.');
-                            for (const sub of chapterData.subchapters) {
-                                if (sub.id === parentId) {
-                                    b.title = sub.title;
-                                    changed = true;
-                                    break;
-                                }
+                    }
+                    
+                    // Fallback: parent section (e.g., "5.1" for "5.1.4")
+                    if (!newTitle && b.sectionId.split('.').length > 2) {
+                        const parentId = b.sectionId.split('.').slice(0, 2).join('.');
+                        for (const sub of chapterData.subchapters) {
+                            if (sub.id === parentId) {
+                                newTitle = sub.title;
+                                break;
                             }
                         }
                     }
                 }
+                
+                // Apply new title if found
+                if (newTitle) {
+                    // Preserve "(automatisch)" suffix if present
+                    const wasAuto = title.includes('(automatisch)');
+                    b.title = wasAuto ? newTitle + ' (automatisch)' : newTitle;
+                    anyChanged = true;
+                    console.log('Bookmark migrated:', b.sectionId, '->', b.title);
+                }
             });
             
-            if (changed) {
+            if (anyChanged) {
                 saveState();
+                console.log('Bookmarks saved after migration');
             }
         }
         
