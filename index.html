@@ -3064,7 +3064,7 @@
                     const hue = cIdx >= 0 && STRUCTURE_HUES[cIdx] !== undefined ? STRUCTURE_HUES[cIdx] : (cIdx * 60) % 360;
                     const isExpanded = state.expandedBookmarks && state.expandedBookmarks[b.chapterId + '-' + b.sectionId];
                     
-                    // Finde den Abschnitt im Syllabus
+                    // Finde den Abschnitt im Syllabus (mit Fallback zu übergeordnetem Abschnitt)
                     let sectionContent = null;
                     if (cIdx >= 0) {
                         const chapter = syllabusData.chapters[cIdx];
@@ -3072,6 +3072,7 @@
                         if (b.sectionId === String(b.chapterId)) {
                             sectionContent = chapter;
                         } else if (chapter.subchapters) {
+                            // Versuche exakte Übereinstimmung
                             for (const sub of chapter.subchapters) {
                                 if (sub.id === b.sectionId) {
                                     sectionContent = sub;
@@ -3085,6 +3086,22 @@
                                     }
                                 }
                             }
+                            
+                            // Fallback: Suche übergeordneten Abschnitt (z.B. "5.1" für "5.1.4")
+                            if (!sectionContent) {
+                                const parentId = b.sectionId.split('.').slice(0, 2).join('.');
+                                for (const sub of chapter.subchapters) {
+                                    if (sub.id === parentId) {
+                                        sectionContent = sub;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        
+                        // Letzter Fallback: Das Kapitel selbst
+                        if (!sectionContent) {
+                            sectionContent = chapter;
                         }
                     }
                     
@@ -3092,14 +3109,24 @@
                     const chapterInfo = cIdx >= 0 ? syllabusData.chapters[cIdx] : null;
                     const chapterTitle = chapterInfo ? 'Kap. ' + b.chapterId + ': ' + chapterInfo.title : 'Kapitel ' + b.chapterId;
                     
-                    // Titel bereinigen (falls sectionId am Anfang steht, entfernen)
+                    // Titel bereinigen und verbessern
                     let displayTitle = b.title || '';
+                    
+                    // Entferne sectionId vom Anfang falls vorhanden
                     if (displayTitle.startsWith(b.sectionId + ' ')) {
                         displayTitle = displayTitle.substring(b.sectionId.length + 1);
                     }
-                    // Falls Titel nur aus sectionId besteht, aus sectionContent nehmen
-                    if (!displayTitle || displayTitle === b.sectionId) {
-                        displayTitle = sectionContent && sectionContent.title ? sectionContent.title : b.sectionId;
+                    
+                    // Falls Titel nicht substantiell ist, aus sectionContent nehmen
+                    const isGenericTitle = !displayTitle || 
+                        displayTitle === b.sectionId || 
+                        displayTitle.startsWith('Abschnitt ') ||
+                        displayTitle.startsWith('Kapitel ');
+                    
+                    if (isGenericTitle && sectionContent && sectionContent.title) {
+                        displayTitle = sectionContent.title;
+                    } else if (isGenericTitle) {
+                        displayTitle = b.sectionId;
                     }
                     
                     html += '<div class="bookmark-item-expandable" style="--bm-hue:' + hue + ';">';
@@ -4733,26 +4760,46 @@
                         
                         if (isBookmarked(chapterId, sectionId)) return;
                         
-                        // Finde den Titel des Abschnitts
+                        // Finde den Titel des Abschnitts (mit Fallback zu übergeordnetem Abschnitt)
                         const chapterData = syllabusData.chapters.find(c => c.id === chapterId);
                         let title = '';
+                        let foundSection = null;
+                        
                         if (chapterData && chapterData.subchapters) {
+                            // Versuche exakte Übereinstimmung
                             for (const sub of chapterData.subchapters) {
                                 if (sub.id === sectionId) {
                                     title = sub.title;
+                                    foundSection = sub;
                                     break;
                                 }
                                 if (sub.subsections) {
                                     const ss = sub.subsections.find(s => s.id === sectionId);
                                     if (ss) {
                                         title = ss.title;
+                                        foundSection = ss;
+                                        break;
+                                    }
+                                }
+                            }
+                            
+                            // Fallback: Suche übergeordneten Abschnitt (z.B. "5.1" für "5.1.4")
+                            if (!foundSection) {
+                                const parentId = sectionId.split('.').slice(0, 2).join('.');
+                                for (const sub of chapterData.subchapters) {
+                                    if (sub.id === parentId) {
+                                        title = sub.title;
+                                        foundSection = sub;
                                         break;
                                     }
                                 }
                             }
                         }
-                        // Fallback: nur sectionId wenn kein Titel gefunden
-                        if (!title) title = 'Abschnitt ' + sectionId;
+                        
+                        // Letzter Fallback: Kapitel-Titel mit LO
+                        if (!title) {
+                            title = chapterData ? chapterData.title : 'Kapitel ' + chapterId;
+                        }
                         
                         toggleBookmark(chapterId, sectionId, title, true);
                         added++;
