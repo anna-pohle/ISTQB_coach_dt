@@ -1830,7 +1830,13 @@
          * Migrates bookmarks with generic titles to proper syllabus titles
          */
         function migrateBookmarkTitles() {
-            if (!state.bookmarks || state.bookmarks.length === 0) return;
+            if (!state.bookmarks || state.bookmarks.length === 0) {
+                console.log('No bookmarks to migrate');
+                return;
+            }
+            
+            console.log('Checking', state.bookmarks.length, 'bookmarks for migration');
+            console.log('Current bookmarks:', JSON.stringify(state.bookmarks, null, 2));
             
             let anyChanged = false;
             state.bookmarks.forEach(b => {
@@ -1841,11 +1847,16 @@
                     title.includes('Abschnitt ') ||
                     /^Kapitel \d/.test(title);
                 
+                console.log('Bookmark:', b.sectionId, 'title:', title, 'isGeneric:', isGeneric);
+                
                 if (!isGeneric) return;
                 
                 // Find proper title from syllabus
                 const chapterData = syllabusData.chapters.find(c => c.id === b.chapterId);
-                if (!chapterData) return;
+                if (!chapterData) {
+                    console.log('  No chapter data found for', b.chapterId);
+                    return;
+                }
                 
                 let newTitle = null;
                 
@@ -1854,12 +1865,14 @@
                     for (const sub of chapterData.subchapters) {
                         if (sub.id === b.sectionId) {
                             newTitle = sub.title;
+                            console.log('  Found exact match:', newTitle);
                             break;
                         }
                         if (sub.subsections) {
                             const ss = sub.subsections.find(s => s.id === b.sectionId);
                             if (ss) {
                                 newTitle = ss.title;
+                                console.log('  Found in subsections:', newTitle);
                                 break;
                             }
                         }
@@ -1868,9 +1881,11 @@
                     // Fallback: parent section (e.g., "5.1" for "5.1.4")
                     if (!newTitle && b.sectionId.split('.').length > 2) {
                         const parentId = b.sectionId.split('.').slice(0, 2).join('.');
+                        console.log('  Trying parent ID:', parentId);
                         for (const sub of chapterData.subchapters) {
                             if (sub.id === parentId) {
                                 newTitle = sub.title;
+                                console.log('  Found parent match:', newTitle);
                                 break;
                             }
                         }
@@ -1883,13 +1898,17 @@
                     const wasAuto = title.includes('(automatisch)');
                     b.title = wasAuto ? newTitle + ' (automatisch)' : newTitle;
                     anyChanged = true;
-                    console.log('Bookmark migrated:', b.sectionId, '->', b.title);
+                    console.log('  MIGRATED:', b.sectionId, '->', b.title);
+                } else {
+                    console.log('  No new title found for', b.sectionId);
                 }
             });
             
             if (anyChanged) {
                 saveState();
                 console.log('Bookmarks saved after migration');
+            } else {
+                console.log('No bookmarks needed migration');
             }
         }
         
