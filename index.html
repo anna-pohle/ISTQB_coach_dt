@@ -1712,8 +1712,9 @@
         /**
          * SVG-Icon für Lesezeichen (Bookmark-Flag-Style)
          */
-        function getBookmarkSvg() {
-            return '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 5c0-1.1.9-2 2-2h10a2 2 0 0 1 2 2v16l-7-3.5L5 21V5z"/></svg>';
+        function getBookmarkSvg(size) {
+            const s = size || 16;
+            return '<svg width="' + s + '" height="' + s + '" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 5c0-1.1.9-2 2-2h10a2 2 0 0 1 2 2v16l-7-3.5L5 21V5z"/></svg>';
         }
         
         /**
@@ -2360,11 +2361,26 @@
                         }
                     }
                     
+                    // Kapitelname holen
+                    const chapterInfo = cIdx >= 0 ? syllabusData.chapters[cIdx] : null;
+                    const chapterTitle = chapterInfo ? 'Kap. ' + b.chapterId + ': ' + chapterInfo.title : 'Kapitel ' + b.chapterId;
+                    
+                    // Titel bereinigen (falls sectionId am Anfang steht, entfernen)
+                    let displayTitle = b.title || '';
+                    if (displayTitle.startsWith(b.sectionId + ' ')) {
+                        displayTitle = displayTitle.substring(b.sectionId.length + 1);
+                    }
+                    // Falls Titel nur aus sectionId besteht, aus sectionContent nehmen
+                    if (!displayTitle || displayTitle === b.sectionId) {
+                        displayTitle = sectionContent && sectionContent.title ? sectionContent.title : b.sectionId;
+                    }
+                    
                     html += '<div class="bookmark-item-expandable" style="--bm-hue:' + hue + ';">';
+                    html += '<div class="bookmark-item-chapter" style="font-size:0.7rem;color:hsl(' + hue + ', 70%, 55%);padding:4px 8px 0;font-weight:500;">' + escapeHtml(chapterTitle) + '</div>';
                     html += '<div class="bookmark-item-header" data-bookmark-expand="' + b.chapterId + '|' + b.sectionId + '">';
                     html += '<span class="bookmark-item-indicator" style="background:hsl(' + hue + ', 70%, 55%);"></span>';
                     html += '<span class="bookmark-item-id">' + escapeHtml(b.sectionId) + '</span>';
-                    html += '<span class="bookmark-item-title">' + escapeHtml(b.title.replace(b.sectionId + ' ', '')) + (b.isAuto ? ' <span style="font-size:0.7rem;color:var(--text-muted);font-weight:normal;">(automatisch)</span>' : '') + '</span>';
+                    html += '<span class="bookmark-item-title">' + escapeHtml(displayTitle) + (b.isAuto ? ' <span style="font-size:0.7rem;color:var(--text-muted);font-weight:normal;">(automatisch)</span>' : '') + '</span>';
                     html += '<span class="bookmark-item-toggle">' + (isExpanded ? '▲' : '▼') + '</span>';
                     html += '<button class="bookmark-remove" data-bookmark-remove="' + bIdx + '" title="Lesezeichen entfernen">✕</button>';
                     html += '</div>';
@@ -2912,8 +2928,8 @@
                         </p>
                         
                         <!-- Chapter Breakdown -->
-                        <div class="chapter-breakdown">
-                            <div class="chapter-breakdown-title">📊 Ergebnis nach Kapitel</div>
+                        <div class="chapter-breakdown" style="margin-top:20px;">
+                            <div class="chapter-breakdown-title" style="font-size:0.9rem;margin-bottom:12px;">📊 Ergebnis nach Kapitel</div>
                             ${Object.entries(chapterResults).sort((a, b) => parseInt(a[0]) - parseInt(b[0])).map(([ch, data]) => {
                                 const chPct = data.total === 0 ? 0 : Math.round((data.correct / data.total) * 100);
                                 const chInfo = chapters.find(c => c.id === parseInt(ch));
@@ -2967,9 +2983,12 @@
                                     </div>
                                 `).join('')}
                             </div>
-                            <button class="add-bookmarks-btn" id="add-wrong-bookmarks" style="margin-top:16px;width:100%;padding:12px;background:rgba(251,191,36,0.15);border:1px solid var(--accent-warning);border-radius:var(--radius-md);color:var(--accent-warning);cursor:pointer;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px;">
-                                ${getBookmarkSvg()} Abschnitte als Lesezeichen speichern
-                            </button>
+                            <div class="bookmark-prompt" style="margin-top:16px;padding:10px 12px;background:rgba(251,191,36,0.1);border:1px solid var(--border-color);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:space-between;gap:12px;">
+                                <span style="font-size:0.85rem;color:var(--text-muted);">Diese Abschnitte zum Wiederholen merken?</span>
+                                <button id="add-wrong-bookmarks" style="padding:6px 12px;background:var(--accent-warning);border:none;border-radius:var(--radius-sm);color:#000;cursor:pointer;font-size:0.8rem;font-weight:600;white-space:nowrap;">
+                                    ${getBookmarkSvg(12)} Speichern
+                                </button>
+                            </div>
                         ` : `
                             <div style="margin-top:20px;padding:16px;background:rgba(16,185,129,0.1);border-radius:var(--radius-md);text-align:center;">
                                 <div style="font-size:1.5rem;">🌟</div>
@@ -3610,6 +3629,7 @@
                                 if (timerInterval) clearInterval(timerInterval);
                             }
                             render();
+                            if (quiz.finished) window.scrollTo(0, 0);
                         }, 300);
                     }
                 });
@@ -3715,6 +3735,7 @@
                         } else {
                             quiz.finished = true;
                             if (timerInterval) clearInterval(timerInterval);
+                            window.scrollTo(0, 0);
                             const pct = Math.round((quiz.score / quiz.questions.length) * 100);
                             if (pct >= 65 && !state.achievements.includes('exam_passed')) {
                                 state.achievements.push('exam_passed');
@@ -3746,6 +3767,7 @@
                     } else {
                         quiz.finished = true;
                         if (timerInterval) clearInterval(timerInterval);
+                        window.scrollTo(0, 0);
                         const answeredCount = quiz.timeUp ? quiz.currentIndex : quiz.questions.length;
                         const pct = answeredCount === 0 ? 0 : Math.round((quiz.score / answeredCount) * 100);
                         if (pct >= 65 && state.quizMode === 'exam' && !state.achievements.includes('exam_passed')) {
@@ -3807,22 +3829,24 @@
                         
                         // Finde den Titel des Abschnitts
                         const chapterData = syllabusData.chapters.find(c => c.id === chapterId);
-                        let title = sectionId;
+                        let title = '';
                         if (chapterData && chapterData.subchapters) {
                             for (const sub of chapterData.subchapters) {
                                 if (sub.id === sectionId) {
-                                    title = sub.id + ' ' + sub.title;
+                                    title = sub.title;
                                     break;
                                 }
                                 if (sub.subsections) {
                                     const ss = sub.subsections.find(s => s.id === sectionId);
                                     if (ss) {
-                                        title = ss.id + ' ' + ss.title;
+                                        title = ss.title;
                                         break;
                                     }
                                 }
                             }
                         }
+                        // Fallback: nur sectionId wenn kein Titel gefunden
+                        if (!title) title = 'Abschnitt ' + sectionId;
                         
                         toggleBookmark(chapterId, sectionId, title, true);
                         added++;
