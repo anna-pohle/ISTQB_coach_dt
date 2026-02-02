@@ -2548,7 +2548,7 @@
                             ` : ''}
                         </div>
                         
-                        <button class="stats-dashboard-close" id="close-dashboard">Schließen</button>
+                        <button class="stats-dashboard-close">Schließen</button>
                     </div>
                 </div>`;
         }
@@ -2629,7 +2629,7 @@
                             }).join('')}
                         </div>
                         
-                        <button class="stats-dashboard-close" id="close-dashboard">Schließen</button>
+                        <button class="stats-dashboard-close">Schließen</button>
                     </div>
                 </div>`;
         }
@@ -2718,7 +2718,7 @@
                             </div>
                         ` : ''}
                         
-                        <button class="stats-dashboard-close" id="close-dashboard">Schließen</button>
+                        <button class="stats-dashboard-close">Schließen</button>
                     </div>
                 </div>`;
         }
@@ -4144,13 +4144,13 @@
                 });
             });
             
-            const closeDashboardBtn = document.getElementById('close-dashboard');
-            if (closeDashboardBtn) {
-                closeDashboardBtn.addEventListener('click', () => {
+            // Close buttons for all dashboards (using class instead of ID)
+            document.querySelectorAll('.stats-dashboard-close').forEach(btn => {
+                btn.addEventListener('click', () => {
                     state.activeDashboard = null;
                     render();
                 });
-            }
+            });
             
             // Close dashboard on backdrop click
             document.querySelectorAll('.stats-dashboard').forEach(dashboard => {
