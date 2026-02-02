@@ -388,7 +388,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 3,
         text: "Welche der folgenden Aussagen ist KEIN Faktor, der zu einem erfolgreichen Review beiträgt?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Drei Optionen sind Erfolgsfaktoren, eine ist kontraproduktiv. Welche Rolle sollte Management bei Reviews spielen?",
         answers: [
             "Die Teilnehmer sollten sich ausreichend Zeit für das Review nehmen.",
             "Eine Aufteilung großer Arbeitsprodukte in kleine Teile wird empfohlen, damit die Reviewer nicht die Konzentration verlieren.",
@@ -479,7 +479,7 @@ const examQuestions = Object.freeze([
         kLevel: 3,
         chapter: 4,
         text: "Gegeben ist ein Zustandsübergangsdiagramm mit 3 Zuständen (TV Off, TV Standby, TV Play) und 5 Testfällen.\n\nWelche der folgenden Aussagen zum Diagramm und den Testfällen ist WAHR?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "0-Switch-Überdeckung = Alle GÜLTIGEN Übergänge (Pfeile) mindestens einmal durchlaufen. Zähle die Übergänge im Diagramm.",
         image: "images/a_q21.png",
         answers: [
             "Die Testfälle führen alle Übergänge im Zustandsübergangsdiagramm aus, damit wird 100% Überdeckung aller Übergänge erreicht.",
@@ -502,7 +502,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 4,
         text: "Welche der folgenden Aussagen ist eine Beschreibung für eine Anweisungsüberdeckung?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Anweisungsüberdeckung misst CODE-Zeilen, nicht Testfälle. Und es ist ein PROZENTWERT, keine Ja/Nein-Aussage.",
         answers: [
             "Es handelt sich um eine Metrik zur Berechnung und Messung des prozentualen Anteils der ausgeführten Testfälle.",
             "Es handelt sich um eine Metrik, die den prozentualen Anteil der bereits durch Testfälle ausgeführten Anweisungen im Code angibt.",
@@ -524,7 +524,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 4,
         text: "Welche der folgenden Aussagen trifft NICHT auf White-Box-Tests zu?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "White-Box schaut in den CODE. Kann man im Code sehen, was NICHT implementiert wurde? Denke darüber nach.",
         answers: [
             "White-Box-Test ist ein Test, der auf der Analyse der internen Struktur einer Komponente oder eines Systems basiert.",
             "White-Box-Überdeckungsmetriken können helfen, zusätzliche Tests zu identifizieren, um die Codeüberdeckung zu erhöhen.",
@@ -546,7 +546,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 4,
         text: "Welche der folgenden Aussagen beschreibt AM BESTEN das Konzept der intuitiven Testfallermittlung?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Error Guessing = Wissen über TYPISCHE Fehler nutzen (nicht eigene Entwicklerfehler, nicht Benutzerfehler).",
         answers: [
             "Bei der intuitiven Testfallermittlung nutzen Sie Ihr Wissen über und Ihre Erfahrung mit in der Vergangenheit gefundenen Fehlerzuständen und typischen Fehlhandlungen von Entwicklern.",
             "Bei der intuitiven Testfallermittlung werden Ihre persönlichen Erfahrungen mit der Entwicklung und den Fehlhandlungen, die Sie als Entwickler gemacht haben, genutzt.",
@@ -568,7 +568,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 4,
         text: "In Ihrem Projekt hat sich die Freigabe einer brandneuen Anwendung verzögert und die Testdurchführung hat spät begonnen, aber Sie verfügen über sehr detailliertes Fachwissen und gute analytische Fähigkeiten. Die vollständige Anforderungsspezifikation wurde noch nicht an Sie weitergegeben.\n\nWelches Testverfahren ist in dieser Situation AM BESTEN geeignet?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Keine Spezifikation, aber viel Fachwissen. Welches Verfahren kombiniert Lernen UND Testen gleichzeitig?",
         answers: [
             "Checklistenbasiertes Testen",
             "Intuitive Testfallermittlung",
@@ -592,7 +592,7 @@ const examQuestions = Object.freeze([
         kLevel: 3,
         chapter: 5,
         text: "Ihr Team verwendet das Drei-Punkt-Schätzungsverfahren. Es wurden folgende Schätzungen vorgenommen:\n• Optimistischste Schätzung: 2 Personenstunden\n• Wahrscheinlichste Schätzung: 11 Personenstunden\n• Pessimistischste Schätzung: 14 Personenstunden\n\nWie lautet die endgültige Schätzung?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Formel: E = (O + 4×W + P) ÷ 6. Die wahrscheinlichste Schätzung wird 4-fach gewichtet!",
         answers: [
             "9 Personenstunden",
             "10 Personenstunden",
@@ -614,7 +614,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 5,
         text: "Gegeben sind Tests (1-4) und Testquadranten (A-D):\n\n1. Gebrauchstauglichkeitstest\n2. Komponententest\n3. Funktionaler Test\n4. Zuverlässigkeitstest\n\nA. Q1: Technologieorientiert, Team unterstützend\nB. Q2: Geschäftlich orientiert, Team unterstützend\nC. Q3: Geschäftlich orientiert, Produkt kritisierend\nD. Q4: Technologieorientiert, Produkt kritisierend\n\nWie lassen sich die Testkategorien den Quadranten zuordnen?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Usability = geschäftlich (Benutzer), kritisierend. Komponente = technisch, unterstützend. Performance/Zuverlässigkeit = technisch, kritisierend.",
         answers: [
             "1C, 2A, 3B, 4D",
             "1D, 2A, 3C, 4B",
@@ -636,7 +636,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 5,
         text: "Im Rahmen einer Risikoanalyse wurde folgendes Risiko ermittelt:\n• Risiko: Zu lange Antwortzeit bei der Bereitstellung eines Suchergebnisses\n• Eintrittswahrscheinlichkeit: mittel; Schadensausmaß: hoch\n• Reaktion: Performanztest durch unabhängiges Team + Alpha/Beta-Tests\n\nWelche Art von Maßnahmen wurde vorgeschlagen?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Aktives Testen = aktive Maßnahme. Was bewirkt Testen bezüglich des Risikos? Akzeptieren, Mindern, Transferieren oder Notfallplan?",
         answers: [
             "Risikoakzeptanz",
             "Notfallplan",
@@ -658,7 +658,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 5,
         text: "Welche der folgenden Aussagen zum Zweck und Inhalt von Testberichten ist zutreffend?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Unterscheide: Fortschrittsbericht = WÄHREND des Testens, regelmäßig. Abschlussbericht = AM ENDE einer Teststufe.",
         answers: [
             "Testabschlussberichte werden in regelmäßigen Abständen erstellt und verteilt, um die Stakeholder hinsichtlich des Fortschrittes zu informieren.",
             "Ein Testfortschrittsbericht beinhaltet u. a. die Bewertung der Qualität des Produkts sowie etwaige Abweichungen vom Zeitplan.",
@@ -682,7 +682,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 6,
         text: "Welche Testaktivitäten unterstützt ein Werkzeug zur Erstellung von Testdaten?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Testdaten: Wann werden sie GEPLANT (welche Daten?) und wann ERSTELLT? Das sind zwei verschiedene Aktivitäten.",
         answers: [
             "Testüberwachung und Teststeuerung",
             "Testanalyse und Testentwurf",
@@ -704,7 +704,7 @@ const examQuestions = Object.freeze([
         kLevel: 1,
         chapter: 6,
         text: "Welcher Punkt ist ein mögliches Risiko bei der Testautomatisierung?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Was geht bei Automatisierung oft schief? Denke an übertriebene Erwartungen, nicht an technische Probleme.",
         answers: [
             "Es kann zu unbekannten Nebenwirkungen im operativen Betrieb kommen.",
             "Es bestehen unrealistische Erwartungen hinsichtlich der Funktionalität eines Werkzeugs.",
@@ -732,7 +732,7 @@ const examQuestions = Object.freeze([
         kLevel: 1,
         chapter: 1,
         text: "Welche der folgenden Optionen ist ein typisches Testziel?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Testen FINDET Fehler, PROVOZIERT Fehlerwirkungen. Es INITIIERT keine Fehler und BEHEBT keine.",
         answers: [
             "Validieren, ob die dokumentierten Anforderungen erfüllt sind.",
             "Fehlerwirkungen provozieren und Fehlerzustände identifizieren.",
@@ -754,7 +754,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Welche der folgenden Aussagen beschreibt den Unterschied zwischen Testen und Debugging AM BESTEN?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Testen = FINDEN. Debugging = BEHEBEN. Wer macht was?",
         answers: [
             "Testen identifiziert die Ursache von Fehlerzuständen, während beim Debugging die Fehlerzustände analysiert und behoben werden.",
             "Testen ist eine negative Aktivität, während Debugging eine positive Aktivität ist.",
@@ -776,7 +776,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Der Trugschluss, 'keine Fehler' bedeutet ein brauchbares System, ist einer der Grundsätze des Testens. Welches der folgenden Beispiele zeigt, wie dieses Prinzip in der Praxis umgesetzt wird?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Der Trugschluss: Auch fehlerfreie Software kann unbrauchbar sein! Was stellt sicher, dass Benutzer zufrieden sind?",
         answers: [
             "Erklären, dass es nicht möglich ist, durch Testen die Abwesenheit von Fehlern zu beweisen.",
             "Unterstützung der Endnutzer bei der Durchführung von Abnahmetests.",
@@ -798,7 +798,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Welche der folgenden Testaktivitäten beinhalten AM EHESTEN die Anwendung der Grenzwertanalyse und der Äquivalenzklassenbildung?",
-        hint: "Wählen Sie ZWEI Optionen.",
+        hint: "Testverfahren (GWA, ÄK) = Testentwurf. Aber vorher: Testbedingungen definieren = Testanalyse. Welche zwei?",
         warning: "Diese Frage hat ZWEI richtige Antworten!",
         answers: [
             "Testrealisierung",
@@ -823,7 +823,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Es werden folgende Testmittel angenommen:\n1. Testüberdeckungen\n2. Änderungsanforderungen\n3. Testausführungsplan\n4. Priorisierte Testbedingungen\n\nund die folgenden Testaktivitäten:\nA. Testanalyse\nB. Testentwurf\nC. Testrealisierung\nD. Testabschluss\n\nWelche Aussage trifft AM BESTEN auf das durch die Aktivitäten erzeugte Testmittel zu?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Ordne: Analyse→Bedingungen, Entwurf→Überdeckung, Realisierung→Ausführungsplan, Abschluss→Änderungsanforderungen.",
         answers: [
             "1B, 2D, 3C, 4A",
             "1B, 2D, 3A, 4C",
@@ -845,7 +845,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Welche der folgenden Aussagen über die verschiedenen Testrollen (in unterschiedlichen Entwicklungsmodellen) trifft AM EHESTEN zu?",
-        hint: "Wählen Sie EINE Option. Beachte: Die Antworten beziehen sich auf verschiedene Entwicklungsmodelle.",
+        hint: "Agile Teams: Wer macht was? Testmanagement teils IM Team, teils EXTERN für teamübergreifende Aufgaben.",
         answers: [
             "In der agilen Softwareentwicklung ist das Testmanagement hauptsächlich Aufgabe des Teams, während das Testen hauptsächlich Aufgabe einer Person außerhalb des Teams ist.",
             "Die Testrolle ist hauptsächlich für die Testüberwachung und Teststeuerung verantwortlich, während die Testmanagementrolle hauptsächlich für die Testplanung und -durchführung verantwortlich ist.",
@@ -867,7 +867,7 @@ const examQuestions = Object.freeze([
         kLevel: 1,
         chapter: 1,
         text: "Welcher der folgenden Punkte ist ein Vorteil des ganzheitlichen Teamansatzes (Whole-Team-Ansatz)?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Whole-Team = alle arbeiten zusammen, gemeinsame Verantwortung. Was verbessert sich dadurch im TEAM?",
         answers: [
             "Teams ohne Tester",
             "Verbesserte Teamdynamik",
@@ -889,7 +889,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Welche der folgenden Aussagen zur Unabhängigkeit des Testens ist ZUTREFFEND?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Unabhängigkeit hat Vor- UND Nachteile. Andere Perspektive = gut. Aber: Kann zu Konflikten führen.",
         answers: [
             "Unabhängige Tester werden Fehler finden, weil sie eine andere technische Perspektive als die Entwickler haben, aber ihre Unabhängigkeit kann zu einer kontroversen Beziehung zu den Entwicklern führen.",
             "Die Vertrautheit der Entwickler mit ihrem eigenen Code bedeutet, dass sie nur wenige Fehler darin finden. Aufgrund des gemeinsamen Software-Hintergrunds mit den Testern werden diese Fehler jedoch auch von den Testern gefunden.",
@@ -913,7 +913,7 @@ const examQuestions = Object.freeze([
         kLevel: 1,
         chapter: 2,
         text: "Welche der folgenden Methoden ist eine gute Testpraxis, die für alle Lebenszyklen der Softwareentwicklung gilt?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Was gilt für ALLE SDLCs? Nicht nur V-Modell! Zu jeder Entwicklungsaktivität sollte es eine... geben.",
         answers: [
             "Für jede Teststufe gibt es eine entsprechende Entwicklungsstufe.",
             "Für jedes Testziel gibt es ein entsprechendes Entwicklungsziel.",
@@ -935,7 +935,7 @@ const examQuestions = Object.freeze([
         kLevel: 1,
         chapter: 2,
         text: "Welches der folgenden Beispiele ist ein Test-First-Ansatz für die Entwicklung?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Test-First-Ansätze: TDD, ATDD, BDD. Welche davon steht zur Auswahl?",
         answers: [
             "Komponententestgetriebene Entwicklung",
             "Integrationstestgetriebene Entwicklung",
@@ -957,7 +957,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 2,
         text: "Welche der folgenden Aussagen beschreibt den Shift-Left-Ansatz AM BESTEN?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Shift-Left ≠ Automatisierung! Es geht um ZEITPUNKT: Testaktivitäten FRÜHER im SDLC durchführen.",
         answers: [
             "Manuelle Aktivitäten werden mit Zustimmung der Entwickler automatisiert, um den Grundsatz 'Frühes Testen spart Zeit und Geld' zu unterstützen.",
             "Wo es kosteneffektiv ist, werden Testaktivitäten auf einen früheren Zeitpunkt im Softwareentwicklungslebenszyklus (SDLC) verlagert, um die Gesamtqualitätskosten zu senken, indem die Anzahl der später im SDLC gefundenen Fehler reduziert wird.",
@@ -979,7 +979,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 2,
         text: "Welches der folgenden Ereignisse wird bei einer Retrospektive AM GERINGSTEN wahrscheinlich eintreten?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Retrospektiven sind für das ENTWICKLUNGS-TEAM, nicht für Endanwender. Wer ist NICHT die Zielgruppe?",
         answers: [
             "Die Qualität zukünftiger Testobjekte wird durch die Identifizierung von Verbesserungen in den Entwicklungspraktiken verbessert.",
             "Die Testeffizienz wird verbessert, indem die Konfiguration von Testumgebungen durch Automatisierung beschleunigt wird.",
@@ -1001,7 +1001,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 2,
         text: "Welche der folgenden Teststufen wird AM EHESTEN durchgeführt, wenn sich der Test auf die Validierung konzentriert und nicht von Testern durchgeführt wird?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Validierung = Erfüllt es die BENUTZER-Bedürfnisse? Welche Teststufe wird von BENUTZERN (nicht Testern) durchgeführt?",
         answers: [
             "Komponententest",
             "Komponentenintegrationstest",
@@ -1023,7 +1023,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 2,
         text: "Die Software des Navigationssystems wurde aktualisiert und schlägt nun Routen vor, die gegen die Straßenverkehrsordnung verstoßen, z. B. das Befahren von Einbahnstraßen in falscher Richtung.\n\nWelche der folgenden Aussagen beschreibt die durchzuführenden Tests AM BESTEN?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Nach Fehlerbehebung: Was kommt zuerst? Erst prüfen ob Fehler weg (Fehlernachtest), dann ob nichts kaputt (Regressionstest).",
         answers: [
             "Nur Fehlernachtests",
             "Fehlernachtests, dann Regressionstests",
@@ -1047,7 +1047,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 3,
         text: "Welche der folgenden Beispielfehler identifizieren AM BESTEN Fehler, die durch statische Tests (statt durch dynamische Tests) gefunden werden könnten?",
-        hint: "Wählen Sie ZWEI Optionen.",
+        hint: "Statisch = OHNE Programmausführung. Was kann man finden ohne Code auszuführen? Inkonsistenzen, ungenutzte Variablen...",
         warning: "Diese Frage hat ZWEI richtige Antworten!",
         answers: [
             "Zwei verschiedene Teile der Entwurfsspezifikation stimmen aufgrund der Komplexität des Entwurfs nicht überein.",
@@ -1072,7 +1072,7 @@ const examQuestions = Object.freeze([
         kLevel: 1,
         chapter: 3,
         text: "Welcher der folgenden Vorteile ist ein frühes und häufiges Stakeholder-Feedback?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Frühes Feedback = Änderungen FRÜHER erkennen. Was ist der konkrete Vorteil davon?",
         answers: [
             "Änderungen der Anforderungen werden früher verstanden und umgesetzt.",
             "Es stellt sicher, dass Geschäftsinteressenten die Benutzeranforderungen verstehen.",
@@ -1094,7 +1094,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 3,
         text: "Unter Berücksichtigung der folgenden Reviewarten:\n1. Technisches Review\n2. Informelles Review\n3. Inspektion\n4. Walkthrough\n\nund den folgenden Beschreibungen:\nA. Konzentriert auf Ziele wie Aufbau von Vertrauen, Generierung neuer Ideen und Schulung von Gutachtern unter Leitung des Autors.\nB. Dient in erster Linie der Erkennung potenzieller Mängel und erfordert keine formelle Dokumentation.\nC. Das Hauptziel besteht darin, eine maximale Anzahl potenzieller Fehlerzustände zu erkennen und Metriken zu sammeln, um die Prozessverbesserung zu unterstützen.\nD. Das Ziel ist es, durch qualifizierte Gutachter einen Konsens zu erzielen, Entscheidungen für Probleme zu treffen und neue Ideen zu generieren.\n\nWelche Zuordnung trifft AM BESTEN zu?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Merke: Walkthrough=Autor leitet(A), Informell=ohne Doku(B), Inspektion=Metriken(C), Technisch=Konsens(D).",
         answers: [
             "1A, 2B, 3C, 4D",
             "1D, 2B, 3C, 4A",
@@ -1116,7 +1116,7 @@ const examQuestions = Object.freeze([
         kLevel: 1,
         chapter: 3,
         text: "Welcher der folgenden Faktoren trägt zu einem erfolgreichen Review bei?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Was macht Reviews effektiver? Große Dokumente sind schwer zu prüfen. Was hilft dagegen?",
         answers: [
             "Sicherstellen, dass das Management als Gutachter teilnimmt.",
             "Große Arbeitsprodukte in kleinere Teile aufteilen.",
@@ -1140,7 +1140,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 4,
         text: "Was ist der Hauptunterschied zwischen Black-Box- und erfahrungsbasierten Testverfahren?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Black-Box nutzt SPEZIFIKATION als Basis. Erfahrungsbasiert nutzt ERFAHRUNG. Was unterscheidet sie also?",
         answers: [
             "Das Testobjekt",
             "Die Teststufe, auf dem das Testverfahren verwendet wird.",
@@ -1162,7 +1162,7 @@ const examQuestions = Object.freeze([
         kLevel: 3,
         chapter: 4,
         text: "Sie testen einen PIN-Validator, der gültige PINs akzeptiert und ungültige PINs ablehnt. Eine PIN ist eine Folge von Ziffern. Eine PIN ist gültig, wenn sie aus vier Ziffern besteht, von denen mindestens zwei unterschiedlich sind.\n\nWelche der folgenden Optionen ist ein Satz von Eingabetestdaten, der alle identifizierten Äquivalenzklassen abdeckt?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "ÄK: zu kurz | 4 Ziffern alle gleich (ungültig) | 4 Ziffern mit ≥2 verschiedenen (gültig) | zu lang. Welche deckt alle?",
         answers: [
             "112, 1111, 1234, 123456",
             "1, 123, 1111, 1234",
@@ -1184,7 +1184,7 @@ const examQuestions = Object.freeze([
         kLevel: 3,
         chapter: 4,
         text: "Ein Entwickler wurde gebeten, die folgende Geschäftsregel zu implementieren:\n\nEINGABE: Wert (Ganzzahl)\nWENN (Wert ≤ 100 ODER Wert ≥ 200) DANN schreibe 'Wert falsch'\nELSE schreibe 'Wert OK'\n\nSie entwerfen die Testfälle mit Hilfe einer 2-Wert-Grenzwertanalyse. Welcher der folgenden Sätze von Testeingaben erreicht die größte Überdeckung?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Gültig = 101-199. Grenzen: 100↔101 (untere) und 199↔200 (obere). 2-Wert = Grenze + direkter Nachbar.",
         answers: [
             "100, 150, 200, 201",
             "99, 100, 200, 201",
@@ -1206,7 +1206,7 @@ const examQuestions = Object.freeze([
         kLevel: 3,
         chapter: 4,
         text: "Sie arbeiten an einem Projekt zur Entwicklung eines Systems zur Analyse von Fahrprüfungsergebnissen. Sie wurden gebeten, Testfälle basierend auf einer Entscheidungstabelle zu entwerfen.\n\n[Siehe Entscheidungstabelle im Bild]\n\nWelche Testdaten zeigen, dass die Entscheidungstabelle widersprüchliche Regeln enthält?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Widerspruch = gleiche Eingaben → unterschiedliche Aktionen. Suche Kombinationen, die in mehreren Regeln vorkommen.",
         image: "images/c_q22.png",
         answers: [
             "C1 = T, C2 = T, C3 = F",
@@ -1229,7 +1229,7 @@ const examQuestions = Object.freeze([
         kLevel: 3,
         chapter: 4,
         text: "Sie entwerfen Testfälle basierend auf einem Zustandsübergangsdiagramm.\n\n[Siehe Diagramm im Bild]\n\nWie viele Testfälle sind MINDESTENS erforderlich, um eine 100%ige Überdeckung gültiger Übergänge zu erreichen?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Zähle die Pfeile (Übergänge) im Diagramm. Wie viele Testfälle braucht man, um jeden Pfeil mindestens einmal zu durchlaufen?",
         image: "images/c_q23.png",
         answers: [
             "3",
@@ -1275,7 +1275,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 4,
         text: "Wie können White-Box-Tests zur Unterstützung von Black-Box-Tests nützlich sein?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "White-Box misst CODE-Überdeckung. Wie hilft das bei Black-Box-Tests? Denke an Metriken.",
         answers: [
             "White-Box-Überdeckungsmaßnahmen können Testern bei der Bewertung von Black-Box-Tests hinsichtlich der durch diese Black-Box-Tests erreichten Codeüberdeckung helfen.",
             "Die White-Box-Überdeckungsanalyse kann Testern dabei helfen, nicht erreichbare Fragmente des Quellcodes zu identifizieren.",
@@ -1297,7 +1297,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 4,
         text: "Betrachten Sie die folgende Liste:\n• Korrekte Eingabe nicht akzeptiert\n• Falsche Eingabe akzeptiert\n• Falsches Ausgabeformat\n• Durch null teilen\n\nWelches Testverfahren wird HÖCHSTWAHRSCHEINLICH von dem Tester genutzt, der diese Liste beim Testen verwendet?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Die Liste enthält typische FEHLERTYPEN. Welches Verfahren arbeitet mit einer Liste typischer Fehler?",
         answers: [
             "Exploratives Testen",
             "Fehlerangriff",
@@ -1319,7 +1319,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 4,
         text: "Welche der folgenden Aussagen beschreibt AM BESTEN, wie der Einsatz checklistenbasierter Tests zu einer höheren Überdeckung führen kann?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Checklisten sind allgemein formuliert. Was passiert, wenn VERSCHIEDENE Tester sie interpretieren?",
         answers: [
             "Checklistenelemente können mit einem ausreichend niedrigen Detaillierungsgrad definiert werden, so dass der Tester auf der Grundlage dieser Elemente detaillierte Testfälle implementieren und ausführen kann.",
             "Checklisten können automatisiert werden. Jedes Mal, wenn eine automatisierte Testausführung die Checklistenpunkte abdeckt, führt dies zu einer zusätzlichen Überdeckung.",
@@ -1341,7 +1341,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 4,
         text: "Welches der folgenden Akzeptanzkriterien (Abnahmekriterien) ist das BESTE Beispiel für ein szenarioorientiertes Akzeptanzkriterium?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Szenario = ein ABLAUF/Workflow wird beschrieben. Welche Option beschreibt Schritte eines Benutzers?",
         answers: [
             "Die Anwendung muss es Nutzenden ermöglichen, ihr Konto sowie alle zugehörigen Daten auf Anfrage zu löschen.",
             "Wenn ein Kunde einen Artikel in den Warenkorb legt und zur Kasse geht, soll er aufgefordert werden, sich anzumelden oder ein Konto zu erstellen, sofern dies noch nicht geschehen ist.",
@@ -1363,7 +1363,7 @@ const examQuestions = Object.freeze([
         kLevel: 3,
         chapter: 4,
         text: "Sie verwenden abnahmetestgetriebene Entwicklung und entwerfen Testfälle basierend auf folgender User-Story:\n\nAls regulärer oder spezieller Benutzer möchte ich meine elektronische Etagenkarte nutzen können, um Zugang zu bestimmten Etagen zu erhalten.\n\nAkzeptanzkriterium:\nAC1: Reguläre Benutzer haben Zugang zu den Etagen 1 bis 3.\nAC2: Etage 4 ist ausschließlich für spezielle Benutzer zugänglich.\nAC3: Spezielle Benutzer verfügen über alle Zugriffsrechte regulärer Benutzer.\n\nWelcher Testfall eignet sich AM BESTEN, um AC3 zu testen?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "AC3 prüfen = Spezielle Benutzer haben reguläre Rechte. Also: Spezieller Benutzer → welche Etagen testen?",
         answers: [
             "Prüfen Sie, ob ein regulärer Benutzer Zugang zu den Etagen 1 und 3 hat.",
             "Stellen Sie sicher, dass ein regulärer Benutzer keinen Zugang zur Etage 4 hat.",
@@ -1387,7 +1387,7 @@ const examQuestions = Object.freeze([
         kLevel: 1,
         chapter: 5,
         text: "Welcher der folgenden Punkte ist NICHT der Zweck eines Testkonzepts?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Testkonzept = strategische Planung (WAS, WANN, WIE). Konkrete Testdaten gehören woanders hin.",
         answers: [
             "Testdaten und erwartete Ergebnisse für Komponententests und Komponentenintegrationstests definieren.",
             "Ein Endekriterium auf der Komponententestebene zu definieren, das besagt, dass '100 % Anweisungsüberdeckung und 100 % Zweigüberdeckung erreicht werden müssen'.",
@@ -1409,7 +1409,7 @@ const examQuestions = Object.freeze([
         kLevel: 3,
         chapter: 5,
         text: "Zu Beginn jeder Iteration schätzt das Team den Arbeitsaufwand (in Personentagen). Das Team verwendet folgendes Schätzmodell basierend auf Extrapolation:\n\nE(n) = E(n-1) × A(n-1) / E(n-1)\n\n[Siehe Grafik mit geschätztem und tatsächlichem Aufwand für Iterationen 1-4]\n\nWie hoch ist der geschätzte Arbeitsaufwand für Iteration Nr. 5?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Extrapolation: E(5) = E(4) × A(4) / E(4). Vereinfacht: E(5) = A(4). Lies den tatsächlichen Aufwand von Iteration 4 ab.",
         image: "images/c_q31.png",
         answers: [
             "10,5 Personentage",
@@ -1432,7 +1432,7 @@ const examQuestions = Object.freeze([
         kLevel: 3,
         chapter: 5,
         text: "Sie bereiten einen Testausführungsplan für sieben Testfälle TC 1 bis TC 7 vor.\n\n[Siehe Diagramm mit Prioritäten und Abhängigkeiten]\n\nWelcher Testfall soll als sechster ausgeführt werden?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Regel: Erst ABHÄNGIGKEITEN erfüllen, dann nach PRIORITÄT sortieren. Arbeite das Diagramm systematisch durch.",
         image: "images/c_q32.png",
         answers: [
             "TC 3",
@@ -1455,7 +1455,7 @@ const examQuestions = Object.freeze([
         kLevel: 1,
         chapter: 5,
         text: "Was zeigt das Testpyramidenmodell?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Die Pyramide hat SCHICHTEN: Viele kleine Tests unten (Unit), wenige große oben (E2E). Was zeigt sie also?",
         answers: [
             "Tests können unterschiedliche Prioritäten haben.",
             "Tests können eine unterschiedliche Granularität haben.",
@@ -1477,7 +1477,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 5,
         text: "Welche Beziehung besteht zwischen den Testquadranten, Teststufen und Testarten?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Testquadranten GRUPPIEREN Tests nach Kriterien (geschäftlich/technisch, unterstützend/kritisierend).",
         answers: [
             "Testquadranten stellen bestimmte Kombinationen von Teststufen und Testarten dar und definieren deren Position im Softwareentwicklungslebenszyklus.",
             "Testquadranten beschreiben den Grad der Granularität einzelner Testarten, die auf jeder Testebene durchgeführt werden.",
@@ -1499,7 +1499,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 5,
         text: "Welches ist ein Beispiel dafür, wie die Produktrisikoanalyse die Gründlichkeit und den Umfang der Tests beeinflussen kann?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Die Frage fragt nach GRÜNDLICHKEIT und UMFANG. Hohes Risiko = gründlichere Tests. Was hilft bei dieser Entscheidung?",
         answers: [
             "Eine kontinuierliche Risikoüberwachung ermöglicht es uns, auftretende Risiken so früh wie möglich zu erkennen.",
             "Die Risikoidentifizierung ermöglicht uns, risikomindernde Maßnahmen umzusetzen und das Risikoniveau zu senken.",
@@ -1521,7 +1521,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 5,
         text: "Bei welcher der folgenden Aktivitäten im Testprozess werden Testfortschrittsberichte AM MEISTEN genutzt?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Fortschrittsberichte dienen der ÜBERWACHUNG und STEUERUNG. Welche Aktivität beinhaltet das?",
         answers: [
             "Testentwurf",
             "Testabschluss",
@@ -1543,7 +1543,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 5,
         text: "Welche der folgenden Aussagen ist KEIN Beispiel dafür, wie das Konfigurationsmanagement das Testen unterstützt?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Konfigurationsmanagement = Versionierung, Änderungsverfolgung. Was gehört zum FEHLERMANAGEMENT statt CM?",
         answers: [
             "Alle Commits an das Repository werden eindeutig identifiziert und versioniert.",
             "Alle Änderungen an den Elementen der Testumgebung werden verfolgt.",
@@ -1565,7 +1565,7 @@ const examQuestions = Object.freeze([
         kLevel: 3,
         chapter: 5,
         text: "Betrachten Sie den folgenden Fehlerbericht für eine webbasierte Einkaufsanwendung:\n\nAnwendung: WebShop v0.99\nFehler: Login-Button funktioniert nicht\nSchritte zum Reproduzieren: Starten Sie die Website, Klicken Sie auf den Login-Button\nErwartetes Ergebnis: Der Benutzer sollte zur Anmeldeseite weitergeleitet werden.\nTatsächliches Ergebnis: Die Anmeldeschaltfläche reagiert nicht.\nSchweregrad: Hoch | Priorität: Dringend\n\nWas sind die wichtigsten Informationen, die in diesem Bericht fehlen?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Für die Reproduktion eines Webfehlers braucht man: Browser, Betriebssystem, etc. Was fehlt also?",
         answers: [
             "Name des Testers und Datum des Berichts.",
             "Angaben zur Testumgebung und ihre Versionsnummern.",
@@ -1589,7 +1589,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 6,
         text: "Werkzeuge aus welcher der folgenden Kategorien helfen bei der Organisation von Testfällen, erkannten Fehlern und dem Konfigurationsmanagement?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Welches Werkzeug verwaltet ALLES: Testfälle UND Fehler UND Konfiguration? Fehlermanagement nur Fehler!",
         answers: [
             "Werkzeuge für Testdurchführung und Testüberdeckung.",
             "Werkzeuge für Testentwurf und Testrealisierung.",
@@ -1611,7 +1611,7 @@ const examQuestions = Object.freeze([
         kLevel: 1,
         chapter: 6,
         text: "Welcher der folgenden Vorteile ist AM EHESTEN ein Vorteil der Testautomatisierung?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Automatisierung = immer gleich ausgeführt, keine menschliche Varianz. Was bedeutet das für Fehler?",
         answers: [
             "Die Fähigkeit, Testfälle ohne Zugriff auf die Testbasis zu generieren.",
             "Das Erreichen einer größeren Überdeckung durch eine objektivere Bewertung.",
@@ -1639,7 +1639,7 @@ const examQuestions = Object.freeze([
         kLevel: 1,
         chapter: 1,
         text: "Welche der folgenden Optionen beschreibt KEIN typisches Testziel?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Testziele betreffen SOFTWAREQUALITÄT. Was betrifft etwas ANDERES als die Software selbst?",
         answers: [
             "Fehlerwirkungen auslösen und Fehlerzustände aufdecken",
             "Vertrauen in das Qualitätsniveau des Testobjekts schaffen",
@@ -1661,7 +1661,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Ein im Büro klingelndes Telefon lenkt einen Softwareentwickler ab, was dazu führt, dass er die Logik zur Prüfung der Einhaltung der Obergrenze einer Eingabevariablen falsch programmiert. Später, während des Systemtests, stellt ein Tester fest, dass dieses Eingabefeld ungültige Eingabewerte akzeptiert.\n\nWelcher der folgenden Begriffe beschreibt die fehlerhaft programmierte Logik zur Prüfung der Einhaltung der Obergrenze als Fehler im Code in diesem Szenario zutreffend?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Unterscheide: Grundursache (Ablenkung), Fehlhandlung (Denkfehler), Fehlerzustand (im Code), Fehlerwirkung (sichtbares Problem).",
         answers: [
             "Grundursache",
             "Fehlerwirkung",
@@ -1683,7 +1683,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Welche der folgenden Aktivitäten findet während der Aktivität 'Testanalyse' des Testprozesses statt?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Testanalyse = WAS soll getestet werden? Dazu gehört: Testbasis analysieren, Testbarkeit bewerten.",
         answers: [
             "Identifikation der erforderlichen Infrastruktur und Werkzeuge",
             "Erstellen von Testsuiten basierend auf den Testskripten",
@@ -1705,7 +1705,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Generell gilt, dass nach dem Pareto-Prinzip überdurchschnittlich viele Fehlerzustände oft in wenigen Bereichen eines Systems gefunden werden. Die entsprechenden Ausfälle führen häufig dazu, dass das System unbrauchbar wird.\n\nWelcher der folgenden Grundsätze des Testens ist hier beschrieben?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Pareto (80/20-Regel) = Wenige Bereiche enthalten VIELE Fehler. Welcher Grundsatz beschreibt das?",
         answers: [
             "Testen ist kontextabhängig.",
             "Fehlerzustände treten gehäuft auf.",
@@ -1727,7 +1727,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Welche der folgenden allgemeinen Kompetenzen ist für die Weitergabe von entdeckten Fehlerwirkungen an die betroffenen Entwickler BESONDERS WICHTIG?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "WEITERGABE von Informationen an andere Menschen erfordert welche Kompetenz? Denke an zwischenmenschliche Fähigkeiten.",
         answers: [
             "Testwissen",
             "Kritisches Denken",
@@ -1749,7 +1749,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Ordnen Sie die richtige Beschreibung zu:\nA. Eine Menge von Testfällen oder Testskripten, die in einem bestimmten Testzyklus ausgeführt werden sollen\nB. Eine Abfolge von Anweisungen für die Durchführung eines Tests\nC. Enthält die erwarteten Ergebnisse\nD. Die Dokumentation eines Ziels und der Agenda einer Testsitzung\n\nzu den Testarbeitsergebnissen:\n1. Testsuite\n2. Testfall\n3. Testskript\n4. Test-Charta",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Testsuite=Sammlung, Testfall=erwartete Ergebnisse, Testskript=Anweisungen, Test-Charta=Ziel/Agenda.",
         answers: [
             "1A, 2C, 3B, 4D",
             "1D, 2B, 3A, 4C",
@@ -1771,7 +1771,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Welche der folgenden Aussagen beschreibt AM BESTEN, wie Verfolgbarkeit zwischen der Testbasis, den Testmitteln, den Testergebnissen und den Fehlerzuständen das Testen unterstützt?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Verfolgbarkeit = Verknüpfung zwischen Elementen. Wofür ist das praktisch nützlich? Änderungsauswirkung, Regressionstest...",
         answers: [
             "Die Durchführung einer Auswirkungsanalyse liefert Informationen über die Qualität des Systems unter Test.",
             "Die Analyse der Verfolgbarkeit zwischen Testfällen und Testergebnissen liefert Informationen über die Vollständigkeit von Testfällen.",
@@ -1793,7 +1793,7 @@ const examQuestions = Object.freeze([
         kLevel: 1,
         chapter: 1,
         text: "Welche der folgenden Aussagen stellt einen Vorteil des Whole-Team-Ansatzes dar?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Whole-Team = GEMEINSAME Verantwortung. Nicht: beliebige Aufgaben, separate Arbeit, feste Rollen.",
         answers: [
             "Jedes Teammitglied darf eine beliebige Aufgabe übernehmen.",
             "Jedes Teammitglied ist für die Qualität verantwortlich.",
@@ -1817,7 +1817,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 2,
         text: "Sie arbeiten als Tester in einem Team, das mit einem sequenziellen Softwareentwicklungszyklus (SDLC) arbeitet.\n\nWie wirkt sich die Wahl dieses SDLC-Modells auf die zeitliche Planung der Tests aus?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Sequenziell = Code erst SPÄT verfügbar. Was bedeutet das für DYNAMISCHE Tests (die Code brauchen)?",
         answers: [
             "Dynamische Tests (Unit-Tests) können nicht in frühen Phasen dieses SDLC durchgeführt werden.",
             "Statische Tests können nicht in frühen Phasen in diesem SDLC durchgeführt werden.",
@@ -1839,7 +1839,7 @@ const examQuestions = Object.freeze([
         kLevel: 1,
         chapter: 2,
         text: "Welche der folgenden Aussagen ist eine gute Testpraktik, die für alle Softwareentwicklungslebenszyklen (SDLC) gilt?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Gute Praxis für ALLE SDLCs: Pro Teststufe eigene Ziele, Umfänge, Tiefen. Was passt dazu?",
         answers: [
             "Tester müssen Entwickler besonders bei den Softwareentwicklungsaktivitäten begleiten, für die es keine zugehörigen Testaktivitäten gibt.",
             "Tester sollten dabei unterstützen, unterschiedliche Testziele für jede Teststufe zu definieren, und eigene Testumfänge und Testtiefen für jede Teststufe festzulegen.",
@@ -1861,7 +1861,7 @@ const examQuestions = Object.freeze([
         kLevel: 1,
         chapter: 2,
         text: "Welcher der folgenden Test-First-Ansätze verwendet üblicherweise das Gegeben/Wenn/Dann-Format, um die gewünschte Reaktion einer Anwendung auszudrücken?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Given/When/Then (Gherkin-Syntax) = Natürliche Sprache für Verhalten. Welcher Ansatz nutzt das?",
         answers: [
             "Testgetriebene Entwicklung (TDD)",
             "Abnahmetestgetriebene Entwicklung (ATDD)",
@@ -1883,7 +1883,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 2,
         text: "Was sind die Vorteile von DevOps?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "DevOps = Entwicklung + Betrieb zusammen. Hauptvorteil: Schnellere Releases. Was passt NICHT: Weniger Regression oder nur funktional.",
         answers: [
             "Schnellere Produktfreigabe und kürzere Produkteinführungszeit",
             "Schnelle Rückmeldung durch ausschließliche Fokussierung auf funktionale Tests",
@@ -1905,7 +1905,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 2,
         text: "Sie arbeiten als Tester in einem Projekt an einer mobilen Anwendung für Essensbestellungen. Eine Kundenanforderung mit hoher Priorität lautet:\n\n'In 95 % der Fälle muss die Bestellung in weniger als 10 Sekunden bearbeitet werden.'\n\nSie haben Testfälle erstellt, die Bearbeitungszeit gemessen und mit den Anforderungen verglichen.\n\nWelche Art von Test haben Sie durchgeführt?",
-        hint: "Wählen Sie die BESTE Option.",
+        hint: "Zeit messen = Performanz = nicht-funktionaler Test. Funktional = WAS macht es, nicht-funktional = WIE gut.",
         answers: [
             "Funktional, da die Testfälle die geschäftlichen Anforderungen des Kunden an das System abdecken.",
             "Nicht-funktional, da die Testfälle die Performanz des Systems messen.",
@@ -1927,7 +1927,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 2,
         text: "Welche der folgenden Aussagen über Fehlernachtests und Regressionstests ist korrekt?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Fehlernachtest = Ist der Fehler WEG? Regression = Nichts anderes KAPUTT gemacht?",
         answers: [
             "Die Anzahl der Regressionstests nimmt mit dem Projektfortschritt zu, wohingegen die Anzahl der Fehlernachtests mit dem Projektfortschritt abnimmt.",
             "Regressionstests werden erstellt und durchgeführt, wenn das Testobjekt korrigiert wird, während Fehlernachtests immer dann durchgeführt werden, wenn das Testobjekt erweitert wird.",
@@ -1951,7 +1951,7 @@ const examQuestions = Object.freeze([
         kLevel: 1,
         chapter: 3,
         text: "Welche der folgenden Arbeitsprodukte können NICHT im Rahmen eines Projektes mit einem statischen Test geprüft werden?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Statische Tests brauchen ZUGANG zum Arbeitsprodukt. Worauf hat man keinen Zugang?",
         answers: [
             "Testfälle und ausführbare Testskripte",
             "Anforderungsspezifikation und Akzeptanzkriterien",
@@ -1973,7 +1973,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 3,
         text: "Welche der folgenden Aussagen trifft auf die Unterschiede zwischen statischem und dynamischem Test zu?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Statisch = OHNE Ausführung. Fehlerwirkungen und Performanz brauchen Ausführung. Was findet statisch leichter?",
         answers: [
             "Beim statischen Test werden Fehlerwirkungen gefunden.",
             "Beim statischen Test wird unzureichende Softwareperformanz gemessen.",
@@ -1995,7 +1995,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 3,
         text: "Welche der folgenden Aussagen über formale Reviews (z. B. Inspektionen) ist zutreffend?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Formales Review = strukturierter Prozess mit mehreren Aktivitäten: Planung, Vorbereitung, Sitzung, Nachbereitung...",
         answers: [
             "Das technische Review wird vom Autor geleitet.",
             "Der Reviewprozess besteht aus mehreren Aktivitäten, wie z. B. Planung, Kommunikation und Analyse, Behebung und Berichterstattung.",
@@ -2017,7 +2017,7 @@ const examQuestions = Object.freeze([
         kLevel: 1,
         chapter: 3,
         text: "Welche Aufgaben kann das Management bei einem formalen Review (z. B. Inspektion) übernehmen?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Rollen: Autor=Überarbeitung, Moderator=Sitzungsleitung, Protokollant=Aufzeichnung. Was macht MANAGEMENT?",
         answers: [
             "Gegebenenfalls Überarbeitung des Review-Objekts nach dem Review",
             "Entscheiden, was überprüft werden soll",
@@ -2041,7 +2041,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 4,
         text: "Welche der folgenden Aussagen beschreibt einen Vorteil von Black-Box-Testverfahren gegenüber White-Box-Testverfahren?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Black-Box braucht keinen Quellcode-Zugang. Das ist unabhängig von der... was?",
         answers: [
             "Black-Box-Testverfahren können die interne Struktur und Verarbeitung des Testobjekts überprüfen.",
             "Black-Box-Testverfahren können unabhängig von der Implementierung der Software durchgeführt werden.",
@@ -2063,7 +2063,7 @@ const examQuestions = Object.freeze([
         kLevel: 3,
         chapter: 4,
         text: "Eine Fitness-App misst die Anzahl der täglich zurückgelegten Schritte und gibt dazu Feedback:\n• Bis einschließlich 1000: Couch Potato!\n• Über 1000 bis einschließlich 2000: Komm in die Puschen!\n• Über 2000 bis einschließlich 4000: Die Richtung stimmt!\n• Über 4000 bis einschließlich 6000: Gut gemacht!\n• Über 6000: Super!\n\nWelche der folgenden Gruppen von Testeingabewerten würde für DIE HÖCHSTE Überdeckung von Äquivalenzklassen sorgen?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "5 ÄKs: ≤1000, 1001-2000, 2001-4000, 4001-6000, >6000. Zähle, wie viele VERSCHIEDENE ÄKs jede Option abdeckt!",
         answers: [
             "0, 1000, 2000, 3000, 4000",
             "1000, 2001, 4000, 4001, 6000",
@@ -2085,7 +2085,7 @@ const examQuestions = Object.freeze([
         kLevel: 3,
         chapter: 4,
         text: "Sie testen ein System, das die Endnote für Kursteilnehmer berechnet:\n• 0-50 Punkte: nicht bestanden\n• 51-70 Punkte: ausreichend\n• 71-90 Punkte: gut\n• 91-100 Punkte: sehr gut\n\nSie haben folgende Testfälle: 91, 50, 70, 100, 90, 0\n\nWie hoch ist die Überdeckung der 2-Wert-Grenzwertanalyse, die mit den vorhandenen Testfällen erreicht wird?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "2-Wert-GWA hat 10 Elemente: Grenzwerte + ungültige Nachbarn. Zähle, wie viele davon durch 91, 50, 70, 100, 90, 0 abgedeckt sind.",
         answers: [
             "60 %",
             "75 %",
@@ -2107,7 +2107,7 @@ const examQuestions = Object.freeze([
         kLevel: 3,
         chapter: 4,
         text: "Sie testen ein CRM-System für einen Fahrrad-Tagesverleih mit folgenden Anforderungen:\n• Jeder kann ausleihen, aber nur Mitglieder erhalten 20% Rabatt\n• Bei versäumter Rückgabefrist entfällt der Rabatt\n• Nach 15 Ausleihen erhalten Mitglieder ein T-Shirt\n\nEin Tester hat die folgende Entscheidungstabelle entworfen (J=Ja, N=Nein, X=Aktion ausführen).\n\nWelche Regel entspricht NICHT den Anforderungen?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Prüfe jede Regel gegen die Anforderungen. Wer bekommt ein T-Shirt? Nur MITGLIEDER nach 15 Ausleihen!",
         image: "images/f_q22.png",
         answers: [
             "R4",
@@ -2130,7 +2130,7 @@ const examQuestions = Object.freeze([
         kLevel: 3,
         chapter: 4,
         text: "Sie testen ein System, dessen Lebenszyklus durch ein Zustandsübergangsdiagramm modelliert wird. Das System startet im INIT-Zustand und beendet seinen Betrieb im OFF-Zustand.\n\n[Hinweis: Das Diagramm zeigt Zustände INIT, TEST, RUN, PAUSE, OFF mit verschiedenen Übergängen]\n\nWas ist die MINDESTZAHL von Testfällen, um eine Überdeckung der gültigen Übergänge von 100 % zu erreichen (0-Switch-Überdeckung)?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Zähle alle Pfeile (Übergänge) im Diagramm. Überlege: Wie viele Testfälle braucht man, um ALLE Pfeile abzudecken?",
         image: "images/f_q23.png",
         answers: [
             "2",
@@ -2153,7 +2153,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 4,
         text: "Ihre Testsuite erreicht eine Anweisungsüberdeckung von 100 %. Was bedeutet das?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "100% Anweisungsüberdeckung = JEDE Code-Zeile mindestens einmal ausgeführt. Aber: Zweige sind etwas anderes!",
         answers: [
             "Eine beliebig ausgewählte Anweisung im Code wurde mindestens einmal ausgeführt.",
             "Jede Testsuite, die mehr Testfälle als Ihre Testsuite enthält, erreicht ebenfalls eine Anweisungsüberdeckung von 100 %.",
@@ -2197,7 +2197,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 4,
         text: "Was ist der Zweck einer Test-Charta beim sitzungsbasierten explorativen Testen?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Test-Charta = Anweisung VOR der Sitzung. Was enthält sie? Testziele und Ideen, nicht Ergebnisse.",
         answers: [
             "Die Test-Charta legt die Testziele für die Testsitzung fest.",
             "Die Test-Charta dokumentiert die durchgeführten Schritte und die gewonnenen Erkenntnisse.",
@@ -2219,7 +2219,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 4,
         text: "Welche der folgenden Aussagen ist AM EHESTEN ein Vorteil des Testens anhand von Checklisten?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Checklisten = flexibel einsetzbar. NICHT: hohe Wiederholbarkeit (Tester interpretieren unterschiedlich). Was ist ein echter Vorteil?",
         answers: [
             "Es ermöglicht eine hohe Wiederholbarkeit der Tests.",
             "Es bietet einen strukturierten Ansatz für das Testen, ohne dass detaillierte Testfälle erforderlich sind.",
@@ -2241,7 +2241,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 4,
         text: "Welche der folgenden Aussagen beschreibt NICHT den kollaborativen Ansatz beim Schreiben von User-Storys?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Kollaborativ = GEMEINSAM. Alle Stakeholder erstellen User-Storys und Akzeptanzkriterien zusammen, nicht einzeln!",
         answers: [
             "User-Storys beinhalten die Aspekte Fachlichkeit, Entwicklung und Testen.",
             "User-Storys werden von Fachbereichsvertretern, Entwicklern und Testern gemeinsam erstellt.",
@@ -2263,7 +2263,7 @@ const examQuestions = Object.freeze([
         kLevel: 3,
         chapter: 4,
         text: "Sie verwenden abnahmetestgesteuerte Entwicklung (ATDD) und entwerfen Testfälle basierend auf folgender User-Story:\n\n'Als regulärer oder spezieller Benutzer möchte ich meine elektronische Etagenkarte für den Zutritt zu bestimmten Etagen nutzen können.'\n\nAkzeptanzkriterien:\nAC1: Normale Benutzer haben Zugang zu den Etagen 1 bis 3.\nAC2: Etage 4 ist nur für spezielle Benutzer zugänglich.\nAC3: Spezielle Benutzer haben alle Zugriffsrechte von regulären Benutzern.\n\nWelcher Testfall ist DER SINNVOLLSTE, um AC3 zu testen?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "AC3 testen = SPEZIELLER Benutzer hat REGULÄRE Rechte. Also: Spezieller Benutzer → Etagen 1-3 prüfen.",
         answers: [
             "Überprüfen Sie, ob ein regulärer Benutzer Zugang zu den Etagen 1 und 3 hat.",
             "Stellen Sie sicher, dass ein regulärer Benutzer keinen Zugang zur Etage 4 hat.",
@@ -2287,7 +2287,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 5,
         text: "Betrachten Sie folgende Festlegung eines Testkonzepts:\n\n'Die korrekte Funktionsweise von Komponenten wird mit Hilfe von Komponententests und Komponentenintegrationstests überprüft. Es muss der Nachweis erbracht werden, dass für jede als kritisch eingestufte Komponente eine 100%ige Zweigüberdeckung erreicht wird.'\n\nZu welchem Teil des Testkonzepts gehört diese Festlegung?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Teststufen + Metriken + Endekriterien (100% Überdeckung) gehören zum... welchen Teil des Testkonzepts?",
         answers: [
             "Testumgebung",
             "Risikoverzeichnis",
@@ -2309,7 +2309,7 @@ const examQuestions = Object.freeze([
         kLevel: 3,
         chapter: 5,
         text: "Bei einem Planungspoker wurden folgende Aufwandsschätzungen vergeben:\n• Kunden: 5\n• Entwickler: 5\n• Tester: 20\n\nWas ist DER BESTE nächste Schritt in dieser Planungsrunde?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Planungspoker: Bei unterschiedlichen Schätzungen wird diskutiert, WARUM. Keine Mehrheitsentscheidung!",
         answers: [
             "Da die Schätzungen der Kunden und der Entwickler übereinstimmen, kann das Team davon ausgehen, dass sie gut sind. Der Planungspoker wird beendet.",
             "Das Team diskutiert gemeinsam, warum kein Konsens über die Schätzungen erreicht wurde. Eine weitere Runde Planungspoker folgt.",
@@ -2331,7 +2331,7 @@ const examQuestions = Object.freeze([
         kLevel: 1,
         chapter: 5,
         text: "Welche der folgenden Aussagen über die Testpyramide trifft zu?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Testpyramide: UNTEN viele kleine Tests (granular), OBEN wenige große Tests (weniger granular).",
         answers: [
             "Die Testpyramide legt den Schwerpunkt auf eine kleine Anzahl von Tests auf den unteren Teststufen.",
             "Je mehr man sich der Spitze der Pyramide nähert, desto weniger granular sollte das Testen sein.",
@@ -2353,7 +2353,7 @@ const examQuestions = Object.freeze([
         kLevel: 3,
         chapter: 5,
         text: "Folgende Prioritäten und Abhängigkeiten der Testfälle sind gegeben:\n\nTF1: Hoch, technisch abhängig von TF4\nTF2: Niedrig, keine Abhängigkeiten\nTF3: Hoch, logisch abhängig von TF4\nTF4: Mittel, keine Abhängigkeiten\nTF5: Niedrig, logisch abhängig von TF2\nTF6: Mittel, technisch abhängig von TF5\n\nWelcher Testausführungsplan berücksichtigt AM BESTEN Prioritäten und Abhängigkeiten?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Erst ABHÄNGIGKEITEN erfüllen, dann PRIORITÄT. TF1+TF3 hängen von TF4 ab. TF6→TF5→TF2 ist eine Kette.",
         answers: [
             "TF1 – TF3 – TF4 – TF6 – TF2 – TF5",
             "TF4 – TF3 – TF1 – TF2 – TF5 – TF6",
@@ -2375,7 +2375,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 5,
         text: "Welche der folgenden Testarten gehört zum Quadranten Q2 – 'geschäftsorientiert, Unterstützung des Teams' – im Testquadranten-Modell?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Q2 = Geschäftsorientiert + Team-unterstützend. Welche Tests helfen dem Team, Geschäftsanforderungen zu verstehen?",
         answers: [
             "Komponentenintegrationstests",
             "User-Story-basierte Tests",
@@ -2397,7 +2397,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 5,
         text: "Welche der folgenden Aussagen stellt ein Projektrisiko dar?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Unterscheide: Projektrisiko = betrifft PROJEKT (Ressourcen, Zeit). Produktrisiko = betrifft PRODUKT (Qualität).",
         answers: [
             "Das Management versetzt zwei erfahrene Tester in ein anderes Projekt.",
             "Das System entspricht nicht den Standards der funktionalen Sicherheit.",
@@ -2419,7 +2419,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 5,
         text: "In einem Fehlerbehebungsprozess werden behobene Fehler in der Entwicklungsumgebung erfolgreich nachgetestet (Schritt 3), fallen aber dann in der Testumgebung (Schritt 5) wieder durch.\n\nWelcher Teil des Prozesses sollte als Nächstes überprüft werden?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Funktioniert in Umgebung A, scheitert in Umgebung B. Was ist für den Transfer zwischen Umgebungen verantwortlich?",
         answers: [
             "Die Aktivität von Entwicklern, die in Schritt 2 möglicherweise nicht ausreichend getestet haben.",
             "Die Aktivität von Testern, die möglicherweise unklar darüber sind, was in Schritt 5 zu testen ist.",
@@ -2441,7 +2441,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 5,
         text: "Welche der folgenden Aussagen aus einem wöchentlichen Testfortschrittsbericht ist für die Stakeholder im Rahmen der Testüberwachung und Teststeuerung NICHT relevant?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Stakeholder interessiert das ERGEBNIS, nicht WIE intern Metriken ermittelt werden.",
         answers: [
             "Die Ausfallzeit der Testumgebung im Berichtszeitraum hat sich um 20 % auf 25 Stunden erhöht.",
             "Die Zeit für die Bereitstellung der Statistiken zu den Überdeckungsmetriken konnte um 35 % auf 72 Minuten reduziert werden.",
@@ -2463,7 +2463,7 @@ const examQuestions = Object.freeze([
         kLevel: 3,
         chapter: 5,
         text: "Eine Kollegin hat folgenden Fehlerbericht erstellt:\n- ID: br00_23_12\n- Titel: Fehlermeldung beim Login mit leerem Namen nicht korrekt\n- Autor: Lisa van der Vaart (Test Engineer)\n- Testobjekt: build v00812\n- Testumgebung: cfg_full_02\n- Aufdeckender Testfall: sys_128\n- Beschreibung: Nach einem Login-Versuch mit leerem Namen gibt das System 'falsches Passwort' zurück, statt 'Name darf nicht leer sein'.\n- Schweregrad: niedrig | Priorität: mittel\n- Fehlerstatus: neu\n\nWelchen Verbesserungsvorschlag geben Sie am EHESTEN?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Prüfe alle Pflichtfelder eines Fehlerberichts: ID, Titel, Autor, Datum, Beschreibung, Status... Was fehlt?",
         answers: [
             "Der Titel beschreibt den Inhalt nicht korrekt.",
             "Schweregrad und Priorität müssten gleich sein, da Ersteres Letzteres bedingt.",
@@ -2487,7 +2487,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 6,
         text: "Welches der folgenden Testwerkzeuge ist AM NÜTZLICHSTEN für die Berichterstattung über die Anzahl der Fehlerzustände im Testobjekt?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Welches Werkzeug verwaltet Testprozesse UND liefert Übersichten zu Fehlern?",
         answers: [
             "Testmanagementwerkzeug",
             "Werkzeug für den statischen Test",
@@ -2509,7 +2509,7 @@ const examQuestions = Object.freeze([
         kLevel: 1,
         chapter: 6,
         text: "Welche der folgenden Aussagen stellt einen potenziellen Nutzen der Testautomatisierung dar?",
-        hint: "Wählen Sie EINE Option.",
+        hint: "Echte Vorteile: Objektivere Messungen, Konsistenz, Wiederholbarkeit. KEINE Vorteile: Einfache Aufwandsschätzung, kein Denken nötig.",
         answers: [
             "Testautomatisierung ermöglicht eine objektivere Bereitstellung von Messungen, die für Menschen zu kompliziert in ihrer Ermittlung sind.",
             "Für Testautomatisierung kann man sehr genau den Aufwand für die Einführung, Wartung und Schulung abschätzen.",
