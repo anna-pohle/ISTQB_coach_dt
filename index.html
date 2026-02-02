@@ -1630,56 +1630,69 @@
         }
         
         /**
-         * Spaced Repetition: Trackt falsch beantwortete Fragen
+         * Spaced Repetition: Trackt Fragen basierend auf Ergebnis UND Confidence
          * @param {string} questionId - ID der Frage
          * @param {boolean} isCorrect - War die Antwort korrekt?
+         * @param {string} confidence - 'sure', 'unsure', 'guessed' (optional, nur Practice Mode)
          */
-        function trackQuestionResult(questionId, isCorrect) {
+        function trackQuestionResult(questionId, isCorrect, confidence) {
             if (!state.wrongQuestions) state.wrongQuestions = {};
             
-            if (isCorrect) {
-                // Bei richtiger Antwort: wrongCount reduzieren (aber nicht unter 0)
+            // Prioritäts-Logik:
+            // Falsch → höchste Priorität (+2)
+            // Richtig + geraten/unsicher → mittlere Priorität (+1)
+            // Richtig + sicher → Priorität entfernen
+            
+            if (!isCorrect) {
+                // Falsch: Höchste Priorität
+                if (!state.wrongQuestions[questionId]) {
+                    state.wrongQuestions[questionId] = { wrongCount: 0, lastSeen: 0 };
+                }
+                state.wrongQuestions[questionId].wrongCount += 2;
+                state.wrongQuestions[questionId].lastSeen = Date.now();
+            } else if (confidence === 'guessed' || confidence === 'unsure') {
+                // Richtig aber unsicher/geraten: Mittlere Priorität
+                if (!state.wrongQuestions[questionId]) {
+                    state.wrongQuestions[questionId] = { wrongCount: 0, lastSeen: 0 };
+                }
+                state.wrongQuestions[questionId].wrongCount += 1;
+                state.wrongQuestions[questionId].lastSeen = Date.now();
+            } else {
+                // Richtig + sicher: Priorität reduzieren
                 if (state.wrongQuestions[questionId]) {
-                    state.wrongQuestions[questionId].wrongCount = Math.max(0, state.wrongQuestions[questionId].wrongCount - 1);
+                    state.wrongQuestions[questionId].wrongCount = Math.max(0, state.wrongQuestions[questionId].wrongCount - 2);
                     if (state.wrongQuestions[questionId].wrongCount === 0) {
                         delete state.wrongQuestions[questionId];
                     }
                 }
-            } else {
-                // Bei falscher Antwort: wrongCount erhöhen
-                if (!state.wrongQuestions[questionId]) {
-                    state.wrongQuestions[questionId] = { wrongCount: 0, lastWrong: 0 };
-                }
-                state.wrongQuestions[questionId].wrongCount++;
-                state.wrongQuestions[questionId].lastWrong = Date.now();
             }
         }
         
         /**
-         * Spaced Repetition: Priorisiert Fragen basierend auf Fehlerhäufigkeit
-         * Fragen mit mehr Fehlern erscheinen häufiger
+         * Spaced Repetition: Priorisiert Fragen basierend auf Lernbedarf
+         * Fragen mit höherem wrongCount (falsch/unsicher) erscheinen häufiger
          * @param {Array} questions - Array von Fragen
          * @param {number} count - Gewünschte Anzahl
          * @returns {Array} - Priorisierte Fragen
          */
         function selectQuestionsWithSpacedRepetition(questions, count) {
             if (!state.wrongQuestions || Object.keys(state.wrongQuestions).length === 0) {
-                // Keine Fehler-Historie: normale Shuffle
+                // Keine Lern-Historie: normale Shuffle
                 return shuffleArray([...questions]).slice(0, count);
             }
             
             // Berechne Priorität für jede Frage
             const withPriority = questions.map(q => {
-                const wrongData = state.wrongQuestions[q.id];
+                const learnData = state.wrongQuestions[q.id];
                 let priority = 1; // Basis-Priorität
                 
-                if (wrongData) {
-                    // Je öfter falsch, desto höher die Priorität (max 5x)
-                    priority += Math.min(wrongData.wrongCount, 4);
+                if (learnData) {
+                    // Je höher wrongCount, desto höher die Priorität (max 6x)
+                    priority += Math.min(learnData.wrongCount, 5);
                     
                     // Zeitfaktor: Länger nicht gesehene Fragen bekommen Bonus
-                    const daysSinceWrong = (Date.now() - wrongData.lastWrong) / (1000 * 60 * 60 * 24);
-                    if (daysSinceWrong > 1 && daysSinceWrong < 7) {
+                    const daysSinceSeen = (Date.now() - (learnData.lastSeen || learnData.lastWrong || 0)) / (1000 * 60 * 60 * 24);
+                    if (daysSinceSeen > 1 && daysSinceSeen < 7) {
                         priority += 1; // 1-7 Tage her: optimaler Wiederholungszeitpunkt
                     }
                 }
@@ -3585,8 +3598,8 @@
                         isCorrect = quiz.selectedAnswer === q.correct;
                     }
                     
-                    // Spaced Repetition: Track result
-                    trackQuestionResult(q.id, isCorrect);
+                    // Spaced Repetition: Track result with confidence (Practice Mode)
+                    trackQuestionResult(q.id, isCorrect, quiz.confidence || 'sure');
                     
                     if (isCorrect) {
                         quiz.score++;
@@ -3714,8 +3727,8 @@
                     
                     const isCorrect = idx === q.correct;
                     
-                    // Spaced Repetition: Track result
-                    trackQuestionResult(q.id, isCorrect);
+                    // Spaced Repetition: Track result (Exam mode = 'sure' by default)
+                    trackQuestionResult(q.id, isCorrect, 'sure');
                     
                     if (isCorrect) {
                         quiz.score++;
