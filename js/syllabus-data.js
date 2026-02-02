@@ -297,6 +297,34 @@ const syllabusData = Object.freeze({
                             ]
                         },
                         {
+                            id: "1.4.3",
+                            title: "Testmittel je Testaktivität",
+                            page: 22,
+                            quote: "Jede Testaktivität erzeugt spezifische Arbeitsergebnisse (Testmittel).",
+                            keyPoints: [
+                                {
+                                    title: "Testanalyse → Testbedingungen",
+                                    content: "Die Testanalyse produziert priorisierte Testbedingungen (was soll getestet werden?).",
+                                    coachNote: "🎯 Testanalyse = WAS testen?\n→ Testbedingungen definieren"
+                                },
+                                {
+                                    title: "Testentwurf → Testüberdeckungen",
+                                    content: "Der Testentwurf erstellt Testüberdeckungskriterien und Testfälle (wie wird getestet?).",
+                                    coachNote: "🎯 Testentwurf = WIE testen?\n→ Überdeckungskriterien, Testfälle"
+                                },
+                                {
+                                    title: "Testrealisierung → Testausführungsplan",
+                                    content: "Die Testrealisierung erstellt den Testausführungsplan (Reihenfolge der Testfälle).",
+                                    coachNote: "🎯 Testrealisierung = In welcher REIHENFOLGE?\n→ Testausführungsplan"
+                                },
+                                {
+                                    title: "Testabschluss → Änderungsanforderungen",
+                                    content: "Der Testabschluss kann Änderungsanforderungen für nicht behobene Fehler oder technische Schulden erzeugen.",
+                                    coachNote: "🎯 Prüfungsfalle – Zuordnung merken:\n\n• Testbedingungen → Testanalyse\n• Testüberdeckungen → Testentwurf\n• Testausführungsplan → Testrealisierung\n• Änderungsanforderungen → Testabschluss"
+                                }
+                            ]
+                        },
+                        {
                             id: "1.4.4",
                             title: "Verfolgbarkeit zwischen Testbasis und Testmitteln",
                             page: 23,
@@ -668,6 +696,39 @@ const syllabusData = Object.freeze({
             ],
             subchapters: [
                 {
+                    id: "4.1",
+                    title: "Kategorien von Testverfahren",
+                    page: 43,
+                    quote: "Testverfahren werden in drei Kategorien unterteilt: Black-Box-, White-Box- und erfahrungsbasierte Testverfahren.",
+                    keyPoints: [
+                        {
+                            title: "Drei Kategorien",
+                            content: "ISTQB unterscheidet drei Kategorien von Testverfahren: Black-Box, White-Box und erfahrungsbasiert.",
+                            coachNote: "Jede Kategorie hat einen anderen Fokus und eine andere Testbasis."
+                        },
+                        {
+                            title: "Black-Box-Testverfahren",
+                            content: "Basieren auf Spezifikationen, Anforderungen oder dem erwarteten Verhalten. Keine Kenntnis des Codes nötig. Fokus: WAS das System tun soll.",
+                            coachNote: "🎯 Black-Box = Verhalten prüfen\nTestbasis: Spezifikation\nBeispiele: Äquivalenzklassen, Grenzwerte"
+                        },
+                        {
+                            title: "White-Box-Testverfahren",
+                            content: "Basieren auf der internen Struktur und dem Code. Fokus: WIE das System implementiert ist (Anweisungen, Zweige).",
+                            coachNote: "🎯 White-Box = Struktur prüfen\nTestbasis: Code/Architektur\nBeispiele: Anweisungstest, Zweigtest"
+                        },
+                        {
+                            title: "Erfahrungsbasierte Testverfahren",
+                            content: "Basieren auf Wissen, Erfahrung und Intuition des Testers. Kein formales Verfahren, sondern Expertise.",
+                            coachNote: "🎯 Erfahrungsbasiert = Intuition nutzen\nTestbasis: Tester-Erfahrung\nBeispiele: Explorativ, Checklisten"
+                        },
+                        {
+                            title: "Hauptunterschied",
+                            content: "Der wesentliche Unterschied liegt in der TESTBASIS: Spezifikation (Black-Box) vs. Code (White-Box) vs. Erfahrung (erfahrungsbasiert).",
+                            coachNote: "🎯 Prüfungsfalle – Testbasis unterscheidet!\n\n❌ NICHT: Teststufe, Testobjekt, SDLC\n✅ SONDERN: Die Testbasis (worauf basieren die Tests?)"
+                        }
+                    ]
+                },
+                {
                     id: "4.2",
                     title: "Black-Box-Testverfahren",
                     page: 45,
@@ -946,6 +1007,80 @@ const syllabusData = Object.freeze({
                         }
                     ],
                     subsections: [
+                        {
+                            id: "5.1.1",
+                            title: "Zweck und Inhalt eines Testkonzepts",
+                            page: 57,
+                            quote: "Ein Testkonzept dokumentiert die Mittel und den Zeitplan für das Erreichen von Testzielen.",
+                            keyPoints: [
+                                {
+                                    title: "Zweck des Testkonzepts",
+                                    content: "Ein Testkonzept dokumentiert Testziele, Ressourcen, Zeitplan und Testansatz. Es wird kontinuierlich während des Projekts angepasst.",
+                                    coachNote: "Testkonzept = strategisches Dokument fürs gesamte Testvorhaben."
+                                },
+                                {
+                                    title: "Typische Inhalte",
+                                    content: "Kontext des Testens (Umfang, Ziele, Risiken), Kommunikation (Stakeholder, Berichte), Risikoverzeichnis, Testansatz (Teststufen, Testarten, Testverfahren, Überdeckungsmaße), Testdurchführung und -steuerung.",
+                                    coachNote: "🎯 Prüfungsfrage-Muster:\n\n'Gehört X zum Testkonzept?'\n\n✅ JA: Teststufen, Endekriterien, Testansatz, Risiken, Überdeckungsziele\n❌ NEIN: Konkrete Testdaten, detaillierte Testfälle"
+                                },
+                                {
+                                    title: "Testansatz im Testkonzept",
+                                    content: "Der Testansatz beschreibt WIE getestet wird: Teststufen, Testarten, Testverfahren und Überdeckungskriterien (z.B. '100% Zweigüberdeckung für kritische Komponenten').",
+                                    coachNote: "🎯 Prüfungsfalle:\n\n'100% Zweigüberdeckung muss erreicht werden' → Gehört zum TESTANSATZ im Testkonzept\n\nNICHT zu: Testumgebung, Risikoverzeichnis, Kontext"
+                                }
+                            ]
+                        },
+                        {
+                            id: "5.1.4",
+                            title: "Schätztechniken",
+                            page: 59,
+                            quote: "Der Testaufwand kann mit verschiedenen Verfahren geschätzt werden, u.a. Verhältnisschätzung, Extrapolation und Wideband Delphi (Planungspoker).",
+                            keyPoints: [
+                                {
+                                    title: "Schätzverfahren im Überblick",
+                                    content: "ISTQB nennt mehrere Schätztechniken: Verhältnisschätzung (ratio-based), Extrapolation, Wideband Delphi/Planungspoker und Drei-Punkt-Schätzung.",
+                                    coachNote: "Verschiedene Verfahren für verschiedene Situationen."
+                                },
+                                {
+                                    title: "Planungspoker (Wideband Delphi)",
+                                    content: "Agiles Schätzverfahren: Jeder gibt unabhängig eine Schätzung ab. Bei unterschiedlichen Schätzungen wird DISKUTIERT warum, dann erneut geschätzt bis Konsens erreicht ist.",
+                                    coachNote: "🎯 Planungspoker-Regeln:\n\n1. Jeder schätzt UNABHÄNGIG\n2. Schätzungen aufdecken\n3. Bei Abweichungen: DISKUSSION\n4. Erneut schätzen bis KONSENS\n\n❌ NICHT: Mehrheitsentscheidung\n❌ NICHT: Kunde entscheidet allein\n❌ NICHT: Exakt gleiche Werte nötig"
+                                },
+                                {
+                                    title: "Extrapolation",
+                                    content: "Schätzung basierend auf historischen Daten. Man nutzt vergangene Werte um zukünftige vorherzusagen.",
+                                    coachNote: "🎯 Extrapolations-Formel:\n\nE(n) = E(n-1) × A(n-1) / E(n-1)\n\nVereinfacht: E(n) = A(n-1)\n\nDie nächste Schätzung = letzter TATSÄCHLICHER Wert"
+                                },
+                                {
+                                    title: "Drei-Punkt-Schätzung",
+                                    content: "E = (O + 4×W + P) ÷ 6. Optimistisch, Wahrscheinlichste (4-fach gewichtet) und Pessimistisch.",
+                                    coachNote: "Formel auswendig lernen! Die wahrscheinlichste Schätzung wird 4-fach gewichtet."
+                                }
+                            ]
+                        },
+                        {
+                            id: "5.1.5",
+                            title: "Testfallpriorisierung",
+                            page: 60,
+                            quote: "Testfälle und Testskripte werden in einem Testausführungsplan so geordnet, dass Prioritäten und Abhängigkeiten berücksichtigt werden.",
+                            keyPoints: [
+                                {
+                                    title: "Testausführungsplan",
+                                    content: "Der Testausführungsplan legt die Reihenfolge der Testfallausführung fest. Er berücksichtigt Prioritäten (wichtige Tests zuerst) und Abhängigkeiten (ein Test braucht einen anderen als Voraussetzung).",
+                                    coachNote: "Erst Abhängigkeiten erfüllen, dann nach Priorität sortieren."
+                                },
+                                {
+                                    title: "Priorisierungskriterien",
+                                    content: "Testfälle können nach Risiko, Überdeckung, Abhängigkeiten oder Wichtigkeit für Stakeholder priorisiert werden.",
+                                    coachNote: "Hohe Priorität = wichtig = zuerst testen."
+                                },
+                                {
+                                    title: "Abhängigkeiten beachten",
+                                    content: "Technische Abhängigkeit: Test B braucht Ergebnis von Test A. Logische Abhängigkeit: Test B macht nur Sinn nach Test A.",
+                                    coachNote: "🎯 Prüfungsfalle – Reihenfolge bestimmen:\n\n1. ABHÄNGIGKEITEN zuerst erfüllen!\n2. Dann nach PRIORITÄT sortieren\n\nBeispiel: TF1 (Hoch, abhängig von TF4)\n→ TF4 muss VOR TF1 kommen, auch wenn TF4 niedrigere Priorität hat!"
+                                }
+                            ]
+                        },
                         {
                             id: "5.1.6",
                             title: "Testpyramide",

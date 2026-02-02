@@ -33,7 +33,7 @@ Oder auf dem Handy installieren → [Anleitung](#-installation)
 ### 📚 Lehrplan-Modul
 | Feature | Beschreibung |
 |---------|--------------|
-| **Alle 6 Kapitel** | Vollständig nach CTFL v4.0.2 Syllabus |
+| **Alle 6 Kapitel** | Vollständig nach CTFL v4.0.2 Syllabus – **jedes LO zu jeder Prüfungsfrage ist abgedeckt** |
 | **Konzept-Diagramme** | V-Modell, Testpyramide, Zustandsdiagramme, Risikomatrix u.v.m. |
 | **Coach-Notes** | Prüfungstipps & Eselsbrücken |
 | **Lesezeichen** | Auf allen Ebenen (Kapitel, Sektion, Unterabschnitt) |
