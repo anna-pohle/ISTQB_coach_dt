@@ -681,7 +681,7 @@ const syllabusData = Object.freeze({
                     ],
                     subsections: [
                         {
-                            id: "4.2.1",
+                            id: "4.1.1",
                             title: "Äquivalenzklassenbildung",
                             page: 45,
                             quote: "Bei der Äquivalenzklassenbildung werden Daten in Klassen unterteilt, wobei davon ausgegangen wird, dass alle Elemente einer Klasse vom Testobjekt auf die gleiche Weise verarbeitet werden.",
@@ -694,7 +694,7 @@ const syllabusData = Object.freeze({
                             ]
                         },
                         {
-                            id: "4.2.2",
+                            id: "4.1.2",
                             title: "Grenzwertanalyse",
                             page: 46,
                             quote: "Die Grenzwertanalyse basiert auf der Überprüfung der Grenzen von Äquivalenzklassen. Bei der 2-Wert-Analyse gibt es für jeden Grenzwert zwei Überdeckungselemente: den Grenzwert und seinen engsten Nachbarn.",
@@ -707,7 +707,7 @@ const syllabusData = Object.freeze({
                             ]
                         },
                         {
-                            id: "4.2.3",
+                            id: "4.1.3",
                             title: "Entscheidungstabellentest",
                             page: 47,
                             image: "images/a_q20.png",
@@ -722,7 +722,7 @@ const syllabusData = Object.freeze({
                             ]
                         },
                         {
-                            id: "4.2.4",
+                            id: "4.1.4",
                             title: "Zustandsübergangstest",
                             page: 48,
                             image: "images/f_q23.png",
@@ -752,7 +752,7 @@ const syllabusData = Object.freeze({
                     ],
                     subsections: [
                         {
-                            id: "4.3.1",
+                            id: "4.2.1",
                             title: "Anweisungstest und Anweisungsüberdeckung",
                             page: 50,
                             quote: "Beim Anweisungstest sind die Überdeckungselemente ausführbare Anweisungen. Die Überdeckung wird als Anzahl der durch die Testfälle ausgeführten Anweisungen, geteilt durch die Gesamtzahl der ausführbaren Anweisungen, gemessen.",
@@ -765,7 +765,7 @@ const syllabusData = Object.freeze({
                             ]
                         },
                         {
-                            id: "4.3.2",
+                            id: "4.2.2",
                             title: "Zweigtest und Zweigüberdeckung",
                             page: 50,
                             image: "images/c_q24.png",
@@ -780,7 +780,7 @@ const syllabusData = Object.freeze({
                             ]
                         },
                         {
-                            id: "4.3.3",
+                            id: "4.2.3",
                             title: "Wert des White-Box-Tests",
                             page: 51,
                             quote: "Eine grundlegende Stärke aller White-Box-Testverfahren ist, dass die gesamte Softwareimplementierung berücksichtigt wird. Eine Schwäche ist, dass fehlende Implementierung nicht gefunden wird.",
@@ -795,7 +795,7 @@ const syllabusData = Object.freeze({
                     ]
                 },
                 {
-                    id: "4.4",
+                    id: "4.3",
                     title: "Erfahrungsbasierte Testverfahren",
                     page: 51,
                     quote: "Erfahrungsbasierte Testverfahren nutzen das Wissen und die Erfahrung der Tester, um Testfälle abzuleiten.",
@@ -818,7 +818,7 @@ const syllabusData = Object.freeze({
                     ]
                 },
                 {
-                    id: "4.5",
+                    id: "4.4",
                     title: "Auf Zusammenarbeit basierende Testansätze",
                     page: 53,
                     quote: "Auf Zusammenarbeit basierende Testansätze konzentrieren sich darauf, Fehlerzustände durch Zusammenarbeit und Kommunikation zwischen verschiedenen Stakeholdern zu vermeiden.",
@@ -831,7 +831,7 @@ const syllabusData = Object.freeze({
                     ],
                     subsections: [
                         {
-                            id: "4.5.1",
+                            id: "4.4.1",
                             title: "Gemeinsames Schreiben von User-Storys",
                             keyPoints: [
                                 {
@@ -857,7 +857,7 @@ const syllabusData = Object.freeze({
                             ]
                         },
                         {
-                            id: "4.5.2",
+                            id: "4.4.2",
                             title: "Akzeptanzkriterien",
                             keyPoints: [
                                 {
@@ -878,7 +878,7 @@ const syllabusData = Object.freeze({
                             ]
                         },
                         {
-                            id: "4.5.3",
+                            id: "4.4.3",
                             title: "Abnahmetestgetriebene Entwicklung (ATDD)",
                             keyPoints: [
                                 {
