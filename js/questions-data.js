@@ -2527,7 +2527,7 @@ const examQuestions = Object.freeze([
 
     // === EIGENE FRAGEN FÜR FEHLENDE LERNZIELE ===
     // Basierend auf dem offiziellen CTFL v4.0.2 Lehrplan
-    // Diese Fragen ergänzen die GTB Sample Exams um bisher nicht abgedeckte Lernziele
+    // Im Stil der offiziellen GTB Sample Exams
 
     // --- FL-1.2.1: Beitrag des Testens zum Erfolg (K2) ---
     {
@@ -2536,19 +2536,19 @@ const examQuestions = Object.freeze([
         lo: "FL-1.2.1",
         kLevel: 2,
         chapter: 1,
-        text: "Wie trägt das Testen zum Erfolg eines Softwareprojekts bei?",
-        hint: "Testen liefert Informationen, die anderen helfen, Entscheidungen zu treffen. Wer profitiert davon?",
+        text: "Das Management Ihres Unternehmens fragt, warum das Testteam auch an Projekten beteiligt sein sollte, bei denen die Entwickler ihre eigenen Unit-Tests schreiben und Code-Reviews durchführen.\n\nWelche der folgenden Aussagen beschreibt AM BESTEN den Mehrwert, den Tester zusätzlich einbringen?",
+        hint: "Tester haben eine andere Perspektive als Entwickler. Was können sie, was Entwickler nicht können?",
         answers: [
-            "Testen ersetzt die Notwendigkeit von Code-Reviews vollständig.",
-            "Testen liefert Messgrößen zur Bewertung der Softwarequalität in allen SDLC-Phasen.",
-            "Testen garantiert, dass die Software fehlerfrei ausgeliefert wird.",
-            "Testen ist nur in der finalen Phase vor dem Release relevant."
+            "Tester können die Code-Reviews vollständig ersetzen und so Entwicklerzeit einsparen.",
+            "Tester können objektive Qualitätsmessungen liefern und vertreten indirekt die Perspektive der Benutzer während des gesamten SDLC.",
+            "Tester garantieren, dass nach dem Release keine Fehler mehr auftreten werden.",
+            "Tester sind nur für die Abnahmetests am Ende des Projekts relevant und können vorher nicht beitragen."
         ],
         correct: 1,
         feedback: {
-            trap: "Testen ersetzt KEINE anderen QS-Maßnahmen (a). Garantien sind unmöglich (c). Testen ist in ALLEN Phasen relevant (d).",
-            principle: "Testen = Informationslieferant für Qualitätsentscheidungen in allen SDLC-Phasen.",
-            explanation: "Testen liefert objektive Messgrößen (Metriken, Überdeckung, Fehlerdichte), die Stakeholdern helfen, fundierte Entscheidungen zu treffen.",
+            trap: "Testen ersetzt KEINE anderen QS-Maßnahmen wie Reviews (a). Garantien sind laut Grundsatz 1 unmöglich (c). Tester sind in ALLEN SDLC-Phasen relevant, nicht nur am Ende (d).",
+            principle: "Tester = Informationslieferant für Qualitätsentscheidungen + indirekte Vertreter der Benutzer.",
+            explanation: "Tester liefern objektive Messgrößen und denken aus Benutzerperspektive – beides können Entwickler allein nicht vollständig leisten.",
             reference: "Lehrplan 1.2.1, Seite 18"
         }
     },
@@ -2558,19 +2558,19 @@ const examQuestions = Object.freeze([
         lo: "FL-1.2.1",
         kLevel: 2,
         chapter: 1,
-        text: "Welche Aussage beschreibt AM BESTEN, wie Tester indirekt die Interessen der Benutzer vertreten?",
-        hint: "Tester haben eine besondere Perspektive: Sie denken wie Benutzer, nicht wie Entwickler.",
+        text: "Ein Stakeholder behauptet: 'Wir brauchen keine Tester. Unsere Entwickler können alle Fehler selbst finden.'\n\nWelches der folgenden Argumente widerlegt diese Aussage AM BESTEN unter Berücksichtigung des Beitrags des Testens zum Erfolg?",
+        hint: "Entwickler haben einen 'blinden Fleck' für bestimmte Aspekte. Was übersehen sie leicht?",
         answers: [
-            "Tester schreiben die Benutzeranforderungen selbst.",
-            "Tester stellen sicher, dass Benutzerbedürfnisse während des gesamten SDLC berücksichtigt werden.",
-            "Tester ersetzen die Benutzerabnahme durch ihre eigenen Tests.",
-            "Tester kommunizieren ausschließlich mit den Entwicklern."
+            "Entwickler sind generell unfähig, Fehler in ihrem eigenen Code zu finden.",
+            "Tester bewerten die Software aus Benutzerperspektive und können Qualitätsmessungen zur Steuerung liefern, die über Unit-Tests hinausgehen.",
+            "Tester führen automatisierte Tests durch, was Entwickler nicht können.",
+            "Entwickler sollten überhaupt nicht testen, da dies die Qualität verschlechtert."
         ],
         correct: 1,
         feedback: {
-            trap: "Tester schreiben keine Anforderungen (a). Abnahme durch echte Benutzer ist wichtig (c). Tester kommunizieren mit allen Stakeholdern (d).",
-            principle: "Tester = indirekte Vertreter der Benutzer im Entwicklungsteam.",
-            explanation: "Tester denken aus Benutzerperspektive und stellen sicher, dass Benutzerbedürfnisse bei Entwurf und Test berücksichtigt werden.",
+            trap: "Entwickler KÖNNEN Fehler finden, haben aber andere Perspektiven (a ist falsch). Entwickler können auch automatisieren (c ist falsch). Entwickler SOLLTEN Unit-Tests schreiben (d ist falsch).",
+            principle: "Tester ergänzen Entwickler durch: Benutzerperspektive + systemweite Qualitätsmessungen.",
+            explanation: "Tester bringen die Benutzerperspektive ein und liefern Qualitätskennzahlen für das Gesamtsystem – Aspekte, die bei reinen Entwicklertests oft zu kurz kommen.",
             reference: "Lehrplan 1.2.1, Seite 18"
         }
     },
@@ -2582,19 +2582,19 @@ const examQuestions = Object.freeze([
         lo: "FL-1.2.2",
         kLevel: 1,
         chapter: 1,
-        text: "Welche Aussage beschreibt den Unterschied zwischen Testen und Qualitätssicherung (QS) korrekt?",
-        hint: "QS = Prozess verbessern. Testen = Produkt prüfen. Was ist präventiv, was korrigierend?",
+        text: "In einem Meeting werden die Begriffe 'Testen' und 'Qualitätssicherung (QS)' synonym verwendet. Ein erfahrener Kollege korrigiert dies.\n\nWelche der folgenden Aussagen beschreibt den Unterschied zwischen Testen und QS korrekt?",
+        hint: "QS = Prozess verbessern (PRÄVENTIV). Testen = Produkt prüfen (KORRIGIEREND). Die Begriffe werden oft verwechselt!",
         answers: [
-            "Testen ist prozessorientiert und präventiv, QS ist produktorientiert und korrigierend.",
-            "Testen ist produktorientiert und korrigierend, QS ist prozessorientiert und präventiv.",
-            "Testen und QS sind identisch und können synonym verwendet werden.",
-            "Testen fokussiert auf Prozessverbesserung, QS auf Fehlerfindung."
+            "Testen ist prozessorientiert und verhindert Fehler; QS ist produktorientiert und findet Fehler.",
+            "Testen ist eine Form der Qualitätssteuerung (QC), die produktorientiert ist; QS ist prozessorientiert und präventiv.",
+            "Testen und QS sind verschiedene Begriffe für dieselbe Aktivität.",
+            "QS umfasst die Durchführung von Regressionstests; Testen umfasst die Prozessverbesserung."
         ],
         correct: 1,
         feedback: {
-            trap: "Die Aussagen in (a) und (d) sind vertauscht. Testen und QS sind NICHT identisch (c).",
-            principle: "Testen = Produkt prüfen (korrigierend) | QS = Prozess verbessern (präventiv).",
-            explanation: "Testen ist eine Form der Qualitätssteuerung (QC), die sich auf das Produkt konzentriert. QS verbessert Prozesse, um Fehler zu verhindern.",
+            trap: "Option (a) vertauscht die Definitionen. Option (c) ignoriert den wichtigen Unterschied. Option (d) vertauscht ebenfalls die Konzepte.",
+            principle: "Testen = QC (produktorientiert, korrigierend) | QS = Prozessorientiert, präventiv.",
+            explanation: "Testen ist eine Form der Qualitätssteuerung und konzentriert sich auf das Produkt. QS konzentriert sich auf die Verbesserung von Prozessen, um Fehler zu verhindern.",
             reference: "Lehrplan 1.2.2, Seite 18-19"
         }
     },
@@ -2604,19 +2604,19 @@ const examQuestions = Object.freeze([
         lo: "FL-1.2.2",
         kLevel: 1,
         chapter: 1,
-        text: "Was ist der Hauptfokus der Qualitätssicherung (QS)?",
-        hint: "QS fragt: 'Wie können wir verhindern, dass Fehler entstehen?' - nicht 'Wo sind die Fehler?'",
+        text: "Ihr Unternehmen möchte die Qualität der Software verbessern, indem Fehler von vornherein vermieden werden, anstatt sie später zu finden.\n\nWelcher Ansatz entspricht dieser Zielsetzung AM BESTEN?",
+        hint: "Fehler VERMEIDEN = präventiv = Prozesse verbessern. Fehler FINDEN = korrigierend = Testen.",
         answers: [
-            "Das Finden von Fehlerzuständen im Code.",
-            "Die Durchführung von Regressionstests.",
-            "Die Einhaltung und Verbesserung von Prozessen.",
-            "Die Ausführung von dynamischen Tests."
+            "Die Anzahl der Regressionstests erhöhen.",
+            "Mehr dynamische Tests auf Systemebene durchführen.",
+            "Die Qualitätssicherung (QS) durch Prozessverbesserungen stärken.",
+            "Die Testüberdeckung auf 100% erhöhen."
         ],
         correct: 2,
         feedback: {
-            trap: "Fehlerfindung (a), Regressionstests (b) und dynamische Tests (d) gehören zum TESTEN, nicht zur QS.",
-            principle: "QS = Prozessorientiert und präventiv. Fokus auf Prozesseinhaltung und -verbesserung.",
-            explanation: "QS konzentriert sich darauf, dass korrekte Prozesse eingehalten werden, um Fehler von vornherein zu vermeiden.",
+            trap: "Regressionstests (a), dynamische Tests (b) und Testüberdeckung (d) sind alle Formen des TESTENS – sie finden Fehler, verhindern sie aber nicht.",
+            principle: "Fehlerprävention = QS (Prozessverbesserung) | Fehlerfindung = Testen.",
+            explanation: "QS konzentriert sich auf die Einhaltung und Verbesserung von Prozessen, um Fehler von vornherein zu vermeiden.",
             reference: "Lehrplan 1.2.2, Seite 18-19"
         }
     },
@@ -2628,19 +2628,19 @@ const examQuestions = Object.freeze([
         lo: "FL-1.4.2",
         kLevel: 2,
         chapter: 1,
-        text: "Welcher Faktor beeinflusst den Testprozess NICHT typischerweise?",
-        hint: "Der Testprozess wird von vielen Faktoren beeinflusst: Stakeholder, Risiken, Domäne... aber nicht alles ist relevant.",
+        text: "Sie wechseln von einem Wasserfall-Projekt zu einem agilen Scrum-Projekt. Ihr Vorgesetzter erwartet, dass Sie denselben Testprozess verwenden wie zuvor.\n\nWelche der folgenden Aussagen beschreibt AM BESTEN, warum diese Erwartung problematisch ist?",
+        hint: "Der Testprozess muss an den SDLC angepasst werden. Agil und Wasserfall haben unterschiedliche Anforderungen.",
         answers: [
-            "Die verwendete Softwareentwicklungspraxis (z.B. agil, Wasserfall).",
-            "Die persönlichen Musikvorlieben der Tester.",
-            "Die Produktrisiken und Projektrisiken.",
-            "Die Art des Testobjekts (z.B. sicherheitskritisch, E-Commerce)."
+            "Der Testprozess ist standardisiert und muss nicht an das Entwicklungsmodell angepasst werden.",
+            "Agile Projekte erfordern weniger Dokumentation und kürzere Testzyklen, was Anpassungen am Testprozess notwendig macht.",
+            "In agilen Projekten wird überhaupt nicht getestet, daher ist ein Testprozess nicht erforderlich.",
+            "Der Testprozess wird nur durch das Budget beeinflusst, nicht durch das Entwicklungsmodell."
         ],
         correct: 1,
         feedback: {
-            trap: "Die anderen Optionen (SDLC, Risiken, Testobjekt) beeinflussen den Testprozess STARK.",
-            principle: "Testprozess wird beeinflusst von: SDLC, Risiken, Domäne, Testobjekt, Stakeholder, Budget, Zeit.",
-            explanation: "Der Testprozess muss an den Kontext angepasst werden. Persönliche Vorlieben spielen dabei keine Rolle.",
+            trap: "Der Testprozess ist NICHT standardisiert für alle SDLCs (a). In agilen Projekten wird SEHR WOHL getestet (c). Der SDLC ist ein wichtiger Einflussfaktor (d).",
+            principle: "Der Testprozess muss an den Kontext angepasst werden: SDLC, Risiken, Domäne, Budget, Zeit.",
+            explanation: "Unterschiedliche SDLCs haben unterschiedliche Anforderungen an Teststrategie, Dokumentation und Timing.",
             reference: "Lehrplan 1.4.2, Seite 23"
         }
     },
@@ -2650,90 +2650,90 @@ const examQuestions = Object.freeze([
         lo: "FL-1.4.2",
         kLevel: 2,
         chapter: 1,
-        text: "Warum muss der Testprozess an den Softwareentwicklungslebenszyklus (SDLC) angepasst werden?",
-        hint: "Ein agiles Projekt hat andere Anforderungen als ein Wasserfall-Projekt. Was ändert sich für das Testen?",
+        text: "Ein Testteam plant seinen Testprozess für ein neues Projekt. Die Geschäftsdomäne ist medizinische Software mit strengen regulatorischen Anforderungen.\n\nWelcher der folgenden Faktoren sollte den Testprozess in diesem Fall AM STÄRKSTEN beeinflussen?",
+        hint: "Medizinische Software = sicherheitskritisch = hohe Risiken = strenge Anforderungen an Dokumentation und Nachweisbarkeit.",
         answers: [
-            "Weil der Testprozess unabhängig vom SDLC immer gleich ist.",
-            "Weil unterschiedliche SDLCs unterschiedliche Teststrategien, Testzeitpunkte und Dokumentationsanforderungen haben.",
-            "Weil nur in agilen Projekten getestet wird.",
-            "Weil der SDLC keinen Einfluss auf die Testaktivitäten hat."
+            "Die persönlichen Präferenzen des Testmanagers bezüglich der Testwerkzeuge.",
+            "Die Produktrisiken und regulatorischen Anforderungen der Domäne.",
+            "Die Anzahl der Urlaubstage der Teammitglieder.",
+            "Die Lieblingstestverfahren der einzelnen Tester."
         ],
         correct: 1,
         feedback: {
-            trap: "Der Testprozess ist NICHT immer gleich (a, d). Es wird in ALLEN SDLCs getestet, nicht nur agil (c).",
-            principle: "Testprozess muss an SDLC angepasst werden: Timing, Strategie, Dokumentation variieren.",
-            explanation: "In agilen Projekten gibt es z.B. mehr iterative Tests und weniger formale Dokumentation als im V-Modell.",
+            trap: "Persönliche Präferenzen (a, d) und Urlaubstage (c) sind keine relevanten Kontextfaktoren für den Testprozess.",
+            principle: "Kontextfaktoren: SDLC, Produktrisiken, Projektrisiken, Domäne, operative Einschränkungen.",
+            explanation: "Bei sicherheitskritischer Software wie medizinischen Anwendungen sind Risiken und regulatorische Anforderungen die wichtigsten Einflussfaktoren.",
             reference: "Lehrplan 1.4.2, Seite 23"
         }
     },
 
-    // --- FL-5.1.2: Inhalt eines Testkonzepts (K1) ---
+    // --- FL-5.1.2: Beiträge des Testers zur Planung (K2) ---
     {
         id: "custom-5.1.2-1",
         source: "Eigene Frage basierend auf CTFL v4.0.2 Lehrplan",
         lo: "FL-5.1.2",
-        kLevel: 1,
+        kLevel: 2,
         chapter: 5,
-        text: "Was gehört typischerweise NICHT in ein Testkonzept (Testplan)?",
-        hint: "Ein Testkonzept beschreibt WAS, WIE und WANN getestet wird. Es enthält keine technischen Details einzelner Tests.",
+        text: "In einem agilen Projekt findet die Release-Planung statt. Der Product Owner fragt, welchen Beitrag die Tester zu dieser Planung leisten sollten.\n\nWelche der folgenden Aktivitäten beschreibt den Beitrag des Testers zur Release-Planung AM BESTEN?",
+        hint: "Release-Planung = grobe Planung über mehrere Iterationen. Tester bewerten Risiken und schätzen Testaufwand.",
         answers: [
-            "Die Testziele und der Testumfang.",
-            "Der detaillierte Quellcode der Anwendung.",
-            "Die Ressourcen und der Zeitplan für die Tests.",
-            "Die Eingangs- und Endekriterien."
+            "Tester sollten während der Release-Planung bereits alle Testfälle vollständig ausarbeiten.",
+            "Tester identifizieren testbare User-Storys, analysieren Risiken und schätzen den Testaufwand auf hoher Ebene.",
+            "Tester entscheiden allein, welche Features in das Release aufgenommen werden.",
+            "Tester sind bei der Release-Planung nicht beteiligt und warten auf die fertige Implementierung."
         ],
         correct: 1,
         feedback: {
-            trap: "Testziele (a), Ressourcen/Zeitplan (c) und Kriterien (d) sind typische Inhalte eines Testkonzepts.",
-            principle: "Testkonzept = Strategisches Dokument mit Zielen, Umfang, Ressourcen, Zeitplan, Kriterien.",
-            explanation: "Quellcode gehört nicht ins Testkonzept. Das Testkonzept ist ein Planungsdokument, kein technisches Dokument.",
-            reference: "Lehrplan 5.1.2, Seite 56"
+            trap: "Vollständige Testfälle (a) sind zu detailliert für Release-Planung. Feature-Entscheidungen (c) trifft der Product Owner. Tester SIND an der Planung beteiligt (d).",
+            principle: "Tester bei Release-Planung: Risikobewertung, Testbarkeit prüfen, Aufwand auf hoher Ebene schätzen.",
+            explanation: "Tester tragen zur Release-Planung bei, indem sie User-Storys auf Testbarkeit prüfen, Risiken identifizieren und grobe Aufwandsschätzungen liefern.",
+            reference: "Lehrplan 5.1.2, Seite 58"
         }
     },
     {
         id: "custom-5.1.2-2",
         source: "Eigene Frage basierend auf CTFL v4.0.2 Lehrplan",
         lo: "FL-5.1.2",
-        kLevel: 1,
+        kLevel: 2,
         chapter: 5,
-        text: "Welches Element ist ein typischer Bestandteil eines Testkonzepts?",
-        hint: "Ein Testkonzept beantwortet: Was testen wir? Wie testen wir? Wann sind wir fertig?",
+        text: "Während der Iterationsplanung in einem Scrum-Team soll eine User-Story geschätzt werden. Der Tester meldet Bedenken bezüglich der Testbarkeit an.\n\nWelche der folgenden Aussagen beschreibt AM BESTEN, warum dieser Beitrag wichtig ist?",
+        hint: "Tester prüfen, ob User-Storys TESTBAR sind. Unklare Akzeptanzkriterien = nicht testbar = Problem!",
         answers: [
-            "Der vollständige Testfall-Katalog mit allen Testschritten.",
-            "Die Eingangskriterien und Endekriterien für die Tests.",
-            "Die Fehlerbehebungsstrategie der Entwickler.",
-            "Die persönlichen Bewertungen der Tester zu den Entwicklern."
+            "Die Testbarkeit hat keinen Einfluss auf den Aufwand der User-Story.",
+            "Tester sollten erst nach Abschluss der Entwicklung auf Testbarkeitsprobleme hinweisen.",
+            "Wenn eine User-Story nicht testbar ist, fehlen möglicherweise klare Akzeptanzkriterien, was die gesamte Implementierung gefährdet.",
+            "Testbarkeitsbedenken sollten ignoriert werden, da sie die Sprint-Planung verzögern."
         ],
-        correct: 1,
+        correct: 2,
         feedback: {
-            trap: "Testfälle (a) sind zu detailliert fürs Konzept. Fehlerbehebung (c) ist Entwicklersache. Persönliche Bewertungen (d) gehören nirgendwo hin.",
-            principle: "Testkonzept enthält: Ziele, Umfang, Ressourcen, Zeitplan, Eingangskriterien, Endekriterien, Risiken.",
-            explanation: "Eingangs- und Endekriterien definieren, wann Tests beginnen können und wann sie als abgeschlossen gelten.",
-            reference: "Lehrplan 5.1.2, Seite 56"
+            trap: "Testbarkeit beeinflusst den Aufwand SEHR WOHL (a). Frühes Feedback ist besser als spätes (b). Testbarkeitsbedenken sind wichtig, nicht störend (d).",
+            principle: "Tester bei Iterationsplanung: Testbarkeit prüfen, Akzeptanzkriterien mitdefinieren.",
+            explanation: "Wenn eine User-Story nicht testbar ist, fehlen oft klare Akzeptanzkriterien. Dieses Problem früh zu erkennen spart später viel Nacharbeit.",
+            reference: "Lehrplan 5.1.2, Seite 58"
         }
     },
 
-    // --- FL-5.1.3: Testerrolle in iterativer/inkrementeller Planung (K2) ---
+    // --- FL-5.1.3: Eingangskriterien und Endekriterien (K2) ---
     {
         id: "custom-5.1.3-1",
         source: "Eigene Frage basierend auf CTFL v4.0.2 Lehrplan",
         lo: "FL-5.1.3",
         kLevel: 2,
         chapter: 5,
-        text: "Wie beteiligen sich Tester typischerweise an der Iterationsplanung in agilen Projekten?",
-        hint: "Agile Teams planen gemeinsam. Tester bringen eine besondere Perspektive ein - welche?",
+        text: "Ihr Testteam soll mit der Testdurchführung für einen neuen Build beginnen. Einige Tester möchten sofort starten, andere bestehen darauf, zuerst die Eingangskriterien zu prüfen.\n\nWelche der folgenden Aussagen beschreibt AM BESTEN den Zweck von Eingangskriterien?",
+        hint: "Eingangskriterien = 'Dürfen wir starten?' Wenn sie nicht erfüllt sind, macht Testen keinen Sinn.",
         answers: [
-            "Tester sind bei der Iterationsplanung nicht anwesend.",
-            "Tester schreiben User-Storys und definieren die Akzeptanzkriterien allein.",
-            "Tester beteiligen sich an der Aufwandsschätzung und helfen bei der Definition von Akzeptanzkriterien.",
-            "Tester führen während der Planung bereits die Tests durch."
+            "Eingangskriterien definieren, wie viele Fehler maximal gefunden werden dürfen.",
+            "Eingangskriterien definieren die Voraussetzungen, die erfüllt sein müssen, bevor eine Testaktivität beginnt.",
+            "Eingangskriterien legen fest, wann das Testen als abgeschlossen gilt.",
+            "Eingangskriterien sind optional und können bei Zeitdruck ignoriert werden."
         ],
-        correct: 2,
+        correct: 1,
         feedback: {
-            trap: "Tester SIND bei der Planung dabei (a). Sie schreiben nicht ALLEIN (b). Tests kommen NACH der Planung (d).",
-            principle: "Tester in agiler Planung: Schätzung, Akzeptanzkriterien, Testbarkeit bewerten.",
-            explanation: "Tester bringen ihre Expertise ein, um Aufwände realistisch zu schätzen und testbare Akzeptanzkriterien zu definieren.",
-            reference: "Lehrplan 5.1.3, Seite 57"
+            trap: "Fehleranzahl (a) und Abschlussbedingungen (c) sind ENDEKRITERIEN. Eingangskriterien sollten nicht ignoriert werden (d).",
+            principle: "Eingangskriterien = Voraussetzungen zum Starten | Endekriterien = Bedingungen zum Beenden.",
+            explanation: "Eingangskriterien (z.B. Testumgebung bereit, Build verfügbar) müssen erfüllt sein, bevor mit dem Testen begonnen wird.",
+            reference: "Lehrplan 5.1.3, Seite 58-59"
         }
     },
     {
@@ -2742,20 +2742,20 @@ const examQuestions = Object.freeze([
         lo: "FL-5.1.3",
         kLevel: 2,
         chapter: 5,
-        text: "Was ist ein wichtiger Beitrag des Testers bei der Release-Planung?",
-        hint: "Release-Planung = Was kommt in welches Release? Tester bewerten etwas Wichtiges...",
+        text: "Das Management fragt, wann die Testphase als abgeschlossen betrachtet werden kann. Der Testmanager verweist auf die definierten Endekriterien.\n\nWelches der folgenden Beispiele ist ein typisches Endekriterium für Systemtests?",
+        hint: "Endekriterien = 'Sind wir fertig?' Typisch: Überdeckung erreicht, keine kritischen Fehler offen, Testfälle durchgeführt.",
         answers: [
-            "Die Festlegung der Verkaufspreise für das Release.",
-            "Die Identifikation und Bewertung von Produktrisiken.",
-            "Die Programmierung der neuen Features.",
-            "Die Entscheidung, welche Entwickler am Release arbeiten."
+            "Die Testumgebung ist verfügbar und konfiguriert.",
+            "Der Quellcode wurde eingecheckt und kompiliert erfolgreich.",
+            "Die definierte Testüberdeckung wurde erreicht und keine kritischen Fehler sind offen.",
+            "Der Product Owner hat die User-Storys freigegeben."
         ],
-        correct: 1,
+        correct: 2,
         feedback: {
-            trap: "Preise (a) und Personalentscheidungen (d) sind keine Tester-Aufgaben. Programmierung (c) ist Entwicklersache.",
-            principle: "Tester bei Release-Planung: Risikobewertung, Testaufwand schätzen, Testbarkeit prüfen.",
-            explanation: "Tester identifizieren Risiken und helfen zu entscheiden, welche Features priorisiert und wie intensiv getestet werden müssen.",
-            reference: "Lehrplan 5.1.3, Seite 57"
+            trap: "Testumgebung verfügbar (a), Code eingecheckt (b) und User-Storys freigegeben (d) sind EINGANGSKRITERIEN, nicht Endekriterien.",
+            principle: "Endekriterien: Überdeckungsziele erreicht, Fehleranzahl unter Schwellwert, alle geplanten Tests durchgeführt.",
+            explanation: "Typische Endekriterien sind: definierte Überdeckung erreicht, keine kritischen offenen Fehler, geschätzte Fehlerdichte niedrig genug.",
+            reference: "Lehrplan 5.1.3, Seite 58-59"
         }
     },
 
@@ -2766,20 +2766,20 @@ const examQuestions = Object.freeze([
         lo: "FL-5.2.1",
         kLevel: 2,
         chapter: 5,
-        text: "Wie wird die Risikostufe (Risikolevel) eines Risikos typischerweise bestimmt?",
-        hint: "Risiko = Eintrittswahrscheinlichkeit × Auswirkung. Was ergibt das?",
+        text: "In einem Risiko-Workshop werden verschiedene Risiken identifiziert. Für jedes Risiko soll eine Risikostufe bestimmt werden.\n\nWelche der folgenden Aussagen beschreibt AM BESTEN, wie die Risikostufe berechnet wird?",
+        hint: "Risikostufe = Eintrittswahrscheinlichkeit × Schadensausmaß. Beide Faktoren müssen berücksichtigt werden.",
         answers: [
-            "Durch die Anzahl der gefundenen Fehler.",
-            "Durch das Produkt aus Eintrittswahrscheinlichkeit und Schadensausmaß.",
-            "Durch die Dauer des Projekts.",
-            "Durch die Anzahl der Tester im Team."
+            "Die Risikostufe entspricht der Anzahl der betroffenen Benutzer.",
+            "Die Risikostufe wird als Produkt aus Eintrittswahrscheinlichkeit und Schadensausmaß (Auswirkung) bestimmt.",
+            "Die Risikostufe wird ausschließlich durch den Projektmanager festgelegt.",
+            "Die Risikostufe basiert auf der Erfahrung der Entwickler mit ähnlichen Projekten."
         ],
         correct: 1,
         feedback: {
-            trap: "Fehleranzahl (a), Projektdauer (c) und Teamgröße (d) bestimmen NICHT direkt die Risikostufe.",
-            principle: "Risikostufe = Eintrittswahrscheinlichkeit × Schadensausmaß (Auswirkung).",
-            explanation: "Ein Risiko mit hoher Wahrscheinlichkeit UND hohem Schaden hat die höchste Risikostufe und muss priorisiert werden.",
-            reference: "Lehrplan 5.2.1, Seite 58"
+            trap: "Benutzeranzahl (a), Projektmanager-Entscheidung (c) und Entwicklererfahrung (d) sind keine korrekten Methoden zur Risikostufenberechnung.",
+            principle: "Risikostufe = Eintrittswahrscheinlichkeit × Schadensausmaß.",
+            explanation: "Ein Risiko mit hoher Wahrscheinlichkeit UND hohem Schaden hat die höchste Risikostufe und muss priorisiert adressiert werden.",
+            reference: "Lehrplan 5.2.1, Seite 62"
         }
     },
     {
@@ -2788,20 +2788,20 @@ const examQuestions = Object.freeze([
         lo: "FL-5.2.1",
         kLevel: 2,
         chapter: 5,
-        text: "Was ist ein Risiko im Kontext des Softwaretestens?",
-        hint: "Risiko = etwas KÖNNTE passieren. Es ist noch nicht eingetreten.",
+        text: "Ein Teammitglied sagt: 'Wir haben einen kritischen Fehler in der Zahlungsabwicklung gefunden. Das ist unser größtes Risiko.'\n\nWelche der folgenden Aussagen korrigiert dieses Missverständnis AM BESTEN?",
+        hint: "Ein RISIKO ist etwas, das passieren KÖNNTE. Ein bereits gefundener Fehler ist kein Risiko mehr, sondern ein Problem.",
         answers: [
-            "Ein bereits eingetretener Fehler im System.",
-            "Ein potenzielles zukünftiges Ereignis mit negativer Auswirkung.",
-            "Ein abgeschlossener Testfall.",
-            "Eine dokumentierte Anforderung."
+            "Ein gefundener Fehler ist ein Risiko, weil er negative Auswirkungen hat.",
+            "Ein gefundener Fehler ist kein Risiko mehr, sondern ein Problem; ein Risiko ist ein potenzielles zukünftiges Ereignis.",
+            "Fehler und Risiken sind synonyme Begriffe im Softwaretest.",
+            "Nur Fehler in sicherheitskritischen Funktionen werden als Risiken bezeichnet."
         ],
         correct: 1,
         feedback: {
-            trap: "Ein bereits eingetretener Fehler (a) ist kein Risiko mehr, sondern ein Problem. Testfall (c) und Anforderung (d) sind keine Risiken.",
-            principle: "Risiko = Möglichkeit eines zukünftigen negativen Ereignisses mit Eintrittswahrscheinlichkeit und Schadensausmaß.",
-            explanation: "Risiken sind potenzielle Probleme, die noch nicht eingetreten sind. Das Ziel ist, sie zu identifizieren und zu minimieren.",
-            reference: "Lehrplan 5.2.1, Seite 58"
+            trap: "Gefundene Fehler sind keine Risiken (a). Fehler und Risiken sind NICHT synonym (c). Die Definition gilt für ALLE Funktionen (d).",
+            principle: "Risiko = potenzielles zukünftiges Ereignis | Problem = bereits eingetretenes Ereignis.",
+            explanation: "Ein Risiko ist etwas, das passieren KÖNNTE. Sobald ein Fehler gefunden wurde, ist er kein Risiko mehr, sondern ein konkretes Problem, das gelöst werden muss.",
+            reference: "Lehrplan 5.2.1, Seite 62"
         }
     },
 
@@ -2812,20 +2812,20 @@ const examQuestions = Object.freeze([
         lo: "FL-5.3.1",
         kLevel: 2,
         chapter: 5,
-        text: "Was ist der Hauptzweck der Testüberwachung?",
-        hint: "Überwachung = Beobachten und Messen. Wozu brauchen wir das?",
+        text: "Der Testmanager sammelt täglich Informationen über den Testfortschritt: ausgeführte Testfälle, gefundene Fehler, Überdeckungsmetriken.\n\nWelche Testaktivität führt der Testmanager damit AM EHESTEN durch?",
+        hint: "Informationen SAMMELN = Überwachung. Auf Basis der Infos HANDELN = Steuerung.",
         answers: [
-            "Die automatische Behebung von Fehlern.",
-            "Das Sammeln von Informationen zur Bewertung des Testfortschritts.",
-            "Die Programmierung neuer Testfälle.",
-            "Die Schulung neuer Tester."
+            "Teststeuerung",
+            "Testüberwachung",
+            "Testentwurf",
+            "Testabschluss"
         ],
         correct: 1,
         feedback: {
-            trap: "Fehlerbehebung (a) ist Debugging. Testfallprogrammierung (c) ist Testentwurf. Schulung (d) ist Personalentwicklung.",
-            principle: "Testüberwachung = Informationen sammeln über Fortschritt, Abdeckung, Qualität.",
-            explanation: "Durch Testüberwachung können wir den Testfortschritt bewerten und Abweichungen vom Plan erkennen.",
-            reference: "Lehrplan 5.3.1, Seite 60"
+            trap: "Steuerung (a) wäre das Ableiten von Maßnahmen. Testentwurf (c) ist das Erstellen von Testfällen. Testabschluss (d) kommt am Ende.",
+            principle: "Testüberwachung = Informationen sammeln | Teststeuerung = Maßnahmen ableiten und umsetzen.",
+            explanation: "Das Sammeln von Metriken und Fortschrittsinformationen ist Testüberwachung. Erst wenn daraus Maßnahmen abgeleitet werden, spricht man von Teststeuerung.",
+            reference: "Lehrplan 5.3.1, Seite 64"
         }
     },
     {
@@ -2834,20 +2834,20 @@ const examQuestions = Object.freeze([
         lo: "FL-5.3.1",
         kLevel: 2,
         chapter: 5,
-        text: "Was ist der Unterschied zwischen Testüberwachung und Teststeuerung?",
-        hint: "Überwachung = BEOBACHTEN. Steuerung = HANDELN. Was kommt zuerst?",
+        text: "Die Testüberwachung zeigt, dass das Team 20% hinter dem Zeitplan liegt. Der Testmanager entscheidet, zusätzliche Tester einzusetzen und weniger kritische Tests zu streichen.\n\nWelche Testaktivität führt der Testmanager damit durch?",
+        hint: "Auf Basis der überwachten Daten werden MASSNAHMEN ergriffen. Das ist Steuerung.",
         answers: [
-            "Testüberwachung und Teststeuerung sind identisch.",
-            "Testüberwachung sammelt Informationen, Teststeuerung leitet daraus Maßnahmen ab.",
-            "Teststeuerung erfolgt vor der Testüberwachung.",
-            "Testüberwachung betrifft nur automatisierte Tests."
+            "Testüberwachung",
+            "Teststeuerung",
+            "Testplanung",
+            "Testrealisierung"
         ],
         correct: 1,
         feedback: {
-            trap: "Sie sind NICHT identisch (a). Überwachung kommt ZUERST (c). Überwachung gilt für ALLE Tests (d).",
-            principle: "Überwachung = Informationen sammeln | Steuerung = Auf Basis der Infos handeln.",
-            explanation: "Erst sammeln wir Daten (Überwachung), dann reagieren wir auf Abweichungen mit Maßnahmen (Steuerung).",
-            reference: "Lehrplan 5.3.1, Seite 60"
+            trap: "Überwachung (a) ist das Sammeln der Daten. Planung (c) war bereits vorher abgeschlossen. Realisierung (d) ist das Erstellen von Testmitteln.",
+            principle: "Teststeuerung = Maßnahmen ergreifen, um Abweichungen vom Plan zu korrigieren.",
+            explanation: "Wenn aufgrund von Überwachungsdaten Entscheidungen getroffen und Maßnahmen umgesetzt werden, handelt es sich um Teststeuerung.",
+            reference: "Lehrplan 5.3.1, Seite 64"
         }
     },
     {
@@ -2856,20 +2856,20 @@ const examQuestions = Object.freeze([
         lo: "FL-5.3.1",
         kLevel: 2,
         chapter: 5,
-        text: "Was ist ein typisches Ergebnis der Testabschluss-Aktivitäten?",
-        hint: "Am Ende des Testens: Was nehmen wir mit für das nächste Projekt?",
+        text: "Nach dem erfolgreichen Go-Live eines Systems führt das Testteam eine Retrospektive durch und dokumentiert die gewonnenen Erkenntnisse.\n\nWelches der folgenden Ergebnisse ist ein typisches Produkt der Testabschluss-Aktivitäten?",
+        hint: "Testabschluss = Dokumentation, Archivierung, Lessons Learned. Was wird für zukünftige Projekte aufbewahrt?",
         answers: [
-            "Neue Fehler werden eingeführt.",
-            "Der Testabschlussbericht mit Lessons Learned.",
-            "Alle Testfälle werden gelöscht.",
-            "Die Entwickler werden entlassen."
+            "Neue Testfälle für das nächste Release.",
+            "Ein Testabschlussbericht mit Lessons Learned und Empfehlungen für zukünftige Projekte.",
+            "Die Löschung aller Testmittel, um Speicherplatz freizugeben.",
+            "Die sofortige Zuweisung aller Tester zu neuen Projekten ohne Dokumentation."
         ],
         correct: 1,
         feedback: {
-            trap: "Neue Fehler (a), Löschen von Testfällen (c) und Entlassungen (d) sind keine Ergebnisse des Testabschlusses.",
-            principle: "Testabschluss = Abschlussbericht, Lessons Learned, Archivierung, Übergabe von Testmitteln.",
-            explanation: "Der Testabschlussbericht dokumentiert, was gut lief, was nicht, und was für zukünftige Projekte gelernt wurde.",
-            reference: "Lehrplan 5.3.1, Seite 60-61"
+            trap: "Neue Testfälle (a) gehören zur Testplanung des nächsten Projekts. Testmittel werden archiviert, nicht gelöscht (c). Dokumentation ist wichtig, nicht optional (d).",
+            principle: "Testabschluss: Abschlussbericht erstellen, Lessons Learned dokumentieren, Testmittel archivieren.",
+            explanation: "Der Testabschlussbericht dokumentiert, was gut lief, was verbessert werden kann, und welche Erkenntnisse für zukünftige Projekte relevant sind.",
+            reference: "Lehrplan 5.3.1, Seite 64-65"
         }
     }
 ]);
