@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#1a1a2e">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline';">
     <title>ISTQB Coach – CTFL v4.0.2 Lehrplan Deutsch</title>
     <link rel="manifest" href="manifest.json">
@@ -2771,7 +2771,7 @@
                         </div>
                         
                         <div class="stats-dashboard-section">
-                            <div class="stats-dashboard-section-title">Fragen-Pool nach Kapitel</div>
+                            <div class="stats-dashboard-section-title">Fragen pro Kapitel (Inventar)</div>
                             ${Object.entries(questionsPerChapter).sort((a,b) => parseInt(a[0]) - parseInt(b[0])).map(([ch, count]) => {
                                 const color = CHAPTER_COLORS[ch]?.hex || 'var(--accent-primary)';
                                 const label = CHAPTER_COLORS[ch]?.label || 'Kapitel ' + ch;
