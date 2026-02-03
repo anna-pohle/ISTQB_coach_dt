@@ -159,6 +159,8 @@ const syllabusData = Object.freeze({
                             id: "1.2.3",
                             title: "Fehlerkette",
                             page: 19,
+                            image: "images/fehlerkette_cc.png",
+                            imageAttribution: "Eigene Darstellung nach ISTQB-Terminologie",
                             quote: "Menschen begehen Fehlhandlungen, die zu Fehlerzuständen führen, was wiederum zu Fehlerwirkungen führen kann.",
                             keyPoints: [
                                 {
@@ -189,41 +191,57 @@ const syllabusData = Object.freeze({
                     id: "1.3",
                     title: "Die sieben Grundsätze des Testens",
                     page: 20,
+                    quote: "Es wurden verschiedene Testgrundsätze vorgeschlagen, die in den letzten Jahrzehnten allgemeine Richtlinien für das Testen bieten.",
                     keyPoints: [
                         {
-                            title: "1. Testen zeigt Anwesenheit von Fehlern",
-                            quote: "Testen kann zeigen, dass Fehlerzustände vorhanden sind, aber nicht beweisen, dass keine Fehlerzustände vorhanden sind.",
-                            coachNote: "🎯 Prüfungsfalle – Grundsatz 1:\n\n❌ IMMER FALSCH:\n• 'nachweisen, dass keine Fehler'\n• 'keine Fehlerwirkungen im Betrieb'\n\n✅ Bei Frage nach 'erreichbares Testziel':\n→ 'Risiko verringern und Vertrauen aufbauen'"
-                        },
+                            title: "Überblick",
+                            content: "7 bewährte Grundsätze leiten das Testen. Sie helfen, realistische Erwartungen zu setzen und Teststrategien zu optimieren.",
+                            coachNote: "Diese Grundsätze sind PRÜFUNGSRELEVANT! Lerne sie auswendig."
+                        }
+                    ],
+                    subsections: [
                         {
-                            title: "2. Vollständiges Testen ist unmöglich",
-                            content: "Alles zu testen (alle Kombinationen) ist zu aufwendig. Wir nutzen Risikobasiertes Testen.",
-                            coachNote: "Mut zur Lücke! Teste das Wichtigste zuerst."
-                        },
-                        {
-                            title: "3. Frühes Testen spart Geld",
-                            content: "Fehler sollten so früh wie möglich gefunden werden (Shift Left).",
-                            coachNote: "Billiger Bug (Anforderung) vs. Teurer Bug (Produktion)."
-                        },
-                        {
-                            title: "4. Fehler treten gehäuft auf",
-                            content: "Die meisten Fehler stecken in wenigen Modulen (Pareto-Prinzip: 20% Code = 80% Fehler).",
-                            coachNote: "Wenn du einen Bug findest, such in der Nähe weiter! Da sind oft noch mehr."
-                        },
-                        {
-                            title: "5. Das Pestizid-Paradoxon",
-                            content: "Wiederholt man die gleichen Tests immer wieder, finden sie irgendwann keine neuen Fehler mehr.",
-                            coachNote: "🎯 Prüfungsfalle – Pestizid-Paradoxon:\n\nSzenario: 'Keine Änderungen an Regressionstests, keine neuen Fehler gefunden'\n\n✅ Richtige Antwort: 'Alte Tests verlieren an Wirksamkeit' (Grundsatz 5)\n\n❌ Nicht verwechseln mit: 'Keine Fehler = brauchbar' (Grundsatz 7 – anderer Trugschluss!)"
-                        },
-                        {
-                            title: "6. Testen ist kontextabhängig",
-                            content: "Sicherheitskritische Software wird anders getestet als eine E-Commerce-App.",
-                            coachNote: "Es gibt kein 'One Size Fits All' beim Testen."
-                        },
-                        {
-                            title: "7. Trugschluss 'Keine Fehler' = Brauchbar",
-                            content: "Nur weil keine Fehler gefunden wurden, heißt das nicht, dass die Software den Benutzerwünschen entspricht (Validierung!).",
-                            coachNote: "Ein perfekt funktionierendes System, das keiner braucht, ist trotzdem nutzlos."
+                            id: "1.3.1",
+                            title: "Die sieben Grundsätze",
+                            page: 20,
+                            quote: "Diese Grundsätze haben sich über die Jahrzehnte als nützliche Leitlinien für das Testen etabliert.",
+                            keyPoints: [
+                                {
+                                    title: "1. Testen zeigt Anwesenheit von Fehlern",
+                                    quote: "Testen kann zeigen, dass Fehlerzustände vorhanden sind, aber nicht beweisen, dass keine Fehlerzustände vorhanden sind.",
+                                    coachNote: "🎯 Prüfungsfalle – Grundsatz 1:\n\n❌ IMMER FALSCH:\n• 'nachweisen, dass keine Fehler'\n• 'keine Fehlerwirkungen im Betrieb'\n\n✅ Bei Frage nach 'erreichbares Testziel':\n→ 'Risiko verringern und Vertrauen aufbauen'"
+                                },
+                                {
+                                    title: "2. Vollständiges Testen ist unmöglich",
+                                    content: "Alles zu testen (alle Kombinationen) ist zu aufwendig. Wir nutzen Risikobasiertes Testen.",
+                                    coachNote: "Mut zur Lücke! Teste das Wichtigste zuerst."
+                                },
+                                {
+                                    title: "3. Frühes Testen spart Geld",
+                                    content: "Fehler sollten so früh wie möglich gefunden werden (Shift Left).",
+                                    coachNote: "Billiger Bug (Anforderung) vs. Teurer Bug (Produktion)."
+                                },
+                                {
+                                    title: "4. Fehler treten gehäuft auf",
+                                    content: "Die meisten Fehler stecken in wenigen Modulen (Pareto-Prinzip: 20% Code = 80% Fehler).",
+                                    coachNote: "Wenn du einen Bug findest, such in der Nähe weiter! Da sind oft noch mehr."
+                                },
+                                {
+                                    title: "5. Das Pestizid-Paradoxon",
+                                    content: "Wiederholt man die gleichen Tests immer wieder, finden sie irgendwann keine neuen Fehler mehr.",
+                                    coachNote: "🎯 Prüfungsfalle – Pestizid-Paradoxon:\n\nSzenario: 'Keine Änderungen an Regressionstests, keine neuen Fehler gefunden'\n\n✅ Richtige Antwort: 'Alte Tests verlieren an Wirksamkeit' (Grundsatz 5)\n\n❌ Nicht verwechseln mit: 'Keine Fehler = brauchbar' (Grundsatz 7 – anderer Trugschluss!)"
+                                },
+                                {
+                                    title: "6. Testen ist kontextabhängig",
+                                    content: "Sicherheitskritische Software wird anders getestet als eine E-Commerce-App.",
+                                    coachNote: "Es gibt kein 'One Size Fits All' beim Testen."
+                                },
+                                {
+                                    title: "7. Trugschluss 'Keine Fehler' = Brauchbar",
+                                    content: "Nur weil keine Fehler gefunden wurden, heißt das nicht, dass die Software den Benutzerwünschen entspricht (Validierung!).",
+                                    coachNote: "Ein perfekt funktionierendes System, das keiner braucht, ist trotzdem nutzlos."
+                                }
+                            ]
                         }
                     ]
                 },
@@ -390,6 +408,15 @@ const syllabusData = Object.freeze({
                 {
                     id: "1.5",
                     title: "Skills & Rollen",
+                    page: 24,
+                    quote: "Erfolgreiche Tester benötigen bestimmte Kompetenzen und ein geeignetes Arbeitsumfeld.",
+                    keyPoints: [
+                        {
+                            title: "Überblick",
+                            content: "Dieses Kapitel behandelt: Allgemeine Fertigkeiten (Kommunikation, analytisches Denken), Whole-Team-Ansatz (gemeinsame Qualitätsverantwortung) und Unabhängigkeit des Testens.",
+                            coachNote: "Soft Skills sind genauso wichtig wie technisches Wissen!"
+                        }
+                    ],
                     subsections: [
                         {
                             id: "1.5.1",
@@ -466,6 +493,13 @@ const syllabusData = Object.freeze({
                     title: "Testen im Kontext eines SDLC",
                     page: 28,
                     quote: "Ein Softwareentwicklungslebenszyklusmodell beschreibt die Aktivitäten, die in jeder Phase eines Entwicklungsprojekts durchgeführt werden, sowie deren logische und chronologische Beziehung zueinander.",
+                    keyPoints: [
+                        {
+                            title: "Überblick",
+                            content: "Der SDLC bestimmt, WANN und WIE getestet wird. Sequenziell (Wasserfall, V-Modell) vs. Iterativ (Agile, Scrum) haben unterschiedliche Testansätze.",
+                            coachNote: "🎯 Prüfungsfokus: Sequenziell = dynamische Tests erst SPÄT möglich (Code fehlt). Iterativ = häufige, kleine Testrunden."
+                        }
+                    ],
                     subsections: [
                         {
                             id: "2.1.1",
@@ -682,6 +716,13 @@ const syllabusData = Object.freeze({
                     title: "Grundlagen des statischen Testens",
                     page: 38,
                     quote: "Im Gegensatz zum dynamischen Test, bei dem die Software ausgeführt werden muss, stützt sich der statische Test auf die manuelle Untersuchung von Arbeitsergebnissen (Reviews) oder die werkzeuggestützte Bewertung von Code oder anderen Arbeitsergebnissen (statische Analyse).",
+                    keyPoints: [
+                        {
+                            title: "Statisch vs. Dynamisch",
+                            content: "Statischer Test = OHNE Ausführung (Reviews, statische Analyse). Dynamischer Test = MIT Ausführung (Code läuft).",
+                            coachNote: "🎯 Eselsbrücke: Statisch = 'Motor aus' (Dokumente lesen). Dynamisch = 'Motor läuft' (Software ausführen)."
+                        }
+                    ],
                     subsections: [
                         {
                             id: "3.1.1",
@@ -729,6 +770,13 @@ const syllabusData = Object.freeze({
                     title: "Feedback- und Reviewprozess",
                     page: 40,
                     quote: "Der Reviewprozess umfasst: Planung, Reviewbeginn, individuelles Review, Kommunikation und Analyse, Behebung und Berichterstattung.",
+                    keyPoints: [
+                        {
+                            title: "Überblick",
+                            content: "Reviews sind strukturierte Prüfungen von Arbeitsergebnissen. 4 Reviewarten: Informelles Review, Walkthrough, Technisches Review, Inspektion.",
+                            coachNote: "🎯 Prüfungsfokus: Wer LEITET das Review? Walkthrough=AUTOR, Rest=MODERATOR. Inspektion=am FORMELLSTEN (mit Metriken)."
+                        }
+                    ],
                     subsections: [
                         {
                             id: "3.2.1",
@@ -747,6 +795,8 @@ const syllabusData = Object.freeze({
                             id: "3.2.2",
                             title: "Aktivitäten des Reviewprozesses",
                             page: 41,
+                            image: "images/reviewprozess_cc.png",
+                            imageAttribution: "Eigene Darstellung nach ISTQB-Terminologie",
                             quote: "Reviewprozess: Planung, Reviewbeginn, individuelles Review, Kommunikation und Analyse, Behebung und Berichterstattung.",
                             keyPoints: [
                                 {
@@ -855,6 +905,13 @@ const syllabusData = Object.freeze({
                     title: "Testverfahren im Überblick",
                     page: 43,
                     quote: "Testverfahren werden in drei Kategorien unterteilt: Black-Box-, White-Box- und erfahrungsbasierte Testverfahren.",
+                    keyPoints: [
+                        {
+                            title: "Drei Kategorien",
+                            content: "Black-Box (Spezifikation), White-Box (Code), Erfahrungsbasiert (Intuition). Der Hauptunterschied liegt in der TESTBASIS.",
+                            coachNote: "🎯 Prüfungsfokus: Was unterscheidet die Kategorien? → Die TESTBASIS! Nicht: Teststufe, Testobjekt oder SDLC."
+                        }
+                    ],
                     subsections: [
                         {
                             id: "4.1.1",
@@ -903,12 +960,19 @@ const syllabusData = Object.freeze({
                             id: "4.2.1",
                             title: "Äquivalenzklassenbildung",
                             page: 45,
+                            image: "images/aequivalenzklassen_cc.png",
+                            imageAttribution: "Eigene Darstellung nach ISTQB-Terminologie",
                             quote: "Bei der Äquivalenzklassenbildung werden Daten in Klassen unterteilt, wobei davon ausgegangen wird, dass alle Elemente einer Klasse vom Testobjekt auf die gleiche Weise verarbeitet werden.",
                             keyPoints: [
                                 {
                                     title: "Prinzip",
                                     content: "Eingaben in Klassen einteilen, die gleiches Verhalten erwarten lassen. Ein repräsentativer Wert pro Klasse reduziert Testfälle.",
                                     coachNote: "🎯 Prüfungsfokus – Minimale Testfälle:\n\nRegel: EIN Wert pro Äquivalenzklasse\n(auch ungültige Klassen!)\n\n❌ FALSCH:\n• 'mehr als die minimale Anzahl'\n• Klassen vergessen\n\n💡 Frage: 'Wie viele Testfälle minimal?'\n→ Klassen zählen, je 1 Wert"
+                                },
+                                {
+                                    title: "📝 Rechenbeispiel: Fitness-App",
+                                    content: "Schritte pro Tag mit Feedback:\n• ≤1000: 'Couch Potato'\n• 1001-2000: 'Komm in die Puschen'\n• 2001-4000: 'Die Richtung stimmt'\n• 4001-6000: 'Gut gemacht'\n• >6000: 'Super'",
+                                    coachNote: "📊 LÖSUNG:\n\n5 Äquivalenzklassen → 5 Testfälle minimal\n\nÄK1: ≤1000 → Testwert: 500\nÄK2: 1001-2000 → Testwert: 1500\nÄK3: 2001-4000 → Testwert: 3000\nÄK4: 4001-6000 → Testwert: 5000\nÄK5: >6000 → Testwert: 7000\n\n⚠️ Typische Prüfungsfrage:\n'Welche Werte decken die MEISTEN ÄKs ab?'\n→ Zähle, wie viele VERSCHIEDENE Klassen!"
                                 }
                             ]
                         },
@@ -916,12 +980,19 @@ const syllabusData = Object.freeze({
                             id: "4.2.2",
                             title: "Grenzwertanalyse",
                             page: 46,
+                            image: "images/grenzwertanalyse_cc.png",
+                            imageAttribution: "Eigene Darstellung nach ISTQB-Terminologie",
                             quote: "Die Grenzwertanalyse basiert auf der Überprüfung der Grenzen von Äquivalenzklassen. Bei der 2-Wert-Analyse gibt es für jeden Grenzwert zwei Überdeckungselemente: den Grenzwert und seinen engsten Nachbarn.",
                             keyPoints: [
                                 {
                                     title: "2-Wert vs. 3-Wert",
                                     content: "2-Wert: Grenzwert + ein Nachbar aus angrenzender Klasse. 3-Wert: Grenzwert + beide Nachbarn.",
                                     coachNote: "🎯 Prüfung – Grenzwertanalyse:\n\n2-Wert-Analyse:\n• Grenzwert + EIN Nachbar aus angrenzender Klasse\n• NICHT beide Nachbarn (das wäre 3-Wert!)\n\n❌ FALSCH:\n• 'keine Grenzwerte'\n• 'nur gültige Werte'"
+                                },
+                                {
+                                    title: "📝 Rechenbeispiel: Notenberechnung",
+                                    content: "Punkte 0-100 mit Grenzen:\n• 0-50: nicht bestanden\n• 51-70: ausreichend\n• 71-90: gut\n• 91-100: sehr gut",
+                                    coachNote: "📊 LÖSUNG (2-Wert-GWA):\n\nGrenzen identifizieren: 0|50|51|70|71|90|91|100\nPlus ungültige Nachbarn: -1 und 101\n\n10 Überdeckungselemente:\n-1, 0, 50, 51, 70, 71, 90, 91, 100, 101\n\n⚠️ Typische Prüfungsfrage:\n'Testfälle 0, 50, 70, 90, 91, 100 gegeben.\nWie hoch ist die 2-Wert-GWA-Überdeckung?'\n\n→ 6 von 10 = 60%\n(Es fehlen: -1, 51, 71, 101)"
                                 }
                             ]
                         },
@@ -952,6 +1023,11 @@ const syllabusData = Object.freeze({
                                     title: "Überdeckungskriterien",
                                     content: "Alle Zustände: jeden Zustand 1x. 0-Switch: jeden gültigen Übergang 1x. Alle Übergänge: gültige + ungültige.",
                                     coachNote: "🎯 Prüfungsfalle – Überdeckungskriterien:\n\n• Alle Zustände: Jeder Zustand mindestens 1x besucht\n• 0-Switch (gültige Übergänge): Jeder GÜLTIGE Übergang 1x\n• Alle Übergänge: Gültige UND ungültige Übergänge\n\n⚠️ Ungültige Übergänge: nur 1 pro Testfall (Fehlermaskierung vermeiden!)"
+                                },
+                                {
+                                    title: "📝 Rechenbeispiel: Mindestzahl Testfälle",
+                                    content: "System mit Zuständen:\nINIT → (test) → TEST → (done) → OFF\nINIT → (run) → RUN → (error) → OFF\nRUN ↔ (pause/resume) ↔ PAUSE → (done) → OFF",
+                                    coachNote: "📊 LÖSUNG (100% Übergangsüberdeckung):\n\n7 gültige Übergänge identifizieren:\n1. INIT→TEST (test)\n2. TEST→OFF (done)\n3. INIT→RUN (run)\n4. RUN→OFF (error)\n5. RUN→PAUSE (pause)\n6. PAUSE→RUN (resume)\n7. PAUSE→OFF (done)\n\nMindestzahl Testfälle: 3\n\nTF1: INIT→test→TEST→done→OFF (deckt 1,2)\nTF2: INIT→run→RUN→error→OFF (deckt 3,4)\nTF3: INIT→run→RUN→pause→PAUSE→resume→RUN→pause→PAUSE→done→OFF (deckt 3,5,6,5,7)\n\n⚠️ 'test' und 'run' schließen sich aus → mindestens 2 TFs nötig!"
                                 }
                             ]
                         }
@@ -974,12 +1050,19 @@ const syllabusData = Object.freeze({
                             id: "4.3.1",
                             title: "Anweisungstest und Anweisungsüberdeckung",
                             page: 50,
+                            image: "images/kontrollflussgraph_cc.png",
+                            imageAttribution: "Eigene Darstellung nach ISTQB-Terminologie",
                             quote: "Beim Anweisungstest sind die Überdeckungselemente ausführbare Anweisungen. Die Überdeckung wird als Anzahl der durch die Testfälle ausgeführten Anweisungen, geteilt durch die Gesamtzahl der ausführbaren Anweisungen, gemessen.",
                             keyPoints: [
                                 {
                                     title: "Formel",
                                     content: "Anweisungsüberdeckung = (ausgeführte Anweisungen ÷ ausführbare Anweisungen) × 100%",
                                     coachNote: "🎯 Prüfungsfalle – Anweisungsüberdeckung:\n\n✅ RICHTIG: Prozentsatz ausgeführter Anweisungen\n\n❌ FALSCH (typische Fallen):\n• 'Anzahl Testfälle'\n• 'Fehlerwirkungen'\n• Antworten ohne '%'"
+                                },
+                                {
+                                    title: "📝 Rechenbeispiel: Anweisungsüberdeckung",
+                                    content: "Code mit 5 Anweisungen:\n1: read(x)\n2: if (x > 0)\n3:   print('positiv')\n4: else\n5:   print('nicht positiv')",
+                                    coachNote: "📊 LÖSUNG:\n\nTestfall x=5 durchläuft: 1→2→3\n→ 3 von 5 Anweisungen = 60%\n\nTestfall x=-1 durchläuft: 1→2→5\n→ 3 von 5 Anweisungen = 60%\n\nBEIDE Testfälle zusammen:\n→ 1,2,3,5 = 4 von 5 = 80%\n\n⚠️ Für 100% brauchen wir Zeile 4?\nNEIN! 'else' ist keine ausführbare Anweisung!\n→ 4 ausführbare = 100% erreicht"
                                 }
                             ]
                         },
@@ -995,6 +1078,11 @@ const syllabusData = Object.freeze({
                                     title: "Stärker als Anweisungsüberdeckung",
                                     content: "Jeder Zweig (True/False) jeder Entscheidung muss mindestens einmal ausgeführt werden. 100% Zweig → 100% Anweisung (aber nicht umgekehrt!).",
                                     coachNote: "🎯 Prüfungsfalle – Zweigüberdeckung:\n\n📌 Was ist ein 'Zweig'?\nBei einer if-Bedingung gibt es ZWEI Wege:\n• TRUE-Zweig (Bedingung erfüllt)\n• FALSE-Zweig (Bedingung nicht erfüllt)\n\n✅ 100% Zweigüberdeckung = BEIDE Wege getestet\n\n⚠️ Zweigüberdeckung ist STÄRKER als Anweisungsüberdeckung"
+                                },
+                                {
+                                    title: "📝 Rechenbeispiel: Zweig vs. Anweisung",
+                                    content: "Code:\n1: read(x)\n2: if (x > 0)\n3:   print('positiv')\n4: print('fertig')",
+                                    coachNote: "📊 LÖSUNG:\n\n4 Anweisungen, 2 Zweige (TRUE/FALSE bei Zeile 2)\n\nTestfall x=5:\n→ Durchläuft: 1→2(TRUE)→3→4\n→ Anweisungen: 4/4 = 100% ✅\n→ Zweige: 1/2 = 50% ❌\n\nFür 100% Zweigüberdeckung AUCH x=-1 nötig:\n→ Durchläuft: 1→2(FALSE)→4\n→ Zweige: 2/2 = 100% ✅\n\n⚠️ WICHTIG:\n100% Anweisung ≠ 100% Zweig!\nEin Testfall kann ALLE Anweisungen abdecken,\naber trotzdem Zweige verpassen!"
                                 }
                             ]
                         },
@@ -1018,6 +1106,13 @@ const syllabusData = Object.freeze({
                     title: "Erfahrungsbasierte Testverfahren",
                     page: 51,
                     quote: "Erfahrungsbasierte Testverfahren nutzen das Wissen und die Erfahrung der Tester, um Testfälle abzuleiten.",
+                    keyPoints: [
+                        {
+                            title: "Überblick",
+                            content: "3 Verfahren: Intuitive Testfallermittlung (Error Guessing), Explorativer Test, Checklistenbasierter Test. Nutzen die Erfahrung und das Wissen des Testers.",
+                            coachNote: "Erfahrungsbasiert = ergänzt Black-Box und White-Box, ersetzt sie nicht!"
+                        }
+                    ],
                     subsections: [
                         {
                             id: "4.4.1",
@@ -1283,6 +1378,11 @@ const syllabusData = Object.freeze({
                                     title: "Drei-Punkt-Schätzung",
                                     content: "E = (O + 4×W + P) ÷ 6. Optimistisch, Wahrscheinlichste (4-fach gewichtet) und Pessimistisch.",
                                     coachNote: "Formel auswendig lernen! Die wahrscheinlichste Schätzung wird 4-fach gewichtet."
+                                },
+                                {
+                                    title: "📝 Rechenbeispiel: Drei-Punkt-Schätzung",
+                                    content: "Aufwandsschätzung für Testaktivität:\n• Optimistisch (O): 2 Tage\n• Wahrscheinlich (W): 11 Tage\n• Pessimistisch (P): 14 Tage",
+                                    coachNote: "📊 LÖSUNG:\n\nFormel: E = (O + 4×W + P) ÷ 6\n\nSchritt 1: 4×W = 4×11 = 44\nSchritt 2: O + 4×W + P = 2 + 44 + 14 = 60\nSchritt 3: 60 ÷ 6 = 10\n\n✅ Ergebnis: 10 Tage\n\n⚠️ Typischer Prüfungsfehler:\nEinfacher Durchschnitt (2+11+14)÷3 = 9\n→ FALSCH! W wird 4-fach gewichtet!"
                                 }
                             ]
                         },
@@ -1372,7 +1472,7 @@ const syllabusData = Object.freeze({
                     ]
                 },
                 {
-                    id: "5.2",
+                    id: "5.3",
                     title: "Testüberwachung und Teststeuerung",
                     page: 64,
                     quote: "Die Testüberwachung umfasst die laufende Überprüfung aller Testaktivitäten und den Vergleich des tatsächlichen Fortschritts mit dem Plan. Bei der Teststeuerung werden die erforderlichen Korrekturmaßnahmen ergriffen.",
@@ -1460,6 +1560,13 @@ const syllabusData = Object.freeze({
                     title: "Konfigurationsmanagement",
                     page: 67,
                     quote: "Der Zweck des Konfigurationsmanagements ist es, die Integrität der Konfigurationselemente (z.B. Testmittel, Testobjekte) während des gesamten Projektlebenszyklus sicherzustellen.",
+                    keyPoints: [
+                        {
+                            title: "Zweck",
+                            content: "Konfigurationsmanagement (KM) stellt sicher, dass die richtigen Versionen von Testobjekten und Testware zusammen verwendet werden.",
+                            coachNote: "🎯 Prüfungsszenario: 'Test besteht in Dev, scheitert in Test' → Verdacht: KM-Problem (falsche Versionen)!"
+                        }
+                    ],
                     subsections: [
                         {
                             id: "5.4.1",
@@ -1477,7 +1584,7 @@ const syllabusData = Object.freeze({
                     ]
                 },
                 {
-                    id: "5.4",
+                    id: "5.2",
                     title: "Risikomanagement",
                     page: 62,
                     image: "images/risikomatrix_5x5_cc.jpg",
@@ -1552,6 +1659,13 @@ const syllabusData = Object.freeze({
                     image: "images/bug_lifecycle_bugzilla_cc.png",
                     imageAttribution: "Bugzilla Project, LGPL, via Wikimedia Commons",
                     quote: "Ein Fehlerbericht dokumentiert alle Informationen, die erforderlich sind, um das aufgetretene Problem zu identifizieren, zu analysieren und zu beheben.",
+                    keyPoints: [
+                        {
+                            title: "Fehlerbericht-Essentials",
+                            content: "Mindestinhalte: Eindeutige ID, Titel, Datum, Autor, Testobjekt-ID, Schweregrad, Priorität, Schritte zur Reproduktion, erwartetes vs. tatsächliches Ergebnis.",
+                            coachNote: "🎯 Prüfungsfokus: Was gehört in einen Fehlerbericht? → Schritte zur REPRODUKTION sind PFLICHT!"
+                        }
+                    ],
                     subsections: [
                         {
                             id: "5.5.1",
@@ -1585,6 +1699,13 @@ const syllabusData = Object.freeze({
                     title: "Werkzeugunterstützung für das Testen",
                     page: 71,
                     quote: "Testwerkzeuge können eine oder mehrere Testaktivitäten unterstützen.",
+                    keyPoints: [
+                        {
+                            title: "Werkzeugkategorien",
+                            content: "Werkzeuge nach Zweck: Testmanagement (Planung, Verfolgung), Statische Analyse (Code-Prüfung), Testentwurf (Testfallgenerierung), Testdurchführung (Automatisierung), Performance-Test.",
+                            coachNote: "Werkzeuge unterstützen ALLE Testaktivitäten – von Planung bis Abschluss."
+                        }
+                    ],
                     subsections: [
                         {
                             id: "6.1.1",
@@ -1596,6 +1717,16 @@ const syllabusData = Object.freeze({
                                     title: "Kategorien",
                                     content: "Werkzeuge für Testmanagement, statische Analyse, Testentwurf und -realisierung, Testdurchführung (Ausführung, Vergleich), Performance, Spezialanwendungen.",
                                     coachNote: "🎯 Prüfungsfalle – Werkzeug-Aktivität:\n\n• Testdaten-Werkzeug → Testentwurf + Testrealisierung\n• Testmanagement → Überwachung + Steuerung\n• Statische Analyse → vor der Ausführung"
+                                },
+                                {
+                                    title: "Werkzeugkategorien (Tabelle)",
+                                    content: "Testmanagement: Jira, TestRail, Zephyr | Statische Analyse: SonarQube, ESLint, Checkstyle | Testdurchführung: Selenium, Cypress, Playwright | Performance: JMeter, Gatling, LoadRunner | CI/CD: Jenkins, GitLab CI, GitHub Actions",
+                                    coachNote: "📊 Merkhilfe – Beispiele pro Kategorie:\n\n📋 TESTMANAGEMENT: Jira, TestRail\n🔍 STATISCHE ANALYSE: SonarQube, Linter\n🤖 TESTAUSFÜHRUNG: Selenium, Cypress\n⚡ PERFORMANCE: JMeter, LoadRunner\n🔄 CI/CD: Jenkins, GitLab CI"
+                                },
+                                {
+                                    title: "Werkzeuge für verschiedene Testaktivitäten",
+                                    content: "Testplanung: Testmanagement-Tools. Testanalyse/Entwurf: Modellierungswerkzeuge, Testdaten-Generatoren. Testrealisierung: Testautomatisierung. Testdurchführung: Testausführungs-Tools. Testabschluss: Reporting-Tools.",
+                                    coachNote: "Für JEDE Testaktivität gibt es passende Werkzeuge!"
                                 }
                             ]
                         }
@@ -1606,6 +1737,13 @@ const syllabusData = Object.freeze({
                     title: "Nutzen und Risiken der Testautomatisierung",
                     page: 71,
                     quote: "Potenzielle Vorteile: Zeitersparnis, höhere Konsistenz und Wiederholbarkeit. Potenzielle Risiken: unrealistische Erwartungen, Wartungsaufwand.",
+                    keyPoints: [
+                        {
+                            title: "Abwägung",
+                            content: "Automatisierung ist KEIN Allheilmittel! Vorteile (Geschwindigkeit, Wiederholbarkeit) müssen gegen Risiken (Wartung, Initialaufwand) abgewogen werden.",
+                            coachNote: "🎯 Prüfungsfokus: 'Risiko der Testautomatisierung?' → Unrealistische Erwartungen, Wartungsaufwand, Abhängigkeit von Testern mit Programmierkenntnissen."
+                        }
+                    ],
                     subsections: [
                         {
                             id: "6.2.1",
