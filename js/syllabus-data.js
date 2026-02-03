@@ -1171,6 +1171,7 @@ const syllabusData = Object.freeze({
                         {
                             id: "4.5.1",
                             title: "Gemeinsames Schreiben von User-Storys",
+                            page: 53,
                             keyPoints: [
                                 {
                                     title: "Die 3 Cs",
@@ -1197,6 +1198,7 @@ const syllabusData = Object.freeze({
                         {
                             id: "4.5.2",
                             title: "Akzeptanzkriterien",
+                            page: 54,
                             keyPoints: [
                                 {
                                     title: "Definition",
@@ -1218,6 +1220,7 @@ const syllabusData = Object.freeze({
                         {
                             id: "4.5.3",
                             title: "Abnahmetestgetriebene Entwicklung (ATDD)",
+                            page: 55,
                             keyPoints: [
                                 {
                                     title: "Test-First-Ansatz",

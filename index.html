@@ -5054,8 +5054,25 @@
             checkStreak();
             render();
             
-            // Keyboard navigation for quiz (a/b/c/d keys)
+            // Keyboard navigation for quiz (a/b/c/d keys) and modal closing (Escape)
             document.addEventListener('keydown', function(e) {
+                // Escape closes modals/panels
+                if (e.key === 'Escape') {
+                    if (state.settingsPanelOpen) {
+                        state.settingsPanelOpen = false;
+                        render();
+                        e.preventDefault();
+                        return;
+                    }
+                    if (state.activeDashboard) {
+                        state.activeDashboard = null;
+                        render();
+                        e.preventDefault();
+                        return;
+                    }
+                }
+                
+                // Quiz keyboard shortcuts
                 if (!state.currentQuiz || state.currentQuiz.finished) return;
                 if (state.currentView !== 'quiz') return;
                 

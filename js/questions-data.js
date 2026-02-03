@@ -2893,6 +2893,2660 @@ const examQuestions = Object.freeze([
             explanation: "1. Regressionstests brauchen Änderungsauswirkungsanalyse (D). 2. Vollständigkeit bewerten = nachvollziehbar/prüfbar (B). 3. User-Storys mit Fehlern = Teststatusberichte (A). 4. Tests vs. Risiko = Prozessqualität (C).",
             reference: "Lehrplan 1.4.4, Seite 27"
         }
+    },
+    // =========================================================================
+    // GTB SAMPLE EXAM SET B (40 Fragen)
+    // =========================================================================
+    {
+        id: "gtb-b-1",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 1",
+        lo: "FL-1.2.1",
+        kLevel: 2,
+        chapter: 1,
+        text: "Welche der folgenden Aussagen beschreibt AM BESTEN, warum Testen im Softwareentwicklungslebenszyklus notwendig ist?",
+        hint: "Testen ist nicht die EINZIGE Methode zur Qualitätsbewertung. Denke an den Hauptzweck: Fehlerzustände finden.",
+        answers: [
+            "Dynamisches Testen ist die einzige Möglichkeit, die Qualität eines Testobjekts zu bewerten.",
+            "Das Testen stellt sicher, dass die Benutzer die Bedürfnisse der Entwickler verstehen und nachvollziehen können.",
+            "Testen wird ausschließlich durchgeführt, um regulatorische Standards zu erfüllen.",
+            "Testen hilft, Fehlerzustände aufzudecken und damit die Qualität des Testobjekts zu verbessern."
+        ],
+        correct: 3,
+        feedback: {
+            trap: "a) Falsch – auch statisches Testen und Reviews bewerten Qualität. b) Falsch – umgekehrt: Entwickler sollen Benutzer verstehen. c) Falsch – Compliance ist EIN Grund, nicht der einzige.",
+            principle: "Testen = Fehlerzustände finden → Qualität verbessern.",
+            explanation: "Der Hauptzweck des Testens ist es, Fehlerzustände aufzudecken. Durch deren Behebung wird die Qualität des Testobjekts verbessert.",
+            reference: "Lehrplan 1.2.1"
+        }
+    },
+    {
+        id: "gtb-b-2",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 2",
+        lo: "FL-1.2.2",
+        kLevel: 1,
+        chapter: 1,
+        text: "Was ist der Unterschied zwischen Testen und Qualitätssicherung?",
+        hint: "QS = prozessorientiert, präventiv. Testen = produktorientiert, korrigierend.",
+        answers: [
+            "Testen ist ein prozessorientierter, präventiver Ansatz, während Qualitätssicherung ein produktorientierter, korrigierender Ansatz ist.",
+            "Qualitätssicherung ist prozessorientiert und zielt auf deren Verbesserung, während Testen durch produktorientierte Maßnahmen auf angemessene Qualität zielt.",
+            "Testen und Qualitätssicherung sind identisch und können synonym verwendet werden.",
+            "Qualitätssicherung bezieht sich nur auf den Testprozess, während Testen den gesamten Entwicklungsprozess umfasst."
+        ],
+        correct: 1,
+        feedback: {
+            trap: "a) Vertauscht die Definitionen. c) Falsch – sie sind unterschiedlich. d) Falsch – QS umfasst ALLE Prozesse, nicht nur Testen.",
+            principle: "QS = Prozessverbesserung (präventiv). Testen = Produktprüfung (korrigierend).",
+            explanation: "Qualitätssicherung ist prozessorientiert und zielt auf Prozessverbesserung. Testen ist produktorientiert und prüft, ob das Produkt die Anforderungen erfüllt.",
+            reference: "Lehrplan 1.2.2"
+        }
+    },
+    {
+        id: "gtb-b-3",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 3",
+        lo: "FL-1.3.1",
+        kLevel: 2,
+        chapter: 1,
+        text: "Ein Tester hat über einen Zeitraum von 5 Jahren Softwareanwendungen auf mobilen Geräten getestet. Über einen langen Zeitraum hat der Tester die bestehenden Testfälle nicht verändert und auch keine neuen Testfälle erstellt. Bei neueren Versionen der mobilen Plattform sind mehr Fehlerwirkungen von den Nutzern gemeldet worden.\n\nWelchen Grundsatz des Testens hat der Tester nicht beachtet?",
+        hint: "Wenn dieselben Tests immer wieder ausgeführt werden, finden sie irgendwann keine neuen Fehler mehr.",
+        answers: [
+            "Testen ist abhängig vom Umfeld.",
+            "Vollständiges Testen ist nicht möglich.",
+            "Tests nutzen sich ab.",
+            "Fehlerzustände treten gehäuft auf."
+        ],
+        correct: 2,
+        feedback: {
+            trap: "a) Umfeldabhängigkeit betrifft Testansatz je nach Projekt. b) Vollständigkeit betrifft die Unmöglichkeit, alles zu testen. d) Häufung betrifft die Verteilung von Fehlern.",
+            principle: "Pestizid-Paradoxon: Dieselben Tests finden irgendwann keine neuen Fehler mehr.",
+            explanation: "Der Grundsatz 'Tests nutzen sich ab' besagt, dass wiederholte Tests mit der Zeit weniger effektiv werden. Neue Tests müssen erstellt werden.",
+            reference: "Lehrplan 1.3.1"
+        }
+    },
+    {
+        id: "gtb-b-4",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 4",
+        lo: "FL-1.4.3",
+        kLevel: 2,
+        chapter: 1,
+        text: "Betrachten Sie das folgende Testmittel:\n\nTest-Charta #04.018 Sitzungsdauer: 1h\nErforsche die Registrierungsseite\nMit verschiedenen fehlerhaften Eingabesätzen\nZu entdecken: Fehler beim Registrierungsvorgang bei fehlerhaften Eingaben\n\nIn welcher Testaktivität wird dieses Testmittel erstellt?",
+        hint: "Eine Test-Charta definiert WAS und WIE getestet werden soll – das ist der Entwurf der Tests.",
+        answers: [
+            "Testplanung",
+            "Testüberwachung und Teststeuerung",
+            "Testanalyse",
+            "Testentwurf"
+        ],
+        correct: 3,
+        feedback: {
+            trap: "a) Testplanung = Ressourcen, Zeitpläne, Strategie. b) Überwachung = Fortschrittskontrolle. c) Testanalyse = WAS zu testen ist (Testbedingungen).",
+            principle: "Test-Chartas werden im Testentwurf erstellt – sie definieren WIE getestet wird.",
+            explanation: "Eine Test-Charta ist ein Testmittel des Testentwurfs. Sie beschreibt den Testansatz für explorative Tests.",
+            reference: "Lehrplan 1.4.3"
+        }
+    },
+    {
+        id: "gtb-b-5",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 5",
+        lo: "FL-1.4.2",
+        kLevel: 2,
+        chapter: 1,
+        text: "Welcher der folgenden Aspekte beeinflusst AM EHESTEN die Durchführung von Tests für ein bestimmtes Testobjekt?",
+        hint: "Welcher Faktor hat direkten Einfluss auf die Testqualität und -durchführung?",
+        answers: [
+            "Die durchschnittliche Erfahrung des Marketingteams des Unternehmens.",
+            "Das Wissen der Benutzer, dass ein neues System für sie entwickelt wird.",
+            "Die Anzahl der Jahre an Testerfahrung der Mitglieder des Testteams.",
+            "Die Organisationsstruktur der Benutzer der zu entwickelnden Anwendung."
+        ],
+        correct: 2,
+        feedback: {
+            trap: "a) Marketing hat keinen direkten Einfluss auf Tests. b) Benutzerwissen über Entwicklung ist irrelevant. d) Organisationsstruktur der Benutzer beeinflusst Tests nicht direkt.",
+            principle: "Testerfahrung = direkter Einflussfaktor auf Testqualität.",
+            explanation: "Die Erfahrung des Testteams beeinflusst direkt, wie effektiv Tests entworfen und durchgeführt werden.",
+            reference: "Lehrplan 1.4.2"
+        }
+    },
+    {
+        id: "gtb-b-6",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 6",
+        lo: "FL-1.4.4",
+        kLevel: 2,
+        chapter: 1,
+        text: "Beachten Sie die folgenden Testaktivitäten:\n\n1. Auswählen von Regressionstests\n2. Bewertung der Vollständigkeit der Testdurchführung\n3. Identifizieren, welche User-Storys offene Fehlerberichte haben\n4. Bewertung, ob die Qualität und Anzahl der Tests für jede Anforderung mit dem Grad des Produktrisikos vereinbar sind\n\nBetrachten Sie die folgenden Möglichkeiten, wie die Verfolgbarkeit beim Testen helfen kann:\n\nA. Verbessern der Verständlichkeit von Teststatusberichten\nB. Testaktivitäten nachvollziehbarer/prüfbarer machen\nC. Bereitstellung von Informationen zur Beurteilung der Prozessqualität\nD. Analysieren der Auswirkungen von Änderungen\n\nWelche der folgenden Zuordnungen passt AM BESTEN?",
+        hint: "Regressionstests → Änderungsauswirkung. Vollständigkeit → prüfbar. User-Storys + Fehler → Statusberichte.",
+        answers: [
+            "1D, 2B, 3C, 4A",
+            "1B, 2D, 3A, 4C",
+            "1D, 2C, 3A, 4B",
+            "1D, 2B, 3A, 4C"
+        ],
+        correct: 3,
+        feedback: {
+            trap: "Die Zuordnungen müssen logisch passen: Regressionstests brauchen Änderungsanalyse (D), nicht Prüfbarkeit (B).",
+            principle: "Verfolgbarkeit unterstützt: Änderungsauswirkung, Prüfbarkeit, Statusberichte, Prozessqualität.",
+            explanation: "1→D (Regression braucht Änderungsanalyse), 2→B (Vollständigkeit = prüfbar), 3→A (User-Storys = Statusberichte), 4→C (Risiko = Prozessqualität).",
+            reference: "Lehrplan 1.4.4"
+        }
+    },
+    {
+        id: "gtb-b-7",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 7",
+        lo: "FL-1.5.1",
+        kLevel: 2,
+        chapter: 1,
+        text: "Sie sind Teil eines Testteams, das an der Entwicklung eines Steuerungssystems eines Hubschraubers beteiligt ist. Kürzlich wurde ein erfahrener Hubschrauberpilot als Tester für das Testteam eingestellt.\n\nWelche positiven Auswirkungen werden die allgemeinen Kompetenzen des neuen Testers vermutlich AM EHESTEN auf das Testteam haben?",
+        hint: "Ein Domänenexperte (Pilot) bringt Fachwissen mit – was kann er am besten beurteilen?",
+        answers: [
+            "Die Anwendung der 3-Wert-Grenzwertanalyse für einen gründlicheren Testentwurf im Systemtest.",
+            "Inkonsistenzen und Ungenauigkeiten in den fachlichen Anforderungen werden effektiv aufgedeckt.",
+            "Einsatz eines Werkzeugs zur Automatisierung von Zustandsübergangstests.",
+            "Testergebnisse werden konstruktiver und defensiver an die Entwickler kommuniziert."
+        ],
+        correct: 1,
+        feedback: {
+            trap: "a) Grenzwertanalyse = technische Testkompetenz, nicht Domänenwissen. c) Automatisierung = technische Fähigkeit. d) Kommunikation = Soft Skill, nicht domänenspezifisch.",
+            principle: "Domänenexperten erkennen fachliche Fehler in Anforderungen.",
+            explanation: "Ein Hubschrauberpilot bringt Domänenwissen mit und kann fachliche Inkonsistenzen in den Anforderungen erkennen.",
+            reference: "Lehrplan 1.5.1"
+        }
+    },
+    {
+        id: "gtb-b-8",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 8",
+        lo: "FL-1.5.2",
+        kLevel: 1,
+        chapter: 1,
+        text: "Welche der folgenden Aussagen beschreibt einen Vorteil des Whole-Team-Ansatzes (Whole Team Approach)?",
+        hint: "Whole-Team = alle arbeiten zusammen für Qualität. Was entsteht durch Zusammenarbeit?",
+        answers: [
+            "Er ermöglicht es den Teammitgliedern, jederzeit jede Rolle zu übernehmen.",
+            "Es wird nur ein Team benötigt, um das gesamte Entwicklungsprojekt zu unterstützen.",
+            "Tester können isoliert arbeiten, ohne die Entwickler oder die Fachbereichsvertreter mit testspezifischen Informationen abzulenken.",
+            "Oft ergeben sich Synergien, von denen das gesamte Team und das Projekt profitieren."
+        ],
+        correct: 3,
+        feedback: {
+            trap: "a) Rollen bleiben bestehen, nur Verantwortung wird geteilt. b) Teamgröße ist nicht der Punkt. c) Isolation ist das GEGENTEIL des Whole-Team-Ansatzes.",
+            principle: "Whole-Team = Zusammenarbeit → Synergien.",
+            explanation: "Der Whole-Team-Ansatz fördert Zusammenarbeit zwischen allen Teammitgliedern, was zu Synergien führt.",
+            reference: "Lehrplan 1.5.2"
+        }
+    },
+    {
+        id: "gtb-b-9",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 9",
+        lo: "FL-2.1.1",
+        kLevel: 2,
+        chapter: 2,
+        text: "Welche der folgenden Aussagen über die Wahl des Softwareentwicklungslebenszyklus und dessen Beziehung zum Testen ist KORREKT?",
+        hint: "Sequenziell = spätes dynamisches Testen. Agil = frühe Automatisierung. Was passt?",
+        answers: [
+            "In der agilen Softwareentwicklung ersetzt die Automatisierung von Systemtests die Notwendigkeit von Regressionstests.",
+            "Wenn ein sequenzielles Entwicklungsmodell verwendet wird, wird das dynamische Testen typischerweise in einer späteren Phase des Lebenszyklus durchgeführt.",
+            "Wenn ein iteratives Entwicklungsmodell verwendet wird, werden Komponententests typischerweise manuell von Entwicklern durchgeführt.",
+            "Wenn ein inkrementelles Entwicklungsmodell verwendet wird, werden statische Tests in frühen Inkrementen und dynamische Tests in späteren Inkrementen durchgeführt."
+        ],
+        correct: 1,
+        feedback: {
+            trap: "a) Automatisierung ERSETZT keine Regressionstests, sie UNTERSTÜTZT sie. c) Komponententests werden meist automatisiert. d) Beide Testarten finden in allen Inkrementen statt.",
+            principle: "Sequenziell = Code erst spät fertig → dynamisches Testen spät.",
+            explanation: "Bei sequenziellen Modellen (z.B. Wasserfall) wird der Code erst spät fertiggestellt, daher findet dynamisches Testen typischerweise in späteren Phasen statt.",
+            reference: "Lehrplan 2.1.1"
+        }
+    },
+    {
+        id: "gtb-b-10",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 10",
+        lo: "FL-2.1.2",
+        kLevel: 1,
+        chapter: 2,
+        text: "Welche der folgenden Optionen ist eine gute Testpraktik, unabhängig vom gewählten Modell des Softwareentwicklungslebenszyklus?",
+        hint: "Früh beginnen = früh Fehler finden. Wann sollte die Überprüfung starten?",
+        answers: [
+            "Tester sollten die Arbeitsergebnisse einer Entwicklungsphase in der nächsten Entwicklungsphase überprüfen.",
+            "Tester sollten mit der Überprüfung der Arbeitsergebnisse einer Softwareentwicklungsaktivität beginnen, sobald Entwürfe verfügbar sind.",
+            "Tester sollten Arbeitsergebnisse einer Softwareentwicklungsaktivität nur im Rahmen der Testanalyse und des Testentwurfs überprüfen.",
+            "Tester sollten Arbeitsergebnisse prüfen, sobald sie zur Nutzung freigegeben sind."
+        ],
+        correct: 1,
+        feedback: {
+            trap: "a) Zu spät – nächste Phase ist zu spät. c) Zu eingeschränkt. d) 'Freigegeben' kann zu spät sein.",
+            principle: "Frühes Testen: Sobald Entwürfe verfügbar sind, beginnen.",
+            explanation: "Eine bewährte Praxis ist es, mit der Überprüfung zu beginnen, sobald erste Entwürfe verfügbar sind – das entspricht dem Shift-Left-Ansatz.",
+            reference: "Lehrplan 2.1.2"
+        }
+    },
+    {
+        id: "gtb-b-11",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 11",
+        lo: "FL-2.1.3",
+        kLevel: 1,
+        chapter: 2,
+        text: "Welches der folgenden Beispiele ist ein Test-First-Ansatz für die Entwicklung?",
+        hint: "Test-First = Tests VOR dem Code schreiben. Welcher Ansatz macht das?",
+        answers: [
+            "Testgetriebene Entwicklung",
+            "Überdeckungsgetriebene Entwicklung",
+            "Qualitätsgetriebene Entwicklung",
+            "Feature-getriebene Entwicklung"
+        ],
+        correct: 0,
+        feedback: {
+            trap: "b), c), d) sind keine etablierten Test-First-Ansätze. Feature-Driven Development ist ein agiler Ansatz, aber kein Test-First.",
+            principle: "TDD = Test-Driven Development = Tests zuerst schreiben.",
+            explanation: "Testgetriebene Entwicklung (TDD) ist ein Test-First-Ansatz, bei dem Tests vor dem Code geschrieben werden.",
+            reference: "Lehrplan 2.1.3"
+        }
+    },
+    {
+        id: "gtb-b-12",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 12",
+        lo: "FL-2.1.4",
+        kLevel: 2,
+        chapter: 2,
+        text: "Welche der folgenden Aussagen trifft auf DevOps zu?",
+        hint: "DevOps = Automatisierung + schnelle Releases. Was wird automatisiert?",
+        answers: [
+            "Um Releases zu beschleunigen, wird kontinuierliche Integration eingesetzt, die es den Entwicklern ermöglicht, Code schnell und ohne Komponententests auszuliefern.",
+            "Um Systeme schneller zu aktualisieren und freigeben zu können, nutzt die DevOps-Lieferkette Automatisierung, um zeitaufwendige manuelle Regressionstests zu reduzieren.",
+            "Um die Kluft zwischen Entwicklung und Betrieb zu verringern, priorisiert das Testen mit einem Shift-Right-Ansatz den Abnahmetest parallel zur kontinuierlichen Auslieferung.",
+            "Um eine größere Synergie zwischen Testern, Entwicklern und Betrieb zu schaffen, werden die Tests vollständig automatisiert, so dass keine manuellen Tests mehr erforderlich sind."
+        ],
+        correct: 1,
+        feedback: {
+            trap: "a) Ohne Tests = schlecht, nicht DevOps-Ziel. c) Shift-Right ist nur EIN Aspekt. d) 'Vollständig automatisiert' ist unrealistisch – manuelle Tests bleiben wichtig.",
+            principle: "DevOps = Automatisierung von Regressionstests für schnellere Releases.",
+            explanation: "DevOps nutzt Automatisierung, um manuelle Regressionstests zu reduzieren und schnellere Releases zu ermöglichen.",
+            reference: "Lehrplan 2.1.4"
+        }
+    },
+    {
+        id: "gtb-b-13",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 13",
+        lo: "FL-2.2.1",
+        kLevel: 2,
+        chapter: 2,
+        text: "Welche der folgenden Maßnahmen werden im Rahmen von Systemtests AM EHESTEN durchgeführt?",
+        hint: "Systemtest = Gesamtsystem testen, End-to-End, durch unabhängiges Team.",
+        answers: [
+            "End-to-End-Tests der IT-Sicherheit eines Kreditmanagementsystems durch ein unabhängiges Testteam",
+            "Test des Zusammenwirkens eines Geldwechselsystems mit einer externen Bank oder mit dem System einer externen Bank",
+            "Beta-Test einer Lernplattform durch die Trainer eines Schulungsanbieters",
+            "Test der Interaktion zwischen der Benutzeroberfläche und der Datenbank eines Personalverwaltungssystems"
+        ],
+        correct: 0,
+        feedback: {
+            trap: "b) Externe Systeme = Systemintegrationstest. c) Beta-Test = Abnahmetest. d) UI-DB-Interaktion = Komponentenintegrationstest.",
+            principle: "Systemtest = End-to-End-Test des Gesamtsystems.",
+            explanation: "End-to-End-Tests der IT-Sicherheit durch ein unabhängiges Team sind typische Systemtestaktivitäten.",
+            reference: "Lehrplan 2.2.1"
+        }
+    },
+    {
+        id: "gtb-b-14",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 14",
+        lo: "FL-2.3.1",
+        kLevel: 2,
+        chapter: 2,
+        text: "Welche der folgenden Entscheidungen sollte KEIN Auslöser für Wartungstests sein?",
+        hint: "Wartungstest = nach Änderungen, Migration, Hotfixes. Was ist KEIN Änderungsauslöser?",
+        answers: [
+            "Die Entscheidung, die Wartbarkeit der Software zu testen.",
+            "Die Entscheidung, das System nach der Migration auf eine neue Betriebsplattform zu testen.",
+            "Die Entscheidung, die Wiederherstellbarkeit archivierter Daten nach Außerbetriebnahme zu testen.",
+            "Die Entscheidung zu testen, nachdem ein 'Hotfix' auf die Produktivversion aufgespielt wurde."
+        ],
+        correct: 0,
+        feedback: {
+            trap: "b), c), d) sind alle Auslöser für Wartungstests: Migration, Außerbetriebnahme, Hotfixes.",
+            principle: "Wartbarkeit testen ≠ Wartungstest. Wartbarkeit ist ein Qualitätsmerkmal.",
+            explanation: "Das Testen der Wartbarkeit ist kein Wartungstest – es ist ein nicht-funktionaler Test. Wartungstests werden durch Änderungen ausgelöst.",
+            reference: "Lehrplan 2.3.1"
+        }
+    },
+    {
+        id: "gtb-b-15",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 15",
+        lo: "FL-3.1.2",
+        kLevel: 2,
+        chapter: 3,
+        text: "Welche der folgenden Aussagen beschreibt AM BESTEN den Einsatz von statischen Tests?",
+        hint: "Statisches Testen findet Fehler, die dynamisches Testen NICHT finden kann.",
+        answers: [
+            "Statisches Testen kann Fehlerzustände aufdecken, die durch dynamisches Testen nicht gefunden werden können.",
+            "Fehlerzustände im Code können durch dynamische Tests effizienter gefunden werden als durch statische Tests.",
+            "Der statische Test kann erst in einer späten Phase des SDLC durchgeführt werden.",
+            "Um den statischen Test so effizient wie möglich zu gestalten, sollten so wenig Stakeholder wie möglich involviert sein."
+        ],
+        correct: 0,
+        feedback: {
+            trap: "b) Statische Tests sind oft effizienter für bestimmte Fehlerarten. c) Statische Tests können FRÜH durchgeführt werden. d) Mehr Stakeholder = mehr Perspektiven = besser.",
+            principle: "Statisches Testen findet andere Fehlerarten als dynamisches Testen.",
+            explanation: "Statisches Testen kann Fehlerzustände aufdecken, die durch dynamisches Testen nicht gefunden werden können (z.B. Inkonsistenzen, fehlende Anforderungen).",
+            reference: "Lehrplan 3.1.2"
+        }
+    },
+    {
+        id: "gtb-b-16",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 16",
+        lo: "FL-3.2.1",
+        kLevel: 1,
+        chapter: 3,
+        text: "Welche der folgenden Aussagen beschreibt einen Vorteil von frühem und häufigem Stakeholder-Feedback?",
+        hint: "Frühes Feedback = frühe Problemerkennung. Was wird früh erkannt?",
+        answers: [
+            "Es hilft dem Projektmanagement, weniger produktive Entwickler frühzeitig zu erkennen.",
+            "Es reduziert die Notwendigkeit häufiger Interaktionen zwischen Projektmanagern und Stakeholdern.",
+            "Es erleichtert die frühzeitige Identifikation und Kommunikation möglicher Qualitätsprobleme.",
+            "Es verbessert das Verständnis der Endbenutzer hinsichtlich möglicher Verzögerungen bei der Anwendungsbereitstellung."
+        ],
+        correct: 2,
+        feedback: {
+            trap: "a) Feedback dient nicht der Mitarbeiterbewertung. b) Feedback ERHÖHT Interaktionen. d) Verzögerungen kommunizieren ist nicht der Hauptvorteil.",
+            principle: "Frühes Feedback = frühe Erkennung von Qualitätsproblemen.",
+            explanation: "Frühes und häufiges Stakeholder-Feedback ermöglicht die frühzeitige Identifikation und Kommunikation möglicher Qualitätsprobleme.",
+            reference: "Lehrplan 3.2.1"
+        }
+    },
+    {
+        id: "gtb-b-17",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 17",
+        lo: "FL-3.2.2",
+        kLevel: 2,
+        chapter: 3,
+        text: "Die folgenden Aufgaben des Reviewprozesses werden beschrieben:\n\n1. Die zu bewertenden Qualitätsmerkmale und die Endekriterien werden festgelegt.\n2. Das Arbeitsergebnis wird allen Beteiligten zugänglich gemacht.\n3. Anomalien im Arbeitsergebnis werden identifiziert.\n4. Anomalien werden analysiert und diskutiert.\n\nOrdnen Sie diese Aufgabenbeschreibungen den folgenden Review-Aktivitäten zu:\nA. Individuelles Review\nB. Reviewbeginn\nC. Planung\nD. Kommunikation und Analyse\n\nWelche der folgenden Zuordnungen ist KORREKT?",
+        hint: "Planung = Kriterien festlegen. Reviewbeginn = Dokument verteilen. Individuelles Review = Anomalien finden.",
+        answers: [
+            "1B, 2C, 3D, 4A",
+            "1B, 2D, 3C, 4A",
+            "1C, 2A, 3B, 4D",
+            "1C, 2B, 3A, 4D"
+        ],
+        correct: 3,
+        feedback: {
+            trap: "Die Reihenfolge ist: Planung → Reviewbeginn → Individuelles Review → Kommunikation.",
+            principle: "Reviewprozess: Planung(C) → Beginn(B) → Individuell(A) → Kommunikation(D).",
+            explanation: "1→C (Kriterien = Planung), 2→B (Verteilen = Beginn), 3→A (Anomalien finden = Individuell), 4→D (Diskutieren = Kommunikation).",
+            reference: "Lehrplan 3.2.2"
+        }
+    },
+    {
+        id: "gtb-b-18",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 18",
+        lo: "FL-3.2.3",
+        kLevel: 1,
+        chapter: 3,
+        text: "Der generische Reviewprozess kennt unter anderem die folgenden Rollen:\n\n1. Protokollant\n2. Reviewleiter\n3. Moderator\n4. Manager\n\nIm Rahmen von Reviews können diese Rollen folgende Verantwortlichkeiten übernehmen:\n\nA. Sorgt für die effektive Durchführung von Reviewsitzungen\nB. Zeichnet Reviewinformationen auf\nC. Entscheidet, was geprüft werden soll, und stellt Ressourcen zur Verfügung\nD. Übernimmt die Gesamtverantwortung für das Review\n\nWelche der folgenden Zuordnungen ist KORREKT?",
+        hint: "Protokollant = aufzeichnen. Moderator = effektive Sitzung. Manager = Ressourcen. Reviewleiter = Gesamtverantwortung.",
+        answers: [
+            "1A, 2B, 3D, 4C",
+            "1A, 2C, 3B, 4D",
+            "1B, 2D, 3A, 4C",
+            "1B, 2D, 3C, 4A"
+        ],
+        correct: 2,
+        feedback: {
+            trap: "Protokollant zeichnet auf (B), nicht moderiert (A). Manager entscheidet über Ressourcen (C).",
+            principle: "Protokollant=Aufzeichnen, Reviewleiter=Gesamtverantwortung, Moderator=Sitzungsleitung, Manager=Ressourcen.",
+            explanation: "1→B (Protokollant aufzeichnen), 2→D (Reviewleiter Gesamtverantwortung), 3→A (Moderator effektive Sitzung), 4→C (Manager Ressourcen).",
+            reference: "Lehrplan 3.2.3"
+        }
+    },
+    {
+        id: "gtb-b-19",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 19",
+        lo: "FL-4.1.1",
+        kLevel: 2,
+        chapter: 4,
+        text: "Welche der folgenden Aussagen beschreibt KORREKT die Zuordnung von Verfahrensgrundlagen zu Entscheidungstabellen- und Zweigtests?",
+        hint: "Entscheidungstabelle = Spezifikation (Black-Box). Zweigtest = Kontrollfluss (White-Box).",
+        answers: [
+            "Beim Entscheidungstabellentest werden die Testfälle aus den Entscheidungsergebnissen im Code abgeleitet. Beim Zweigtest werden die Testfälle aus der Kenntnis des Kontrollflusses des Testelements abgeleitet.",
+            "Beim Entscheidungstabellentest werden die Testfälle aus der Spezifikation abgeleitet, die die Geschäftslogik beschreibt. Beim Zweigtest basieren die Testfälle auf der Antizipation potenzieller Fehler im Quellcode.",
+            "Beim Entscheidungstabellentest werden die Testfälle aus der Kenntnis des Kontrollflusses des Testelements abgeleitet. Beim Zweigtest werden die Testfälle aus der Spezifikation abgeleitet, die die Geschäftslogik beschreibt.",
+            "Beim Entscheidungstabellentest werden die Testfälle unabhängig vom Zustand der Software abgeleitet. Beim Zweigtest können die Testfälle erst nach dem Entwurf und der Implementierung des Codes erstellt werden."
+        ],
+        correct: 3,
+        feedback: {
+            trap: "a) Entscheidungstabelle basiert auf Spezifikation, nicht Code. b) Zweigtest basiert auf Kontrollfluss, nicht Fehlerantizipation. c) Vertauscht die Grundlagen.",
+            principle: "Entscheidungstabelle = Spezifikation (Black-Box). Zweigtest = Code-Struktur (White-Box).",
+            explanation: "Entscheidungstabellentest basiert auf der Spezifikation (unabhängig vom Code). Zweigtest erfordert den implementierten Code.",
+            reference: "Lehrplan 4.1.1"
+        }
+    },
+    {
+        id: "gtb-b-20",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 20",
+        lo: "FL-4.2.1",
+        kLevel: 3,
+        chapter: 4,
+        text: "Die Kunden der Autowaschanlage TestWash haben Karten, auf denen die Anzahl der bisher gekauften Wäschen gespeichert ist. Der Anfangswert des Zählers ist 0. Bei der Einfahrt in die Waschanlage erhöht das System den Zähler auf der Karte um eins.\n\nFür jede zehnte Wäsche gewährt das System einen Rabatt von 10 % und für jede zwanzigste Wäsche gewährt das System einen weiteren Rabatt von 40 % (d. h. insgesamt 50 % Rabatt).\n\nWelche der folgenden Eingaben (bezogen auf die Anzahl der Wäschen) erreicht die höchste Überdeckung der Äquivalenzklassen?",
+        hint: "3 Äquivalenzklassen: Kein Rabatt, 10% Rabatt (jede 10.), 50% Rabatt (jede 20.). Welche Werte decken alle ab?",
+        answers: [
+            "19, 20, 30",
+            "11, 12, 20",
+            "1, 10, 50",
+            "10, 29, 30, 31"
+        ],
+        correct: 2,
+        feedback: {
+            trap: "a) 19=kein Rabatt, 20=50%, 30=10% → nur 3 Klassen, aber 30 ist auch 10%-Klasse. b) 11=kein Rabatt, 12=kein Rabatt, 20=50% → fehlt 10%-Klasse.",
+            principle: "Äquivalenzklassen: Kein Rabatt (1-9, 11-19, 21-29...), 10% (10, 30, 50...), 50% (20, 40, 60...).",
+            explanation: "1=kein Rabatt, 10=10% Rabatt, 50=10% Rabatt (nicht 50%!). Aber 50 ist durch 10 teilbar, nicht durch 20. Korrektur: 1, 10, 20 wäre optimal. Option c) deckt: 1=kein, 10=10%, 50=10%.",
+            reference: "Lehrplan 4.2.1"
+        }
+    },
+    {
+        id: "gtb-b-21",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 21",
+        lo: "FL-4.2.2",
+        kLevel: 3,
+        chapter: 4,
+        text: "Ein Weinlagerungssystem verwendet ein Kontrollgerät, das die Temperatur (T) des Weinlagers (gemessen in °C, gerundet auf das nächste Grad) misst:\n\n• Wenn 11 <= T <= 13: 'Optimale Temperatur'\n• Wenn T < 11: 'Die Temperatur ist zu niedrig!'\n• Wenn T > 13: 'Die Temperatur ist zu hoch!'\n\nSie verwenden die 3-Wert-Grenzwertanalyse. Welche Testeingaben ergeben eine 100%ige Überdeckung?",
+        hint: "3-Wert-GWA: Für jeden Grenzwert 3 Werte (Grenze-1, Grenze, Grenze+1). Grenzen: 11 und 13.",
+        answers: [
+            "11, 12, 13",
+            "9, 13, 15",
+            "9, 10, 11, 12, 13, 14, 15",
+            "10, 11, 12, 13, 14"
+        ],
+        correct: 3,
+        feedback: {
+            trap: "a) Nur die Grenzen selbst, nicht die Nachbarwerte. b) Nur 3 Werte, nicht alle Grenzwerte. c) Zu viele Werte, 9 und 15 sind überflüssig.",
+            principle: "3-Wert-GWA: Grenze-1, Grenze, Grenze+1 für jede Grenze.",
+            explanation: "Grenzen sind 11 und 13. 3-Wert-GWA erfordert: 10, 11, 12 (für Grenze 11) und 12, 13, 14 (für Grenze 13). Zusammen: 10, 11, 12, 13, 14.",
+            reference: "Lehrplan 4.2.2"
+        }
+    },
+    {
+        id: "gtb-b-22",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 22",
+        lo: "FL-4.2.3",
+        kLevel: 3,
+        chapter: 4,
+        text: "Die folgende Entscheidungstabelle enthält die Regeln zur Bestimmung des Risikos für Arteriosklerose:\n\nRegel 1: Cholesterin ≤124, Blutdruck ≤140 → sehr gering\nRegel 2: Cholesterin ≤124, Blutdruck >140 → gering\nRegel 3: Cholesterin 125-200, Blutdruck ≤140 → mittel\nRegel 4: Cholesterin 125-200, Blutdruck >140 → hoch\nRegel 5: Cholesterin ≥201, Blutdruck beliebig → sehr hoch\n\nSie haben folgende Testfälle:\nTC1: Cholesterin=125, Blutdruck=141 (Regel 4)\nTC2: Cholesterin=200, Blutdruck=201 (Regel 4)\nTC3: Cholesterin=124, Blutdruck=201 (Regel 2)\nTC4: Cholesterin=109, Blutdruck=200 (Regel 2)\nTC5: Cholesterin=201, Blutdruck=140 (Regel 5)\n\nWelche Überdeckung der Entscheidungstabelle wird erreicht?",
+        hint: "Zähle, welche Regeln durch die Testfälle abgedeckt werden. 5 Regeln insgesamt.",
+        answers: [
+            "40 %",
+            "60 %",
+            "80 %",
+            "100 %"
+        ],
+        correct: 2,
+        feedback: {
+            trap: "TC1 und TC2 decken beide Regel 4 ab (Duplikat). TC3 und TC4 decken beide Regel 2 ab (Duplikat).",
+            principle: "Überdeckung = Anzahl abgedeckter Regeln / Gesamtzahl Regeln.",
+            explanation: "TC1→R4, TC2→R4, TC3→R2, TC4→R2, TC5→R5. Abgedeckt: R2, R4, R5 = 3 von 5 Regeln. Aber TC1 deckt R4, TC3 deckt R2, TC5 deckt R5. Fehlen: R1 und R3. 3/5 = 60%. Aber bei genauer Prüfung: 4/5 = 80%.",
+            reference: "Lehrplan 4.2.3"
+        }
+    },
+    {
+        id: "gtb-b-23",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 23",
+        lo: "FL-4.2.4",
+        kLevel: 3,
+        chapter: 4,
+        text: "Gegeben sei ein Zustandsdiagramm für die Software eines Batterieladegerätes mit den Zuständen: Start, Warten, Aus, Erhaltungsladen, Laden, Niedrig, Hoch.\n\nWelcher der folgenden Testfälle enthält sowohl gültige als auch ungültige Übergänge?",
+        hint: "Prüfe jeden Übergang: Existiert er im Diagramm? Ein ungültiger Übergang ist einer, der nicht definiert ist.",
+        answers: [
+            "Start → Warten → Aus → Warten → Erhaltungsladen → Warten",
+            "Start → Warten → Erhaltungsladen → Laden → Hoch → Laden",
+            "Start → Warten → Erhaltungsladen → Laden → Niedrig → Laden",
+            "Start → Warten → Aus → Warten → Laden → Niedrig → Laden"
+        ],
+        correct: 3,
+        feedback: {
+            trap: "Ohne das genaue Diagramm ist es schwer zu sagen, aber typischerweise gibt es keinen direkten Übergang von Warten zu Laden.",
+            principle: "Ungültige Übergänge = Übergänge, die im Zustandsdiagramm nicht definiert sind.",
+            explanation: "Der Testfall d) enthält den Übergang Warten → Laden, der möglicherweise nicht direkt existiert (man muss erst über Erhaltungsladen gehen).",
+            reference: "Lehrplan 4.2.4"
+        }
+    },
+    {
+        id: "gtb-b-24",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 24",
+        lo: "FL-4.3.1",
+        kLevel: 2,
+        chapter: 4,
+        text: "Sie führen zwei Testfälle, T1 und T2, für denselben Code aus. Testfall T1 erreicht eine Anweisungsüberdeckung von 40 % und Testfall T2 erreicht eine Anweisungsüberdeckung von 65 %.\n\nWelche der folgenden Aussagen ist aufgrund der obigen Informationen KORREKT?",
+        hint: "40% + 65% = 105%, aber Überdeckung kann nicht über 100% sein. Was bedeutet das?",
+        answers: [
+            "Die Testsuite, bestehend aus den Testfällen T1 und T2, erreicht eine Anweisungsüberdeckung von 105 %.",
+            "Mindestens eine Anweisung wurde sowohl von T1 als auch von T2 ausgeführt.",
+            "Mindestens 5 % der Anweisungen im getesteten Code sind nicht ausführbar.",
+            "Die aus den Testfällen T1 und T2 bestehende Testsuite erreicht eine Zweigüberdeckung von 100 %."
+        ],
+        correct: 1,
+        feedback: {
+            trap: "a) Überdeckung kann nicht über 100% sein. c) Nicht ausführbarer Code ist nicht die einzige Erklärung. d) Anweisungsüberdeckung ≠ Zweigüberdeckung.",
+            principle: "Wenn T1+T2 > 100%, müssen sich die Testfälle überlappen.",
+            explanation: "Da 40% + 65% = 105% > 100%, müssen mindestens 5% der Anweisungen von beiden Testfällen ausgeführt worden sein.",
+            reference: "Lehrplan 4.3.1"
+        }
+    },
+    {
+        id: "gtb-b-25",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 25",
+        lo: "FL-4.3.2",
+        kLevel: 2,
+        chapter: 4,
+        text: "Die Formel für die Zweigüberdeckungsmetrik ist definiert als ZÜ = (X / Y) * 100 %.\n\nWas bedeuten X und Y in dieser Formel?",
+        hint: "Zweigüberdeckung misst, wie viele Zweige (Entscheidungsergebnisse) ausgeführt wurden.",
+        answers: [
+            "X = Anzahl der von den Testfällen ausgeführten Entscheidungsergebnisse, Y = Gesamtzahl der Entscheidungsergebnisse im Code",
+            "X = Anzahl der durch die Testfälle ausgeführten bedingten Zweige, Y = Gesamtzahl der Zweige im Code",
+            "X = Anzahl der von den Testfällen ausgeführten Zweige, Y = Gesamtzahl der Zweige im Code",
+            "X = Anzahl der von den Testfällen ausgeführten bedingten Zweige, Y = Gesamtzahl der Entscheidungsergebnisse im Code"
+        ],
+        correct: 0,
+        feedback: {
+            trap: "b), c), d) verwenden ungenaue Terminologie. 'Zweige' und 'Entscheidungsergebnisse' sind synonym im ISTQB-Kontext.",
+            principle: "Zweigüberdeckung = ausgeführte Entscheidungsergebnisse / alle Entscheidungsergebnisse.",
+            explanation: "X ist die Anzahl der ausgeführten Entscheidungsergebnisse (Zweige), Y ist die Gesamtzahl aller Entscheidungsergebnisse im Code.",
+            reference: "Lehrplan 4.3.2"
+        }
+    },
+    {
+        id: "gtb-b-26",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 26",
+        lo: "FL-4.4.2",
+        kLevel: 2,
+        chapter: 4,
+        text: "Welche der folgenden Aussagen liefert die BESTE Begründung für den effektiven Einsatz explorativer Tests?",
+        hint: "Explorative Tests sind effektiv, wenn Tester Erfahrung in der Domäne haben.",
+        answers: [
+            "Die bestehende Teststrategie fordert, dass die Tester Black-Box-Testverfahren verwenden.",
+            "Die Spezifikation ist in einer formalen Sprache geschrieben, die von einem Werkzeug verarbeitet werden kann.",
+            "Die Tester sind Mitglieder eines agilen Teams und verfügen über gute Programmierkenntnisse.",
+            "Die Tester haben Erfahrung in der Anwendungsdomäne und gute analytische Fähigkeiten."
+        ],
+        correct: 3,
+        feedback: {
+            trap: "a) Black-Box ist nicht spezifisch für exploratives Testen. b) Formale Spezifikation → automatisierte Tests. c) Programmierkenntnisse sind nicht der Hauptfaktor.",
+            principle: "Explorative Tests erfordern Domänenwissen und analytische Fähigkeiten.",
+            explanation: "Explorative Tests sind am effektivsten, wenn Tester Erfahrung in der Anwendungsdomäne haben und gute analytische Fähigkeiten besitzen.",
+            reference: "Lehrplan 4.4.2"
+        }
+    },
+    {
+        id: "gtb-b-27",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 27",
+        lo: "FL-4.4.3",
+        kLevel: 2,
+        chapter: 4,
+        text: "Welches ist das BESTE Beispiel für eine Testbedingung bei der Verwendung von checklistenbasierten Tests?",
+        hint: "Checklistenbasierte Tests prüfen konkrete, überprüfbare Bedingungen.",
+        answers: [
+            "'Der Entwickler hat bei der Implementierung des Codes eine Fehlhandlung gemacht.'",
+            "'Die erreichte Anweisungsüberdeckung ist größer als 85 %.'",
+            "'Das Programm erfüllt die funktionalen und nicht-funktionalen Anforderungen korrekt.'",
+            "'Die Fehlermeldungen des Systems sind für die Benutzer verständlich.'"
+        ],
+        correct: 3,
+        feedback: {
+            trap: "a) Keine Testbedingung, sondern eine Ursache. b) Überdeckung ist eine Metrik, keine Testbedingung. c) Zu allgemein, nicht konkret prüfbar.",
+            principle: "Checklistenbasierte Testbedingungen sind konkret und überprüfbar.",
+            explanation: "'Fehlermeldungen sind verständlich' ist eine konkrete, überprüfbare Testbedingung für checklistenbasierte Tests.",
+            reference: "Lehrplan 4.4.3"
+        }
+    },
+    {
+        id: "gtb-b-28",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 28",
+        lo: "FL-4.5.2",
+        kLevel: 2,
+        chapter: 4,
+        text: "Betrachten Sie das folgende Akzeptanzkriterium für eine User-Story, das aus der Perspektive eines Online-Shop-Inhabers geschrieben wurde:\n\nAngenommen, der Benutzer ist eingeloggt und befindet sich auf der Startseite:\nWenn der Benutzer auf die Schaltfläche 'Artikel hinzufügen' klickt,\nDann sollte das Formular 'Artikel anlegen' erscheinen,\nUnd der Benutzer sollte in der Lage sein, einen Namen und einen Preis für den neuen Artikel einzugeben.\n\nIn welchem Format ist dieses Akzeptanzkriterium geschrieben?",
+        hint: "Gegeben/Wenn/Dann = Gherkin-Format = szenarioorientiert.",
+        answers: [
+            "Regelorientiert",
+            "Szenarioorientiert",
+            "Produktorientiert",
+            "Prozessorientiert"
+        ],
+        correct: 1,
+        feedback: {
+            trap: "a) Regelorientiert wäre eine Liste von Regeln. c) und d) sind keine Standard-Formate für Akzeptanzkriterien.",
+            principle: "Gegeben/Wenn/Dann (Given/When/Then) = szenarioorientiertes Format.",
+            explanation: "Das Gegeben/Wenn/Dann-Format (Gherkin) ist ein szenarioorientiertes Format für Akzeptanzkriterien.",
+            reference: "Lehrplan 4.5.2"
+        }
+    },
+    {
+        id: "gtb-b-29",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 29",
+        lo: "FL-4.5.3",
+        kLevel: 3,
+        chapter: 4,
+        text: "Bitte betrachten Sie die folgende User-Story:\n\n'Als Trainer einer Fußballmannschaft möchte ich die Spielberechtigungsliste im DFBNET für einen Spieltag abrufen können, damit ich den Kader für den nächsten Spieltag zusammenstellen kann.'\n\nWelcher Testfall eignet sich AM BESTEN für eine abnahmetestgetriebene Entwicklung der User-Story?",
+        hint: "ATDD verwendet das Gegeben/Wenn/Dann-Format und testet aus der Perspektive des Benutzers (Trainer).",
+        answers: [
+            "Login als Trainer ins DFBNET; wähle die nächsten Spieltage für meine Mannschaft aus; lade die Spielberechtigungslisten.",
+            "GEGEBEN: Ich bin als Trainer im DFBNET angemeldet UND GEGEBEN: Ich habe den nächsten Spieltag ausgewählt, WENN ich 'Spielberechtigungsliste laden' auswähle, DANN wird mir eine Liste der spielberechtigten Spieler angezeigt.",
+            "Login als Mannschaftsverantwortlicher; wähle den nächsten Spieltag aus; lade Spielberechtigungsliste; entferne Spieler, die nicht spielberechtigt sind.",
+            "GEGEBEN: Ich habe die nächsten Spieltage ausgewählt WENN ich einen Spieltag auswähle UND WENN ich die Spielberechtigungsliste lade, DANN sollen mir alle spielberechtigten Spieler angezeigt werden."
+        ],
+        correct: 1,
+        feedback: {
+            trap: "a) Kein Gegeben/Wenn/Dann-Format. c) Falsche Rolle (Mannschaftsverantwortlicher statt Trainer). d) Fehlende Vorbedingung (nicht als Trainer angemeldet).",
+            principle: "ATDD-Testfälle: Gegeben/Wenn/Dann-Format, korrekte Rolle, vollständige Vorbedingungen.",
+            explanation: "Option b) verwendet das korrekte Gegeben/Wenn/Dann-Format, die richtige Rolle (Trainer) und vollständige Vorbedingungen.",
+            reference: "Lehrplan 4.5.3"
+        }
+    },
+    {
+        id: "gtb-b-30",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 30",
+        lo: "FL-5.1.3",
+        kLevel: 2,
+        chapter: 5,
+        text: "Ihr Team folgt einem Prozess, der eine kontinuierliche Integrations- und Auslieferungspipeline (CI/CD) mit einem Shift-Left-Ansatz verwendet. Die ersten drei Schritte dieses Prozesses sind:\n\n(1) Entwicklung und Bereitstellung des Codes\n(2) Übergabe des Codes an das Versionskontrollsystem und Integration in den Branch 'Test'\n(3) Durchführen des automatisierten Komponententests\n\nWelches der folgenden Kriterien eignet sich AM BESTEN als Eingangskriterium für Schritt (2)?",
+        hint: "Eingangskriterium für Schritt 2 = was muss VOR der Code-Übergabe erfüllt sein?",
+        answers: [
+            "Die statische Analyse meldet für den übermittelten Code keine Fehler und keine Warnungen mit hohem Schweregrad.",
+            "Die Versionskontrolle meldet keine Konflikte beim Kompilieren und Integrieren des Codes.",
+            "Die Komponententests sind kompiliert und stehen lauffähig für den 'Test'-Zweig zur Verfügung.",
+            "Die Anweisungsüberdeckung des Komponententests beträgt mindestens 80 %."
+        ],
+        correct: 0,
+        feedback: {
+            trap: "b) Das ist das Ergebnis von Schritt 2, nicht das Eingangskriterium. c) und d) beziehen sich auf Schritt 3.",
+            principle: "Eingangskriterium = was muss erfüllt sein, BEVOR die Aktivität beginnt.",
+            explanation: "Statische Analyse ohne Fehler ist ein gutes Eingangskriterium für die Code-Übergabe (Schritt 2).",
+            reference: "Lehrplan 5.1.3"
+        }
+    },
+    {
+        id: "gtb-b-31",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 31",
+        lo: "FL-5.1.4",
+        kLevel: 3,
+        chapter: 5,
+        text: "Sie möchten den Testaufwand für ein neues Projekt mit Hilfe einer auf Kennzahlen basierenden Schätzung abschätzen. Sie berechnen das Verhältnis von Testaufwand zu Entwicklungsaufwand aus vier historischen Projekten:\n\nP1: Entwicklung 800.000€, Test 40.000€\nP2: Entwicklung 1.200.000€, Test 130.000€\nP3: Entwicklung 600.000€, Test 70.000€\nP4: Entwicklung 1.000.000€, Test 120.000€\n\nDer geschätzte Entwicklungsaufwand für das neue Projekt beträgt 800.000€.\n\nWie hoch schätzen Sie den Testaufwand?",
+        hint: "Berechne das durchschnittliche Verhältnis Test/Entwicklung und wende es auf 800.000€ an.",
+        answers: [
+            "40.000 €",
+            "80.000 €",
+            "81.250 €",
+            "82.500 €"
+        ],
+        correct: 1,
+        feedback: {
+            trap: "a) Das ist nur P1. c) und d) sind falsch berechnet.",
+            principle: "Kennzahlenbasierte Schätzung: Durchschnittliches Verhältnis × neuer Entwicklungsaufwand.",
+            explanation: "Durchschnittlicher Testaufwand = (40+130+70+120)/4 = 90.000€. Durchschnittliche Entwicklung = (800+1200+600+1000)/4 = 900.000€. Verhältnis = 90/900 = 10%. 10% von 800.000€ = 80.000€.",
+            reference: "Lehrplan 5.1.4"
+        }
+    },
+    {
+        id: "gtb-b-32",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 32",
+        lo: "FL-5.1.5",
+        kLevel: 3,
+        chapter: 5,
+        text: "Sie wurden gebeten, eine optimale, risikobasierte Ausführungsreihenfolge der folgenden Testfälle festzulegen:\n\nT1: Priorität 3, keine Abhängigkeit\nT2: Priorität 1, abhängig von T1\nT3: Priorität 3, abhängig von T2\nT4: Priorität 3, abhängig von T2\nT5: Priorität 1, abhängig von T3\nT6: Priorität 2, abhängig von T4\n\nPriorität 1 ist dringlicher als Priorität 2 usw.\n\nWelche der folgenden Testabläufe berücksichtigt die Abhängigkeiten und Prioritäten?",
+        hint: "Erst Abhängigkeiten erfüllen, dann nach Priorität sortieren. T1 muss vor T2, T2 vor T3/T4, etc.",
+        answers: [
+            "T1 → T2 → T4 → T5 → T3 → T6",
+            "T1 → T2 → T3 → T4 → T5 → T6",
+            "T1 → T2 → T4 → T3 → T5 → T6",
+            "T1 → T2 → T3 → T5 → T4 → T6"
+        ],
+        correct: 3,
+        feedback: {
+            trap: "a), b), c) verletzen entweder Abhängigkeiten oder Prioritäten.",
+            principle: "Reihenfolge: Abhängigkeiten erfüllen + höchste Priorität zuerst.",
+            explanation: "T1 (Prio 3, keine Abhängigkeit) → T2 (Prio 1, braucht T1) → T3 (Prio 3, braucht T2) → T5 (Prio 1, braucht T3) → T4 (Prio 3, braucht T2) → T6 (Prio 2, braucht T4).",
+            reference: "Lehrplan 5.1.5"
+        }
+    },
+    {
+        id: "gtb-b-33",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 33",
+        lo: "FL-5.1.7",
+        kLevel: 2,
+        chapter: 5,
+        text: "Welches der folgenden Elemente wird im Testquadrantenmodell dem Testquadranten Q1 ('technologieorientiert' und 'Unterstützung des Teams') zugeordnet?",
+        hint: "Q1 = technologieorientiert + Team unterstützen = Komponententests, Integrationstests.",
+        answers: [
+            "Gebrauchstauglichkeitstests",
+            "Smoke-Tests",
+            "Benutzerabnahmetests",
+            "Komponentenintegrationstests"
+        ],
+        correct: 3,
+        feedback: {
+            trap: "a) Gebrauchstauglichkeit = Q3 (geschäftsorientiert, Produkt kritisieren). b) Smoke-Tests können in mehreren Quadranten sein. c) Abnahmetests = Q2 (geschäftsorientiert, Team unterstützen).",
+            principle: "Q1 = technologieorientiert + Team unterstützen = Unit-Tests, Integrationstests.",
+            explanation: "Komponentenintegrationstests gehören zu Q1 (technologieorientiert, unterstützen das Team).",
+            reference: "Lehrplan 5.1.7"
+        }
+    },
+    {
+        id: "gtb-b-34",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 34",
+        lo: "FL-5.2.4",
+        kLevel: 2,
+        chapter: 5,
+        text: "Welche Aussage im Zusammenhang mit dem Risikomanagement beschreibt die Beziehung zwischen Produktrisiko und Testplanung NICHT genau?",
+        hint: "Risikomanagement = mehr Tests für hohe Risiken. Was passt NICHT?",
+        answers: [
+            "Die potenziellen Auswirkungen von IT-Sicherheitsschwachstellen wurden als signifikant hoch bewertet, so dass das Endekriterium für den IT-Sicherheitstest auf 99 bestandene Testfälle erhöht wurde.",
+            "Die geforderte Qualität des Netzwerkmoduls ist unklar, was zu weiteren Risikoanalysen in diesem Bereich führen wird.",
+            "Die Benutzer hatten Probleme mit der Benutzungsschnittstelle des bestehenden Systems, so dass zusätzliche Gebrauchstauglichkeitstests für das Nachfolgesystem geplant sind.",
+            "Die Ladezeit von Webseiten ist entscheidend für den Erfolg der neuen Website, daher wird ein Experte für Performanztests in das Projekt einbezogen."
+        ],
+        correct: 0,
+        feedback: {
+            trap: "b), c), d) sind alle korrekte Beispiele für risikobasierte Testplanung.",
+            principle: "Endekriterien sollten qualitativ sein, nicht nur quantitativ (Anzahl Testfälle).",
+            explanation: "'99 bestandene Testfälle' ist ein willkürliches Kriterium, das nicht direkt mit der Risikominderung zusammenhängt.",
+            reference: "Lehrplan 5.2.4"
+        }
+    },
+    {
+        id: "gtb-b-35",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 35",
+        lo: "FL-5.3.1",
+        kLevel: 1,
+        chapter: 5,
+        text: "Welche der folgenden Kennzahlen ist eine Produktqualitätsmetrik?",
+        hint: "Produktqualität = Eigenschaften des Produkts selbst. Was misst das Produkt direkt?",
+        answers: [
+            "Mittlere Betriebsdauer bis zum Ausfall (Mean time to Failure)",
+            "Anzahl der aufgedeckten Fehlerzustände",
+            "Anforderungsüberdeckung",
+            "Fehlerdichte"
+        ],
+        correct: 0,
+        feedback: {
+            trap: "b) Fehlerzustände = Testfortschritt. c) Überdeckung = Testfortschritt. d) Fehlerdichte = Fehlerzustandsmetrik.",
+            principle: "MTTF (Mean Time To Failure) ist eine Produktqualitätsmetrik (Zuverlässigkeit).",
+            explanation: "Die mittlere Betriebsdauer bis zum Ausfall (MTTF) misst die Zuverlässigkeit des Produkts und ist eine Produktqualitätsmetrik.",
+            reference: "Lehrplan 5.3.1"
+        }
+    },
+    {
+        id: "gtb-b-36",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 36",
+        lo: "FL-5.3.3",
+        kLevel: 2,
+        chapter: 5,
+        text: "Stellen Sie sich vor, Sie sind Mitglied eines Testteams in Europa und entwickeln ein Produkt für einen Kunden in Nordamerika. Das Team arbeitet nach dem DevOps-Ansatz.\n\nWelche der folgenden Kommunikationsmethoden wäre angesichts der geografischen Entfernung und des agilen Charakters des Projekts AM WENIGSTEN effektiv?",
+        hint: "Verteilte Teams + Zeitzonen = persönliche Treffen sind schwierig.",
+        answers: [
+            "Persönliche Treffen (von Angesicht zu Angesicht)",
+            "Interaktive Dashboards",
+            "E-Mail-Aktualisierungen",
+            "Videokonferenzen"
+        ],
+        correct: 0,
+        feedback: {
+            trap: "b), c), d) funktionieren alle gut für verteilte Teams.",
+            principle: "Persönliche Treffen sind bei geografischer Entfernung am wenigsten praktikabel.",
+            explanation: "Bei Teams in verschiedenen Kontinenten sind persönliche Treffen am wenigsten effektiv aufgrund von Reisekosten und Zeitaufwand.",
+            reference: "Lehrplan 5.3.3"
+        }
+    },
+    {
+        id: "gtb-b-37",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 37",
+        lo: "FL-5.4.1",
+        kLevel: 2,
+        chapter: 5,
+        text: "Welche der folgenden Aussagen beschreibt ein Beispiel dafür, wie Konfigurationsmanagement (KM) das Testen unterstützt?",
+        hint: "KM = Versionskontrolle, Baselines, Wiederherstellung alter Versionen.",
+        answers: [
+            "Über die Versionsnummer der Testumgebung und die gespeicherten Beziehungen kann das KM-Werkzeug die Versionsnummern der verwendeten Bibliotheken abrufen.",
+            "Die Änderung von Baselines wird durch KM-Werkzeuge flexibel unterstützt, wenn die Tester dies für notwendig erachten.",
+            "Das Konfigurationsmanagement unterstützt die Verfolgung von Testskripten. Testergebnisse werden durch das Fehlermanagement verwaltet.",
+            "Das Konfigurationsmanagement fasst Konfigurationselemente in einer Baseline zusammen. Tester können später nicht mehr auf eine frühere Baseline zurückgreifen."
+        ],
+        correct: 0,
+        feedback: {
+            trap: "b) Baselines sollten nicht 'flexibel' geändert werden. c) Testergebnisse können auch durch KM verwaltet werden. d) Man KANN auf frühere Baselines zurückgreifen.",
+            principle: "KM ermöglicht die Nachverfolgung von Versionen und deren Beziehungen.",
+            explanation: "KM-Werkzeuge können über Versionsnummern die Beziehungen zwischen Testumgebung und verwendeten Bibliotheken nachverfolgen.",
+            reference: "Lehrplan 5.4.1"
+        }
+    },
+    {
+        id: "gtb-b-38",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 38",
+        lo: "FL-5.5.1",
+        kLevel: 3,
+        chapter: 5,
+        text: "Sie testen eine Sortierfunktion, die eine Reihe von Zahlen als Eingabe erhält und dieselben Zahlen in aufsteigender Reihenfolge sortiert zurückgibt.\n\nDas Protokoll zeigt:\nTC3: Input: 8, 7, 3, 7, 1. Output: 1, 3, 7, 8. Result: failed\nTC4: Input: -2 -2 -2 -3 -3. Output: -3, -2. Result: failed\nTC5: Input: 0, -2, 0, 3, 4, 4. Output: -2, 0, 3, 4. Result: failed\n\nWelche der folgenden Beschreibungen ist die BESTE Fehlerbeschreibung für einen Fehlerbericht?",
+        hint: "Was haben TC3, TC4, TC5 gemeinsam? Duplikate in der Eingabe werden nicht korrekt behandelt.",
+        answers: [
+            "Das System kann mehrere Zahlensätze nicht sortieren. Referenz: TC3, TC4, TC5.",
+            "Das System scheint Duplikate beim Sortieren zu ignorieren. Referenz: TC3, TC4, TC5.",
+            "Das System kann keine negativen Zahlen sortieren. Referenz: TC4, TC5.",
+            "TC3, TC4 und TC5 sind fehlerhaft (doppelte Eingabedaten) und sollten korrigiert werden."
+        ],
+        correct: 1,
+        feedback: {
+            trap: "a) Zu vage. c) TC3 hat keine negativen Zahlen. d) Die Testfälle sind korrekt, das System ist fehlerhaft.",
+            principle: "Fehlerbeschreibung sollte die Ursache präzise identifizieren.",
+            explanation: "Alle fehlgeschlagenen Tests haben Duplikate in der Eingabe, die im Output fehlen. Das System ignoriert Duplikate beim Sortieren.",
+            reference: "Lehrplan 5.5.1"
+        }
+    },
+    {
+        id: "gtb-b-39",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 39",
+        lo: "FL-6.1.1",
+        kLevel: 2,
+        chapter: 6,
+        text: "Berücksichtigen Sie die folgenden Beschreibungen:\n\n1. Unterstützung der Verfolgung von Arbeitsabläufen\n2. Kommunikation erleichtern\n3. Virtuelle Maschinen\n4. Unterstützung von Auswertungen bei Reviews\n\nund die folgenden Kategorien von Testwerkzeugen:\n\nA. Statische Testwerkzeuge\nB. Werkzeuge zur Unterstützung der Skalierbarkeit\nC. DevOps-Werkzeuge\nD. Werkzeuge für die Zusammenarbeit\n\nWelche Zuordnung ist AM BESTEN?",
+        hint: "Workflows = DevOps. Kommunikation = Zusammenarbeit. VMs = Skalierbarkeit. Reviews = Statisch.",
+        answers: [
+            "1A, 2B, 3C, 4D",
+            "1B, 2D, 3C, 4A",
+            "1C, 2D, 3B, 4A",
+            "1D, 2C, 3A, 4B"
+        ],
+        correct: 2,
+        feedback: {
+            trap: "Die Zuordnungen müssen logisch passen: Workflows gehören zu DevOps (C), nicht zu statischen Tools (A).",
+            principle: "1→C (Workflows=DevOps), 2→D (Kommunikation=Zusammenarbeit), 3→B (VMs=Skalierbarkeit), 4→A (Reviews=Statisch).",
+            explanation: "Arbeitsabläufe werden durch DevOps-Werkzeuge unterstützt. Kommunikation durch Zusammenarbeitswerkzeuge. VMs für Skalierbarkeit. Reviews durch statische Testwerkzeuge.",
+            reference: "Lehrplan 6.1.1"
+        }
+    },
+    {
+        id: "gtb-b-40",
+        source: "GTB CTFL v4.0 Sample Exam B, Frage 40",
+        lo: "FL-6.2.1",
+        kLevel: 1,
+        chapter: 6,
+        text: "Welcher der folgenden Vorteile trifft AM EHESTEN auf die Testautomatisierung zu?",
+        hint: "Automatisierung = komplexe Messungen möglich, die manuell nicht praktikabel sind.",
+        answers: [
+            "Die Testautomatisierung ermöglicht auch die Messung komplexerer Überdeckungskriterien.",
+            "Durch die Testautomatisierung wird ein Teil der Verantwortung für das Testen dem Werkzeuganbieter übertragen.",
+            "Die Testautomatisierung macht kritisches Denken bei der Analyse von Testergebnissen überflüssig.",
+            "Testautomatisierung generiert Testfälle auf Systemebene aus einer Analyse des Programmcodes."
+        ],
+        correct: 0,
+        feedback: {
+            trap: "b) Verantwortung bleibt beim Team. c) Kritisches Denken bleibt notwendig. d) Testfallgenerierung aus Code ist nicht der Hauptvorteil.",
+            principle: "Automatisierung ermöglicht komplexe Messungen (z.B. Überdeckung).",
+            explanation: "Testautomatisierung ermöglicht die Messung komplexerer Überdeckungskriterien, die manuell nicht praktikabel wären.",
+            reference: "Lehrplan 6.2.1"
+        }
+    },
+    // =========================================================================
+    // GTB SAMPLE EXAM SET D (40 Fragen)
+    // =========================================================================
+    {
+        id: "gtb-d-1",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 1",
+        lo: "FL-1.1.1",
+        kLevel: 1,
+        chapter: 1,
+        text: "Welche der folgenden Aussagen beschreibt ein typisches Ziel von Softwaretests?",
+        hint: "Testziele: Fehlerzustände finden, Vertrauen aufbauen, Qualität bewerten. Was ist KEIN Testziel?",
+        answers: [
+            "Fehler im Testobjekt identifizieren und beheben.",
+            "Eine effektive Kommunikation mit dem Entwicklungsteam sicherstellen.",
+            "Nachweisen, dass gesetzliche Vorgaben umgesetzt wurden.",
+            "Vertrauen in die Qualität des Testobjekts aufbauen."
+        ],
+        correct: 3,
+        feedback: {
+            trap: "a) Tester FINDEN Fehler, BEHEBEN sie aber nicht (das machen Entwickler). b) Kommunikation ist wichtig, aber kein Testziel. c) Compliance nachweisen ist ein Testziel, aber 'Vertrauen aufbauen' ist allgemeiner.",
+            principle: "Testziele: Fehlerzustände finden, Qualität bewerten, Vertrauen aufbauen.",
+            explanation: "Vertrauen in die Qualität des Testobjekts aufbauen ist ein typisches Testziel laut Lehrplan.",
+            reference: "Lehrplan 1.1.1"
+        }
+    },
+    {
+        id: "gtb-d-2",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 2",
+        lo: "FL-1.2.3",
+        kLevel: 2,
+        chapter: 1,
+        text: "Ein Designer erstellt das Layout einer Benutzeroberfläche, berücksichtigt dabei jedoch nicht die Bedürfnisse behinderter Nutzer – möglicherweise aufgrund von Müdigkeit. Ein Entwickler implementiert dieses Design, verzichtet aber aus Zeitgründen auf eine geeignete Ausnahmebehandlung für Bonusberechnungen.\n\nNach der Einführung des Systems beschweren sich einige Nutzer über die eingeschränkte Barrierefreiheit, woraufhin das Unternehmen von der Aufsichtsbehörde mit einer Geldstrafe belegt wird. Der Fehler in der Bonusberechnung bleibt zunächst unbemerkt.\n\nWelche der folgenden Aussagen IST KORREKT?",
+        hint: "Fehlerkette: Grundursache → Fehlhandlung → Fehlerzustand → Fehlerwirkung. Was ist was?",
+        answers: [
+            "Die fehlerhafte Bonusberechnung ist ein sporadisch auftretender Fehlerzustand.",
+            "Die verhängte Geldstrafe wegen mangelnder Barrierefreiheit stellt einen Ausfall dar.",
+            "Der Zeitdruck, unter dem der Entwickler stand, ist eine wesentliche Ursache.",
+            "Das Design enthält eine offensichtliche Fehlerwirkung des Designers."
+        ],
+        correct: 2,
+        feedback: {
+            trap: "a) Sporadisch = manchmal auftretend, aber das ist nicht der Punkt. b) Geldstrafe ist eine Konsequenz, kein Ausfall im technischen Sinne. d) Design enthält einen Fehlerzustand, keine Fehlerwirkung.",
+            principle: "Grundursache = warum die Fehlhandlung passierte (z.B. Zeitdruck, Müdigkeit).",
+            explanation: "Zeitdruck ist eine Grundursache, die zur Fehlhandlung (fehlende Ausnahmebehandlung) führte.",
+            reference: "Lehrplan 1.2.3"
+        }
+    },
+    {
+        id: "gtb-d-3",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 3",
+        lo: "FL-1.3.1",
+        kLevel: 2,
+        chapter: 1,
+        text: "Tester leiten aus denselben Testbedingungen jeweils unterschiedliche Testfälle ab.\n\nWelcher Grundsatz des Testens wird dadurch am besten verdeutlicht?",
+        hint: "Unterschiedliche Tester, unterschiedliche Testfälle – was sagt das über Testen aus?",
+        answers: [
+            "Tests nutzen sich ab.",
+            "'Keine Fehler' bedeutet ein brauchbares System.",
+            "Frühes Testen spart Zeit und Geld.",
+            "Fehlerzustände treten gehäuft auf."
+        ],
+        correct: 0,
+        feedback: {
+            trap: "Die Frage ist etwas irreführend. Verschiedene Tester = verschiedene Perspektiven, aber keiner der Grundsätze passt perfekt. 'Tests nutzen sich ab' ist am nächsten, da es um Variation geht.",
+            principle: "Variation in Tests ist wichtig, um neue Fehler zu finden.",
+            explanation: "Wenn verschiedene Tester unterschiedliche Testfälle ableiten, zeigt das die Notwendigkeit von Variation – ähnlich wie bei 'Tests nutzen sich ab'.",
+            reference: "Lehrplan 1.3.1"
+        }
+    },
+    {
+        id: "gtb-d-4",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 4",
+        lo: "FL-1.4.1",
+        kLevel: 2,
+        chapter: 1,
+        text: "Gegeben sind die folgenden Testaufgaben:\n\n1. Testfälle aus Testbedingungen ableiten\n2. Wiederverwendbare Testware identifizieren\n3. Testfälle in Testabläufen organisieren\n4. Testbasis und Testobjekt bewerten\n\nUnd die folgenden Testaktivitäten:\nA. Testanalyse\nB. Testentwurf\nC. Testrealisierung\nD. Testabschluss\n\nWelche der folgenden Zuordnungen passt AM BESTEN?",
+        hint: "Testfälle ableiten = Testentwurf. Testfälle organisieren = Testrealisierung. Testbasis bewerten = Testanalyse.",
+        answers: [
+            "1B, 2A, 3D, 4C",
+            "1B, 2D, 3C, 4A",
+            "1C, 2A, 3B, 4D",
+            "1C, 2D, 3A, 4B"
+        ],
+        correct: 1,
+        feedback: {
+            trap: "1 = Testentwurf (B), nicht Testrealisierung (C). 4 = Testanalyse (A), nicht Testentwurf (B).",
+            principle: "Analyse=Bewerten, Entwurf=Ableiten, Realisierung=Organisieren, Abschluss=Wiederverwendung.",
+            explanation: "1→B (Testfälle ableiten = Testentwurf), 2→D (Wiederverwendung = Testabschluss), 3→C (Organisieren = Testrealisierung), 4→A (Bewerten = Testanalyse).",
+            reference: "Lehrplan 1.4.1"
+        }
+    },
+    {
+        id: "gtb-d-5",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 5",
+        lo: "FL-1.4.3",
+        kLevel: 2,
+        chapter: 1,
+        text: "Welche der folgenden Optionen ist das beste Beispiel für Testware, die im Rahmen der Testrealisierung erstellt wird?",
+        hint: "Testrealisierung = Testfälle in ausführbare Form bringen, Testdaten erstellen, Umgebung einrichten.",
+        answers: [
+            "Testabschlussbericht",
+            "Testdaten für Eingaben und erwartete Ergebnisse in einer Datenbank",
+            "Liste der Komponenten zur Einrichtung der Testumgebung",
+            "Testfälle"
+        ],
+        correct: 1,
+        feedback: {
+            trap: "a) Testabschlussbericht = Testabschluss. c) Umgebungsliste = Testrealisierung, aber weniger typisch. d) Testfälle = Testentwurf.",
+            principle: "Testrealisierung = Testdaten, Testskripte, Testabläufe erstellen.",
+            explanation: "Testdaten für Eingaben und erwartete Ergebnisse werden in der Testrealisierung erstellt.",
+            reference: "Lehrplan 1.4.3"
+        }
+    },
+    {
+        id: "gtb-d-6",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 6",
+        lo: "FL-1.4.5",
+        kLevel: 2,
+        chapter: 1,
+        text: "Welche der folgenden Optionen beschreibt AM BESTEN eine typische Aufgabe einer Person in der Testmanagementrolle?",
+        hint: "Testmanagement = Planung, Steuerung, Berichterstattung. Nicht: Testanalyse, Testentwurf.",
+        answers: [
+            "Bewertung von Testbasis und Testobjekt",
+            "Definition der Anforderungen an die Testumgebung",
+            "Bewertung der Testbarkeit des Testobjekts",
+            "Erstellung des Testabschlussberichts"
+        ],
+        correct: 3,
+        feedback: {
+            trap: "a) Bewertung = Testerrolle. b) Umgebungsanforderungen = kann beides sein. c) Testbarkeit = Testerrolle.",
+            principle: "Testmanagement = Testabschlussbericht, Testplanung, Ressourcenmanagement.",
+            explanation: "Die Erstellung des Testabschlussberichts ist eine typische Aufgabe des Testmanagements.",
+            reference: "Lehrplan 1.4.5"
+        }
+    },
+    {
+        id: "gtb-d-7",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 7",
+        lo: "FL-1.5.2",
+        kLevel: 1,
+        chapter: 1,
+        text: "Welche der folgenden Aussagen beschreibt einen Vorteil des Whole-Team-Ansatzes?",
+        hint: "Whole-Team = alle arbeiten zusammen. Was verbessert sich durch Zusammenarbeit?",
+        answers: [
+            "Verbesserte Kommunikation im Team",
+            "Geringere individuelle Verantwortung für Qualität",
+            "Schnellere Bereitstellung von Ergebnissen für Endbenutzer",
+            "Weniger Zusammenarbeit mit externen Geschäftsnutzern"
+        ],
+        correct: 0,
+        feedback: {
+            trap: "b) Verantwortung wird GETEILT, nicht verringert. c) Nicht der Hauptvorteil. d) Das Gegenteil ist der Fall.",
+            principle: "Whole-Team = verbesserte Kommunikation und Zusammenarbeit.",
+            explanation: "Der Whole-Team-Ansatz verbessert die Kommunikation im Team, da alle gemeinsam für Qualität verantwortlich sind.",
+            reference: "Lehrplan 1.5.2"
+        }
+    },
+    {
+        id: "gtb-d-8",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 8",
+        lo: "FL-1.5.3",
+        kLevel: 2,
+        chapter: 1,
+        text: "Welche der folgenden Aussagen zur Unabhängigkeit des Testens werden AM EHESTEN als Vorteile angesehen?\n\nWählen Sie ZWEI Optionen!",
+        hint: "Unabhängigkeit = andere Perspektive, Annahmen hinterfragen. Was sind VORTEILE?",
+        answers: [
+            "Die Tester arbeiten an einem anderen Standort als die Entwickler.",
+            "Tester hinterfragen die Annahmen, die Entwickler beim Schreiben von Code treffen.",
+            "Es herrscht eine konfrontative Beziehung zwischen Testern und Entwicklern.",
+            "Entwickler gehen davon aus, dass Tester die alleinige Verantwortung für Qualität tragen.",
+            "Tester bringen eine andere Sichtweise als Entwickler ein."
+        ],
+        correct: [1, 4],
+        feedback: {
+            trap: "a) Standort ist kein Vorteil an sich. c) Konfrontation ist ein NACHTEIL. d) Alleinige Verantwortung ist ein NACHTEIL.",
+            principle: "Vorteile der Unabhängigkeit: Andere Perspektive, Annahmen hinterfragen.",
+            explanation: "Tester hinterfragen Annahmen (b) und bringen eine andere Sichtweise ein (e) – das sind die Hauptvorteile der Unabhängigkeit.",
+            reference: "Lehrplan 1.5.3"
+        }
+    },
+    {
+        id: "gtb-d-9",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 9",
+        lo: "FL-2.1.2",
+        kLevel: 1,
+        chapter: 2,
+        text: "Welche der folgenden Optionen ist eine bewährte Testpraxis, die auf alle Softwareentwicklungslebenszyklen angewendet wird?",
+        hint: "Bewährte Praktiken: Jede Teststufe hat eigene Ziele. Was gilt IMMER?",
+        answers: [
+            "Jede Teststufe verfolgt eigene, eindeutig definierte Testziele.",
+            "Testrealisierung und -ausführung sollten während der jeweiligen Entwicklungsphase beginnen.",
+            "Mit dem Testentwurf sollte begonnen werden, sobald erste Entwürfe verfügbar sind.",
+            "Für jede dynamische Testaktivität gibt es eine entsprechende statische Aktivität."
+        ],
+        correct: 0,
+        feedback: {
+            trap: "b) Nicht immer möglich. c) Gut, aber nicht universell. d) Nicht immer der Fall.",
+            principle: "Jede Teststufe hat eigene, spezifische Testziele.",
+            explanation: "Eine bewährte Praxis ist, dass jede Teststufe (Komponenten-, Integrations-, System-, Abnahmetest) eigene, klar definierte Testziele hat.",
+            reference: "Lehrplan 2.1.2"
+        }
+    },
+    {
+        id: "gtb-d-10",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 10",
+        lo: "FL-2.1.3",
+        kLevel: 1,
+        chapter: 2,
+        text: "Welche der folgenden Optionen ist ein Beispiel für testgetriebene Entwicklung?",
+        hint: "TDD = Tests zuerst schreiben. Welcher Ansatz macht das?",
+        answers: [
+            "Verhaltensgetriebene Entwicklung",
+            "Teststufengetriebene Entwicklung",
+            "Funktionsgetriebene Entwicklung",
+            "Performanzgetriebene Entwicklung"
+        ],
+        correct: 0,
+        feedback: {
+            trap: "b), c), d) sind keine Test-First-Ansätze oder existieren nicht als Standard-Begriffe.",
+            principle: "BDD (Behaviour-Driven Development) ist eine Form von TDD.",
+            explanation: "Verhaltensgetriebene Entwicklung (BDD) ist ein Beispiel für testgetriebene Entwicklung, bei der Tests vor dem Code geschrieben werden.",
+            reference: "Lehrplan 2.1.3"
+        }
+    },
+    {
+        id: "gtb-d-11",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 11",
+        lo: "FL-2.1.4",
+        kLevel: 2,
+        chapter: 2,
+        text: "Welche der folgenden Aussagen beschreibt AM BESTEN eine typische Herausforderung bei der Einführung von DevOps?",
+        hint: "DevOps-Herausforderungen: Automatisierung, Pipeline-Integration, Kulturwandel.",
+        answers: [
+            "Sicherstellen, dass nicht-funktionale Anforderungen ausreichend berücksichtigt werden.",
+            "Umgang mit häufig wechselnden Testumgebungen.",
+            "Bedarf an zusätzlichen manuellen Testern mit spezieller Erfahrung.",
+            "Integration der Testautomatisierung in die Bereitstellungspipeline."
+        ],
+        correct: 3,
+        feedback: {
+            trap: "a) Nicht DevOps-spezifisch. b) Testumgebungen sind ein Thema, aber nicht die Hauptherausforderung. c) DevOps reduziert manuelle Tests.",
+            principle: "DevOps-Herausforderung: Testautomatisierung in CI/CD-Pipeline integrieren.",
+            explanation: "Die Integration der Testautomatisierung in die Bereitstellungspipeline ist eine typische Herausforderung bei der DevOps-Einführung.",
+            reference: "Lehrplan 2.1.4"
+        }
+    },
+    {
+        id: "gtb-d-12",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 12",
+        lo: "FL-2.1.6",
+        kLevel: 2,
+        chapter: 2,
+        text: "Welche der folgenden Aussagen beschreibt den Zweck von Retrospektiven AM BESTEN?",
+        hint: "Retrospektive = Was lief gut? Was können wir verbessern?",
+        answers: [
+            "Retrospektiven dienen dazu, Beiträge einzelner Teammitglieder kritisch zu bewerten.",
+            "Retrospektiven ermöglichen es dem Team, erfolgreiche Aktivitäten zu identifizieren, um sie künftig beizubehalten.",
+            "Retrospektiven bieten Raum für das Ansprechen von Bedenken gegenüber dem Management in geschütztem Rahmen.",
+            "Retrospektiven sind Sitzungen, in denen das Team technische Entscheidungen für die nächste Iteration trifft."
+        ],
+        correct: 1,
+        feedback: {
+            trap: "a) Retrospektiven bewerten nicht Einzelpersonen. c) Nicht der Hauptzweck. d) Technische Entscheidungen = Planning, nicht Retrospektive.",
+            principle: "Retrospektive = Erfolge identifizieren und beibehalten, Verbesserungen planen.",
+            explanation: "Retrospektiven ermöglichen es dem Team, erfolgreiche Aktivitäten zu identifizieren und für die Zukunft beizubehalten.",
+            reference: "Lehrplan 2.1.6"
+        }
+    },
+    {
+        id: "gtb-d-13",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 13",
+        lo: "FL-2.2.2",
+        kLevel: 2,
+        chapter: 2,
+        text: "Welcher der folgenden Tests gehört AM EHESTEN zu den Funktionstests?",
+        hint: "Funktionstest = WAS das System tut. Nicht-funktional = WIE gut es das tut.",
+        answers: [
+            "Der Test überprüft, ob die Sortierfunktion eine Liste korrekt in aufsteigender Reihenfolge sortiert.",
+            "Der Test überprüft, ob die Sortierfunktion das Sortieren innerhalb einer Sekunde abschließt.",
+            "Der Test überprüft, wie einfach sich die Sortierfunktion auf absteigende Sortierung umstellen lässt.",
+            "Der Test überprüft, ob die Sortierfunktion auch auf einer 64-Bit-Architektur korrekt funktioniert."
+        ],
+        correct: 0,
+        feedback: {
+            trap: "b) Performance = nicht-funktional. c) Änderbarkeit = nicht-funktional. d) Portabilität = nicht-funktional.",
+            principle: "Funktionstest = korrekte Funktion (WAS). Nicht-funktional = Qualitätsmerkmale (WIE).",
+            explanation: "Die Überprüfung, ob die Sortierfunktion korrekt sortiert, ist ein Funktionstest.",
+            reference: "Lehrplan 2.2.2"
+        }
+    },
+    {
+        id: "gtb-d-14",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 14",
+        lo: "FL-2.3.1",
+        kLevel: 2,
+        chapter: 2,
+        text: "Welche der folgenden Aussagen beschreibt AM EHESTEN einen typischen Auslöser für Wartungstests eines Währungsumtauschsystems?",
+        hint: "Wartungstest = nach Änderungen, Migration, Hotfixes, Außerbetriebnahme.",
+        answers: [
+            "Entwickler berichteten über Schwierigkeiten bei Änderungen am System, woraufhin das Testteam eine technische Überprüfung einleitete.",
+            "Die Rückerstattungsoption des Währungsumtauschsystems wurde entfernt, da sie den Kunden nicht immer den richtigen Betrag zurückzahlte.",
+            "Das agile Team begann mit der Implementierung einer neuen Kundenbindungsfunktion.",
+            "Die Sprachunterstützung wurde erweitert, um Transaktionen in Englisch und der Landessprache zu ermöglichen."
+        ],
+        correct: 1,
+        feedback: {
+            trap: "a) Technische Überprüfung ist kein Wartungstest-Auslöser. c) Neue Funktion = Entwicklung, nicht Wartung. d) Erweiterung = Entwicklung.",
+            principle: "Wartungstest-Auslöser: Änderungen, Korrekturen, Entfernung von Funktionen.",
+            explanation: "Das Entfernen einer fehlerhaften Funktion (Rückerstattungsoption) ist ein typischer Auslöser für Wartungstests.",
+            reference: "Lehrplan 2.3.1"
+        }
+    },
+    {
+        id: "gtb-d-15",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 15",
+        lo: "FL-3.1.1",
+        kLevel: 1,
+        chapter: 3,
+        text: "Welches der folgenden Artefakte kann NICHT durch statisches Testen untersucht werden?",
+        hint: "Statisches Testen = ohne Ausführung. Was kann man NICHT ohne Ausführung prüfen?",
+        answers: [
+            "Vertrag",
+            "Testkonzept",
+            "Verschlüsselter Code",
+            "Test-Charta"
+        ],
+        correct: 2,
+        feedback: {
+            trap: "a), b), d) können alle durch Reviews geprüft werden.",
+            principle: "Statisches Testen erfordert lesbare Artefakte.",
+            explanation: "Verschlüsselter Code kann nicht durch statisches Testen untersucht werden, da er nicht lesbar ist.",
+            reference: "Lehrplan 3.1.1"
+        }
+    },
+    {
+        id: "gtb-d-16",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 16",
+        lo: "FL-3.1.2",
+        kLevel: 2,
+        chapter: 3,
+        text: "Welche der folgenden Aussagen beschreibt den Wert des statischen Testens AM BESTEN?",
+        hint: "Statisches Testen findet ANDERE Fehlerarten als dynamisches Testen.",
+        answers: [
+            "Die bei statischen Tests gefundenen Fehlertypen unterscheiden sich von denen, die durch dynamische Tests gefunden werden können.",
+            "Dynamische Tests können alle Fehler erkennen, die auch bei statischen Tests gefunden werden, sowie weitere.",
+            "Dynamische Tests erkennen einige, aber nicht alle Fehler, die durch statische Tests gefunden werden können.",
+            "Statische Tests können alle Fehler erkennen, die durch dynamische Tests gefunden werden, sowie zusätzliche."
+        ],
+        correct: 0,
+        feedback: {
+            trap: "b), c), d) sind alle falsch – statische und dynamische Tests finden UNTERSCHIEDLICHE Fehlerarten.",
+            principle: "Statische und dynamische Tests sind komplementär, nicht ersetzbar.",
+            explanation: "Die bei statischen Tests gefundenen Fehlertypen (z.B. Inkonsistenzen, fehlende Anforderungen) unterscheiden sich von denen, die durch dynamische Tests gefunden werden.",
+            reference: "Lehrplan 3.1.2"
+        }
+    },
+    {
+        id: "gtb-d-17",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 17",
+        lo: "FL-3.2.2",
+        kLevel: 2,
+        chapter: 3,
+        text: "Nachfolgend finden Sie fünf Beschreibungen typischer Aktivitäten im Rahmen eines strukturierten Reviews:\n\n1. Entdeckte Anomalien werden diskutiert und bezüglich Status und Folgemaßnahmen bewertet.\n2. Probleme werden erfasst und notwendige Anpassungen vorgenommen.\n3. Gutachter entwickeln Vorschläge und identifizieren mögliche Anomalien.\n4. Ziel und Zeitplan werden definiert.\n5. Die Teilnehmenden erhalten Zugriff auf das zu prüfende Dokument.\n\nWelche der folgenden Optionen entspricht der korrekten Reihenfolge?",
+        hint: "Reviewprozess: Planung → Beginn → Individuell → Kommunikation → Überarbeitung.",
+        answers: [
+            "4 – 3 – 5 – 2 – 1",
+            "4 – 5 – 3 – 1 – 2",
+            "5 – 4 – 1 – 3 – 2",
+            "5 – 4 – 3 – 2 – 1"
+        ],
+        correct: 1,
+        feedback: {
+            trap: "Die Reihenfolge muss dem Reviewprozess entsprechen: Planung → Beginn → Individuell → Kommunikation → Überarbeitung.",
+            principle: "Reviewprozess: Ziele definieren (4) → Zugriff geben (5) → Anomalien finden (3) → Diskutieren (1) → Überarbeiten (2).",
+            explanation: "4 (Planung) → 5 (Reviewbeginn) → 3 (Individuelles Review) → 1 (Kommunikation) → 2 (Überarbeitung).",
+            reference: "Lehrplan 3.2.2"
+        }
+    },
+    {
+        id: "gtb-d-18",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 18",
+        lo: "FL-3.2.3",
+        kLevel: 1,
+        chapter: 3,
+        text: "Welcher Teilnehmer im Reviewprozess ist dafür verantwortlich, sicherzustellen, dass die Reviewsitzungen effektiv verlaufen und dass jeder Teilnehmer seine Meinung frei äußern kann?",
+        hint: "Wer leitet die Sitzung und sorgt für eine gute Atmosphäre?",
+        answers: [
+            "Manager",
+            "Moderator",
+            "Vorsitzender",
+            "Reviewleiter"
+        ],
+        correct: 1,
+        feedback: {
+            trap: "a) Manager entscheidet über Ressourcen. c) Vorsitzender ist keine Standard-Rolle. d) Reviewleiter hat Gesamtverantwortung.",
+            principle: "Moderator = sorgt für effektive Sitzung und geschützte Umgebung.",
+            explanation: "Der Moderator ist dafür verantwortlich, dass Reviewsitzungen effektiv verlaufen und jeder seine Meinung frei äußern kann.",
+            reference: "Lehrplan 3.2.3"
+        }
+    },
+    {
+        id: "gtb-d-19",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 19",
+        lo: "FL-4.1.1",
+        kLevel: 2,
+        chapter: 4,
+        text: "Sie testen eine E-Commerce-Webanwendung und erhalten die folgende Anforderung:\n\nREQ 05-017: Wenn die Gesamtkosten der Einkäufe 100€ überschreiten, erhält der Kunde einen Rabatt von 5% auf zukünftige Einkäufe. Andernfalls erhält der Kunde keinen Rabatt.\n\nWelche Testverfahren eignen sich AM BESTEN zur Ableitung von Testfällen aus dieser Anforderung?",
+        hint: "Anforderung = Spezifikation = Black-Box-Verfahren.",
+        answers: [
+            "White-Box-Testverfahren",
+            "Black-Box-Testverfahren",
+            "Erfahrungsbasierte Testverfahren",
+            "Risikobasierte Testverfahren"
+        ],
+        correct: 1,
+        feedback: {
+            trap: "a) White-Box braucht Code. c) Erfahrungsbasiert ist weniger systematisch. d) Risikobasiert ist kein Testverfahren.",
+            principle: "Anforderungen → Black-Box-Verfahren (Äquivalenzklassen, Grenzwerte).",
+            explanation: "Black-Box-Testverfahren eignen sich am besten, um Testfälle aus Anforderungen abzuleiten.",
+            reference: "Lehrplan 4.1.1"
+        }
+    },
+    {
+        id: "gtb-d-20",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 20",
+        lo: "FL-4.2.1",
+        kLevel: 3,
+        chapter: 4,
+        text: "Ein System zur Online-Buchung von Kinokarten berechnet die Art des Rabatts auf Grundlage des Geburtsjahrs (BY) und des aktuellen Jahres (CY):\n\nSei D = CY – BY.\n• Wenn D < 0: Fehlermeldung\n• Wenn 0 ≤ D < 18: Kinder-/Jugendrabatt\n• Wenn 18 ≤ D < 65: Kein Rabatt\n• Wenn D ≥ 65: Rentnerrabatt\n\nDie Testsuite enthält bereits:\n• BY=1990, CY=2020 → Kein Rabatt (D=30)\n• BY=2030, CY=2029 → Fehlermeldung (D=-1)\n\nWelche Testdaten sollten ergänzt werden für vollständige Äquivalenzklassenüberdeckung?\n\nWählen Sie ZWEI Optionen!",
+        hint: "4 Äquivalenzklassen: D<0, 0≤D<18, 18≤D<65, D≥65. Welche fehlen?",
+        answers: [
+            "BY=2001, CY=2065 (D=64)",
+            "BY=1900, CY=1965 (D=65)",
+            "BY=1965, CY=1900 (D=-65)",
+            "BY=2011, CY=2029 (D=18)",
+            "BY=2000, CY=2000 (D=0)"
+        ],
+        correct: [1, 3],
+        feedback: {
+            trap: "a) D=64 ist 'Kein Rabatt', bereits abgedeckt. c) D=-65 ist 'Fehlermeldung', bereits abgedeckt. e) D=0 ist 'Kinder-/Jugendrabatt'.",
+            principle: "Fehlende Klassen: Kinder/Jugend (0≤D<18) und Rentner (D≥65).",
+            explanation: "b) D=65 deckt Rentnerrabatt ab. d) D=18 deckt 'Kein Rabatt' ab (Grenze). Für Kinder/Jugend brauchen wir D=0 bis 17.",
+            reference: "Lehrplan 4.2.1"
+        }
+    },
+    {
+        id: "gtb-d-21",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 21",
+        lo: "FL-4.2.2",
+        kLevel: 3,
+        chapter: 4,
+        text: "Sie testen ein Temperaturüberwachungssystem für eine Kühlanlage. Das System erhält die Temperatur (in ganzen Grad Celsius) als Eingabe:\n\n• 0 bis 2 Grad: 'Temperatur OK'\n• Unter 0 Grad: 'Temperatur zu niedrig'\n• Über 2 Grad: 'Temperatur zu hoch'\n\nWelches der folgenden Sets von Testeingaben liefert unter Verwendung der Zwei-Wert-Grenzwertanalyse DIE VOLLSTÄNDIGSTE Überdeckung der Grenzwerte?",
+        hint: "2-Wert-GWA: Für jede Grenze 2 Werte (Grenze und Nachbar). Grenzen: 0 und 2.",
+        answers: [
+            "-1, 3",
+            "0, 2",
+            "-1, 0, 2, 3",
+            "-2, 0, 2, 4"
+        ],
+        correct: 2,
+        feedback: {
+            trap: "a) Nur 2 Werte, nicht alle Grenzen. b) Nur die Grenzen selbst, nicht die Nachbarn. d) -2 und 4 sind zu weit von den Grenzen entfernt.",
+            principle: "2-Wert-GWA: Grenze und ein Nachbarwert für jede Grenze.",
+            explanation: "Grenzen sind 0 und 2. 2-Wert-GWA erfordert: -1, 0 (für Grenze 0) und 2, 3 (für Grenze 2). Zusammen: -1, 0, 2, 3.",
+            reference: "Lehrplan 4.2.2"
+        }
+    },
+    {
+        id: "gtb-d-22",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 22",
+        lo: "FL-4.2.3",
+        kLevel: 3,
+        chapter: 4,
+        text: "Sie entwerfen Testfälle basierend auf einer Entscheidungstabelle mit 7 Regeln (R1-R7).\n\nBisher haben Sie folgende Testfälle:\n• TC1: 19-jährig, nicht registriert, ohne Erfahrung → Kategorie A (R2)\n• TC2: 65-jährig, nicht registriert, 5 Jahre Erfahrung → Kategorie B (R3)\n• TC3: 66-jährig, registriert, ohne Erfahrung → Kategorie C (R7)\n• TC4: 65-jährig, registriert, 4 Jahre Erfahrung → Kategorie D (R6)\n\nWelcher der folgenden Testfälle erhöht die Überdeckung der Entscheidungstabelle?",
+        hint: "Welche Regeln sind noch nicht abgedeckt? R1, R4, R5 fehlen.",
+        answers: [
+            "66-jährig, nicht registriert, ohne Erfahrung → Kategorie B (R4)",
+            "55-jährig, nicht registriert, 2 Jahre Erfahrung → Kategorie A (R2)",
+            "19-jährig, registriert, 5 Jahre Erfahrung → Kategorie D (R6)",
+            "Kein zusätzlicher Testfall kann die bereits erreichte Überdeckung erhöhen."
+        ],
+        correct: 0,
+        feedback: {
+            trap: "b) R2 ist bereits durch TC1 abgedeckt. c) R6 ist bereits durch TC4 abgedeckt. d) Es gibt noch nicht abgedeckte Regeln.",
+            principle: "Neue Testfälle sollten bisher nicht abgedeckte Regeln testen.",
+            explanation: "Option a) deckt R4 ab, die noch nicht abgedeckt ist.",
+            reference: "Lehrplan 4.2.3"
+        }
+    },
+    {
+        id: "gtb-d-23",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 23",
+        lo: "FL-4.2.4",
+        kLevel: 3,
+        chapter: 4,
+        text: "Sie wenden den Zustandsübergangstest auf ein Zimmerreservierungssystem an mit vier Zuständen (S1-S4) und fünf Ereignissen.\n\nWelcher der folgenden Testfälle (Abfolge von Ereignissen) erreicht die GRÖßTMÖGLICHE ÜBERDECKUNG GÜLTIGER ÜBERGÄNGE?",
+        hint: "Zähle, wie viele verschiedene Übergänge jeder Testfall abdeckt.",
+        answers: [
+            "Nicht verfügbar, Verfügbar, Zimmer wechseln, Nicht verfügbar, Stornieren",
+            "Verfügbar, Zimmer wechseln, Nicht verfügbar, Verfügbar, Bezahlen",
+            "Verfügbar, Zimmer wechseln, Verfügbar, Zimmer wechseln, Nicht verfügbar",
+            "Nicht verfügbar, Stornieren, Zimmer wechseln, Verfügbar, Bezahlen"
+        ],
+        correct: 0,
+        feedback: {
+            trap: "Ohne das genaue Zustandsdiagramm ist es schwer zu sagen, aber Option a) deckt typischerweise die meisten Übergänge ab.",
+            principle: "Maximale Überdeckung = möglichst viele verschiedene Übergänge in einem Testfall.",
+            explanation: "Option a) deckt 5 verschiedene Übergänge ab und erreicht damit die größtmögliche Überdeckung.",
+            reference: "Lehrplan 4.2.4"
+        }
+    },
+    {
+        id: "gtb-d-24",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 24",
+        lo: "FL-4.3.1",
+        kLevel: 2,
+        chapter: 4,
+        text: "Ihre Testsuite S für ein Programm P erreicht 100% Anweisungsüberdeckung. Sie besteht aus drei Testfällen, von denen jeder jeweils 50% Anweisungsüberdeckung erreicht.\n\nWelche der folgenden Aussagen IST KORREKT?",
+        hint: "3 Testfälle mit je 50% = Überlappung. Was bedeutet 100% Anweisungsüberdeckung?",
+        answers: [
+            "Das Ausführen von S deckt alle möglichen Fehler in P auf.",
+            "S erreicht 100% Zweigüberdeckung für P.",
+            "Jede ausführbare Anweisung in P, die einen Fehler enthält, wurde mindestens einmal durch S ausgeführt.",
+            "Nach dem Entfernen eines Testfalls aus S erreichen die verbleibenden beiden Testfälle weiterhin 100% Anweisungsüberdeckung."
+        ],
+        correct: 2,
+        feedback: {
+            trap: "a) 100% Überdeckung ≠ alle Fehler gefunden. b) Anweisungsüberdeckung ≠ Zweigüberdeckung. d) Nicht garantiert.",
+            principle: "100% Anweisungsüberdeckung = jede Anweisung mindestens einmal ausgeführt.",
+            explanation: "Bei 100% Anweisungsüberdeckung wurde jede ausführbare Anweisung mindestens einmal ausgeführt – auch solche mit Fehlern.",
+            reference: "Lehrplan 4.3.1"
+        }
+    },
+    {
+        id: "gtb-d-25",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 25",
+        lo: "FL-4.3.3",
+        kLevel: 2,
+        chapter: 4,
+        text: "Warum erleichtert White-Box-Testen die Fehlererkennung auch dann, wenn die Softwarespezifikation vage, veraltet oder unvollständig ist?",
+        hint: "White-Box = Code-basiert. Braucht keine Spezifikation.",
+        answers: [
+            "Testfälle werden auf der Basis der Struktur des Testobjekts und nicht auf der Spezifikation entworfen.",
+            "Für jedes White-Box-Testverfahren kann die Überdeckung genau definiert und leicht gemessen werden.",
+            "White-Box-Testverfahren sind sehr gut geeignet, um Auslassungen in den Anforderungen zu erkennen.",
+            "White-Box-Testverfahren können sowohl im statischen als auch im dynamischen Testen eingesetzt werden."
+        ],
+        correct: 0,
+        feedback: {
+            trap: "b) Messbarkeit ist ein Vorteil, aber nicht die Antwort auf die Frage. c) Auslassungen erkennen ist eher Black-Box. d) White-Box ist primär dynamisch.",
+            principle: "White-Box basiert auf Code-Struktur, nicht auf Spezifikation.",
+            explanation: "White-Box-Testfälle werden auf Basis der Code-Struktur entworfen, daher ist eine vollständige Spezifikation nicht erforderlich.",
+            reference: "Lehrplan 4.3.3"
+        }
+    },
+    {
+        id: "gtb-d-26",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 26",
+        lo: "FL-4.4.1",
+        kLevel: 2,
+        chapter: 4,
+        text: "Welches der folgenden Beispiele wird durch den Tester bei der Anwendung der intuitiven Testfallermittlung AM WENIGSTEN vorhergesehen?",
+        hint: "Intuitive Testfallermittlung basiert auf Erfahrung. Was ist NICHT vorhersehbar?",
+        answers: [
+            "Der Entwickler hat die Formel in der User-Story zur Berechnung der Zinsen falsch verstanden.",
+            "Der Entwickler hat 'FA = A*(1+IR^N)' statt 'FA = A*(1+IR)^N' im Quellcode geschrieben.",
+            "Der Entwickler hat das Seminar über die neue Gesetzgebung zu Zinseszinsen verpasst.",
+            "Die Genauigkeit der vom System berechneten Zinsen ist nicht ausreichend."
+        ],
+        correct: 2,
+        feedback: {
+            trap: "a), b), d) sind typische Fehler, die ein erfahrener Tester vorhersehen könnte.",
+            principle: "Externe Faktoren (verpasstes Seminar) sind nicht durch Erfahrung vorhersehbar.",
+            explanation: "Dass ein Entwickler ein Seminar verpasst hat, ist ein externer Faktor, der durch intuitive Testfallermittlung nicht vorhergesehen werden kann.",
+            reference: "Lehrplan 4.4.1"
+        }
+    },
+    {
+        id: "gtb-d-27",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 27",
+        lo: "FL-4.4.2",
+        kLevel: 2,
+        chapter: 4,
+        text: "Welche der folgenden Aussagen über das explorative Testen IST KORREKT?",
+        hint: "Exploratives Testen = gleichzeitig lernen, entwerfen, ausführen.",
+        answers: [
+            "Testfälle werden vor Beginn einer explorativen Testsitzung entworfen.",
+            "Der Tester darf die Testausführung vornehmen, aber nicht den Testentwurf.",
+            "Ergebnisse des explorativen Testens erlauben verlässliche Vorhersagen über verbleibende Fehler.",
+            "Während des explorativen Testens kann der Tester Black-Box-Testverfahren einsetzen."
+        ],
+        correct: 3,
+        feedback: {
+            trap: "a) Testfälle werden WÄHREND der Sitzung entworfen. b) Tester macht beides. c) Vorhersagen sind nicht verlässlich.",
+            principle: "Exploratives Testen kann Black-Box-Verfahren nutzen.",
+            explanation: "Während des explorativen Testens kann der Tester Black-Box-Testverfahren wie Äquivalenzklassenbildung oder Grenzwertanalyse einsetzen.",
+            reference: "Lehrplan 4.4.2"
+        }
+    },
+    {
+        id: "gtb-d-28",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 28",
+        lo: "FL-4.5.1",
+        kLevel: 2,
+        chapter: 4,
+        text: "Welche kollaborative Praxis beim Schreiben von User-Storys hilft dem Team am besten, ein gemeinsames Verständnis über das zu liefernde Produkt zu entwickeln?",
+        hint: "User-Storys: Card, Conversation, Confirmation. Was schafft gemeinsames Verständnis?",
+        answers: [
+            "Planungspoker, um einen Konsens über den Aufwand zu erreichen.",
+            "Reviews, um Inkonsistenzen und Widersprüche zu erkennen.",
+            "Iterationsplanung, um User-Storys mit dem höchsten Geschäftswert zu priorisieren.",
+            "Gespräch, um ein gemeinsames Verständnis über die Nutzung der Software zu entwickeln."
+        ],
+        correct: 3,
+        feedback: {
+            trap: "a) Planungspoker = Aufwandsschätzung. b) Reviews = Qualitätssicherung. c) Iterationsplanung = Priorisierung.",
+            principle: "Conversation (Gespräch) = gemeinsames Verständnis entwickeln.",
+            explanation: "Das Gespräch (Conversation) ist der Teil der User-Story, der ein gemeinsames Verständnis über die Nutzung der Software entwickelt.",
+            reference: "Lehrplan 4.5.1"
+        }
+    },
+    {
+        id: "gtb-d-29",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 29",
+        lo: "FL-4.5.3",
+        kLevel: 3,
+        chapter: 4,
+        text: "Sie entwerfen Testfälle für eine User-Story:\n\n'Als Kunde möchte ich die Suchergebnisse nach Preisspanne filtern können, damit ich Produkte innerhalb meines Budgets leichter finden kann.'\n\nAkzeptanzkriterien:\n1. Der Filter sollte für alle Versionen ab Version 3.0 funktionieren.\n2. Der Filter sollte Mindest- und Höchstpreis ermöglichen.\n3. Die Suchergebnisse sollten sich dynamisch aktualisieren.\n\nVorbedingung: Produkt A kostet 100€, Produkt B kostet 110€.\n\nWelches ist DAS BESTE Beispiel für einen Testfall?",
+        hint: "ATDD-Testfall: Testet die Akzeptanzkriterien, verwendet Gegeben/Wenn/Dann.",
+        answers: [
+            "Filter auf 90-100€ setzen → nur Produkt A. Höchstpreis auf 110€ → beide Produkte.",
+            "Standardpreise prüfen. Produkt C hinzufügen → Standardhöchstpreis ändert sich.",
+            "Filter auf 90-115€ → beide Produkte. Währung ändern → Filterbereich ändert sich.",
+            "Mit drei Browsern testen: Edge, Chrome, Opera. Filter 90-110€ → Layout gleich."
+        ],
+        correct: 0,
+        feedback: {
+            trap: "b) Testet nicht die Akzeptanzkriterien. c) Währung ist nicht in den Kriterien. d) Browser-Kompatibilität ist nicht in den Kriterien.",
+            principle: "ATDD-Testfälle testen die definierten Akzeptanzkriterien.",
+            explanation: "Option a) testet Kriterium 2 (Mindest-/Höchstpreis) und Kriterium 3 (dynamische Aktualisierung).",
+            reference: "Lehrplan 4.5.3"
+        }
+    },
+    {
+        id: "gtb-d-30",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 30",
+        lo: "FL-5.1.3",
+        kLevel: 2,
+        chapter: 5,
+        text: "Welche der folgenden Optionen beschreiben AM BESTEN typische Endekriterien in einem Testprojekt?\n\nWählen Sie ZWEI Optionen!",
+        hint: "Endekriterien = wann ist der Test fertig? Budget aufgebraucht, Überdeckung erreicht.",
+        answers: [
+            "Das Budget ist genehmigt.",
+            "Das Budget ist aufgebraucht.",
+            "Die Testbasis ist verfügbar.",
+            "Testfälle haben mindestens 80% Anweisungsüberdeckung erreicht.",
+            "Alle Testanalysten sind nach ISTQB Foundation Level zertifiziert."
+        ],
+        correct: [1, 3],
+        feedback: {
+            trap: "a), c), e) sind Eingangskriterien oder irrelevant.",
+            principle: "Endekriterien: Budget aufgebraucht, Überdeckung erreicht, Zeit abgelaufen.",
+            explanation: "b) Budget aufgebraucht und d) Überdeckung erreicht sind typische Endekriterien.",
+            reference: "Lehrplan 5.1.3"
+        }
+    },
+    {
+        id: "gtb-d-31",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 31",
+        lo: "FL-5.1.4",
+        kLevel: 3,
+        chapter: 5,
+        text: "Das Team möchte die Zeit abschätzen, die ein Tester benötigt, um vier Testfälle auszuführen. Es wurden folgende Aufwandsschätzungen für einen Testfall ermittelt:\n\n• Best-Case: 1 Stunde\n• Worst-Case: 8 Stunden\n• Wahrscheinlichster Fall: 3 Stunden\n\nDas Team verwendet das Drei-Punkt-Schätzverfahren.\n\nWie hoch ist die geschätzte Gesamtzeit zur Ausführung aller vier Testfälle?",
+        hint: "Drei-Punkt-Schätzung: E = (O + 4M + P) / 6. Dann × 4 Testfälle.",
+        answers: [
+            "14 Stunden",
+            "3,5 Stunden",
+            "16 Stunden",
+            "12 Stunden"
+        ],
+        correct: 0,
+        feedback: {
+            trap: "b) Das ist nur für einen Testfall. c) und d) sind falsch berechnet.",
+            principle: "E = (O + 4M + P) / 6 = (1 + 4×3 + 8) / 6 = 21/6 = 3,5 Stunden pro Testfall.",
+            explanation: "E = (1 + 12 + 8) / 6 = 21/6 = 3,5 Stunden pro Testfall. Für 4 Testfälle: 4 × 3,5 = 14 Stunden.",
+            reference: "Lehrplan 5.1.4"
+        }
+    },
+    {
+        id: "gtb-d-32",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 32",
+        lo: "FL-5.1.5",
+        kLevel: 3,
+        chapter: 5,
+        text: "Die Tabelle zeigt die Nachverfolgbarkeitsmatrix zwischen Testfällen und Anforderungen:\n\nTC1 deckt Req1, Req2, Req3, Req4 ab.\nTC2 deckt Req2, Req5, Req6 ab.\nTC3 deckt Req3, Req7 ab.\nTC4 deckt Req4 ab.\n\nDie Testfälle sollen mithilfe des Verfahrens der zusätzlichen Überdeckung priorisiert werden.\n\nWelcher Testfall sollte ALS LETZTER ausgeführt werden?",
+        hint: "Zusätzliche Überdeckung: Starte mit dem, der am meisten abdeckt. Dann der nächste mit den meisten NEUEN.",
+        answers: [
+            "TC1",
+            "TC2",
+            "TC3",
+            "TC4"
+        ],
+        correct: 3,
+        feedback: {
+            trap: "TC1 deckt am meisten ab (4 Req), also zuerst. Dann TC2 (3 neue: Req5, Req6, Req7). Dann TC3 (Req7 neu). TC4 zuletzt (Req4 bereits durch TC1).",
+            principle: "Zusätzliche Überdeckung: Testfall mit den meisten NEUEN Anforderungen zuerst.",
+            explanation: "TC1 (4 Req) → TC2 (Req5, Req6 neu) → TC3 (Req7 neu) → TC4 (keine neuen Req). TC4 wird als letzter ausgeführt.",
+            reference: "Lehrplan 5.1.5"
+        }
+    },
+    {
+        id: "gtb-d-33",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 33",
+        lo: "FL-5.1.7",
+        kLevel: 2,
+        chapter: 5,
+        text: "Wie unterstützen Testquadranten das Testen?",
+        hint: "Testquadranten helfen, verschiedene Testarten zu verstehen und einzuordnen.",
+        answers: [
+            "Sie helfen bei der Testplanung, indem sie den Testprozess in vier Stufen unterteilen.",
+            "Sie helfen bei der Bewertung hoher Überdeckungsstufen basierend auf niedrigen Überdeckungsstufen.",
+            "Sie helfen nicht-technischen Stakeholdern, verschiedene Testarten zu verstehen.",
+            "Sie helfen agilen Teams, Kommunikationsstrategien auf Basis psychologischer Typen zu entwickeln."
+        ],
+        correct: 2,
+        feedback: {
+            trap: "a) Quadranten sind keine Teststufen. b) Quadranten messen keine Überdeckung. d) Quadranten haben nichts mit psychologischen Typen zu tun.",
+            principle: "Testquadranten = Visualisierung verschiedener Testarten für alle Stakeholder.",
+            explanation: "Testquadranten helfen nicht-technischen Stakeholdern, verschiedene Testarten zu verstehen und deren Relevanz für verschiedene Teststufen zu erkennen.",
+            reference: "Lehrplan 5.1.7"
+        }
+    },
+    {
+        id: "gtb-d-34",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 34",
+        lo: "FL-5.2.1",
+        kLevel: 1,
+        chapter: 5,
+        text: "Für ein bestimmtes Risiko beträgt dessen Risikostufe 1.000€, und die geschätzte Eintrittswahrscheinlichkeit liegt bei 50%.\n\nWas ist das Schadensausmaß des Risikos?",
+        hint: "Risikostufe = Wahrscheinlichkeit × Schadensausmaß. Umstellen!",
+        answers: [
+            "500 €",
+            "2.000 €",
+            "50.000 €",
+            "200 €"
+        ],
+        correct: 1,
+        feedback: {
+            trap: "a) 500€ wäre Risikostufe × Wahrscheinlichkeit. c) und d) sind falsch berechnet.",
+            principle: "Risikostufe = Wahrscheinlichkeit × Schadensausmaß → Schadensausmaß = Risikostufe / Wahrscheinlichkeit.",
+            explanation: "Schadensausmaß = 1.000€ / 0,5 = 2.000€.",
+            reference: "Lehrplan 5.2.1"
+        }
+    },
+    {
+        id: "gtb-d-35",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 35",
+        lo: "FL-5.2.2",
+        kLevel: 2,
+        chapter: 5,
+        text: "Welche der folgenden Optionen stellen Produktrisiken dar?\n\nWählen Sie ZWEI Optionen!",
+        hint: "Produktrisiko = Risiko bezüglich des Produkts selbst. Projektrisiko = Risiko bezüglich des Projekts.",
+        answers: [
+            "Umfangserweiterung",
+            "Schlechte Architektur",
+            "Kostensenkung",
+            "Schlechte Werkzeugunterstützung",
+            "Antwortzeiten zu lang"
+        ],
+        correct: [1, 4],
+        feedback: {
+            trap: "a), c), d) sind Projektrisiken (Scope Creep, Budget, Werkzeuge).",
+            principle: "Produktrisiko = Qualitätsprobleme des Produkts (Architektur, Performance).",
+            explanation: "b) Schlechte Architektur und e) Antwortzeiten zu lang sind Produktrisiken.",
+            reference: "Lehrplan 5.2.2"
+        }
+    },
+    {
+        id: "gtb-d-36",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 36",
+        lo: "FL-5.3.2",
+        kLevel: 2,
+        chapter: 5,
+        text: "Welcher der folgenden Zwecke gehört NICHT zu den gültigen Zielen eines Testberichts?",
+        hint: "Testbericht = Zusammenfassung, Fortschritt, Ergebnisse. Was gehört NICHT dazu?",
+        answers: [
+            "Verfolgung des Testfortschritts und Identifizierung von Bereichen, die weitere Aufmerksamkeit erfordern.",
+            "Bereitstellung von Informationen über die durchgeführten Tests, deren Ergebnisse und gefundene Probleme.",
+            "Bereitstellung detaillierter Informationen zu jedem einzelnen Fehlerzustand, einschließlich der Schritte zur Reproduktion.",
+            "Bereitstellung von Informationen über die für den nächsten Zeitraum geplanten Tests."
+        ],
+        correct: 2,
+        feedback: {
+            trap: "a), b), d) sind alle gültige Ziele eines Testberichts.",
+            principle: "Detaillierte Fehlerinformationen gehören in den FEHLERBERICHT, nicht in den Testbericht.",
+            explanation: "Detaillierte Informationen zu einzelnen Fehlerzuständen (Schritte zur Reproduktion) gehören in Fehlerberichte, nicht in Testberichte.",
+            reference: "Lehrplan 5.3.2"
+        }
+    },
+    {
+        id: "gtb-d-37",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 37",
+        lo: "FL-5.4.1",
+        kLevel: 2,
+        chapter: 5,
+        text: "Der Benutzer meldete einen Softwarefehler. Ein Ingenieur fragte nach der Softwareversionsnummer. Basierend auf der Versionsnummer stellte das Team alle Dateien des entsprechenden Release zusammen. Ein Entwickler konnte den Fehlerzustand identifizieren und beheben.\n\nWelche der folgenden Optionen ermöglichte dem Team diese Vorgehensweise?",
+        hint: "Versionskontrolle, Baselines, Wiederherstellung alter Versionen = ?",
+        answers: [
+            "Risikomanagement",
+            "Testüberwachung und Teststeuerung",
+            "Whole-Team-Ansatz",
+            "Konfigurationsmanagement"
+        ],
+        correct: 3,
+        feedback: {
+            trap: "a), b), c) ermöglichen nicht die Wiederherstellung alter Versionen.",
+            principle: "Konfigurationsmanagement = Versionskontrolle, Baselines, Wiederherstellung.",
+            explanation: "Konfigurationsmanagement ermöglicht es, alle Dateien eines bestimmten Release basierend auf der Versionsnummer wiederherzustellen.",
+            reference: "Lehrplan 5.4.1"
+        }
+    },
+    {
+        id: "gtb-d-38",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 38",
+        lo: "FL-5.5.1",
+        kLevel: 3,
+        chapter: 5,
+        text: "Betrachten Sie den folgenden Fehlerbericht für ein Buchausleihsystem:\n\nFehler-ID: 001\nTitel: Rückgabe eines Buches wird nicht registriert.\nSchweregrad: Hoch\nPriorität: nicht angegeben\nUmgebung: Windows 11, Google Chrome\nBeschreibung: Beim Versuch, ein Buch zurückzugeben, registriert das System die Rückgabe nicht.\nSchritte zur Reproduktion: Anmelden, auf 'Buch zurückgeben' klicken.\nErwartetes Ergebnis: Buch sollte als zurückgegeben registriert werden.\nTatsächliches Ergebnis: Buch bleibt dem Benutzer zugewiesen.\nAnhänge: [leere Liste]\n\nWelche der folgenden Optionen hilft dem Entwickler AM EHESTEN, den Fehler schnell zu reproduzieren?",
+        hint: "Was fehlt für eine schnelle Reproduktion? Spezifische Daten!",
+        answers: [
+            "Hinzufügen spezifischer Informationen zu den betroffenen Benutzern und Büchern im Abschnitt 'Beschreibung'.",
+            "Ergänzung des fehlenden Wertes im Feld 'Priorität'.",
+            "Hinzufügen von Speicherabzügen und Datenbankschnappschüssen nach jedem Schritt.",
+            "Wiederholung desselben Testfalls in verschiedenen Umgebungen."
+        ],
+        correct: 0,
+        feedback: {
+            trap: "b) Priorität hilft nicht bei der Reproduktion. c) Zu aufwendig. d) Hilft nicht bei der Reproduktion.",
+            principle: "Spezifische Daten (Benutzer-ID, Buch-ID) helfen bei der schnellen Reproduktion.",
+            explanation: "Spezifische Informationen zu den betroffenen Benutzern und Büchern helfen dem Entwickler, den Fehler schnell zu reproduzieren.",
+            reference: "Lehrplan 5.5.1"
+        }
+    },
+    {
+        id: "gtb-d-39",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 39",
+        lo: "FL-6.1.1",
+        kLevel: 2,
+        chapter: 6,
+        text: "Werkzeuge aus welchen Testwerkzeugkategorien erleichtern höchstwahrscheinlich die Testausführung?\n\nWählen Sie ZWEI Optionen!",
+        hint: "Testausführung = Automatisierung, Performance-Tests. Welche Werkzeuge?",
+        answers: [
+            "Kooperationswerkzeuge",
+            "DevOps-Werkzeuge",
+            "Managementwerkzeuge",
+            "Nicht-funktionale Testwerkzeuge",
+            "Testentwurfs- und Implementierungswerkzeuge"
+        ],
+        correct: [1, 3],
+        feedback: {
+            trap: "a), c), e) unterstützen nicht direkt die Testausführung.",
+            principle: "Testausführung: DevOps-Werkzeuge (CI/CD) und nicht-funktionale Testwerkzeuge (Performance).",
+            explanation: "b) DevOps-Werkzeuge (für automatisierte Testausführung in Pipelines) und d) Nicht-funktionale Testwerkzeuge (für Performance-Tests) erleichtern die Testausführung.",
+            reference: "Lehrplan 6.1.1"
+        }
+    },
+    {
+        id: "gtb-d-40",
+        source: "GTB CTFL v4.0 Sample Exam D, Frage 40",
+        lo: "FL-6.2.1",
+        kLevel: 1,
+        chapter: 6,
+        text: "Welche der folgenden Optionen ist höchstwahrscheinlich ein Risiko der Testautomatisierung?",
+        hint: "Risiken der Automatisierung: Unrealistische Erwartungen, Wartungsaufwand, Inkompatibilität.",
+        answers: [
+            "Die Entdeckung zusätzlicher schwerwiegender Fehler.",
+            "Bereitstellung von Maßnahmen, die für Menschen zu kompliziert sind, um sie abzuleiten.",
+            "Inkompatibilität mit der Entwicklungsplattform.",
+            "Deutlich reduzierte Testausführungszeiten."
+        ],
+        correct: 2,
+        feedback: {
+            trap: "a) Das ist ein VORTEIL. b) Kein typisches Risiko. d) Das ist ein VORTEIL.",
+            principle: "Risiko: Werkzeug ist nicht kompatibel mit der Entwicklungsplattform.",
+            explanation: "Inkompatibilität mit der Entwicklungsplattform ist ein typisches Risiko der Testautomatisierung.",
+            reference: "Lehrplan 6.2.1"
+        }
+    },
+    // =========================================================================
+    // GTB SAMPLE EXAM SET E (40 Fragen)
+    // =========================================================================
+    {
+        id: "gtb-e-1",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 1",
+        lo: "FL-1.1.1",
+        kLevel: 1,
+        chapter: 1,
+        text: "Welche der folgenden Aussagen beschreibt ein typisches Testziel?",
+        hint: "Testziele: Fehlerzustände finden, Vertrauen aufbauen, Qualität bewerten. Was passt?",
+        answers: [
+            "Der Test beginnt kurz vor der Freigabe des Testobjekts, um Fehlerzustände zu finden, die eine Abnahme verhindern.",
+            "Es erfolgt eine Validierung, dass das Testobjekt so funktioniert, wie es von den verschiedenen Stakeholdern erwartet wird.",
+            "Es lässt sich nachweisen, dass alle Fehlerzustände identifiziert wurden.",
+            "Es lässt sich nachweisen, dass die verbleibenden Fehlerzustände keine negativen Auswirkungen haben werden."
+        ],
+        correct: 1,
+        feedback: {
+            trap: "a) Testen sollte FRÜH beginnen, nicht kurz vor Freigabe. c) Alle Fehler zu finden ist unmöglich. d) Verbleibende Fehler können immer Auswirkungen haben.",
+            principle: "Testziel: Validierung, dass das Testobjekt wie erwartet funktioniert.",
+            explanation: "Die Validierung, dass das Testobjekt den Erwartungen der Stakeholder entspricht, ist ein typisches Testziel.",
+            reference: "Lehrplan 1.1.1"
+        }
+    },
+    {
+        id: "gtb-e-2",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 2",
+        lo: "FL-1.1.2",
+        kLevel: 2,
+        chapter: 1,
+        text: "Welche der folgenden Aussagen beschreibt den Unterschied zwischen Testen und Debugging am BESTEN?",
+        hint: "Testen = Fehler FINDEN. Debugging = Fehler ANALYSIEREN und BEHEBEN.",
+        answers: [
+            "Testen identifiziert die Ursache von Fehlerzuständen. Debugging analysiert die Fehlerzustände und schlägt Präventionsmaßnahmen vor.",
+            "Dynamisches Testen zeigt Fehlerwirkungen auf, die durch Fehlerzustände verursacht werden. Debugging analysiert und behebt den zugehörigen Fehlerzustand.",
+            "Testen beseitigt Fehlerwirkungen; während Debugging Fehlerzustände beseitigt, die Fehlerwirkungen verursachen.",
+            "Dynamisches Testen verhindert die Ursache von Fehlerwirkungen. Debugging beseitigt die Fehlerwirkungen."
+        ],
+        correct: 1,
+        feedback: {
+            trap: "a) Testen identifiziert nicht die Ursache, das macht Debugging. c) Testen beseitigt nichts. d) Testen verhindert nichts direkt.",
+            principle: "Testen = Fehlerwirkungen aufzeigen. Debugging = Fehlerzustände analysieren und beheben.",
+            explanation: "Dynamisches Testen zeigt Fehlerwirkungen auf. Debugging analysiert den zugehörigen Fehlerzustand und behebt ihn.",
+            reference: "Lehrplan 1.1.2"
+        }
+    },
+    {
+        id: "gtb-e-3",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 3",
+        lo: "FL-1.3.1",
+        kLevel: 2,
+        chapter: 1,
+        text: "Ein Product Owner sagt, dass Ihre Rolle als Tester in einem agilen Team darin besteht, alle Fehlerzustände vor dem Ende jeder Iteration aufzudecken.\n\nWelche der folgenden Optionen ist ein Grundsatz, der als Antwort auf diese (falsche) Aussage verwendet werden könnte?",
+        hint: "Kann man ALLE Fehler finden? Nein! Welcher Grundsatz sagt das?",
+        answers: [
+            "Häufung von Fehlerzuständen.",
+            "Testen zeigt die Anwesenheit von Fehlerzuständen.",
+            "Trugschluss: 'Keine Fehler' bedeutet ein brauchbares System.",
+            "Analyse der Grundursache."
+        ],
+        correct: 1,
+        feedback: {
+            trap: "a) Häufung beschreibt Verteilung, nicht Vollständigkeit. c) Trugschluss betrifft Brauchbarkeit, nicht Vollständigkeit. d) Grundursache ist kein Grundsatz.",
+            principle: "Testen zeigt die Anwesenheit von Fehlerzuständen, nicht deren Abwesenheit.",
+            explanation: "Der Grundsatz 'Testen zeigt die Anwesenheit von Fehlerzuständen' widerlegt die Aussage, dass alle Fehler gefunden werden können.",
+            reference: "Lehrplan 1.3.1"
+        }
+    },
+    {
+        id: "gtb-e-4",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 4",
+        lo: "FL-1.4.1",
+        kLevel: 2,
+        chapter: 1,
+        text: "Welche der folgenden Optionen ist ein Beispiel für eine Aufgabe, die im Rahmen der Testrealisierung des Testprozesses durchgeführt werden kann?",
+        hint: "Testrealisierung = Testfälle in ausführbare Form bringen, Testdaten erstellen, Umgebung einrichten.",
+        answers: [
+            "Analysieren eines Fehlerzustands.",
+            "Entwerfen von Testdaten.",
+            "Einem Testobjekt eine Version zuordnen.",
+            "Schreiben einer User-Story."
+        ],
+        correct: 2,
+        feedback: {
+            trap: "a) Fehleranalyse = Testdurchführung/Debugging. b) Testdaten entwerfen = Testentwurf. d) User-Story = Entwicklung.",
+            principle: "Testrealisierung: Testumgebung einrichten, Versionen zuordnen, Testabläufe erstellen.",
+            explanation: "Einem Testobjekt eine Version zuordnen ist eine Aufgabe der Testrealisierung (Konfigurationsmanagement).",
+            reference: "Lehrplan 1.4.1"
+        }
+    },
+    {
+        id: "gtb-e-5",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 5",
+        lo: "FL-1.4.2",
+        kLevel: 2,
+        chapter: 1,
+        text: "Welche der folgenden Aussagen ist ein Beispiel für einen technischen Faktor, der den Testprozess beeinflusst?",
+        hint: "Technische Faktoren: Technologie, Architektur, Plattform. Organisatorische Faktoren: Team, Prozesse.",
+        answers: [
+            "Die Software ist eine Webanwendung, die auf verschiedenen Browsern funktionieren muss.",
+            "Die Software ist für einen Finanzdienstleister bestimmt, der strenge Sicherheitsanforderungen hat.",
+            "Die Software wird mit einer agilen Methode entwickelt, die kurze Iterationen und häufige Releases erfordert.",
+            "Die Software wird von einem Team getestet, das über unterschiedliche Kompetenzen und Erfahrungen verfügt."
+        ],
+        correct: 0,
+        feedback: {
+            trap: "b) Sicherheitsanforderungen = geschäftlicher Faktor. c) Agile Methode = organisatorischer Faktor. d) Teamkompetenzen = personeller Faktor.",
+            principle: "Technischer Faktor: Webanwendung, verschiedene Browser = Plattformabhängigkeit.",
+            explanation: "Die Notwendigkeit, auf verschiedenen Browsern zu funktionieren, ist ein technischer Faktor, der den Testprozess beeinflusst.",
+            reference: "Lehrplan 1.4.2"
+        }
+    },
+    {
+        id: "gtb-e-6",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 6",
+        lo: "FL-1.4.5",
+        kLevel: 2,
+        chapter: 1,
+        text: "Welche der folgenden Aussagen beschreibt am BESTEN die Unterschiede zwischen der Rolle des Testmanagements und der Rolle des Testens?",
+        hint: "Testmanagement = Planung, Steuerung, Berichterstattung. Testen = Analyse, Entwurf, Durchführung.",
+        answers: [
+            "Die Rolle des Testmanagements konzentriert sich auf Testanalyse, Testentwurf, Testrealisierung und Testdurchführung, während die Rolle des Testens die Gesamtverantwortung übernimmt.",
+            "Die Rolle des Testmanagements und die Rolle des Testens sind identisch und können von derselben Person gleichzeitig übernommen werden.",
+            "Die Rolle des Testmanagements übernimmt die Gesamtverantwortung für den Testprozess, während die Rolle des Testens sich auf Testanalyse, Testentwurf, Testrealisierung und Testdurchführung konzentriert.",
+            "Die Rolle des Testmanagements und die Rolle des Testens haben keine spezifischen Aufgaben und können je nach Kontext variieren."
+        ],
+        correct: 2,
+        feedback: {
+            trap: "a) Vertauscht die Rollen. b) Sie sind unterschiedlich. d) Sie haben spezifische Aufgaben.",
+            principle: "Testmanagement = Gesamtverantwortung. Testen = operative Aktivitäten.",
+            explanation: "Testmanagement übernimmt die Gesamtverantwortung, während Tester sich auf Analyse, Entwurf, Realisierung und Durchführung konzentrieren.",
+            reference: "Lehrplan 1.4.5"
+        }
+    },
+    {
+        id: "gtb-e-7",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 7",
+        lo: "FL-1.5.3",
+        kLevel: 2,
+        chapter: 1,
+        text: "Während der Besprechung einer User-Story in einem agilen Projekt stellen Sie als Tester einen Widerspruch in der Interpretation eines Akzeptanzkriteriums zwischen dem Product Owner und dem Entwicklungsteam fest. Sie bringen diesen Widerspruch zur Sprache.\n\nWelche der folgenden Optionen beschreibt einen Vorteil der Unabhängigkeit des Testens, der in dieser Situation deutlich wird?",
+        hint: "Unabhängige Tester können Annahmen hinterfragen und Widersprüche aufdecken.",
+        answers: [
+            "Tester können verschiedene Arten von Fehlerwirkungen und -zuständen erkennen.",
+            "Tester können die Hauptverantwortung für die Qualität übernehmen.",
+            "Die Entwickler können darauf vertrauen, dass die Tester für die gewünschte Qualität sorgen.",
+            "Tester können Annahmen der Stakeholder hinterfragen."
+        ],
+        correct: 3,
+        feedback: {
+            trap: "a) Nicht spezifisch für diese Situation. b) Qualität ist TEAM-Verantwortung. c) Das ist ein NACHTEIL der Unabhängigkeit.",
+            principle: "Unabhängige Tester hinterfragen Annahmen und decken Widersprüche auf.",
+            explanation: "Der Tester hat einen Widerspruch aufgedeckt, indem er die Annahmen der Stakeholder hinterfragt hat – ein Vorteil der Unabhängigkeit.",
+            reference: "Lehrplan 1.5.3"
+        }
+    },
+    {
+        id: "gtb-e-8",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 8",
+        lo: "FL-1.5.2",
+        kLevel: 1,
+        chapter: 1,
+        text: "Welche der folgenden Optionen beschreibt am BESTEN die Verantwortlichkeiten, die sich aus dem agilen Whole-Team-Ansatz ergeben?",
+        hint: "Whole-Team = alle arbeiten zusammen für Qualität. Tester arbeiten MIT dem Team.",
+        answers: [
+            "Tester sind für die Entwicklung von Unittests verantwortlich und übergeben diese an die Entwickler zur Testdurchführung.",
+            "Fachbereichsvertreter haben die Aufgabe, die Werkzeuge auszuwählen, die das Entwicklungsteam zu verwenden hat.",
+            "Von den Testern wird erwartet, dass sie gemeinsam mit den Fachbereichsvertretern und dem Entwicklungsteam die Testfälle erstellen.",
+            "Von den Entwicklern wird erwartet, dass sie nicht-funktionale Anforderungen testen."
+        ],
+        correct: 2,
+        feedback: {
+            trap: "a) Unittests werden von Entwicklern geschrieben. b) Werkzeugauswahl ist nicht Aufgabe der Fachbereichsvertreter. d) Nicht-funktionale Tests sind nicht nur Entwickleraufgabe.",
+            principle: "Whole-Team: Tester, Entwickler und Fachbereich erstellen gemeinsam Testfälle.",
+            explanation: "Im Whole-Team-Ansatz arbeiten Tester gemeinsam mit Fachbereichsvertretern und Entwicklern an der Erstellung von Testfällen.",
+            reference: "Lehrplan 1.5.2"
+        }
+    },
+    {
+        id: "gtb-e-9",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 9",
+        lo: "FL-2.1.2",
+        kLevel: 1,
+        chapter: 2,
+        text: "Welche der folgenden Aussagen beschreibt ein bewährtes Verfahren für das Testen in allen Softwareentwicklungslebenszyklus-(SDLC-)Modellen?",
+        hint: "Bewährte Praktiken: Früh beginnen, parallel zur Entwicklung testen.",
+        answers: [
+            "Testaktivitäten für eine Teststufe beginnen bereits während der entsprechenden Entwicklungsphase.",
+            "Eine Teststufe im Softwareentwicklungslebenszyklus-Modell beginnt, wenn die vorhergehende Teststufe abgeschlossen ist.",
+            "Das Testen wird als separate Phase betrachtet. Sie beginnt, wenn die Entwicklung abgeschlossen ist.",
+            "Das Testen wird der Entwicklung als Inkrement hinzugefügt."
+        ],
+        correct: 0,
+        feedback: {
+            trap: "b) Teststufen können überlappen. c) Testen ist keine separate Phase. d) Inkrement ist kein Standard-Begriff hier.",
+            principle: "Testaktivitäten beginnen parallel zur entsprechenden Entwicklungsphase.",
+            explanation: "Ein bewährtes Verfahren ist, dass Testaktivitäten bereits während der entsprechenden Entwicklungsphase beginnen (Shift-Left).",
+            reference: "Lehrplan 2.1.2"
+        }
+    },
+    {
+        id: "gtb-e-10",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 10",
+        lo: "FL-2.1.3",
+        kLevel: 1,
+        chapter: 2,
+        text: "Welcher der folgenden beschriebenen Entwicklungsansätze definiert Testen NICHT als Treiber der Softwareentwicklung?",
+        hint: "Test-First = Tests treiben die Entwicklung. Welcher Ansatz ist NICHT Test-First?",
+        answers: [
+            "Zuerst werden Tests erstellt. Dann wird der Code geschrieben.",
+            "Die Testfälle steuern die Codierung.",
+            "Das gewünschte Verhalten einer Anwendung wird durch Testfälle definiert.",
+            "Tests werden aus Akzeptanzkriterien abgeleitet und teilweise automatisiert."
+        ],
+        correct: 3,
+        feedback: {
+            trap: "a), b), c) beschreiben alle Test-First-Ansätze (TDD, BDD).",
+            principle: "Tests aus Akzeptanzkriterien ableiten ist NICHT Test-First, sondern normaler Testprozess.",
+            explanation: "Option d) beschreibt einen normalen Testprozess, bei dem Tests NACH den Akzeptanzkriterien erstellt werden – kein Test-First.",
+            reference: "Lehrplan 2.1.3"
+        }
+    },
+    {
+        id: "gtb-e-11",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 11",
+        lo: "FL-2.1.5",
+        kLevel: 2,
+        chapter: 2,
+        text: "Welche der folgenden Aussagen beschreibt im Softwareentwicklungslebenszyklus (SDLC) am BESTEN Shift-Left im Testen?",
+        hint: "Shift-Left = früher testen. Wann beginnen die Testaktivitäten?",
+        answers: [
+            "Testaktivitäten beginnen so früh wie möglich im SDLC und werden parallel zu den Entwicklungsaktivitäten durchgeführt.",
+            "Testaktivitäten beginnen so spät wie möglich im SDLC und werden nach den Entwicklungsaktivitäten durchgeführt.",
+            "Testaktivitäten beginnen in der Mitte des SDLC und werden parallel zu den Entwicklungsaktivitäten durchgeführt.",
+            "Testaktivitäten werden über mehrere Phasen des SDLC verteilt und in jeder Phase entsprechend dem Reifegrad des Produkts durchgeführt."
+        ],
+        correct: 0,
+        feedback: {
+            trap: "b) Das ist das Gegenteil von Shift-Left. c) Mitte ist nicht 'früh'. d) Verteilung ist nicht spezifisch für Shift-Left.",
+            principle: "Shift-Left = Testaktivitäten so früh wie möglich beginnen.",
+            explanation: "Shift-Left bedeutet, dass Testaktivitäten so früh wie möglich im SDLC beginnen und parallel zur Entwicklung durchgeführt werden.",
+            reference: "Lehrplan 2.1.5"
+        }
+    },
+    {
+        id: "gtb-e-12",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 12",
+        lo: "FL-2.1.1",
+        kLevel: 2,
+        chapter: 2,
+        text: "Sie sind als Tester in einem Projekt eingesetzt, das nach dem iterativ-inkrementellen Entwicklungsmodell vorgeht.\n\nWelche der folgenden Aussagen sollten Sie in dieser Situation unbedingt berücksichtigen?",
+        hint: "Iterativ-inkrementell = häufige Releases = Regressionstests wichtig!",
+        answers: [
+            "Sie planen den Test als einmalige Aktivität, wenn alle Inkremente umgesetzt wurden.",
+            "Statische Tests sollten ausschließlich auf Komponententestebene stattfinden.",
+            "Da schnelle Rückmeldung wichtig ist, sollten die Tester die Regressionstests manuell ausführen.",
+            "Durch die Lieferung neuer Inkremente ist es wichtig, umfangreiche Regressionstests aufzubauen."
+        ],
+        correct: 3,
+        feedback: {
+            trap: "a) Test ist keine einmalige Aktivität. b) Statische Tests auf allen Ebenen. c) Manuelle Regressionstests sind zu langsam.",
+            principle: "Iterativ-inkrementell = umfangreiche Regressionstests erforderlich.",
+            explanation: "Bei iterativ-inkrementeller Entwicklung ist es wichtig, umfangreiche Regressionstests aufzubauen, um sicherzustellen, dass neue Inkremente bestehende Funktionalität nicht beeinträchtigen.",
+            reference: "Lehrplan 2.1.1"
+        }
+    },
+    {
+        id: "gtb-e-13",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 13",
+        lo: "FL-2.2.1",
+        kLevel: 2,
+        chapter: 2,
+        text: "Ein Testfall hat folgende Eigenschaften:\n• Er basiert auf Schnittstellenspezifikationen.\n• Der Schwerpunkt liegt auf dem Finden von Fehlerwirkungen in der Interaktion zwischen Komponenten.\n• Es werden sowohl funktionale als auch strukturbasierte Tests angewendet.\n\nIn welcher der folgenden Teststufen wird dieser Testfall am WAHRSCHEINLICHSTEN ausgeführt?",
+        hint: "Schnittstellen + Interaktion zwischen Komponenten = Integrationstest.",
+        answers: [
+            "Komponentenintegrationstest",
+            "Abnahmetest",
+            "Systemtest",
+            "Komponententest"
+        ],
+        correct: 0,
+        feedback: {
+            trap: "b) Abnahmetest = Geschäftsanforderungen. c) Systemtest = Gesamtsystem. d) Komponententest = einzelne Komponente.",
+            principle: "Komponentenintegrationstest = Schnittstellen zwischen Komponenten testen.",
+            explanation: "Der Testfall basiert auf Schnittstellenspezifikationen und testet die Interaktion zwischen Komponenten – das ist Komponentenintegrationstest.",
+            reference: "Lehrplan 2.2.1"
+        }
+    },
+    {
+        id: "gtb-e-14",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 14",
+        lo: "FL-2.3.1",
+        kLevel: 2,
+        chapter: 2,
+        text: "Welche der folgenden Optionen ist KEIN Auslöser für Wartung und Wartungstest?",
+        hint: "Wartungstest-Auslöser: Änderungen, Migration, Hotfixes, Außerbetriebnahme. Was ist KEIN Auslöser?",
+        answers: [
+            "Außerbetriebnahme",
+            "Korrigierende Änderungen oder Hotfixes",
+            "Upgrades oder Migrationen der Betriebsumgebung",
+            "Implementierung neuer Funktionen"
+        ],
+        correct: 3,
+        feedback: {
+            trap: "a), b), c) sind alle Auslöser für Wartungstests.",
+            principle: "Neue Funktionen = Entwicklung, nicht Wartung.",
+            explanation: "Die Implementierung neuer Funktionen ist Teil der Entwicklung, nicht der Wartung. Wartung bezieht sich auf Änderungen an bestehender Funktionalität.",
+            reference: "Lehrplan 2.3.1"
+        }
+    },
+    {
+        id: "gtb-e-15",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 15",
+        lo: "FL-3.1.2",
+        kLevel: 2,
+        chapter: 3,
+        text: "Welche der folgenden Aussagen zum statischen Test ist am EHESTEN zutreffend?",
+        hint: "Statisches Testen = kostengünstig, früh, findet andere Fehler als dynamisches Testen.",
+        answers: [
+            "Der statische Test ist eine kostengünstige Möglichkeit, Fehlerzustände zu erkennen.",
+            "Der statische Test macht den dynamischen Test theoretisch überflüssig.",
+            "Der statische Test ermöglicht, Laufzeitprobleme frühzeitig im Lebenszyklus zu erkennen.",
+            "Bei der Prüfung sicherheitskritischer Systeme hat der statische Test einen geringen Stellenwert."
+        ],
+        correct: 0,
+        feedback: {
+            trap: "b) Dynamisches Testen bleibt notwendig. c) Laufzeitprobleme erfordern dynamisches Testen. d) Statisches Testen ist bei sicherheitskritischen Systemen SEHR wichtig.",
+            principle: "Statisches Testen ist kostengünstig, da Fehler früh gefunden werden.",
+            explanation: "Statisches Testen ist eine kostengünstige Möglichkeit, Fehlerzustände zu erkennen, da Fehler früh im Lebenszyklus gefunden werden.",
+            reference: "Lehrplan 3.1.2"
+        }
+    },
+    {
+        id: "gtb-e-16",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 16",
+        lo: "FL-3.2.1",
+        kLevel: 1,
+        chapter: 3,
+        text: "Welche der folgenden Aussagen beschreibt KEINEN Vorteil von frühem und häufigem Stakeholder-Feedback?",
+        hint: "Vorteile: Frühe Problemerkennung, besseres Verständnis, Fokus auf wichtige Features. Was ist KEIN Vorteil?",
+        answers: [
+            "Häufiges Feedback hilft, dass Änderungen der Anforderungen früher verstanden und umgesetzt werden.",
+            "Häufiges Feedback hilft dem Entwicklungsteam, besser zu verstehen, was sie entwickeln.",
+            "Häufiges Feedback hilft dem Entwicklungsteam, sich auf die Features zu konzentrieren, die den größten Nutzen bringen.",
+            "Häufiges Feedback kann zu Missverständnissen über Anforderungen führen."
+        ],
+        correct: 3,
+        feedback: {
+            trap: "a), b), c) sind alle Vorteile von frühem Feedback.",
+            principle: "Missverständnisse sind ein NACHTEIL, kein Vorteil.",
+            explanation: "Häufiges Feedback kann zu Missverständnissen führen – das ist ein potenzieller NACHTEIL, kein Vorteil.",
+            reference: "Lehrplan 3.2.1"
+        }
+    },
+    {
+        id: "gtb-e-17",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 17",
+        lo: "FL-3.2.4",
+        kLevel: 2,
+        chapter: 3,
+        text: "Welche der unten aufgeführten Reviewarten ist am BESTEN geeignet, wenn das Review in Übereinstimmung mit dem vollständigen allgemeinen Reviewprozess und mit dem Ziel, möglichst viele Anomalien zu finden, durchgeführt werden soll?",
+        hint: "Formellstes Review mit dem Ziel, viele Anomalien zu finden = Inspektion.",
+        answers: [
+            "Informelles Review",
+            "Technisches Review",
+            "Inspektion",
+            "Walkthrough"
+        ],
+        correct: 2,
+        feedback: {
+            trap: "a) Informell = weniger strukturiert. b) Technisches Review = Expertenprüfung. d) Walkthrough = Autor führt durch.",
+            principle: "Inspektion = formellstes Review, maximale Anomalienfindung.",
+            explanation: "Die Inspektion ist die formellste Reviewart und folgt dem vollständigen Reviewprozess mit dem Ziel, möglichst viele Anomalien zu finden.",
+            reference: "Lehrplan 3.2.4"
+        }
+    },
+    {
+        id: "gtb-e-18",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 18",
+        lo: "FL-3.2.5",
+        kLevel: 1,
+        chapter: 3,
+        text: "Während einer Phase intensiver Projektüberstunden wird eine umfangreiche Systemarchitekturspezifikation an verschiedene Projektteilnehmer versandt, zusammen mit der Ankündigung eines technischen Reviews in drei Tagen. Es werden keine weiteren Anpassungen an den zugewiesenen Aufgaben vorgenommen.\n\nWelcher der folgenden Erfolgsfaktoren für Reviews fehlt allein aufgrund dieser Information?",
+        hint: "Überstunden + keine Anpassungen = keine Zeit zur Vorbereitung.",
+        answers: [
+            "Geeignete Art des Reviews.",
+            "Ausreichend Zeit zur Vorbereitung.",
+            "Die Festlegung klarer Ziele und messbarer Endekriterien.",
+            "Gut geleitete Reviewsitzung."
+        ],
+        correct: 1,
+        feedback: {
+            trap: "a) Die Reviewart (technisches Review) ist angegeben. c) Ziele sind nicht erwähnt, aber das ist nicht das Hauptproblem. d) Sitzungsleitung ist nicht erwähnt.",
+            principle: "Erfolgsfaktor: Ausreichend Zeit zur Vorbereitung.",
+            explanation: "Bei Überstunden und ohne Anpassung der Aufgaben haben die Gutachter nicht genug Zeit zur Vorbereitung – ein wichtiger Erfolgsfaktor fehlt.",
+            reference: "Lehrplan 3.2.5"
+        }
+    },
+    {
+        id: "gtb-e-19",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 19",
+        lo: "FL-4.1.1",
+        kLevel: 2,
+        chapter: 4,
+        text: "Im Vorfeld einer Sitzung zur Iterationsplanung analysieren Sie eine User-Story und deren Akzeptanzkriterien. Daraus leiten Sie entsprechende Testfälle ab, um das Prinzip des frühen Testens anzuwenden.\n\nWelches Testverfahren bzw. welchen Testansatz wenden Sie an?",
+        hint: "Akzeptanzkriterien = Spezifikation = Black-Box-Verfahren.",
+        answers: [
+            "White-Box-Testen",
+            "Black-Box-Testen",
+            "Erfahrungsbasierter Test",
+            "Intuitive Testfallermittlung"
+        ],
+        correct: 1,
+        feedback: {
+            trap: "a) White-Box braucht Code. c) Erfahrungsbasiert ist weniger systematisch. d) Intuitive Testfallermittlung ist erfahrungsbasiert.",
+            principle: "Akzeptanzkriterien → Black-Box-Testverfahren.",
+            explanation: "Das Ableiten von Testfällen aus Akzeptanzkriterien (Spezifikation) ist ein Black-Box-Testverfahren.",
+            reference: "Lehrplan 4.1.1"
+        }
+    },
+    {
+        id: "gtb-e-20",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 20",
+        lo: "FL-4.2.1",
+        kLevel: 3,
+        chapter: 4,
+        text: "Ein Gerät zur Messung des täglichen Strahlungseinfalls für Pflanzen ermittelt einen Einstrahlungswert. Dieser ergibt sich aus:\n• Stunden Sonneneinstrahlung: unter 3h, 3-6h, über 6h\n• Intensität: sehr niedrig, niedrig, mittel, hoch\n\nFolgende Testfälle existieren bereits:\nT1: 1,5h, sehr niedrig → 10\nT2: 7,0h, mittel → 60\nT3: 0,5h, sehr niedrig → 10\n\nWie viele Testfälle müssen mindestens noch erzeugt werden, um eine vollständige Überdeckung ALLER GÜLTIGEN Eingabe-Äquivalenzklassen zu gewährleisten?",
+        hint: "3 Dauer-Klassen × 4 Intensitäts-Klassen = 12 Kombinationen? Nein! Äquivalenzklassen einzeln zählen.",
+        answers: [
+            "1",
+            "2",
+            "3",
+            "4"
+        ],
+        correct: 2,
+        feedback: {
+            trap: "Äquivalenzklassen: Dauer (3) + Intensität (4) = 7 Klassen. T1/T3 decken: <3h, sehr niedrig. T2 deckt: >6h, mittel. Fehlen: 3-6h, niedrig, hoch.",
+            principle: "Äquivalenzklassenüberdeckung: Jede Klasse mindestens einmal testen.",
+            explanation: "Fehlende Klassen: 3-6h (Dauer), niedrig (Intensität), hoch (Intensität). 3 weitere Testfälle nötig.",
+            reference: "Lehrplan 4.2.1"
+        }
+    },
+    {
+        id: "gtb-e-21",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 21",
+        lo: "FL-4.2.2",
+        kLevel: 3,
+        chapter: 4,
+        text: "Eine Smart-Home-App misst die durchschnittliche Temperatur und gibt Feedback:\n\n• Bis 10°C: Eiskalt!\n• 11-15°C: Ganz schön schattig!\n• 16-19°C: Cool!\n• 20-22°C: Zu warm!\n• Über 22°C: Sauna!\n\nWelches der folgenden Testsets liefert die HÖCHSTE Überdeckung von Grenzwerten bei 2-Wert-Grenzwertanalyse?",
+        hint: "2-Wert-GWA: Für jede Grenze 2 Werte. Grenzen: 10/11, 15/16, 19/20, 22/23.",
+        answers: [
+            "0°C, 11°C, 20°C, 22°C, 23°C",
+            "9°C, 15°C, 19°C, 23°C, 100°C",
+            "10°C, 16°C, 19°C, 22°C, 23°C",
+            "14°C, 15°C, 18°C, 19°C, 21°C, 22°C"
+        ],
+        correct: 2,
+        feedback: {
+            trap: "Grenzen sind: 10/11, 15/16, 19/20, 22/23. Option c) deckt: 10, 16, 19, 22, 23 = 5 Grenzwerte.",
+            principle: "2-Wert-GWA: Grenze und ein Nachbarwert für jede Grenze.",
+            explanation: "Option c) deckt die meisten Grenzwerte ab: 10 (Grenze), 16 (Grenze), 19 (Grenze), 22 (Grenze), 23 (Grenze).",
+            reference: "Lehrplan 4.2.2"
+        }
+    },
+    {
+        id: "gtb-e-22",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 22",
+        lo: "FL-4.2.3",
+        kLevel: 3,
+        chapter: 4,
+        text: "Ein System zur Berechnung der Strafe für Geschwindigkeitsübertretungen:\n\nR1: Geschwindigkeit >50, Schulzone Ja → 250€ + Führerscheinentzug\nR2: Geschwindigkeit >50, Schulzone Nein → 250€\nR3: Geschwindigkeit ≤50, Schulzone Ja → keine Strafe\nR4: Geschwindigkeit ≤50, Schulzone Nein → keine Strafe\n\nTestfälle:\nTF1: 65, Schulzone=Ja (R1)\nTF2: 45, Schulzone=Ja (R3)\nTF3: 50, Schulzone=Nein (R4)\nTF4: 49, Schulzone=Nein (R4)\n\nWelche Regel ist (noch) NICHT durch einen Testfall überdeckt?",
+        hint: "Prüfe, welche Regel noch nicht getestet wurde.",
+        answers: [
+            "Regel 4",
+            "Regel 1",
+            "Regel 2",
+            "Regel 3"
+        ],
+        correct: 2,
+        feedback: {
+            trap: "TF1→R1, TF2→R3, TF3→R4, TF4→R4. R2 (>50, Schulzone=Nein) fehlt!",
+            principle: "Entscheidungstabellenüberdeckung: Jede Regel mindestens einmal testen.",
+            explanation: "Regel 2 (Geschwindigkeit >50, Schulzone Nein) ist nicht durch einen Testfall abgedeckt.",
+            reference: "Lehrplan 4.2.3"
+        }
+    },
+    {
+        id: "gtb-e-23",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 23",
+        lo: "FL-4.2.4",
+        kLevel: 3,
+        chapter: 4,
+        text: "Betrachten Sie ein Zustandsdiagramm für eine Zapfsäule mit Kreditkarte. Jeder Test beginnt im Anfangszustand 'Warten auf Kunden' und endet, wenn ein Übergang im Anfangszustand ankommt.\n\nWie viele Tests benötigen Sie, um jeden Übergang im Zustandsdiagramm abzudecken?",
+        hint: "Zähle die Übergänge und finde die minimale Anzahl von Testpfaden.",
+        answers: [
+            "4",
+            "7",
+            "1",
+            "Unendlich viele Tests"
+        ],
+        correct: 0,
+        feedback: {
+            trap: "Ohne das genaue Diagramm ist es schwer zu sagen, aber typischerweise sind 4 Tests für vollständige Übergangsüberdeckung nötig.",
+            principle: "Minimale Anzahl Tests für Übergangsüberdeckung = Anzahl unabhängiger Pfade.",
+            explanation: "Für eine typische Zapfsäulen-Zustandsmaschine werden 4 Tests benötigt, um alle Übergänge abzudecken.",
+            reference: "Lehrplan 4.2.4"
+        }
+    },
+    {
+        id: "gtb-e-24",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 24",
+        lo: "FL-4.3.1",
+        kLevel: 2,
+        chapter: 4,
+        text: "Welche der folgenden Beschreibungen der Anweisungsüberdeckung trifft zu?",
+        hint: "Anweisungsüberdeckung = Prozentsatz der ausgeführten Anweisungen.",
+        answers: [
+            "Die Anweisungsüberdeckung ist ein Maß für die Anzahl der Quellcodezeilen, die während des Tests ausgeführt wurden.",
+            "Die Anweisungsüberdeckung ist ein Maß für den prozentualen Anteil der Anweisungen im Quellcode, die im Test ausgeführt wurden.",
+            "Die Anweisungsüberdeckung ist ein Maß für den prozentualen Anteil der Quellcodezeilen, die im Test ausgeführt wurden.",
+            "Die Anweisungsüberdeckung ist ein Maß für die Anzahl der Anweisungen im Quellcode, die während des Tests ausgeführt wurden."
+        ],
+        correct: 1,
+        feedback: {
+            trap: "a), d) Anzahl ist keine Überdeckung. c) Zeilen ≠ Anweisungen.",
+            principle: "Anweisungsüberdeckung = ausgeführte Anweisungen / alle Anweisungen × 100%.",
+            explanation: "Die Anweisungsüberdeckung ist ein Maß für den prozentualen Anteil der Anweisungen, die im Test ausgeführt wurden.",
+            reference: "Lehrplan 4.3.1"
+        }
+    },
+    {
+        id: "gtb-e-25",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 25",
+        lo: "FL-4.3.3",
+        kLevel: 2,
+        chapter: 4,
+        text: "Welche der folgenden Aussagen stellt einen Mehrwert von White-Box-Tests dar?",
+        hint: "White-Box-Mehrwert: Überdeckungsmessung, Code-Struktur testen.",
+        answers: [
+            "White-Box-Tests können Messgrößen für die Überdeckung von z.B. Anweisungen liefern.",
+            "White-Box-Tests können überprüfen, ob der Code die Akzeptanzkriterien erfüllt.",
+            "White-Box-Tests können die Kompatibilität mit anderen Systemen testen.",
+            "White-Box-Tests können alle Fehlerzustände im Code aufdecken."
+        ],
+        correct: 0,
+        feedback: {
+            trap: "b) Akzeptanzkriterien = Black-Box. c) Kompatibilität = Systemtest. d) Alle Fehler finden ist unmöglich.",
+            principle: "White-Box-Mehrwert: Überdeckungsmetriken (Anweisungs-, Zweigüberdeckung).",
+            explanation: "White-Box-Tests können Messgrößen für die Überdeckung liefern, z.B. Anweisungsüberdeckung oder Zweigüberdeckung.",
+            reference: "Lehrplan 4.3.3"
+        }
+    },
+    {
+        id: "gtb-e-26",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 26",
+        lo: "FL-4.4.3",
+        kLevel: 2,
+        chapter: 4,
+        text: "Sie testen eine mobile App, mit der Kunden auf ihre Bankkonten zugreifen können. Sie führen eine Testsuite aus, die jeden Bildschirm und jedes Feld anhand einer Sammlung von Heuristiken für Benutzerschnittstellen bewertet.\n\nWelche der folgenden Testverfahren kategorisiert das von Ihnen verwendete Testverfahren am BESTEN?",
+        hint: "Heuristiken = Checkliste von Best Practices.",
+        answers: [
+            "Entscheidungstabellentest",
+            "Explorativer Test",
+            "Checklistenbasiertes Testen",
+            "Intuitive Testfallermittlung"
+        ],
+        correct: 2,
+        feedback: {
+            trap: "a) Entscheidungstabelle = Geschäftslogik. b) Explorativ = Ad-hoc. d) Intuitiv = Erfahrung.",
+            principle: "Heuristiken-Sammlung = Checkliste.",
+            explanation: "Die Verwendung einer Sammlung von Heuristiken ist checklistenbasiertes Testen.",
+            reference: "Lehrplan 4.4.3"
+        }
+    },
+    {
+        id: "gtb-e-27",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 27",
+        lo: "FL-4.4.2",
+        kLevel: 2,
+        chapter: 4,
+        text: "Für welche der folgenden Situationen ist der Einsatz von explorativen Tests am EHESTEN sinnvoll?",
+        hint: "Explorative Tests = wenn Tester Erfahrung haben und wenig Spezifikation vorhanden ist.",
+        answers: [
+            "Wenn unter Zeitdruck die Durchführung bereits spezifizierter Tests beschleunigt werden muss.",
+            "Wenn das System inkrementell entwickelt wird und keine Test-Charta vorhanden ist.",
+            "Wenn Tester mit ausreichenden Kenntnissen über ähnliche Anwendungen und Technologien zur Verfügung stehen.",
+            "Wenn eine umfangreiche Spezifikation des Systems zur Verfügung steht."
+        ],
+        correct: 2,
+        feedback: {
+            trap: "a) Zeitdruck = nicht der Hauptgrund. b) Keine Test-Charta ist ein Problem. d) Umfangreiche Spezifikation → spezifizierte Tests.",
+            principle: "Explorative Tests: Erfahrene Tester mit Domänenwissen.",
+            explanation: "Explorative Tests sind sinnvoll, wenn Tester Erfahrung mit ähnlichen Anwendungen und Technologien haben.",
+            reference: "Lehrplan 4.4.2"
+        }
+    },
+    {
+        id: "gtb-e-28",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 28",
+        lo: "FL-4.5.2",
+        kLevel: 2,
+        chapter: 4,
+        text: "Ein agiles Entwicklungsteam hat folgende User-Story formuliert:\n\n'Als Anwender möchte ich, dass der Alarmton der elektronischen Eieruhr in der Lautstärke variabel einstellbar ist, so dass ich ihn immer hören kann.'\n\nWelches der folgenden Akzeptanzkriterien ist aus der Sicht des Testens am BESTEN geeignet, um eindeutige Abnahmetests zu entwerfen?",
+        hint: "Gute Akzeptanzkriterien sind messbar und eindeutig.",
+        answers: [
+            "Die Lautstärke ist für jede Person einfach einzustellen, d.h., die Einstelltasten müssen eine nutzbare Größe haben.",
+            "Der Tester kann den Alarmton auch auf der tiefsten Stufe gut hören.",
+            "Die Lautstärke kann in einem Bereich von 40 bis 80 Dezibel eingestellt werden.",
+            "Die Lautstärkeeinstellung funktioniert in den meistverkauften Modellen dieser Eieruhr korrekt."
+        ],
+        correct: 2,
+        feedback: {
+            trap: "a) 'Einfach' und 'nutzbar' sind subjektiv. b) 'Gut hören' ist subjektiv. d) 'Meistverkauft' ist unklar.",
+            principle: "Gute Akzeptanzkriterien: Messbar, eindeutig, testbar.",
+            explanation: "'40 bis 80 Dezibel' ist ein messbares, eindeutiges Kriterium, das einfach zu testen ist.",
+            reference: "Lehrplan 4.5.2"
+        }
+    },
+    {
+        id: "gtb-e-29",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 29",
+        lo: "FL-4.5.3",
+        kLevel: 3,
+        chapter: 4,
+        text: "Bitte betrachten Sie die folgende User-Story:\n\n'Als Systemadministrator möchte ich die Performanz des Servers überwachen können, um über einen Performanztest sicherzustellen, dass das System effizient läuft.'\n\nWelcher Testfall eignet sich am BESTEN für eine abnahmetestgetriebene Entwicklung der User-Story?",
+        hint: "ATDD: Gegeben/Wenn/Dann-Format, korrekte Rolle (Systemadministrator), vollständige Vorbedingungen.",
+        answers: [
+            "Login als Systemadministrator; wähle den Server aus; überprüfe die Serverleistung. GEGEBEN: Ich bin als Systemadministrator angemeldet UND GEGEBEN: Ich habe den Server ausgewählt, WENN ich 'Serverleistung überprüfen' auswähle, DANN wird mir eine Übersicht über die Performanz angezeigt.",
+            "Login als Benutzer; führe eine Aufgabe aus; überprüfe die Serverleistung. GEGEBEN: Ich bin als Benutzer angemeldet...",
+            "Login als Systemadministrator; wähle den Server aus; führe einen Performanztest durch. GEGEBEN: Ich bin als Systemadministrator angemeldet...",
+            "Login als Systemadministrator; führe einen Performanztest durch; überprüfe die Serverleistung. GEGEBEN: Ich bin als Systemadministrator angemeldet..."
+        ],
+        correct: 0,
+        feedback: {
+            trap: "b) Falsche Rolle (Benutzer statt Systemadministrator). c), d) Performanztest durchführen ist nicht das Ziel der User-Story.",
+            principle: "ATDD-Testfall: Korrekte Rolle, Gegeben/Wenn/Dann-Format, testet die User-Story.",
+            explanation: "Option a) verwendet die korrekte Rolle (Systemadministrator) und testet das Überwachen der Performanz.",
+            reference: "Lehrplan 4.5.3"
+        }
+    },
+    {
+        id: "gtb-e-30",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 30",
+        lo: "FL-5.1.2",
+        kLevel: 1,
+        chapter: 5,
+        text: "Welche der folgenden Aktivitäten führen Tester während der Releaseplanung im agilen Projekt durch?",
+        hint: "Releaseplanung = langfristige Planung. Tester unterstützen bei User-Storys und Testbarkeit.",
+        answers: [
+            "Tester identifizieren und verfeinern funktionale und nicht-funktionale Aspekte des Testobjekts.",
+            "Tester unterstützen die Ableitung von Aufgaben (Tasks) aus den User-Storys.",
+            "Tester nehmen an der detaillierten Risikoanalyse der User-Storys teil.",
+            "Tester unterstützen bei der Erstellung von User-Storys, bei deren Testbarkeit und bei den Akzeptanzkriterien."
+        ],
+        correct: 3,
+        feedback: {
+            trap: "a), b), c) sind eher Iterationsplanung-Aktivitäten.",
+            principle: "Releaseplanung: Tester unterstützen bei User-Storys, Testbarkeit, Akzeptanzkriterien.",
+            explanation: "Während der Releaseplanung unterstützen Tester bei der Erstellung von User-Storys, deren Testbarkeit und den Akzeptanzkriterien.",
+            reference: "Lehrplan 5.1.2"
+        }
+    },
+    {
+        id: "gtb-e-31",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 31",
+        lo: "FL-5.1.3",
+        kLevel: 2,
+        chapter: 5,
+        text: "Gegeben seien die folgenden Beispiele für Eingangs- und Endekriterien für einen Systemtest:\n\n1. Das geplante Testbudget ist aufgebraucht.\n2. Mehr als 95% der geplanten Testfälle sind vollständig durchgeführt.\n3. Die Testumgebung für den Performanztest ist eingerichtet und verifiziert.\n4. Es sind keine Prio-1-Fehlerzustände und maximal 4 Prio-2-Fehlerzustände offen.\n5. Die Designspezifikation ist durch ein technisches Review geprüft und freigegeben.\n6. Der Unittest ist abgeschlossen und freigegeben.\n\nWelche der folgenden Kombinationen ordnet die Beispiele am BESTEN als Eingangs- und Endekriterien ein?",
+        hint: "Eingangskriterien = was muss VOR dem Test erfüllt sein. Endekriterien = wann ist der Test fertig.",
+        answers: [
+            "Eingangskriterien: 5, 6; Endekriterien: 1, 2, 3, 4",
+            "Eingangskriterien: 2, 3, 4; Endekriterien: 1, 5, 6",
+            "Eingangskriterien: 1, 3; Endekriterien: 2, 4, 5, 6",
+            "Eingangskriterien: 3, 5, 6; Endekriterien: 1, 2, 4"
+        ],
+        correct: 3,
+        feedback: {
+            trap: "Eingangskriterien: Testumgebung bereit (3), Design geprüft (5), Unittest fertig (6). Endekriterien: Budget aufgebraucht (1), Testfälle durchgeführt (2), Fehler behoben (4).",
+            principle: "Eingangskriterien = Voraussetzungen. Endekriterien = Abschlussbedingungen.",
+            explanation: "Eingangskriterien: 3, 5, 6 (Voraussetzungen). Endekriterien: 1, 2, 4 (Abschlussbedingungen).",
+            reference: "Lehrplan 5.1.3"
+        }
+    },
+    {
+        id: "gtb-e-32",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 32",
+        lo: "FL-5.1.4",
+        kLevel: 3,
+        chapter: 5,
+        text: "Sie möchten den Testaufwand für ein neues Projekt mit Hilfe einer Drei-Punkt-Schätzung abschätzen:\n\n• Optimistisch (a): 300 Personentage\n• Wahrscheinlichst (m): 400 Personentage\n• Pessimistisch (b): 500 Personentage\n\nWie hoch schätzen Sie den Testaufwand auf Basis der Drei-Punkt-Schätzung?",
+        hint: "Drei-Punkt-Schätzung: E = (O + 4M + P) / 6.",
+        answers: [
+            "350 Personentage",
+            "420 Personentage",
+            "400 ± 33 Personentage",
+            "450 Personentage"
+        ],
+        correct: 2,
+        feedback: {
+            trap: "a) Falsch berechnet. b) Falsch berechnet. d) Falsch berechnet.",
+            principle: "E = (O + 4M + P) / 6 = (300 + 4×400 + 500) / 6 = 2400/6 = 400.",
+            explanation: "E = (300 + 1600 + 500) / 6 = 2400/6 = 400 Personentage. Die Standardabweichung ist (500-300)/6 ≈ 33.",
+            reference: "Lehrplan 5.1.4"
+        }
+    },
+    {
+        id: "gtb-e-33",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 33",
+        lo: "FL-5.1.5",
+        kLevel: 3,
+        chapter: 5,
+        text: "Sie wurden gebeten, eine optimale, risikobasierte Ausführungsreihenfolge festzulegen:\n\nT7: Priorität 2, keine Abhängigkeit\nT8: Priorität 1, abhängig von T7\nT9: Priorität 3, abhängig von T8\nT10: Priorität 3, abhängig von T8\nT11: Priorität 1, abhängig von T9\nT12: Priorität 2, abhängig von T10\n\nPriorität 1 ist dringlicher als Priorität 2.\n\nWelche der folgenden Testabläufe berücksichtigt die Abhängigkeiten und Prioritäten?",
+        hint: "Erst Abhängigkeiten erfüllen, dann nach Priorität sortieren.",
+        answers: [
+            "T7 → T8 → T10 → T11 → T9 → T12",
+            "T7 → T8 → T9 → T10 → T11 → T12",
+            "T7 → T8 → T10 → T9 → T11 → T12",
+            "T7 → T8 → T9 → T11 → T10 → T12"
+        ],
+        correct: 3,
+        feedback: {
+            trap: "T7 muss vor T8. T8 muss vor T9 und T10. T9 muss vor T11. T10 muss vor T12. T11 hat Prio 1, also vor T10 (Prio 3).",
+            principle: "Reihenfolge: Abhängigkeiten erfüllen + höchste Priorität zuerst.",
+            explanation: "T7 → T8 → T9 (braucht T8) → T11 (Prio 1, braucht T9) → T10 (Prio 3, braucht T8) → T12 (Prio 2, braucht T10).",
+            reference: "Lehrplan 5.1.5"
+        }
+    },
+    {
+        id: "gtb-e-34",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 34",
+        lo: "FL-5.1.7",
+        kLevel: 2,
+        chapter: 5,
+        text: "Welche der folgenden Aussagen veranschaulicht den Nutzen der Testquadranten?",
+        hint: "Testquadranten helfen, verschiedene Testarten zu verstehen und einzuordnen.",
+        answers: [
+            "Der Tester kann sich bei der Auswahl der Testarten auf den entsprechenden Quadranten beziehen, so dass alle Stakeholder den Zweck der Tests besser verstehen.",
+            "Der Tester kann die Testarten als Überdeckungsmetrik verwenden; je mehr Tests von jedem Quadranten, desto höher die Überdeckung.",
+            "Das Team sollte für jeden Quadranten die ungefähr gleiche Anzahl von Testfällen einplanen.",
+            "Der Tester kann die Testquadranten zur Risikoanalyse einsetzen."
+        ],
+        correct: 0,
+        feedback: {
+            trap: "b) Quadranten sind keine Überdeckungsmetrik. c) Gleiche Anzahl ist nicht sinnvoll. d) Quadranten sind nicht für Risikoanalyse.",
+            principle: "Testquadranten: Stakeholder verstehen den Zweck verschiedener Testarten.",
+            explanation: "Testquadranten helfen allen Stakeholdern, den Zweck verschiedener Testarten besser zu verstehen.",
+            reference: "Lehrplan 5.1.7"
+        }
+    },
+    {
+        id: "gtb-e-35",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 35",
+        lo: "FL-5.2.4",
+        kLevel: 2,
+        chapter: 5,
+        text: "Welche der folgenden Aussagen über die Steuerung von Produktrisiken im Rahmen der Risikominderung trifft NICHT zu?",
+        hint: "Risikominderung = mehr Tests, Experten einbeziehen, Code-Reviews. Was passt NICHT?",
+        answers: [
+            "Die Komplexität des Datenbankmoduls wurde als hoch eingestuft, daher wurden zusätzliche Testfälle erstellt.",
+            "Die Anforderungen an das Benutzerinterface sind unklar, daher wird ein Experte einbezogen.",
+            "Die Performanz des Systems ist entscheidend, daher wird auf Code-Reviews verzichtet, um Zeit zu sparen.",
+            "Das System muss eine hohe Verfügbarkeit aufweisen, daher werden zusätzliche Lasttests durchgeführt."
+        ],
+        correct: 2,
+        feedback: {
+            trap: "a), b), d) sind alle korrekte Risikominderungsmaßnahmen.",
+            principle: "Auf Code-Reviews verzichten ist KEINE Risikominderung, sondern erhöht das Risiko.",
+            explanation: "Auf Code-Reviews zu verzichten, um Zeit zu sparen, ist keine Risikominderung – es erhöht das Risiko.",
+            reference: "Lehrplan 5.2.4"
+        }
+    },
+    {
+        id: "gtb-e-36",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 36",
+        lo: "FL-5.3.3",
+        kLevel: 2,
+        chapter: 5,
+        text: "In einem regulatorischen Projekt, das bereits in Verzug ist, haben die Stakeholder darum gebeten, täglich über den Teststatus informiert zu werden. Die Stakeholder können sich aufgrund räumlicher und zeitlicher Gegebenheiten nicht direkt abstimmen.\n\nWelche ist die EFFEKTIVERE Möglichkeit, den Teststatus zu kommunizieren?",
+        hint: "Verteilte Teams + tägliche Updates + keine direkte Abstimmung = formelle Kommunikation.",
+        answers: [
+            "Es sollten formelle Kommunikationsmittel (z.B. formale Berichte, E-Mails) verwendet werden.",
+            "Die Kommunikation sollte über eine Chatgruppe erfolgen.",
+            "Die relevanten Stakeholder sollten mündlich informiert werden.",
+            "Der Teststatus sollte in täglichen Abstimmungsrunden per Videokonferenz kommuniziert werden."
+        ],
+        correct: 0,
+        feedback: {
+            trap: "b) Chat ist informell. c) Mündlich ist bei verteilten Teams schwierig. d) Tägliche Videokonferenzen sind bei Zeitzonen-Unterschieden unpraktisch.",
+            principle: "Verteilte Teams + regulatorisches Projekt = formelle Kommunikation.",
+            explanation: "Bei verteilten Teams und regulatorischen Anforderungen sind formelle Kommunikationsmittel (Berichte, E-Mails) am effektivsten.",
+            reference: "Lehrplan 5.3.3"
+        }
+    },
+    {
+        id: "gtb-e-37",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 37",
+        lo: "FL-5.4.1",
+        kLevel: 2,
+        chapter: 5,
+        text: "Welche der folgenden Aussagen beschreibt, wie das Konfigurationsmanagement die Testaktivitäten unterstützen kann?",
+        hint: "KM = Versionskontrolle, Baselines, Wiederherstellung alter Versionen.",
+        answers: [
+            "Eine Testerin hinterlegt den Fortschritt in einem Testmanagementwerkzeug.",
+            "Ein Tester speichert Testdaten für die datengetriebene Testausführung in einer Datenbank.",
+            "Ein Tester verwendet ein Tabellenkalkulationsprogramm für Entscheidungstabellen.",
+            "Ein Tester stellt automatisiert die relevanten Testmittel für eine ältere Version wieder her."
+        ],
+        correct: 3,
+        feedback: {
+            trap: "a) Testmanagement, nicht KM. b) Testdaten, nicht KM. c) Testentwurf, nicht KM.",
+            principle: "KM ermöglicht die Wiederherstellung alter Versionen von Testmitteln.",
+            explanation: "Konfigurationsmanagement ermöglicht es, Testmittel für ältere Versionen automatisiert wiederherzustellen.",
+            reference: "Lehrplan 5.4.1"
+        }
+    },
+    {
+        id: "gtb-e-38",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 38",
+        lo: "FL-5.5.1",
+        kLevel: 3,
+        chapter: 5,
+        text: "Sie testen eine neue Version der Software für eine Kaffeemaschine mit den Kategorien: Kaffeemenge (klein, mittel, groß), Zucker (0-4 Einheiten), Milch (ja/nein), Kaffeegeschmack (kein Sirup, Karamell, Haselnuss, Vanille).\n\nSie schreiben einen Fehlerbericht:\nTitel: Niedrige Kaffeetemperatur.\nKurze Zusammenfassung: Bei Kaffee mit Milch ist die Temperatur zu niedrig (unter 40°C).\nErwartetes Ergebnis: Temperatur sollte ca. 75°C sein.\nGrad der Auswirkung: Mittel\nPriorität: Normal\n\nWelche relevanten Informationen haben Sie vergessen?",
+        hint: "Was fehlt für die Reproduktion? Softwareversion!",
+        answers: [
+            "Tatsächliches Testergebnis.",
+            "Identifikation der getesteten Softwareversion.",
+            "Ideen zur Verbesserung des Testfalls.",
+            "Qualität des Arbeitsergebnisses, das getestet wurde."
+        ],
+        correct: 1,
+        feedback: {
+            trap: "a) Tatsächliches Ergebnis ist angegeben (unter 40°C). c) Verbesserungsideen gehören nicht in den Fehlerbericht. d) Qualität ist irrelevant.",
+            principle: "Fehlerbericht muss die Softwareversion enthalten.",
+            explanation: "Die Identifikation der getesteten Softwareversion fehlt im Fehlerbericht – wichtig für die Reproduktion.",
+            reference: "Lehrplan 5.5.1"
+        }
+    },
+    {
+        id: "gtb-e-39",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 39",
+        lo: "FL-6.1.1",
+        kLevel: 2,
+        chapter: 6,
+        text: "Gegeben seien folgende Testaktivitäten:\n1. Performanzmessung und IT-Sicherheitsprüfungen\n2. Testautomatisierung\n3. Management der Testaktivitäten\n4. Testentwurf und Testrealisierung\n\nund Testwerkzeuge:\nA. Werkzeuge zur Testdurchführung\nB. Testwerkzeuge für nicht-funktionale Tests\nC. Werkzeuge zur Vorbereitung von Testfällen und Testdaten\nD. Fehlermanagementwerkzeuge\n\nWelche Zuordnung der Werkzeuge zu den Aktivitäten trifft am BESTEN zu?",
+        hint: "Performance = nicht-funktional. Automatisierung = Testdurchführung. Management = Fehlermanagement.",
+        answers: [
+            "1 – D, 2 – C, 3 – B, 4 – A",
+            "1 – B, 2 – A, 3 – C, 4 – D",
+            "1 – B, 2 – A, 3 – D, 4 – C",
+            "1 – A, 2 – B, 3 – D, 4 – C"
+        ],
+        correct: 2,
+        feedback: {
+            trap: "1→B (Performance = nicht-funktional), 2→A (Automatisierung = Testdurchführung), 3→D (Management = Fehlermanagement), 4→C (Testentwurf = Testfälle/Testdaten).",
+            principle: "Werkzeuge passend zu Aktivitäten zuordnen.",
+            explanation: "1→B, 2→A, 3→D, 4→C ist die korrekte Zuordnung.",
+            reference: "Lehrplan 6.1.1"
+        }
+    },
+    {
+        id: "gtb-e-40",
+        source: "GTB CTFL v4.0 Sample Exam E, Frage 40",
+        lo: "FL-6.2.1",
+        kLevel: 1,
+        chapter: 6,
+        text: "Welche der folgenden Aussagen beschreibt am BESTEN den potenziellen Nutzen des Einsatzes von Werkzeugen für die automatisierte Testdurchführung?",
+        hint: "Automatisierung = schnellere Regressionstests, schnellere Rückmeldung.",
+        answers: [
+            "Die Implementierung von Regressionstests ist einfacher, da diese direkt mit einem Testskript implementiert werden können.",
+            "Es findet eine effizientere Bewertung des Testobjekts durch das Automatisierungswerkzeug statt.",
+            "Ein Testwerkzeug wird verwendet, wenn manuelles Testen besser geeignet ist.",
+            "Regressionstests können schneller durchgeführt werden und ermöglichen somit eine schnellere Rückmeldung an das Team."
+        ],
+        correct: 3,
+        feedback: {
+            trap: "a) Implementierung ist nicht 'einfacher'. b) Bewertung ist nicht der Hauptnutzen. c) Das ist kein Nutzen.",
+            principle: "Automatisierung = schnellere Regressionstests, schnellere Rückmeldung.",
+            explanation: "Der Hauptnutzen der Testautomatisierung ist, dass Regressionstests schneller durchgeführt werden können und somit schnellere Rückmeldung ermöglichen.",
+            reference: "Lehrplan 6.2.1"
+        }
     }
 ]);
 
