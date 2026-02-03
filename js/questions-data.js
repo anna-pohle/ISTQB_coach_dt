@@ -2228,9 +2228,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 3,
         feedback: {
-            trap: "Hohe Wiederholbarkeit (a) ist NICHT gegeben, da Tester unterschiedliche Wege wählen. Nicht alle Anforderungen werden abgedeckt (c).",
-            principle: "Checklistenbasiertes Testen = Flexibel für verschiedene Testarten.",
-            explanation: "Checklisten können verschiedene Testarten unterstützen, einschließlich funktionaler und nicht-funktionaler Tests. Das ist ein wichtiger Vorteil.",
+            trap: "a) KEINE hohe Wiederholbarkeit – Tester interpretieren unterschiedlich! b) 'Strukturierter Ansatz' ist eher Nachteil (weniger strukturiert als Testfälle). c) Nicht ALLE Anforderungen werden abgedeckt – Checklisten sind nicht vollständig.",
+            principle: "Checklistenbasiertes Testen = FLEXIBEL für verschiedene Testarten (funktional UND nicht-funktional).",
+            explanation: "d) ist RICHTIG: Checklisten unterstützen sowohl funktionale als auch nicht-funktionale Tests. Das ist ein wichtiger Vorteil – dieselbe Checkliste kann für verschiedene Testarten angepasst werden.",
             reference: "Lehrplan 4.4.3"
         }
     },
@@ -2250,9 +2250,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 2,
         feedback: {
-            trap: "Akzeptanzkriterien werden GEMEINSAM erstellt, nicht nur von Testern!",
-            principle: "Kollaborativ = ALLE Stakeholder erstellen User-Storys und Akzeptanzkriterien gemeinsam.",
-            explanation: "Akzeptanzkriterien werden GEMEINSAM von allen Stakeholdern erstellt (nicht nur von Testern), um eine gemeinsame Vision zu erhalten.",
+            trap: "a), b), d) beschreiben alle den kollaborativen Ansatz korrekt: 3 Aspekte (a), gemeinsame Erstellung (b), INVEST-Kriterien (d).",
+            principle: "Kollaborativ = ALLE Stakeholder erstellen User-Storys und Akzeptanzkriterien GEMEINSAM, nicht einzeln!",
+            explanation: "c) ist NICHT kollaborativ: Akzeptanzkriterien werden GEMEINSAM von allen Stakeholdern erstellt – nicht nur von Testern 'um Unabhängigkeit zu gewährleisten'. Das widerspricht dem kollaborativen Ansatz!",
             reference: "Lehrplan 4.5.1"
         }
     },
@@ -2272,9 +2272,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 3,
         feedback: {
-            trap: "AC3 prüft Rechte von SPEZIELLEN Benutzern, nicht regulären (a, b). Etage 5 ist nicht spezifiziert (c).",
-            principle: "ATDD: Testfall muss das spezifische Akzeptanzkriterium direkt prüfen.",
-            explanation: "AC3 besagt, dass spezielle Benutzer alle Rechte regulärer Benutzer haben. Der Test muss prüfen, ob ein spezieller Benutzer Zugang zu Etagen 1, 2 und 3 hat.",
+            trap: "a) testet AC1 (reguläre Rechte), nicht AC3. b) testet eine Einschränkung für reguläre, nicht AC3. c) Etage 5 ist NICHT spezifiziert – irrelevanter Test!",
+            principle: "ATDD: Testfall muss das SPEZIFISCHE Akzeptanzkriterium DIREKT prüfen. AC3 = Spezielle haben ALLE regulären Rechte.",
+            explanation: "d) ist RICHTIG: AC3 besagt 'Spezielle Benutzer haben alle Zugriffsrechte von regulären Benutzern'. Also: SPEZIELLER Benutzer muss Zugang zu Etagen 1, 2 UND 3 haben (= alle regulären Rechte).",
             reference: "Lehrplan 4.5.3"
         }
     },
@@ -2296,9 +2296,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 3,
         feedback: {
-            trap: "Testumgebung = Hardware/Software. Risikoverzeichnis = Risiken. Kontext = Hintergrund/Zweck.",
-            principle: "Testansatz = Teststufen, Metriken und Endekriterien.",
-            explanation: "Der Testansatz ist Teil des Testkonzepts und enthält Informationen über Teststufen, zu erhebende Metriken und Endekriterien (wie 100% Zweigüberdeckung).",
+            trap: "a) Testumgebung = Hardware, Software, Infrastruktur. b) Risikoverzeichnis = Auflistung von Risiken. c) Kontext = Hintergrund, Projektbeschreibung.",
+            principle: "TESTANSATZ im Testkonzept = Teststufen + zu erhebende Metriken + ENDEKRITERIEN (wie '100% Zweigüberdeckung').",
+            explanation: "d) ist RICHTIG: Der Testansatz enthält Informationen über Teststufen (Komponententest, Integration), Metriken und Endekriterien (100% Zweigüberdeckung für kritische Komponenten).",
             reference: "Lehrplan 5.1.1"
         }
     },
@@ -2318,9 +2318,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "Nicht nur Kunden+Entwickler zählen (a). Kundenschätzung ist nicht allein entscheidend (c). Exakte Gleichheit ist nicht nötig (d).",
-            principle: "Planungspoker = Diskussion bei Abweichungen, bis Konsens erreicht ist.",
-            explanation: "Bei unterschiedlichen Schätzungen diskutiert das Team die Gründe und führt weitere Runden durch, bis ein Konsens erreicht ist (nicht unbedingt exakt gleiche Werte).",
+            trap: "a) Die Tester-Schätzung (20) wird IGNORIERT – das ist NICHT Planungspoker! c) Keine Einzelperson entscheidet allein. d) Exakt gleiche Werte sind NICHT erforderlich – Konsens reicht.",
+            principle: "Planungspoker: Bei ABWEICHUNGEN wird DISKUTIERT (Warum 20 statt 5?) → dann erneut schätzen bis KONSENS.",
+            explanation: "b) ist RICHTIG: Bei unterschiedlichen Schätzungen (5, 5, 20) diskutiert das Team die GRÜNDE (z.B. Tester sieht Testaufwand, den andere übersehen) und führt weitere Runden durch, bis Konsens erreicht ist.",
             reference: "Lehrplan 5.1.4"
         }
     },
@@ -2340,9 +2340,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "Unten sind VIELE Tests (a). Schichtenanzahl kann variieren (c). High-Level-Tests sind LANGSAMER (d).",
-            principle: "Testpyramide: Oben weniger granular, unten mehr granular.",
-            explanation: "Je höher die Ebene in der Testpyramide, desto geringer ist die Testgranularität und desto weniger Tests werden benötigt.",
+            trap: "a) UNTEN sind VIELE Tests, nicht wenige! c) Die Anzahl der Schichten kann VARIIEREN. d) High-Level-Tests (E2E) sind LANGSAMER als Unit-Tests, nicht schneller!",
+            principle: "Testpyramide: UNTEN = viele kleine granulare Tests | OBEN = wenige große weniger-granulare Tests.",
+            explanation: "b) ist RICHTIG: Je höher in der Pyramide, desto WENIGER GRANULAR wird getestet. Unit-Tests (unten) testen kleine Einheiten isoliert. E2E-Tests (oben) testen das Gesamtsystem weniger granular.",
             reference: "Lehrplan 5.1.6"
         }
     },
@@ -2362,9 +2362,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "TF1 und TF3 (beide hoch) hängen von TF4 ab. TF6 hängt von TF5 ab, TF5 hängt von TF2 ab.",
-            principle: "Erst Abhängigkeiten erfüllen, dann nach Priorität sortieren.",
-            explanation: "TF4 muss zuerst (für TF1, TF3). Dann TF3 und TF1 (beide hoch). Dann TF2, TF5, TF6 (Abhängigkeitskette). Plan b) ist optimal.",
+            trap: "a) TF1, TF3 VOR TF4 ist unmöglich – sie hängen von TF4 ab! c) TF5 vor TF2 ist falsch – TF5 hängt von TF2 ab. d) TF6 am Ende ist ok, aber TF1/TF3 sollten vor TF5/TF6 (höhere Priorität).",
+            principle: "Reihenfolge: 1) ABHÄNGIGKEITEN erfüllen, 2) Nach PRIORITÄT sortieren (Hoch vor Mittel vor Niedrig).",
+            explanation: "b) ist RICHTIG: TF4 zuerst (keine Abhängigkeit). Dann TF3, TF1 (beide Hoch, hingen von TF4 ab). Dann TF2 (Niedrig, aber für TF5 nötig). Dann TF5. Dann TF6.",
             reference: "Lehrplan 5.1.5"
         }
     },
@@ -2384,9 +2384,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "Q1 = Technologie + Team-unterstützend (a). Q3 = Geschäftlich + Produkt-kritisierend (d). Q4 = Technologie + Produkt-kritisierend (c).",
-            principle: "Q2 = Geschäftsorientiert + Team-unterstützend = User-Story-Tests, funktionale Tests.",
-            explanation: "User-Story-basierte Tests gehören zu Q2 (geschäftsorientiert, Team-unterstützend). Sie helfen dem Team, die Anforderungen zu verstehen und umzusetzen.",
+            trap: "a) Komponentenintegration = Q1 (Technologie + Team). c) Nicht-funktional = Q4 (Technologie + Kritisierend). d) Explorativ = Q3 (Geschäftlich + Kritisierend).",
+            principle: "Testquadranten: Q1=Tech/Team, Q2=Business/Team, Q3=Business/Kritisch, Q4=Tech/Kritisch.",
+            explanation: "b) ist RICHTIG: User-Story-basierte Tests gehören zu Q2 (GESCHÄFTSORIENTIERT + TEAM-UNTERSTÜTZEND). Sie helfen dem Team, die Geschäftsanforderungen zu verstehen und umzusetzen.",
             reference: "Lehrplan 5.1.7"
         }
     },
@@ -2406,9 +2406,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 0,
         feedback: {
-            trap: "Sicherheitsstandards (b), Reaktionszeit (c) und Barrierefreiheit (d) sind PRODUKTRISIKEN.",
-            principle: "Projektrisiko = Betrifft das PROJEKT (Ressourcen, Zeit, etc.) | Produktrisiko = Betrifft das PRODUKT.",
-            explanation: "Das Versetzen von Testern ist ein Projektrisiko (betrifft Ressourcen). Die anderen Optionen sind Produktrisiken (betreffen die Qualität des Produkts).",
+            trap: "b) Sicherheitsstandards, c) Reaktionszeit, d) Barrierefreiheit sind alle PRODUKTRISIKEN – sie betreffen die Qualität des PRODUKTS, nicht das Projekt.",
+            principle: "PROJEKTRISIKO = betrifft PROJEKT (Ressourcen, Zeit, Budget) | PRODUKTRISIKO = betrifft PRODUKT (Qualität, Funktionalität).",
+            explanation: "a) ist RICHTIG: Das Versetzen erfahrener Tester ist ein PROJEKTRISIKO – es betrifft die Ressourcen des Projekts (weniger Tester = Risiko für Zeitplan, Qualität). Sicherheit, Performance, Barrierefreiheit sind Produktrisiken.",
             reference: "Lehrplan 5.2.2"
         }
     },
