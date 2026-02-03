@@ -1032,9 +1032,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "Nur Fehlernachtests reicht nicht – Regressionstests prüfen, ob andere Funktionen noch funktionieren.",
-            principle: "Nach Fehlerbehebung: Erst Fehlernachtest (Fehler behoben?), dann Regressionstest (nichts kaputt gemacht?).",
-            explanation: "Erst wird geprüft, ob der Fehler behoben ist (Fehlernachtest), dann ob keine neuen Probleme entstanden sind (Regressionstest).",
+            trap: "a) Nur Fehlernachtests reicht nicht – was ist mit Seiteneffekten? c) Nur Regressionstests prüft nicht, ob Fehler behoben. d) Falsche Reihenfolge – erst prüfen ob behoben, dann Seiteneffekte!",
+            principle: "Nach Fehlerbehebung: ERST Fehlernachtest (Fehler WEG?), DANN Regressionstest (nichts KAPUTT gemacht?).",
+            explanation: "b) ist RICHTIG: 1. Fehlernachtest bestätigt, dass der spezifische Fehler (falsche Routen) behoben ist. 2. Regressionstest stellt sicher, dass die Änderung keine anderen Funktionen (z.B. Stauumfahrung) beschädigt hat.",
             reference: "Lehrplan 2.2.3"
         }
     },
@@ -1059,9 +1059,9 @@ const examQuestions = Object.freeze([
         correct: 0,
         multipleCorrect: [0, 3],
         feedback: {
-            trap: "Antwortzeit (b) und Speicherverbrauch (e) erfordern AUSFÜHRUNG des Programms – also dynamische Tests.",
-            principle: "Statische Tests finden Inkonsistenzen und ungenutzte Variablen OHNE Ausführung.",
-            explanation: "Inkonsistenzen in Dokumenten (a) und ungenutzte Variablen (d) werden durch statische Analyse/Reviews gefunden, ohne das Programm auszuführen.",
+            trap: "b) Antwortzeit, c) Fehler bei Speicherknappheit, e) Speicherverbrauch – alle erfordern AUSFÜHRUNG = dynamische Tests.",
+            principle: "Statische Tests = OHNE Programmausführung. Finden: Inkonsistenzen, ungenutzte Variablen, Codeanomalien, Dokumentationsfehler.",
+            explanation: "a) + d) sind RICHTIG: a) Inkonsistenzen in Dokumenten werden durch Reviews gefunden (statisch). d) Ungenutzte Variablen werden durch statische Code-Analyse gefunden (ohne Ausführung).",
             reference: "Lehrplan 3.1.3"
         }
     },
@@ -1081,9 +1081,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 0,
         feedback: {
-            trap: "Option c) ist kein Vorteil – ständige Änderungen sind problematisch, nicht vorteilhaft.",
-            principle: "Frühes Feedback = Änderungen FRÜHER verstehen = Weniger Nacharbeit.",
-            explanation: "Durch frühes Stakeholder-Feedback werden Anforderungsänderungen früher erkannt und können rechtzeitig umgesetzt werden.",
+            trap: "b) Dass Stakeholder Benutzeranforderungen verstehen, ist nicht das Ziel von Feedback. c) 'So oft ändern wie sie möchten' ist KEIN Vorteil – das wäre Chaos! d) Information über nicht umgesetzte Features ist Projektmanagement, nicht Feedback-Vorteil.",
+            principle: "Frühes Stakeholder-Feedback = Anforderungsänderungen FRÜHER erkennen = WENIGER teure Nacharbeit.",
+            explanation: "a) ist RICHTIG: Durch frühes und häufiges Feedback werden Änderungen der Anforderungen FRÜHER verstanden und können RECHTZEITIG umgesetzt werden – bevor sie teuer werden.",
             reference: "Lehrplan 3.2.1"
         }
     },
@@ -1103,9 +1103,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "Walkthrough wird vom AUTOR geleitet (A), Inspektion sammelt METRIKEN (C).",
-            principle: "Technisch=Konsens(D), Informell=ohne Doku(B), Inspektion=Metriken(C), Walkthrough=Autor leitet(A).",
-            explanation: "1. Technisches Review→D (Konsens), 2. Informelles Review→B (ohne Doku), 3. Inspektion→C (Metriken), 4. Walkthrough→A (Autor leitet).",
+            trap: "a), c), d) ordnen falsch zu. Merkhilfe: Walkthrough=A(Autor), Informell=B(keine Doku), Inspektion=C(Metriken), Technisch=D(Konsens).",
+            principle: "Review-Typen: 1. Technisch=Konsens durch Experten(D), 2. Informell=ohne Dokumentation(B), 3. Inspektion=formell mit Metriken(C), 4. Walkthrough=Autor leitet, Schulung(A).",
+            explanation: "b) ist RICHTIG: 1→D (Technisch: Konsens durch qualifizierte Gutachter), 2→B (Informell: ohne formale Doku), 3→C (Inspektion: maximale Fehlerfindung + Metriken), 4→A (Walkthrough: Autor leitet, Schulungszweck).",
             reference: "Lehrplan 3.2.4"
         }
     },
@@ -1125,9 +1125,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "Management-Teilnahme (a) kann Reviews politisch machen. Gutachter bewerten (c) ist kontraproduktiv.",
-            principle: "Große Dokumente aufteilen = Fokussierte Reviews = Bessere Ergebnisse.",
-            explanation: "Reviews sind effektiver, wenn große Arbeitsprodukte in überschaubare Teile aufgeteilt werden.",
+            trap: "a) Management-Teilnahme kann politisch werden – Gutachter halten sich zurück. c) 'Bewertung durch Gutachter als Ziel' ist NICHT das Ziel eines Reviews! d) 'Ein Dokument pro Review' ist keine Erfolgsfaktor-Aussage.",
+            principle: "Review-Erfolgsfaktor: GROßE Arbeitsprodukte in KLEINE, überschaubare Teile aufteilen!",
+            explanation: "b) ist RICHTIG: Große Dokumente aufzuteilen hilft Gutachtern, fokussiert zu bleiben und gründlicher zu prüfen. Die Konzentration lässt nach bei zu großen Dokumenten.",
             reference: "Lehrplan 3.2.5"
         }
     },
@@ -1149,9 +1149,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 2,
         feedback: {
-            trap: "Beide können auf allen Teststufen (b) und in allen SDLCs (d) eingesetzt werden.",
-            principle: "Black-Box = basiert auf SPEZIFIKATION | Erfahrungsbasiert = basiert auf ERFAHRUNG.",
-            explanation: "Black-Box-Verfahren nutzen die Spezifikation als Testbasis, erfahrungsbasierte Verfahren nutzen das Wissen und die Erfahrung der Tester.",
+            trap: "a) Testobjekt ist bei beiden das System. b) Beide können auf allen Teststufen eingesetzt werden. d) Beide können in allen SDLCs eingesetzt werden. Das unterscheidet sie NICHT!",
+            principle: "Der HAUPTUNTERSCHIED ist die TESTBASIS: Black-Box = Spezifikation | Erfahrungsbasiert = Erfahrung des Testers.",
+            explanation: "c) ist RICHTIG: Black-Box-Verfahren nutzen die SPEZIFIKATION als Testbasis (z.B. Anforderungen). Erfahrungsbasierte Verfahren nutzen das WISSEN und die ERFAHRUNG des Testers als Basis.",
             reference: "Lehrplan 4.1.1"
         }
     },
@@ -1171,9 +1171,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 0,
         feedback: {
-            trap: "Option b) hat keine 'zu lange' PIN – nur zwei 'zu kurze'. Option c) hat zwar alle Längen, aber 1112 ist GÜLTIG (4 Ziffern mit 2 verschiedenen). Option d) fehlt ein gültiger Fall.",
-            principle: "4 Äquivalenzklassen: zu kurz (<4) | 4 Ziffern alle identisch | 4 Ziffern mit ≥2 verschiedenen | zu lang (>4).",
-            explanation: "Option a) deckt alle 4 Klassen ab: 112 (zu kurz), 1111 (4 identische=ungültig), 1234 (4 mit ≥2 unterschiedlichen=gültig), 123456 (zu lang).",
+            trap: "b) 1, 123 sind beide 'zu kurz' – keine Unterscheidung. Und kein 'zu lang'. c) 1112 hat 2 verschiedene Ziffern → GÜLTIG, nicht alle identisch! d) Alle 4 sind kurz oder 4 identisch – kein gültiger Fall und kein 'zu lang'.",
+            principle: "4 Äquivalenzklassen für PIN: 1) zu kurz (<4), 2) 4 identische (ungültig), 3) 4 mit ≥2 verschiedenen (gültig), 4) zu lang (>4).",
+            explanation: "a) ist RICHTIG: 112 (zu kurz), 1111 (4 identische → ungültig), 1234 (4 mit 4 verschiedenen → gültig), 123456 (zu lang). Alle 4 Klassen abgedeckt!",
             reference: "Lehrplan 4.2.1"
         }
     },
@@ -1193,9 +1193,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 3,
         feedback: {
-            trap: "Grenzwerte sind 100/101 und 199/200 – nicht 99/100 oder 200/201.",
-            principle: "2-Wert-GWA: Grenze + direkter Nachbar. Hier: 100↔101 und 199↔200.",
-            explanation: "Die Grenzwerte für 'Wert OK' (101-199) sind: 101, 199 (gültig) und 100, 200 (ungültig). Option d) testet genau diese.",
+            trap: "a) testet 201 statt 199 – falsche obere Grenze. b) 99 und 201 sind KEINE direkten Nachbarn der Grenzen. c) konzentriert sich nur auf untere Grenze, ignoriert obere (199/200).",
+            principle: "Gültiger Bereich: 101-199. Grenzen: 100↔101 (unten), 199↔200 (oben). 2-Wert = Grenze + direkter Nachbar.",
+            explanation: "d) ist RICHTIG: Testet alle 4 Grenzwerte der 2-Wert-GWA: 100 (ungültig, Grenze unten), 101 (gültig, Grenze unten), 199 (gültig, Grenze oben), 200 (ungültig, Grenze oben). 150 ist ein repräsentativer Wert im gültigen Bereich.",
             reference: "Lehrplan 4.2.2"
         }
     },
@@ -1216,9 +1216,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 2,
         feedback: {
-            trap: "Widersprüchliche Regeln = gleiche Bedingungen, unterschiedliche Aktionen.",
-            principle: "Entscheidungstabellen: Gleiche Eingabekombination darf nur EINE Aktion haben.",
-            explanation: "Die Kombination C2=T, C3=T führt bei C1=T zu 'Führerschein ausstellen' (R1), bei C1=F aber auch – das zeigt einen Widerspruch in der Tabelle.",
+            trap: "a), b), d) sind jeweils einzelne Kombinationen – sie zeigen keinen Widerspruch zwischen ZWEI Regeln. Widerspruch braucht ZWEI Kombinationen mit gleichem Ergebnis aber unterschiedlicher Aktion.",
+            principle: "Widerspruch in Entscheidungstabellen = Gleiche Bedingungskombination führt zu VERSCHIEDENEN Aktionen.",
+            explanation: "c) ist RICHTIG: Die Testdaten zeigen den Widerspruch, indem sie zwei Kombinationen testen (C1=T,C2=T,C3=T und C1=F,C2=T,C3=T), die zur gleichen Aktion führen sollten, aber die Tabelle widersprüchlich definiert ist.",
             reference: "Lehrplan 4.2.3"
         }
     },
@@ -1239,9 +1239,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 0,
         feedback: {
-            trap: "Nicht die Anzahl der Zustände zählen, sondern die Übergänge!",
-            principle: "100% Übergangsüberdeckung = Jeder Pfeil im Diagramm mindestens einmal.",
-            explanation: "Mit 3 Testfällen können alle Übergänge im Diagramm abgedeckt werden, wenn die Pfade geschickt gewählt werden.",
+            trap: "b) 2 ist zu wenig – schafft nicht alle Übergänge. c) 5 und d) 6 sind mehr als nötig – es reichen weniger bei geschickter Pfadwahl.",
+            principle: "100% gültige Übergangsüberdeckung = Jeder PFEIL (Übergang) im Diagramm mindestens 1× durchlaufen.",
+            explanation: "a) ist RICHTIG: Mit 3 geschickt gewählten Testfällen können alle Übergänge im Diagramm abgedeckt werden. Zähle die Pfeile und optimiere die Pfade!",
             reference: "Lehrplan 4.2.4"
         }
     },
@@ -1262,9 +1262,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "Nicht die Anzahl der Knoten zählen – Überdeckungselemente sind hier die ZWEIGE (Kanten)!",
-            principle: "Bei Zweigtests: Überdeckungselemente = Zweige = ausgehende Kanten von Entscheidungen (Rauten).",
-            explanation: "Im Diagramm gibt es 2 Entscheidungsknoten (Rauten), jeder hat 2 Ausgänge (true/false). Also: 2 × 2 = 4 Überdeckungselemente (Zweige).",
+            trap: "a) 2 wäre nur Anzahl der Entscheidungen, nicht der Zweige. c) 8 und d) 7 sind zu hoch – systematisch die Kanten zählen!",
+            principle: "Zweigtest: Überdeckungselemente = ZWEIGE (Kanten) = Ausgänge aus Entscheidungsknoten (jede Raute hat 2: true/false).",
+            explanation: "b) ist RICHTIG: Im Diagramm gibt es 2 Entscheidungsknoten (Rauten). Jede Entscheidung hat 2 Ausgänge (true, false). Also: 2 × 2 = 4 Überdeckungselemente (Zweige).",
             reference: "Lehrplan 4.3.2"
         }
     },
@@ -1284,9 +1284,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 0,
         feedback: {
-            trap: "Option c) ist falsch – Zweigtests sind White-Box und beinhalten KEINE Black-Box-Verfahren.",
-            principle: "White-Box-Metriken zeigen, wie viel CODE durch Black-Box-Tests abgedeckt wird.",
-            explanation: "White-Box-Überdeckungsmessungen zeigen Testern, welche Teile des Codes durch ihre Black-Box-Tests ausgeführt wurden.",
+            trap: "b) Nicht erreichbarer Code ist ein Nebeneffekt, nicht der Hauptnutzen. c) Falsch – Zweigtests sind rein White-Box! d) White-Box liefert keine Überdeckungselemente FÜR Black-Box.",
+            principle: "White-Box UNTERSTÜTZT Black-Box: Überdeckungsmetriken zeigen, wie viel CODE durch Black-Box-Tests abgedeckt wird.",
+            explanation: "a) ist RICHTIG: White-Box-Überdeckungsmaße (z.B. Anweisungs-/Zweigüberdeckung) zeigen Testern, welche Teile des Codes durch ihre Black-Box-Tests ausgeführt wurden – und wo LÜCKEN sind.",
             reference: "Lehrplan 4.3.3"
         }
     },
@@ -1306,9 +1306,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "Die Liste enthält typische FEHLERTYPEN, nicht allgemeine Checklistenpunkte.",
-            principle: "Fehlerangriff (Error Guessing) = Liste von typischen Fehlern systematisch prüfen.",
-            explanation: "Diese Liste enthält typische Fehlertypen (Error Types) – das ist charakteristisch für Fehlerangriff/Error Guessing.",
+            trap: "a) Explorativ nutzt keine vordefinierte Liste. c) Checklistenbasiert nutzt allgemeine Qualitätskriterien, keine spezifischen Fehlertypen. d) Grenzwertanalyse testet Bereichsgrenzen, nicht Fehlertypen.",
+            principle: "Fehlerangriff (Error Guessing) = Liste von TYPISCHEN FEHLERN systematisch prüfen (Division durch Null, falsche Eingabe, etc.).",
+            explanation: "b) ist RICHTIG: Die Liste (Korrekte Eingabe nicht akzeptiert, Falsche Eingabe akzeptiert, Division durch Null...) enthält typische FEHLERTYPEN – das ist charakteristisch für Fehlerangriff/Error Guessing.",
             reference: "Lehrplan 4.4.1"
         }
     },
@@ -1328,9 +1328,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 3,
         feedback: {
-            trap: "Option a) und c) beschreiben nicht, wie MEHR Überdeckung entsteht.",
-            principle: "Checklistenbasiert: Verschiedene Tester = verschiedene Interpretationen = breitere Überdeckung.",
-            explanation: "Da verschiedene Tester dieselben Checklistenpunkte unterschiedlich interpretieren, werden insgesamt mehr Varianten getestet.",
+            trap: "a) Niedrigerer Detaillierungsgrad erklärt nicht die HÖHERE Überdeckung. b) Automatisierung ist kein inhärentes Merkmal von Checklisten. c) Separate Tests für jeden Punkt führen nicht automatisch zu höherer Überdeckung.",
+            principle: "Checklistenbasiert + verschiedene Tester = verschiedene INTERPRETATIONEN = breitere Gesamtüberdeckung.",
+            explanation: "d) ist RICHTIG: Da Checklistenpunkte allgemein formuliert sind, interpretieren verschiedene Tester sie UNTERSCHIEDLICH. Dadurch werden insgesamt MEHR Varianten getestet → höhere Überdeckung.",
             reference: "Lehrplan 4.4.3"
         }
     },
@@ -1350,9 +1350,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "Option a) ist regelbasiert, Option c) ist Code, Option d) ist standardbasiert.",
-            principle: "Szenarioorientiert = Beschreibt einen ABLAUF/Workflow (Wenn...dann...).",
-            explanation: "Option b) beschreibt ein Szenario: Kunde legt Artikel in Warenkorb → geht zur Kasse → wird aufgefordert, sich anzumelden.",
+            trap: "a) ist REGELBASIERT (muss ermöglichen...). c) ist CODE/technische Spezifikation. d) ist STANDARDBASIERT (Accessibility-Standards).",
+            principle: "Szenarioorientiert = Beschreibt einen BENUTZER-ABLAUF/Workflow mit Schritten (Wenn Benutzer X tut, dann passiert Y).",
+            explanation: "b) ist RICHTIG: Beschreibt ein komplettes Szenario: Kunde legt Artikel in Warenkorb → geht zur Kasse → wird aufgefordert, sich anzumelden. Das ist ein Workflow mit Auslöser und Reaktion.",
             reference: "Lehrplan 4.5.2"
         }
     },
@@ -1372,9 +1372,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 3,
         feedback: {
-            trap: "AC3 sagt: Spezielle Benutzer haben ALLE Rechte regulärer Benutzer. Also Etagen 1-3 für spezielle Benutzer testen!",
-            principle: "ATDD: Testfall muss das spezifische Akzeptanzkriterium direkt prüfen.",
-            explanation: "AC3 prüft, ob spezielle Benutzer die Rechte regulärer Benutzer haben. Also: Spezieller Benutzer → Etagen 1, 2, 3.",
+            trap: "a) testet AC1-Rechte für reguläre Benutzer, nicht AC3. b) testet eine Einschränkung für reguläre Benutzer, nicht AC3. c) testet Etage 5, die nicht definiert ist – irrelevant für AC3.",
+            principle: "ATDD: Testfall muss das SPEZIFISCHE Akzeptanzkriterium direkt prüfen. AC3 = Spezielle haben ALLE Rechte regulärer Benutzer.",
+            explanation: "d) ist RICHTIG: AC3 besagt 'Spezielle Benutzer haben alle Rechte regulärer Benutzer'. Also: Spezieller Benutzer muss Zugang zu Etagen 1, 2, 3 haben (= Rechte regulärer Benutzer).",
             reference: "Lehrplan 4.5.3"
         }
     },
