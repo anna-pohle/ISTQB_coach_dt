@@ -463,41 +463,97 @@ const syllabusData = Object.freeze({
             subchapters: [
                 {
                     id: "2.1",
-                    title: "Softwareentwicklungslebenszyklus-Modelle",
+                    title: "Testen im Kontext eines SDLC",
                     page: 28,
                     quote: "Ein Softwareentwicklungslebenszyklusmodell beschreibt die Aktivitäten, die in jeder Phase eines Entwicklungsprojekts durchgeführt werden, sowie deren logische und chronologische Beziehung zueinander.",
-                    keyPoints: [
+                    subsections: [
                         {
-                            title: "Anpassung an den SDLC",
-                            content: "Testaktivitäten werden an den Softwareentwicklungslebenszyklus angepasst (sequenziell, iterativ, agil).",
-                            coachNote: "🎯 Prüfungsfalle – Shift-Left:\n\n✅ Shift-Left-Beispiele:\n• Anforderungen reviewen VOR Akzeptanz\n• Tests schreiben VOR Code (TDD)\n• Performance früh testen\n\n❌ KEIN Shift-Left:\n'Nicht-funktionale Tests erst auf Systemtest-Ebene'\n→ Das ist das Gegenteil!"
+                            id: "2.1.1",
+                            title: "Auswirkungen des SDLC auf das Testen",
+                            page: 28,
+                            quote: "Testaktivitäten werden an den Softwareentwicklungslebenszyklus angepasst.",
+                            keyPoints: [
+                                {
+                                    title: "Anpassung an den SDLC",
+                                    content: "Testaktivitäten werden an den Softwareentwicklungslebenszyklus angepasst (sequenziell, iterativ, agil).",
+                                    coachNote: "Sequenziell = Wasserfall (Phasen nacheinander). Iterativ/Agil = kurze Zyklen."
+                                }
+                            ]
                         },
                         {
-                            title: "Frühe Testaktivitäten",
-                            content: "Testplanung und Testanalyse können beginnen, sobald Dokumente der Testbasis verfügbar sind.",
-                            coachNote: "🎯 Prüfungsfalle – Sequenzieller SDLC:\n\nWas geht FRÜH im sequenziellen SDLC?\n✅ Statische Tests (Reviews)\n✅ Testplanung\n✅ Testanalyse\n\n❌ Was geht NICHT früh?\n• Dynamische Tests (Unit-Tests, etc.)\n  → brauchen ausführbaren Code!\n• Abnahmetests\n  → brauchen fertiges Produkt!"
+                            id: "2.1.2",
+                            title: "SDLC und gute Praktiken für das Testen",
+                            page: 29,
+                            quote: "Gute Praktiken: Zu jeder Entwicklungsaktivität gibt es eine entsprechende Testaktivität. Testen beginnt früh.",
+                            keyPoints: [
+                                {
+                                    title: "Frühe Testaktivitäten",
+                                    content: "Testplanung und Testanalyse können beginnen, sobald Dokumente der Testbasis verfügbar sind.",
+                                    coachNote: "🎯 Prüfungsfalle – Sequenzieller SDLC:\n\nWas geht FRÜH im sequenziellen SDLC?\n✅ Statische Tests (Reviews)\n✅ Testplanung\n✅ Testanalyse\n\n❌ Was geht NICHT früh?\n• Dynamische Tests (Unit-Tests, etc.)\n  → brauchen ausführbaren Code!"
+                                }
+                            ]
                         },
                         {
-                            title: "ATDD / BDD / TDD",
-                            content: "Testgetriebene Entwicklungsansätze mit unterschiedlichem Fokus.",
-                            coachNote: "🎯 Prüfungsfalle – Verwechslungsgefahr:\n\n• ATDD → Tests aus AKZEPTANZKRITERIEN\n• BDD → GIVEN/WHEN/THEN Format\n• TDD → Tests ZUERST, dann Code\n\nATDD ≠ BDD ≠ TDD!"
+                            id: "2.1.3",
+                            title: "Testen als Treiber für die Softwareentwicklung",
+                            page: 29,
+                            quote: "Test-First-Ansätze: TDD, ATDD, BDD – Tests werden VOR der Implementierung geschrieben.",
+                            keyPoints: [
+                                {
+                                    title: "TDD (Testgetriebene Entwicklung)",
+                                    content: "Tests werden zuerst geschrieben, dann wird Code implementiert, um die Tests zu bestehen.",
+                                    coachNote: "TDD = Tests ZUERST, dann Code."
+                                },
+                                {
+                                    title: "ATDD (Abnahmetestgetriebene Entwicklung)",
+                                    content: "Tests werden aus Akzeptanzkriterien als Teil des Systementwurfs abgeleitet.",
+                                    coachNote: "ATDD = Tests aus AKZEPTANZKRITERIEN."
+                                },
+                                {
+                                    title: "BDD (Verhaltensgetriebene Entwicklung)",
+                                    content: "Tests beschreiben das gewünschte Verhalten im GIVEN/WHEN/THEN-Format.",
+                                    coachNote: "🎯 Prüfungsfalle – Test-First-Ansätze:\n\n• TDD → Komponententests ZUERST\n• ATDD → Tests aus Akzeptanzkriterien\n• BDD → GIVEN/WHEN/THEN Format\n\n❌ 'Komponententestgetriebene Entwicklung' gibt es nicht!"
+                                }
+                            ]
                         },
                         {
-                            title: "Retrospektiven",
-                            content: "Regelmäßige Reflexion des Teams zur Prozessverbesserung.",
-                            coachNote: "🎯 Prüfungsfalle – Retrospektiven:\n\nZweck: Kontinuierliche PROZESSVERBESSERUNG\n\n❌ FALSCH als Hauptzweck:\n• 'Team loben und motivieren'\n• 'Kunden gefallen'\n• 'Endnutzer-Feedback einholen'"
-                        },
-                        {
-                            title: "DevOps",
+                            id: "2.1.4",
+                            title: "DevOps und Testen",
+                            page: 30,
                             quote: "DevOps ist ein organisatorischer Ansatz, der Entwicklung und Betrieb zusammenbringt.",
-                            content: "Fördert CI/CD (Continuous Integration/Delivery), schnelle Rückmeldungen, Testautomatisierung. Vorteile: schnelleres Feedback, stabilere Testumgebungen.",
-                            coachNote: "🎯 Prüfungsfalle – DevOps:\n\nVorteile:\n• Schnelles Feedback zur Codequalität\n• Automatisierte CI/CD-Prozesse\n• Stabile Testumgebungen\n• Shift-Left-Förderung\n\n❌ DevOps ersetzt NICHT Unabhängigkeit des Testens!"
+                            keyPoints: [
+                                {
+                                    title: "CI/CD",
+                                    content: "Fördert CI/CD (Continuous Integration/Delivery), schnelle Rückmeldungen, Testautomatisierung.",
+                                    coachNote: "🎯 Prüfungsfalle – DevOps:\n\nVorteile:\n• Schnelles Feedback zur Codequalität\n• Automatisierte CI/CD-Prozesse\n• Stabile Testumgebungen\n• Shift-Left-Förderung\n\n❌ DevOps ersetzt NICHT Unabhängigkeit des Testens!"
+                                }
+                            ]
                         },
                         {
-                            title: "Shift-Left",
+                            id: "2.1.5",
+                            title: "Shift-Left-Ansatz",
+                            page: 30,
                             quote: "Shift-Left bedeutet, dass Testaktivitäten früher im SDLC durchgeführt werden.",
-                            content: "Frühe Reviews, frühe Testplanung, TDD. Ziel: Fehler früher finden = billiger beheben.",
-                            coachNote: "🎯 Shift-Left-Beispiele:\n\n✅ Shift-Left:\n• Anforderungen reviewen VOR Akzeptanz\n• Tests schreiben VOR Code (TDD)\n• Performance früh testen\n\n❌ KEIN Shift-Left:\n'Tests erst am Ende'"
+                            keyPoints: [
+                                {
+                                    title: "Frühe Tests",
+                                    content: "Frühe Reviews, frühe Testplanung, TDD. Ziel: Fehler früher finden = billiger beheben.",
+                                    coachNote: "🎯 Prüfungsfalle – Shift-Left:\n\n✅ Shift-Left-Beispiele:\n• Anforderungen reviewen VOR Akzeptanz\n• Tests schreiben VOR Code (TDD)\n• Performance früh testen\n\n❌ KEIN Shift-Left:\n'Nicht-funktionale Tests erst auf Systemtest-Ebene'"
+                                }
+                            ]
+                        },
+                        {
+                            id: "2.1.6",
+                            title: "Retrospektiven und Prozessverbesserung",
+                            page: 31,
+                            quote: "Retrospektiven sind in agilen Projekten üblich. Das Team reflektiert über die Iteration und identifiziert Verbesserungen.",
+                            keyPoints: [
+                                {
+                                    title: "Zweck",
+                                    content: "Regelmäßige Reflexion des Teams zur kontinuierlichen Prozessverbesserung.",
+                                    coachNote: "🎯 Prüfungsfalle – Retrospektiven:\n\nZweck: Kontinuierliche PROZESSVERBESSERUNG\n\n❌ FALSCH als Hauptzweck:\n• 'Team loben und motivieren'\n• 'Kunden gefallen'\n• 'Endnutzer-Feedback einholen'"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -533,7 +589,7 @@ const syllabusData = Object.freeze({
                     subsections: [
                         {
                             id: "2.2.1",
-                            title: "Teststufen und Testobjekte",
+                            title: "Teststufen",
                             page: 32,
                             quote: "Komponententest = isolierte Komponenten. Integrationstest = Schnittstellen. Systemtest = Gesamtsystem. Abnahmetest = Benutzerbedürfnisse.",
                             keyPoints: [
@@ -543,34 +599,52 @@ const syllabusData = Object.freeze({
                                     coachNote: "🎯 Prüfungsfalle – Teststufen zuordnen:\n\n• Isolierte Komponente → Komponententest\n• Kommunikation zwischen Komp. → Integrationstest\n• Geschäftsanforderungen → ABNAHMETEST (nicht System!)\n• User-Story → Systemtest"
                                 }
                             ]
+                        },
+                        {
+                            id: "2.2.2",
+                            title: "Testarten",
+                            page: 33,
+                            quote: "Testarten sind Gruppen von Testaktivitäten, die auf spezifische Qualitätsmerkmale ausgerichtet sind.",
+                            keyPoints: [
+                                {
+                                    title: "Funktionaler Test",
+                                    content: "Prüft, ob die Funktionen den Anforderungen entsprechen (Was macht das System?).",
+                                    coachNote: "Black-Box: Kein Code nötig. Anforderungen reichen."
+                                },
+                                {
+                                    title: "Nicht-funktionaler Test",
+                                    content: "Prüft Eigenschaften wie Performance, Usability, Sicherheit, Zuverlässigkeit.",
+                                    coachNote: "Nicht-funktional = WIE es funktioniert (schnell, benutzerfreundlich, sicher)."
+                                },
+                                {
+                                    title: "Black-Box vs. White-Box",
+                                    content: "Black-Box: Spezifikation/Verhalten, ohne Code. White-Box: interne Struktur (Code) wird einbezogen.",
+                                    coachNote: "🎯 Prüfungsfalle – Black-Box vs. White-Box:\n\n📦 BLACK-BOX:\n• Testest das VERHALTEN von außen\n• Beispiele: Äquivalenzklassen, Grenzwerte\n\n🔍 WHITE-BOX:\n• Testest die STRUKTUR von innen\n• Beispiele: Anweisungs-, Zweigüberdeckung\n\n⚠️ 'Überdeckung'/'Coverage' → WHITE-BOX!"
+                                }
+                            ]
+                        },
+                        {
+                            id: "2.2.3",
+                            title: "Fehlernachtest und Regressionstest",
+                            page: 34,
+                            quote: "Fehlernachtest bestätigt, dass ein Fehler behoben wurde. Regressionstest prüft, ob die Änderung keine Seiteneffekte hat.",
+                            keyPoints: [
+                                {
+                                    title: "Fehlernachtest (Bestätigungstest)",
+                                    content: "Prüft, ob ein gemeldeter Fehler tatsächlich behoben wurde.",
+                                    coachNote: "Fehlernachtest = 'Ist DER Bug jetzt weg?'"
+                                },
+                                {
+                                    title: "Regressionstest",
+                                    content: "Prüft, ob Änderungen unbeabsichtigte Seiteneffekte auf andere Teile des Systems haben.",
+                                    coachNote: "🎯 Prüfungsfalle – Fehlernachtest vs. Regression:\n\n• Fehlernachtest = Bug ist weg?\n• Regressionstest = Neues kaputt durch Änderung?\n\nBeide sind nach JEDER Änderung nötig!"
+                                }
+                            ]
                         }
                     ]
                 },
                 {
                     id: "2.3",
-                    title: "Testarten",
-                    page: 33,
-                    quote: "Testarten sind Gruppen von Testaktivitäten, die auf spezifische Qualitätsmerkmale ausgerichtet sind und auf jeder Teststufe durchgeführt werden können.",
-                    keyPoints: [
-                        {
-                            title: "Funktionaler Test",
-                            content: "Prüft, ob die Funktionen den Anforderungen entsprechen (Was macht das System?).",
-                            coachNote: "Black-Box: Kein Code nötig. Anforderungen reichen."
-                        },
-                        {
-                            title: "Nicht-funktionaler Test",
-                            content: "Prüft Eigenschaften wie Performance, Usability, Sicherheit, Zuverlässigkeit.",
-                            coachNote: "Nicht-funktional = WIE es funktioniert (schnell, benutzerfreundlich, sicher)."
-                        },
-                        {
-                            title: "Black-Box vs. White-Box",
-                            content: "Black-Box: Spezifikation/Verhalten, ohne Code. White-Box: interne Struktur (Code) wird einbezogen.",
-                            coachNote: "🎯 Prüfungsfalle – Black-Box vs. White-Box:\n\n📦 BLACK-BOX (ohne Code-Einblick):\n• Testest das VERHALTEN von außen\n• Basis: Spezifikation, Anforderungen\n• Beispiele: Äquivalenzklassen, Grenzwerte\n\n🔍 WHITE-BOX (mit Code-Einblick):\n• Testest die STRUKTUR von innen\n• Basis: Quellcode, Architektur\n• Beispiele: Anweisungs-, Zweigüberdeckung\n\n⚠️ In der Prüfung: Wenn 'Überdeckung' oder 'Coverage' vorkommt → WHITE-BOX!"
-                        }
-                    ]
-                },
-                {
-                    id: "2.4",
                     title: "Wartungstest",
                     page: 35,
                     quote: "Wartungstest konzentriert sich auf die Prüfung der Änderungen am System sowie auf das Testen der nicht geänderten Teile, die von den Änderungen betroffen sein könnten.",
@@ -608,65 +682,131 @@ const syllabusData = Object.freeze({
                     title: "Grundlagen des statischen Testens",
                     page: 38,
                     quote: "Im Gegensatz zum dynamischen Test, bei dem die Software ausgeführt werden muss, stützt sich der statische Test auf die manuelle Untersuchung von Arbeitsergebnissen (Reviews) oder die werkzeuggestützte Bewertung von Code oder anderen Arbeitsergebnissen (statische Analyse).",
-                    keyPoints: [
+                    subsections: [
                         {
-                            title: "Statisch = keine Ausführung",
-                            content: "Statischer Test prüft Arbeitsergebnisse (Code, Dokumente), ohne sie auszuführen.",
-                            coachNote: "Dynamisch = Programm läuft. Statisch = lesen, analysieren, Reviews."
+                            id: "3.1.1",
+                            title: "Arbeitsergebnisse für statische Tests",
+                            page: 38,
+                            quote: "Fast jedes Arbeitsergebnis kann mit statischen Tests geprüft werden.",
+                            keyPoints: [
+                                {
+                                    title: "Prüfbare Arbeitsergebnisse",
+                                    content: "Anforderungen, Entwurfsdokumente, Code, Testmittel, Benutzerhandbücher, Webseiten, Verträge, Projektpläne.",
+                                    coachNote: "Statischer Test prüft Arbeitsergebnisse (Code, Dokumente), ohne sie auszuführen."
+                                }
+                            ]
                         },
                         {
-                            title: "Vorteile",
-                            content: "Frühe Fehlererkennung, kostengünstig. Findet Fehlhandlungen bevor sie zu Fehlerzuständen im Code werden.",
-                            coachNote: "Fehler in der Anforderung finden ist billiger als im Code."
+                            id: "3.1.2",
+                            title: "Wert des statischen Tests",
+                            page: 38,
+                            quote: "Statischer Test ist ein kosteneffektives Mittel zur Erkennung von Fehlerzuständen.",
+                            keyPoints: [
+                                {
+                                    title: "Vorteile",
+                                    content: "Frühe Fehlererkennung, kostengünstig. Findet Fehlhandlungen bevor sie zu Fehlerzuständen im Code werden.",
+                                    coachNote: "🎯 Prüfungsfalle – Wert des statischen Tests:\n\n✅ VORTEILE:\n• Frühe Fehlererkennung (billiger!)\n• Findet Fehler, die dynamisch schwer zu finden sind\n• Verbesserung der Kommunikation\n\n❌ NACHTEIL (wenn gefragt!):\n'Bewertung und Behebung kann aufwendig sein'\n→ Das ist der EINZIGE Nachteil im Lehrplan!"
+                                }
+                            ]
                         },
                         {
-                            title: "Anomalie",
-                            content: "Abweichung von Erwartung oder Referenz. Kann auf einen Fehlerzustand hindeuten.",
-                            coachNote: "Anomalie = Verdacht. Muss geprüft werden (kein Beweis)."
+                            id: "3.1.3",
+                            title: "Unterschiede zwischen statischem und dynamischem Test",
+                            page: 39,
+                            quote: "Statischer und dynamischer Test ergänzen sich, da sie unterschiedliche Arten von Fehlerzuständen finden.",
+                            keyPoints: [
+                                {
+                                    title: "Unterschied",
+                                    content: "Dynamisch = Ausführung nötig. Statisch = keine Ausführung, nur Analyse.",
+                                    coachNote: "🎯 Prüfungsfalle – Statisch vs. Dynamisch:\n\n📋 STATISCH (keine Ausführung):\n• Findet Fehlerzustände DIREKT im Arbeitsergebnis\n• z.B. Inkonsistenzen in Anforderungen\n\n🏃 DYNAMISCH (mit Ausführung):\n• Findet Fehlerwirkungen (Symptome)\n• Braucht lauffähigen Code\n\n💡 Statisch findet Ursachen, Dynamisch findet Symptome"
+                                }
+                            ]
                         }
                     ]
                 },
                 {
                     id: "3.2",
-                    title: "Review-Prozess",
+                    title: "Feedback- und Reviewprozess",
                     page: 40,
                     quote: "Der Reviewprozess umfasst: Planung, Reviewbeginn, individuelles Review, Kommunikation und Analyse, Behebung und Berichterstattung.",
-                    keyPoints: [
-                        {
-                            title: "Informelles Review",
-                            content: "Kein formaler Prozess. Autor bittet um Feedback (z.B. Peer-Review). Keine Dokumentation der Befunde erforderlich.",
-                            coachNote: "Informell = schnell, wenig Aufwand, keine Rollen-Definition."
-                        },
-                        {
-                            title: "Walkthrough",
-                            quote: "Walkthroughs werden vom Autor geleitet und dienen hauptsächlich der Kommunikation und Schulung.",
-                            content: "Autor leitet die Sitzung. Hauptzweck: Kommunikation, Schulung, Vertrauen aufbauen, neue Ideen. Dokumentation optional.",
-                            coachNote: "🎯 Prüfungsfalle – Walkthrough erkennen:\n\n✅ Erkennungsmerkmale:\n• AUTOR leitet (nicht Moderator!)\n• Zweck: Kommunikation/Schulung\n• Vertrauen aufbauen, Ideen generieren\n\n❌ NICHT Walkthrough wenn:\n• Moderator leitet → Tech. Review/Inspektion\n• Metriken sammeln → Inspektion"
-                        },
-                        {
-                            title: "Technisches Review",
-                            quote: "Beim technischen Review wird ein Konsens angestrebt und es werden technische Qualitätsprobleme identifiziert.",
-                            content: "Fachorientierte Prüfung durch Peers. Moderator leitet (nicht Autor!). Ziel: Konsens erreichen, technische Probleme lösen, neue Ideen.",
-                            coachNote: "🎯 Prüfungsfalle – Technisches Review:\n\n✅ Erkennungsmerkmale:\n• MODERATOR leitet\n• Ziel: KONSENS + Entscheidungen\n• Qualifizierte Gutachter\n• Technische Korrektheit prüfen"
-                        },
-                        {
-                            title: "Inspektion",
-                            quote: "Die Inspektion ist die formellste Art des Reviews. Sie verwendet definierte Rollen und sammelt Metriken zur Prozessverbesserung.",
-                            content: "Formalstes Review mit definierten Rollen (Moderator, Autor, Leser, Prüfer, Protokollant). Eingangs-/Endekriterien, Metriken, Checklisten.",
-                            coachNote: "🎯 Prüfungsfalle – Inspektion erkennen:\n\n✅ Erkennungsmerkmale:\n• MODERATOR leitet\n• Metriken werden gesammelt!\n• Formale Rollen definiert\n• Checklisten, Ein-/Endekriterien\n• Ziel: MAX. Fehlerzustände finden\n\n💡 'Metriken' in Antwort = Inspektion"
-                        }
-                    ],
                     subsections: [
                         {
                             id: "3.2.1",
+                            title: "Vorteile frühzeitigen und häufigen Stakeholder-Feedbacks",
+                            page: 40,
+                            quote: "Frühzeitiges Feedback hilft, potenzielle Qualitätsprobleme zu vermeiden.",
+                            keyPoints: [
+                                {
+                                    title: "Vorteile",
+                                    content: "Vermeidet Missverständnisse bei Anforderungen, ermöglicht frühzeitige Kurskorrekturen.",
+                                    coachNote: "🎯 Prüfungsfalle – Frühes Feedback:\n\n✅ VORTEIL: 'Missverständnisse bei Anforderungen vermeiden'\n\n❌ FALSCH:\n• 'Verbessert nur zukünftige Projekte'\n• 'Priorisiert Anforderungen'"
+                                }
+                            ]
+                        },
+                        {
+                            id: "3.2.2",
+                            title: "Aktivitäten des Reviewprozesses",
+                            page: 41,
+                            quote: "Reviewprozess: Planung, Reviewbeginn, individuelles Review, Kommunikation und Analyse, Behebung und Berichterstattung.",
+                            keyPoints: [
+                                {
+                                    title: "Schritte",
+                                    content: "1. Planung 2. Reviewbeginn 3. Individuelles Review 4. Kommunikation und Analyse 5. Behebung 6. Berichterstattung",
+                                    coachNote: "Merke die Reihenfolge: Erst individuell prüfen, dann gemeinsam besprechen!"
+                                }
+                            ]
+                        },
+                        {
+                            id: "3.2.3",
+                            title: "Rollen und Verantwortlichkeiten bei Reviews",
+                            page: 42,
+                            quote: "Typische Rollen: Manager, Autor, Moderator, Leser, Gutachter, Protokollant.",
+                            keyPoints: [
+                                {
+                                    title: "Rollen",
+                                    content: "Manager (Budget), Autor (Arbeitsergebnis), Moderator (Leitung), Gutachter (Prüfung), Protokollant (Dokumentation).",
+                                    coachNote: "Manager stellt Ressourcen bereit, nimmt aber NICHT an Befund-Kommunikation teil!"
+                                }
+                            ]
+                        },
+                        {
+                            id: "3.2.4",
+                            title: "Reviewarten",
+                            page: 42,
+                            quote: "Informelles Review, Walkthrough, Technisches Review, Inspektion.",
+                            keyPoints: [
+                                {
+                                    title: "Informelles Review",
+                                    content: "Kein formaler Prozess. Autor bittet um Feedback (z.B. Peer-Review). Keine Dokumentation erforderlich.",
+                                    coachNote: "Informell = schnell, wenig Aufwand."
+                                },
+                                {
+                                    title: "Walkthrough",
+                                    content: "AUTOR leitet die Sitzung. Hauptzweck: Kommunikation, Schulung, Vertrauen aufbauen.",
+                                    coachNote: "🎯 Prüfungsfalle – Walkthrough:\n\n✅ AUTOR leitet\n✅ Zweck: Kommunikation/Schulung\n\n❌ Moderator leitet → NICHT Walkthrough!"
+                                },
+                                {
+                                    title: "Technisches Review",
+                                    content: "MODERATOR leitet. Ziel: Konsens erreichen, technische Probleme lösen.",
+                                    coachNote: "🎯 Technisches Review = KONSENS + MODERATOR"
+                                },
+                                {
+                                    title: "Inspektion",
+                                    content: "Formalstes Review. Definierte Rollen, Metriken, Checklisten, Ein-/Endekriterien.",
+                                    coachNote: "🎯 Prüfungsfalle – Inspektion:\n\n✅ Erkennungsmerkmale:\n• MODERATOR leitet\n• METRIKEN werden gesammelt!\n• Formale Rollen\n\n💡 'Metriken' in Antwort = Inspektion"
+                                }
+                            ]
+                        },
+                        {
+                            id: "3.2.5",
                             title: "Erfolgsfaktoren für Reviews",
                             page: 43,
-                            quote: "Erfolgsfaktoren: klare Ziele, richtige Teilnehmer, Checklisten, Management-Unterstützung, Review-Kultur und angemessene Schulung.",
+                            quote: "Erfolgsfaktoren: klare Ziele, richtige Teilnehmer, Checklisten, Management-Unterstützung, Review-Kultur.",
                             keyPoints: [
                                 {
                                     title: "Erfolgsfaktoren",
                                     content: "Ausreichend Zeit, kleine Arbeitseinheiten, klare Ziele, Checklisten. Management sollte nicht bei der Befund-Kommunikation persönlich beteiligt sein.",
-                                    coachNote: "🎯 Prüfungsfalle – Review-Erfolgsfaktoren:\n\n❌ KEIN Erfolgsfaktor:\n'Management bei der Befund-Kommunikation beteiligt'\n→ IMMER als falsch ankreuzen!\n\n💡 Warum? Gefährdet die offene Atmosphäre.\nMitarbeiter trauen sich nicht, Probleme zu nennen."
+                                    coachNote: "🎯 Prüfungsfalle – Review-Erfolgsfaktoren:\n\n✅ Erfolgsfaktoren:\n• Kleine Arbeitsprodukte\n• Klare Ziele\n• Ausreichend Zeit\n\n❌ KEIN Erfolgsfaktor:\n'Management bei Befund-Kommunikation beteiligt'"
                                 }
                             ]
                         }
@@ -712,34 +852,37 @@ const syllabusData = Object.freeze({
             subchapters: [
                 {
                     id: "4.1",
-                    title: "Kategorien von Testverfahren",
+                    title: "Testverfahren im Überblick",
                     page: 43,
                     quote: "Testverfahren werden in drei Kategorien unterteilt: Black-Box-, White-Box- und erfahrungsbasierte Testverfahren.",
-                    keyPoints: [
+                    subsections: [
                         {
-                            title: "Drei Kategorien",
-                            content: "ISTQB unterscheidet drei Kategorien von Testverfahren: Black-Box, White-Box und erfahrungsbasiert.",
-                            coachNote: "Jede Kategorie hat einen anderen Fokus und eine andere Testbasis."
-                        },
-                        {
-                            title: "Black-Box-Testverfahren",
-                            content: "Basieren auf Spezifikationen, Anforderungen oder dem erwarteten Verhalten. Keine Kenntnis des Codes nötig. Fokus: WAS das System tun soll.",
-                            coachNote: "🎯 Black-Box = Verhalten prüfen\nTestbasis: Spezifikation\nBeispiele: Äquivalenzklassen, Grenzwerte"
-                        },
-                        {
-                            title: "White-Box-Testverfahren",
-                            content: "Basieren auf der internen Struktur und dem Code. Fokus: WIE das System implementiert ist (Anweisungen, Zweige).",
-                            coachNote: "🎯 White-Box = Struktur prüfen\nTestbasis: Code/Architektur\nBeispiele: Anweisungstest, Zweigtest"
-                        },
-                        {
-                            title: "Erfahrungsbasierte Testverfahren",
-                            content: "Basieren auf Wissen, Erfahrung und Intuition des Testers. Kein formales Verfahren, sondern Expertise.",
-                            coachNote: "🎯 Erfahrungsbasiert = Intuition nutzen\nTestbasis: Tester-Erfahrung\nBeispiele: Explorativ, Checklisten"
-                        },
-                        {
-                            title: "Hauptunterschied",
-                            content: "Der wesentliche Unterschied liegt in der TESTBASIS: Spezifikation (Black-Box) vs. Code (White-Box) vs. Erfahrung (erfahrungsbasiert).",
-                            coachNote: "🎯 Prüfungsfalle – Testbasis unterscheidet!\n\n❌ NICHT: Teststufe, Testobjekt, SDLC\n✅ SONDERN: Die Testbasis (worauf basieren die Tests?)"
+                            id: "4.1.1",
+                            title: "Kategorien von Testverfahren",
+                            page: 43,
+                            quote: "Testverfahren werden nach ihrer Testbasis unterschieden: Spezifikation (Black-Box), Code (White-Box), Erfahrung.",
+                            keyPoints: [
+                                {
+                                    title: "Black-Box-Testverfahren",
+                                    content: "Basieren auf Spezifikationen, Anforderungen oder dem erwarteten Verhalten. Keine Kenntnis des Codes nötig.",
+                                    coachNote: "🎯 Black-Box = Verhalten prüfen\nTestbasis: Spezifikation\nBeispiele: Äquivalenzklassen, Grenzwerte"
+                                },
+                                {
+                                    title: "White-Box-Testverfahren",
+                                    content: "Basieren auf der internen Struktur und dem Code. Fokus: WIE das System implementiert ist.",
+                                    coachNote: "🎯 White-Box = Struktur prüfen\nTestbasis: Code/Architektur\nBeispiele: Anweisungstest, Zweigtest"
+                                },
+                                {
+                                    title: "Erfahrungsbasierte Testverfahren",
+                                    content: "Basieren auf Wissen, Erfahrung und Intuition des Testers.",
+                                    coachNote: "🎯 Erfahrungsbasiert = Intuition nutzen\nTestbasis: Tester-Erfahrung\nBeispiele: Explorativ, Checklisten"
+                                },
+                                {
+                                    title: "Hauptunterschied",
+                                    content: "Der wesentliche Unterschied liegt in der TESTBASIS: Spezifikation vs. Code vs. Erfahrung.",
+                                    coachNote: "🎯 Prüfungsfalle – Was unterscheidet?\n\n❌ NICHT: Teststufe, Testobjekt, SDLC\n✅ SONDERN: Die TESTBASIS!"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -875,21 +1018,45 @@ const syllabusData = Object.freeze({
                     title: "Erfahrungsbasierte Testverfahren",
                     page: 51,
                     quote: "Erfahrungsbasierte Testverfahren nutzen das Wissen und die Erfahrung der Tester, um Testfälle abzuleiten.",
-                    keyPoints: [
+                    subsections: [
                         {
+                            id: "4.4.1",
                             title: "Intuitive Testfallermittlung (Error Guessing)",
-                            content: "Tester nutzt Erfahrung, um typische Fehlhandlungen und Fehlerzustände zu erraten. Basiert auf Wissen über frühere Fehler und typische Entwicklerfehler.",
-                            coachNote: "Kein formales Verfahren – Erfahrung und Intuition zählen."
+                            page: 51,
+                            quote: "Intuitive Testfallermittlung nutzt das Wissen des Testers über frühere Fehler und typische Fehlerquellen.",
+                            keyPoints: [
+                                {
+                                    title: "Erfahrungsbasiert",
+                                    content: "Tester nutzt Erfahrung, um typische Fehlhandlungen und Fehlerzustände zu erraten. Basiert auf Wissen über frühere Fehler.",
+                                    coachNote: "🎯 Prüfungsfalle – Error Guessing:\n\n✅ RICHTIG: Wissen über frühere Fehler nutzen\n\n❌ FALSCH:\n• 'Entwicklungserfahrung nötig'\n• 'Benutzerinteraktion erraten'\n• 'Entwicklung selbst durchführen'"
+                                }
+                            ]
                         },
                         {
+                            id: "4.4.2",
                             title: "Explorativer Test",
-                            content: "Lernen, Testentwurf und -durchführung laufen gleichzeitig. Sitzungsbasiert mit Test-Charta und Zeitrahmen. Nützlich bei wenig Spezifikation.",
-                            coachNote: "'Wenig Spezifikation' + 'Zeitdruck' + 'schnelle Ergebnisse' → Explorativ."
+                            page: 52,
+                            quote: "Beim explorativen Testen werden Testentwurf, -durchführung und Lernen gleichzeitig durchgeführt.",
+                            keyPoints: [
+                                {
+                                    title: "Gleichzeitig",
+                                    content: "Lernen, Testentwurf und -durchführung laufen gleichzeitig. Sitzungsbasiert mit Test-Charta und Zeitrahmen.",
+                                    coachNote: "🎯 Prüfungsfalle – Wann Explorativer Test?\n\n✅ RICHTIG wählen bei:\n• 'Wenig Spezifikation'\n• 'Enger Zeitplan'\n• 'Detailwissen und Erfahrung'\n• 'Schnelle Ergebnisse gefordert'\n\n❌ NICHT bei: 'Viel Zeit', 'Ausführliche Spezifikation'"
+                                }
+                            ]
                         },
                         {
+                            id: "4.4.3",
                             title: "Checklistenbasierter Test",
-                            content: "Checklisten aus Erfahrung, Risiken oder Anforderungen. Muss regelmäßig aktualisiert werden, da Einträge an Effektivität verlieren können.",
-                            coachNote: "Checkliste = was nicht vergessen werden soll. Regelmäßig pflegen!"
+                            page: 52,
+                            quote: "Beim checklistenbasierten Testen werden Testfälle auf Basis von Checklisten erstellt.",
+                            keyPoints: [
+                                {
+                                    title: "Checklisten nutzen",
+                                    content: "Checklisten aus Erfahrung, Risiken oder Anforderungen. Muss regelmäßig aktualisiert werden, da Einträge an Effektivität verlieren können.",
+                                    coachNote: "Checkliste = was nicht vergessen werden soll. Regelmäßig pflegen, sonst Pestizid-Paradoxon!"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -1289,15 +1456,23 @@ const syllabusData = Object.freeze({
                     ]
                 },
                 {
-                    id: "5.3",
+                    id: "5.4",
                     title: "Konfigurationsmanagement",
                     page: 67,
                     quote: "Der Zweck des Konfigurationsmanagements ist es, die Integrität der Konfigurationselemente (z.B. Testmittel, Testobjekte) während des gesamten Projektlebenszyklus sicherzustellen.",
-                    keyPoints: [
+                    subsections: [
                         {
-                            title: "Versionierung",
-                            content: "Testware (Testfälle, Skripte, Daten) und Testobjekte versioniert verwalten. Welche Version wurde womit getestet?",
-                            coachNote: "🎯 Prüfungsfalle – Konfigurationsmanagement:\n\nKM bewahrt die INTEGRITÄT von:\n• Testobjekten (Code-Versionen)\n• Testware (Testfälle, Skripte)\n• Testumgebungen\n\n📌 Typisches Prüfungsszenario:\n'Test besteht in Entwicklungsumgebung, scheitert in Testumgebung'\n→ Verdacht: Konfigurationsmanagement-Problem!\n(Andere Version deployed, andere Umgebung)\n\n❌ NICHT verwechseln mit Fehlermanagement (Status von Bugs)"
+                            id: "5.4.1",
+                            title: "Unterstützung des Testens durch Konfigurationsmanagement",
+                            page: 67,
+                            quote: "Konfigurationsmanagement unterstützt das Testen durch Versionskontrolle aller Testelemente.",
+                            keyPoints: [
+                                {
+                                    title: "Versionierung",
+                                    content: "Testware (Testfälle, Skripte, Daten) und Testobjekte versioniert verwalten. Welche Version wurde womit getestet?",
+                                    coachNote: "🎯 Prüfungsfalle – Konfigurationsmanagement:\n\nKM bewahrt die INTEGRITÄT von:\n• Testobjekten (Code-Versionen)\n• Testware (Testfälle, Skripte)\n• Testumgebungen\n\n📌 Typisches Prüfungsszenario:\n'Test besteht in Dev, scheitert in Test'\n→ Verdacht: KM-Problem!\n\n❌ NICHT verwechseln mit Fehlermanagement"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -1377,11 +1552,19 @@ const syllabusData = Object.freeze({
                     image: "images/bug_lifecycle_bugzilla_cc.png",
                     imageAttribution: "Bugzilla Project, LGPL, via Wikimedia Commons",
                     quote: "Ein Fehlerbericht dokumentiert alle Informationen, die erforderlich sind, um das aufgetretene Problem zu identifizieren, zu analysieren und zu beheben.",
-                    keyPoints: [
+                    subsections: [
                         {
-                            title: "Lebenszyklus eines Fehlers",
-                            content: "Erkennen → Melden → Klassifizieren → Beheben → Fehlernachtest. Status und Priorität verfolgen.",
-                            coachNote: "Fehlermanagement = von der Meldung bis zum Nachtest."
+                            id: "5.5.1",
+                            title: "Fehlerbericht",
+                            page: 68,
+                            quote: "Ein guter Fehlerbericht enthält: Kennung, Titel, Datum, Autor, Testobjekt-ID, SDLC-Phase, erwartetes/tatsächliches Ergebnis, Schweregrad, Priorität, Schritte zur Reproduktion, Testumgebung.",
+                            keyPoints: [
+                                {
+                                    title: "Inhalte eines Fehlerberichts",
+                                    content: "Kennung, Titel, Datum, Autor, Testobjekt, erwartetes/tatsächliches Ergebnis, Schweregrad, Priorität, Schritte zur Reproduktion, Testumgebung.",
+                                    coachNote: "🎯 Prüfungsfalle – Fehlerbericht:\n\nWas FEHLT oft?\n• Testumgebung (Version, OS, Browser)\n• Testobjekt-ID/Version\n\n❌ FALSCH: 'Name des Testers fehlt'\n(Weniger kritisch als technische Infos)"
+                                }
+                            ]
                         }
                     ]
                 }
@@ -1399,32 +1582,48 @@ const syllabusData = Object.freeze({
             subchapters: [
                 {
                     id: "6.1",
-                    title: "Testwerkzeuge – Kategorien",
+                    title: "Werkzeugunterstützung für das Testen",
                     page: 71,
-                    quote: "Testwerkzeuge können eine oder mehrere Testaktivitäten unterstützen. Werkzeuge können nach ihrem Zweck kategorisiert werden.",
-                    keyPoints: [
+                    quote: "Testwerkzeuge können eine oder mehrere Testaktivitäten unterstützen.",
+                    subsections: [
                         {
-                            title: "Kategorien",
-                            content: "Werkzeuge für Testmanagement, statische Analyse, Testentwurf, Testdurchführung (Ausführung, Vergleich), Leistung, Spezialanwendungen.",
-                            coachNote: "Prüfung: Welches Werkzeug für welche Aktivität? (Management, Ausführung, Performance.)"
-                        },
-                        {
-                            title: "Testautomatisierung",
-                            content: "Werkzeuge führen Tests aus und vergleichen Ergebnisse. Erhöht Wiederholbarkeit, kann Regression unterstützen. Einführung braucht Planung und Pflege.",
-                            coachNote: "🎯 Prüfungsfokus – Risiken der Testautomatisierung:\n\n✅ RICHTIGE typische Risiken:\n• Unrealistische Erwartungen\n• Unterschätzte Kosten/Aufwände\n\n❌ FALSCH (keine typischen Risiken):\n• 'Erhöhte Geschwindigkeit führt zu Qualitätsproblemen'"
+                            id: "6.1.1",
+                            title: "Arten von Testwerkzeugen",
+                            page: 71,
+                            quote: "Werkzeuge können nach ihrem Zweck kategorisiert werden: Testmanagement, statische Analyse, Testentwurf, Testdurchführung.",
+                            keyPoints: [
+                                {
+                                    title: "Kategorien",
+                                    content: "Werkzeuge für Testmanagement, statische Analyse, Testentwurf und -realisierung, Testdurchführung (Ausführung, Vergleich), Performance, Spezialanwendungen.",
+                                    coachNote: "🎯 Prüfungsfalle – Werkzeug-Aktivität:\n\n• Testdaten-Werkzeug → Testentwurf + Testrealisierung\n• Testmanagement → Überwachung + Steuerung\n• Statische Analyse → vor der Ausführung"
+                                }
+                            ]
                         }
                     ]
                 },
                 {
                     id: "6.2",
-                    title: "Effektive Nutzung von Testwerkzeugen",
+                    title: "Nutzen und Risiken der Testautomatisierung",
                     page: 71,
-                    quote: "Potenzielle Vorteile der Testautomatisierung sind u.a. Zeitersparnis, höhere Konsistenz und Wiederholbarkeit sowie objektive Bewertung. Potenzielle Risiken sind u.a. unrealistische Erwartungen und Wartungsaufwand für Testautomatisierungsmittel.",
-                    keyPoints: [
+                    quote: "Potenzielle Vorteile: Zeitersparnis, höhere Konsistenz und Wiederholbarkeit. Potenzielle Risiken: unrealistische Erwartungen, Wartungsaufwand.",
+                    subsections: [
                         {
-                            title: "Einführung",
-                            content: "Pilotprojekt, klare Ziele, Schulung, kontinuierliche Bewertung. Risiken: Abhängigkeit, falsche Erwartungen, Wartungsaufwand.",
-                            coachNote: "Werkzeuge einführen = Prozess, nicht nur Installation."
+                            id: "6.2.1",
+                            title: "Nutzen und Risiken",
+                            page: 71,
+                            quote: "Testautomatisierung bietet Vorteile wie Zeitersparnis und Wiederholbarkeit, birgt aber auch Risiken wie unrealistische Erwartungen.",
+                            keyPoints: [
+                                {
+                                    title: "Vorteile",
+                                    content: "Zeitersparnis, Konsistenz, Wiederholbarkeit, objektive Bewertung, bessere Regression.",
+                                    coachNote: "Automatisierung = schneller, wiederholbarer, konsistenter."
+                                },
+                                {
+                                    title: "Risiken",
+                                    content: "Unrealistische Erwartungen, unterschätzte Einführungskosten, Wartungsaufwand, Abhängigkeit vom Werkzeug.",
+                                    coachNote: "🎯 Prüfungsfalle – Risiken Automatisierung:\n\n✅ TYPISCHE Risiken:\n• Unrealistische Erwartungen\n• Unterschätzte Kosten\n• Wartungsaufwand\n\n❌ KEIN typisches Risiko:\n'Erhöhte Geschwindigkeit führt zu Qualitätsproblemen'"
+                                }
+                            ]
                         }
                     ]
                 }
