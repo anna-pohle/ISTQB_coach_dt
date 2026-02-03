@@ -41,10 +41,10 @@ const examQuestions = Object.freeze([
         ],
         correct: 2,
         feedback: {
-            trap: "Die anderen Optionen suggerieren absolute Aussagen (keine Fehler, alle Kombinationen), was laut Grundsatz 1 und 2 unmöglich ist.",
+            trap: "Option a) und b) verstoßen gegen Grundsatz 1 (Testen zeigt Anwesenheit von Fehlern, nicht deren Abwesenheit). Option d) verstößt gegen Grundsatz 2 (Vollständiges Testen ist unmöglich – alle Kombinationen können nie getestet werden).",
             principle: "Testen kann nicht beweisen, dass keine Fehler vorhanden sind – nur vorhandene Fehler aufzeigen.",
-            explanation: "Durch das Testen werden Fehler aufgedeckt, was das Risiko verringert und gleichzeitig mehr Vertrauen in die Qualität des Testobjekts schafft.",
-            reference: "Lehrplan 1.1.1, Aufzählungspunkt 4 + 8"
+            explanation: "c) ist RICHTIG: Durch das Testen werden Fehler aufgedeckt, was das Risiko verringert und gleichzeitig mehr Vertrauen in die Qualität des Testobjekts schafft. Dies ist ein realistisches, erreichbares Testziel gemäß Lehrplan.",
+            reference: "Lehrplan 1.1.1, Aufzählungspunkt 4 + 8 / Grundsätze 1.3"
         }
     },
     {
@@ -63,9 +63,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 0,
         feedback: {
-            trap: "Option d) verwechselt 'Fehlervermeidung' mit 'Fehlersuche' – Testen findet, vermeidet aber nicht aktiv.",
-            principle: "Tester FINDEN Fehler, Entwickler BEHEBEN sie.",
-            explanation: "Unter Debugging versteht man das Auffinden, Analysieren und Beseitigen der Ursachen von Fehlern – typischerweise NACH dem dynamischen Test.",
+            trap: "b) ist falsch – Anforderungs-/Entwurfsprüfung beschreibt weder Testen noch Debugging korrekt. c) ist falsch – Testen ist mehr als nur Ausführen, Debugging ist mehr als Analyse. d) verwechselt 'Fehlervermeidung' mit 'Fehlersuche' – Testen findet, vermeidet aber nicht aktiv.",
+            principle: "Tester FINDEN Fehler (Fehlerwirkungen/Fehlerzustände), Entwickler BEHEBEN sie (Debugging).",
+            explanation: "a) ist RICHTIG: Testen identifiziert Fehlerwirkungen (dynamisch) oder Fehlerzustände (statisch). Debugging ist der Prozess des Auffindens, Analysierens und Beseitigens der Ursachen – typischerweise NACH dem dynamischen Test, durchgeführt von Entwicklern.",
             reference: "Lehrplan 1.1.2"
         }
     },
@@ -85,10 +85,10 @@ const examQuestions = Object.freeze([
         ],
         correct: 0,
         feedback: {
-            trap: "Der Trugschluss 'Keine Fehler' bezieht sich auf den Irrtum, dass Fehlerfreiheit = Erfolg bedeutet – das ist hier nicht das Problem.",
+            trap: "b) (Trugschluss 'Keine Fehler') bezieht sich auf den Irrtum, dass Fehlerfreiheit = Geschäftserfolg – nicht auf sich wiederholende Tests. c) (Häufung) erklärt, wo Fehler konzentriert auftreten, nicht warum Tests ineffektiv werden. d) (Vollständigkeit) erklärt Testgrenzen, nicht Effektivitätsverlust.",
             principle: "Grundsatz 5: Tests nutzen sich ab (Pesticide Paradox).",
-            explanation: "Wenn dieselben Tests immer wieder wiederholt werden, finden sie irgendwann keine neuen Fehler mehr. Um neue Fehler zu finden, müssen Tests modifiziert oder erweitert werden.",
-            reference: "Lehrplan 1.3, Punkt 5"
+            explanation: "a) ist RICHTIG: Wenn dieselben Tests immer wieder wiederholt werden, finden sie irgendwann keine neuen Fehler mehr – wie Pestizide, gegen die Schädlinge resistent werden. Um neue Fehler zu finden, müssen Tests modifiziert, erweitert oder durch neue ersetzt werden.",
+            reference: "Lehrplan 1.3, Grundsatz 5"
         }
     },
     {
@@ -107,10 +107,10 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "Option a) gehört zur Testplanung, Option c) zum Testentwurf, Option d) zur Testdurchführung.",
+            trap: "a) Aufwandsschätzung gehört zur TESTPLANUNG. c) Ableitung von Testdaten mittels Grenzwertanalyse gehört zum TESTENTWURF. d) Analyse von Testergebnissen gehört zur TESTDURCHFÜHRUNG/TESTABSCHLUSS.",
             principle: "Testanalyse = WAS soll getestet werden? (Testbedingungen definieren)",
-            explanation: "Die Definition von Testbedingungen (z.B. 'Zahlungen aufteilen') ist ein Teil der Testanalyse.",
-            reference: "Lehrplan 1.4.1, Anteil Testanalyse"
+            explanation: "b) ist RICHTIG: Die Entscheidung 'ob getestet wird, inwieweit Zahlungen aufgeteilt werden können' ist die Definition einer Testbedingung – das ist Testanalyse. Hier wird noch nicht WIE getestet wird (Entwurf), sondern nur WAS relevant ist.",
+            reference: "Lehrplan 1.4.1, Aufzählungspunkte zur Testanalyse"
         }
     },
     {
@@ -129,9 +129,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "Option a) verspricht zu viel – Verfolgbarkeit ermöglicht keine AUTOMATISIERUNG. Option d) bezieht sich auf Code-Analyse, nicht Verfolgbarkeit.",
+            trap: "a) Verfolgbarkeit ermöglicht KEINE automatische Testautomatisierung – nur bessere Wartungsfähigkeit. c) Die Produktivität einzelner Tester ist kein Ziel der Verfolgbarkeit. d) Regressionstests und Seiteneffekte hängen von Änderungsanalyse ab, nicht primär von Verfolgbarkeit zur Testbasis.",
             principle: "Verfolgbarkeit verbindet Anforderungen mit Tests und zeigt Überdeckungsgrade.",
-            explanation: "Wenn Testfälle mit Anforderungen verknüpft sind, kann festgestellt werden, ob Anforderungen durch Tests überdeckt werden.",
+            explanation: "b) ist RICHTIG: Wenn Testfälle mit Anforderungen verknüpft sind (bidirektionale Verfolgbarkeit), kann EFFIZIENT festgestellt werden, ob alle Anforderungen durch Tests abgedeckt werden – die Überdeckung wird messbar.",
             reference: "Lehrplan 1.4.4, 1. Aufzählungspunkt"
         }
     },
@@ -298,7 +298,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 2,
         text: "Welche Arten von Fehlerzuständen (1-4) werden in welchen Teststufen (A-D) AM EHESTEN gefunden?\n\n1. Fehlerzustände, wenn das Systemverhalten von den geschäftlichen Anforderungen abweicht\n2. Fehlerzustände in der Kommunikation zwischen Komponenten\n3. Fehlerzustände in einer isolierten Komponente\n4. Fehlerzustände in einer nicht korrekt implementierten User-Story\n\nA. Komponententest | B. Komponentenintegrationstest | C. Systemtest | D. Abnahmetest",
-        hint: "Ordne: Geschäftlich→Abnahme, Kommunikation→Integration, Isoliert→Komponente, User-Story→System.",
+        hint: "Überlege bei jedem Fehlertyp: In welcher Teststufe würde man das ZUERST bemerken? Geschäftliche Anforderungen werden spät geprüft, technische Details früh.",
         answers: [
             "1D, 2B, 3A, 4C",
             "1D, 2B, 3C, 4A",
@@ -307,9 +307,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 0,
         feedback: {
-            trap: "Verwechslung der Teststufen: Geschäftsanforderungen → Abnahmetest (D), nicht Systemtest (C).",
-            principle: "Komponente→A, Integration→B, System→C, Abnahme→D. Geschäftlich→D, Technisch→A/B.",
-            explanation: "Geschäftsanforderungen (1) → Abnahmetest (D), Kommunikation (2) → Integration (B), Isolierte Komponente (3) → Komponententest (A), User-Story (4) → Systemtest (C).",
+            trap: "b) ordnet 'isolierte Komponente' falsch dem Systemtest (C) zu – das ist Komponententest (A). c) ordnet Kommunikation falsch Komponententest (A) zu – das ist Integration (B). d) ordnet Geschäftsanforderungen falsch dem Systemtest (C) zu – das ist Abnahmetest (D).",
+            principle: "Fehlertyp → Teststufe: Technisch-isoliert→A (Komponente), Schnittstellen→B (Integration), System-Funktion→C (System), Geschäftlich→D (Abnahme).",
+            explanation: "a) ist RICHTIG: 1. Geschäftsanforderungen → Abnahmetest (D) – hier prüft der Kunde/Fachbereich. 2. Kommunikation zwischen Komponenten → Integrationstest (B). 3. Isolierte Komponente → Komponententest (A). 4. User-Story → Systemtest (C) – prüft Systemverhalten.",
             reference: "Lehrplan 2.2.1"
         }
     },
@@ -353,10 +353,10 @@ const examQuestions = Object.freeze([
         ],
         correct: 3,
         feedback: {
-            trap: "Option a) beschreibt Retrospektiven. Früh+häufig muss nicht sein, wenn man nur zukünftige Projekte verbessern will.",
-            principle: "Frühes Feedback = Frühe Problemerkennung = Weniger Missverständnisse.",
-            explanation: "Frühes und häufiges Feedback ermöglicht die frühzeitige Aufdeckung potenzieller Qualitätsprobleme wie missverstandener Anforderungen.",
-            reference: "Lehrplan 3.2.1, 1. Absatz"
+            trap: "a) Testprozess-Verbesserung ist Retrospektive, nicht Stakeholder-Feedback. b) Priorisierung ist ein separater Prozess. c) Qualitätsmessung braucht Metriken, nicht nur Feedback.",
+            principle: "Frühes Feedback = Frühe Problemerkennung = Weniger Missverständnisse bei Anforderungen.",
+            explanation: "d) ist RICHTIG: Frühes und häufiges Feedback ermöglicht die frühzeitige Aufdeckung potenzieller Qualitätsprobleme wie MISSVERSTANDENER ANFORDERUNGEN – bevor diese zu teuren Fehlern führen.",
+            reference: "Lehrplan 3.1.2, 1. Absatz"
         }
     },
     {
@@ -375,9 +375,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "Bei Inspektionen leitet der Autor NICHT das Meeting. Technische Reviews fokussieren auf technische Korrektheit, nicht Schulung.",
-            principle: "Walkthrough = Autor leitet + Kommunikation/Schulung als Zweck.",
-            explanation: "Walkthroughs werden vom Autor geleitet und dienen der Kommunikation und Schulung der Gutachter.",
+            trap: "a) Informelles Review hat keine formale Sitzung/Vorbereitung. c) Technisches Review wird von einem Moderator geleitet, nicht vom Autor, und fokussiert auf technische Korrektheit. d) Inspektion ist der formalste Typ – Autor leitet NICHT, es gibt strenge Prozesse.",
+            principle: "Review-Typen: Informell (locker) → Walkthrough (Autor leitet, Schulung) → Technisch (Moderator, Korrektheit) → Inspektion (formal, streng).",
+            explanation: "b) ist RICHTIG: Walkthrough-Eigenschaften: Autor leitet die Sitzung, Hauptzweck ist Kommunikation/Schulung, individuelle Vorbereitung ist optional aber möglich, Reviewbericht kann erstellt werden.",
             reference: "Lehrplan 3.2.4"
         }
     },
@@ -397,9 +397,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 3,
         feedback: {
-            trap: "Die ersten drei Optionen sind alle Erfolgsfaktoren. Management-Beteiligung bei Befunden kann zu politischem Druck führen.",
-            principle: "Reviews sollten fachlich bleiben – Management-Beteiligung bei Befunden ist kontraproduktiv.",
-            explanation: "Management sollte Reviews unterstützen, aber nicht persönlich bei der Kommunikation von Befunden mitwirken.",
+            trap: "a), b), c) sind alle ERFOLGSFAKTOREN für Reviews: Zeit nehmen, kleine Teile, klare Ziele. Diese tragen positiv bei!",
+            principle: "Management sollte Reviews UNTERSTÜTZEN (Ressourcen), aber nicht EINGREIFEN bei der Befundkommunikation.",
+            explanation: "d) ist KEIN Erfolgsfaktor: Wenn Management persönlich bei der Kommunikation von Befunden mitwirkt, kann das zu politischem Druck führen – Reviewer könnten kritische Befunde zurückhalten aus Angst vor Konsequenzen.",
             reference: "Lehrplan 3.2.5"
         }
     },
@@ -412,7 +412,7 @@ const examQuestions = Object.freeze([
         kLevel: 3,
         chapter: 4,
         text: "Sie testen die Software für eine unbeaufsichtigte amerikanische Zapfsäule. Nachdem die Zapfpistole abgehoben und die gewünschte Kraftstoffsorte ausgewählt wurde, gibt der Kunde die gewünschte Kraftstoffmenge in Gallonen über ein Tastenfeld ein. Das Tastenfeld erlaubt nur die Eingabe von Ziffern. Pro Zapfvorgang kann zwischen 0,1 und 50,0 Gallonen getankt werden.\n\nWelche der folgenden Antworten repräsentiert eine minimale Menge von Eingabewerten, die alle gültigen und ungültigen Äquivalenzklassen für die Kraftstoffmenge überdeckt?",
-        hint: "Wie viele Äquivalenzklassen gibt es? Ungültig niedrig, gültig, ungültig hoch = 3 Klassen. Minimal = 1 Wert pro Klasse.",
+        hint: "Identifiziere zuerst ALLE Äquivalenzklassen (gültig UND ungültig). Für eine MINIMALE Überdeckung brauchst du genau einen Testwert pro Klasse.",
         answers: [
             "0,0; 20,0; 60,0",
             "0,0; 0,1; 50,0",
@@ -421,9 +421,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 0,
         feedback: {
-            trap: "Option b) deckt nur 2 Klassen ab (zu niedrig, gültig). Es fehlt die Klasse 'zu hoch'.",
-            principle: "Äquivalenzklassen: ungültig niedrig (<0,1) | gültig (0,1-50,0) | ungültig hoch (>50,0). Je 1 Wert pro Klasse.",
-            explanation: "Es gibt 3 Äquivalenzklassen: <0,1 (ungültig), 0,1-50,0 (gültig), >50,0 (ungültig). Option a) deckt alle mit minimalem Set ab: 0,0 (ungültig niedrig), 20,0 (gültig), 60,0 (ungültig hoch).",
+            trap: "b) 0,0; 0,1; 50,0 deckt nur 2 Klassen – fehlt 'zu hoch'. c) 0,0; 0,1; 50,0; 70,0 hat 4 Werte statt minimal 3 (0,0 und 0,1 sind beide 'ungültig niedrig' bzw. an der Grenze). d) ist 3-Wert-GWA mit 6 Werten – nicht minimal!",
+            principle: "Äquivalenzklassen: ungültig niedrig (<0,1) | gültig (0,1-50,0) | ungültig hoch (>50,0). MINIMAL = 1 Wert pro Klasse.",
+            explanation: "a) ist RICHTIG: Es gibt genau 3 Äquivalenzklassen (zu klein, gültig, zu groß). MINIMAL bedeutet GENAU 1 Wert pro Klasse: 0,0 (ungültig niedrig), 20,0 (gültig), 60,0 (ungültig hoch) = 3 Werte für 3 Klassen.",
             reference: "Lehrplan 4.2.1, 5. Absatz"
         }
     },
@@ -434,7 +434,7 @@ const examQuestions = Object.freeze([
         kLevel: 3,
         chapter: 4,
         text: "Sie testen ein E-Commerce-System für Lebensmittel. Die kleinste gültige Bestellmenge ist 0,5 Einheiten und die größte gültige Bestellmenge 25,0 Einheiten. Die Genauigkeit beträgt 0,1 Einheiten.\n\nWelche der folgenden Eingabewerte decken nur die Grenzwerte mit der 2-Wert-Grenzwertanalyse für die Bestellmenge ab?",
-        hint: "2-Wert-GWA: Pro Grenze nur 2 Werte (Grenzwert + direkter ungültiger Nachbar). Also: 2 Grenzen × 2 Werte = 4 Werte total.",
+        hint: "Bei der 2-Wert-Methode testest du pro Grenze den Grenzwert selbst UND seinen direkten Nachbarn aus der anderen Klasse. Zähle die Grenzen!",
         answers: [
             "0,3; 24,9; 25,2",
             "0,4; 0,5; 0,6; 24,9; 25,0; 25,1",
@@ -443,9 +443,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 2,
         feedback: {
-            trap: "Option b) verwendet zu viele Werte – 2-Wert-Analyse braucht nur 2 Werte pro Grenze (!). Option d) fehlt die ungültigen Werte.",
-            principle: "2-Wert-GWA: Je Grenze 2 Werte (Grenzwert + nächster ungültiger Nachbar).",
-            explanation: "Untere Grenze: 0,4 (ungültig) + 0,5 (gültig). Obere Grenze: 25,0 (gültig) + 25,1 (ungültig). → 4 Werte total.",
+            trap: "a) 0,3; 24,9; 25,2 sind keine direkten Nachbarn der Grenzen (0,3 statt 0,4, 24,9 statt 25,0). b) hat 6 Werte = 3-Wert-Analyse, nicht 2-Wert! d) 0,5; 0,6; 24,9; 25,0 hat nur gültige Werte, keine ungültigen Nachbarn.",
+            principle: "2-Wert-GWA: Je Grenze GENAU 2 Werte = Grenzwert selbst + direkter ungültiger Nachbar.",
+            explanation: "c) ist RICHTIG: 2 Grenzen × 2 Werte = 4 Werte total. Untere Grenze 0,5: 0,4 (ungültig, -0,1) + 0,5 (gültig). Obere Grenze 25,0: 25,0 (gültig) + 25,1 (ungültig, +0,1). Genauigkeit ist 0,1, daher ±0,1 als Nachbar.",
             reference: "Lehrplan 4.2.2, 4. Absatz"
         }
     },
@@ -466,9 +466,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 3,
         feedback: {
-            trap: "Option a) ist undurchführbar – wenn kein Ziel vereinbart ist, kann es nicht erreicht werden. Option b) ist fachlich falsch – nicht erreichtes Ziel sollte keine Prämie bringen.",
-            principle: "Entscheidungstabellen müssen alle logisch möglichen Kombinationen abdecken.",
-            explanation: "Fehlender Fall: Mitarbeiter >1 Jahr, Ziel vereinbart, Ziel NICHT erreicht → keine Prämie. Das ist eine realistische Situation.",
+            trap: "a) Kein Ziel vereinbart (N), aber Ziel erreicht (J) – logisch UNMÖGLICH! b) Ziel nicht erreicht (N), aber Prämie (J) – fachlich FALSCH! c) Kein Ziel vereinbart und keins erreicht, aber >1 Jahr – existiert vielleicht, ist aber die gegebene 'N-N-N→N' Kombination.",
+            principle: "Bei Entscheidungstabellen: Prüfe jede Kombination auf 1) logische Durchführbarkeit 2) fachliche Korrektheit 3) Vollständigkeit.",
+            explanation: "d) ist RICHTIG: Die fehlende Kombination ist 'J-J-N→N': Mitarbeiter >1 Jahr (J), Ziel vereinbart (J), Ziel NICHT erreicht (N) → keine Prämie (N). Das ist realistisch und fehlt in der Tabelle!",
             reference: "Lehrplan 4.2.3, 2. Absatz"
         }
     },
@@ -489,9 +489,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "Option a) sagt 'alle Übergänge' – aber ungültige Übergänge werden nicht getestet. Option d) verwechselt Zustandsüberdeckung mit Übergangsüberdeckung.",
-            principle: "0-Switch-Überdeckung = Alle GÜLTIGEN Übergänge mindestens einmal.",
-            explanation: "Die 5 Testfälle decken alle 5 gültigen Übergänge ab → 100% 0-Switch-Überdeckung.",
+            trap: "a) 'alle Übergänge' ist unpräzise – es geht nur um GÜLTIGE Übergänge. c) ist falsch – alle gültigen werden tatsächlich abgedeckt. d) verwechselt ZUSTANDSÜBERDECKUNG mit ÜBERGANGSÜBERDECKUNG – dass S1 besucht wird, reicht nicht!",
+            principle: "0-Switch-Überdeckung (0-Switch Coverage) = Alle GÜLTIGEN Übergänge (Transitionen/Pfeile) mindestens 1× durchlaufen.",
+            explanation: "b) ist RICHTIG: Die 5 Testfälle decken alle 5 gültigen Übergänge im Diagramm ab. 0-Switch bedeutet: Jeder einzelne Übergang wird getestet (nicht Sequenzen von Übergängen wie bei N-Switch).",
             reference: "Lehrplan 4.2.4"
         }
     },
@@ -601,9 +601,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "Nicht einfach den Durchschnitt nehmen! Die wahrscheinlichste Schätzung wird 4-fach gewichtet.",
-            principle: "Formel: E = (O + 4×W + P) ÷ 6",
-            explanation: "E = (2 + 4×11 + 14) ÷ 6 = (2 + 44 + 14) ÷ 6 = 60 ÷ 6 = 10 Personenstunden",
+            trap: "a) 9 Stunden = falsches Rechnen. c) 11 Stunden = nur die wahrscheinlichste ohne Gewichtung. d) 14 = pessimistisch ohne Berechnung. Nicht einfach den Mittelwert nehmen!",
+            principle: "Drei-Punkt-Schätzung: E = (O + 4×W + P) ÷ 6 – die wahrscheinlichste Schätzung wird 4-fach gewichtet!",
+            explanation: "b) ist RICHTIG: Rechnung: E = (2 + 4×11 + 14) ÷ 6 = (2 + 44 + 14) ÷ 6 = 60 ÷ 6 = 10 Personenstunden. Die Formel gewichtet die wahrscheinlichste Schätzung stark (4×), während optimistische und pessimistische jeweils nur 1× eingehen.",
             reference: "Lehrplan 5.1.4"
         }
     },
@@ -614,7 +614,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 5,
         text: "Gegeben sind Tests (1-4) und Testquadranten (A-D):\n\n1. Gebrauchstauglichkeitstest\n2. Komponententest\n3. Funktionaler Test\n4. Zuverlässigkeitstest\n\nA. Q1: Technologieorientiert, Team unterstützend\nB. Q2: Geschäftlich orientiert, Team unterstützend\nC. Q3: Geschäftlich orientiert, Produkt kritisierend\nD. Q4: Technologieorientiert, Produkt kritisierend\n\nWie lassen sich die Testkategorien den Quadranten zuordnen?",
-        hint: "Usability = geschäftlich (Benutzer), kritisierend. Komponente = technisch, unterstützend. Performance/Zuverlässigkeit = technisch, kritisierend.",
+        hint: "Frage dich bei jeder Testart: Ist sie TECHNISCH oder GESCHÄFTLICH orientiert? Und: Unterstützt sie das Team beim Bauen oder kritisiert sie das fertige Produkt?",
         answers: [
             "1C, 2A, 3B, 4D",
             "1D, 2A, 3C, 4B",
@@ -623,9 +623,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 0,
         feedback: {
-            trap: "Gebrauchstauglichkeit ist geschäftlich, nicht technisch. Zuverlässigkeit ist technisch, nicht geschäftlich.",
-            principle: "Q1=Komponente, Q2=Funktion, Q3=Usability, Q4=Performance/Zuverlässigkeit",
-            explanation: "Usability (1)→Q3 (geschäftlich, kritisierend), Komponente (2)→Q1, Funktion (3)→Q2, Zuverlässigkeit (4)→Q4.",
+            trap: "b), c), d) ordnen Usability (1) falsch in Q4 (technisch) statt Q3 (geschäftlich) ein, oder verwechseln die Kategorien untereinander. Usability betrifft den BENUTZER (geschäftlich), Zuverlässigkeit ist TECHNISCH.",
+            principle: "Testquadranten nach Brian Marick: Q1=Komponente (tech, unterstützend), Q2=Funktion (business, unterstützend), Q3=Usability (business, kritisierend), Q4=Performance/Zuverlässigkeit (tech, kritisierend)",
+            explanation: "a) ist RICHTIG: 1. Usability→Q3 (geschäftlich, kritisierend: testet aus Benutzersicht). 2. Komponente→Q1 (technisch, unterstützend: hilft beim Coden). 3. Funktion→Q2 (geschäftlich, unterstützend: prüft Anforderungen). 4. Zuverlässigkeit→Q4 (technisch, kritisierend: testet nicht-funktionale Qualität).",
             reference: "Lehrplan 5.1.7"
         }
     },
@@ -691,9 +691,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 2,
         feedback: {
-            trap: "Testdatentools sind nicht für Überwachung (a) oder Abschluss (d). Testanalyse (b) braucht keine Daten.",
-            principle: "Testdaten werden bei TESTENTWURF definiert und bei TESTREALISIERUNG erstellt.",
-            explanation: "Testdaten-Werkzeuge unterstützen den Testentwurf (welche Daten brauchen wir?) und die Testrealisierung (Daten erstellen).",
+            trap: "a) Testüberwachung braucht keine Testdaten-Erstellung. b) Testanalyse definiert Testbedingungen, noch keine konkreten Daten. d) Testabschluss erstellt keine neuen Daten mehr.",
+            principle: "Testdaten-Werkzeuge: Beim TESTENTWURF wird definiert, WELCHE Daten, bei der TESTREALISIERUNG werden sie ERSTELLT.",
+            explanation: "c) ist RICHTIG: Testdaten-Werkzeuge unterstützen zwei Aktivitäten – beim Testentwurf werden die benötigten Testdaten definiert (z.B. Grenzwerte), bei der Testrealisierung werden diese Daten dann tatsächlich erstellt oder generiert.",
             reference: "Lehrplan 6.1.1"
         }
     },
@@ -713,9 +713,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "Option d) ist eher ein Vorteil (mehr Zeit für wertvolle manuelle Tests). Option a) betrifft Produktion, nicht Automatisierung.",
-            principle: "Häufigstes Automatisierungs-Risiko: Überschätzte Erwartungen.",
-            explanation: "Unrealistische Erwartungen an die Funktionalität eines Werkzeugs sind ein häufiges Risiko – Tools können nicht alles lösen.",
+            trap: "a) Nebenwirkungen im Betrieb betreffen das Produkt, nicht die Automatisierung selbst. c) Zuverlässigkeit ist selten das Problem. d) Weniger Zeit für manuelle Tests ist ein VORTEIL – man kann komplexere Dinge testen.",
+            principle: "Hauptrisiko der Testautomatisierung: Unrealistische Erwartungen an Werkzeuge ('Das Tool wird alles lösen!').",
+            explanation: "b) ist RICHTIG: Unrealistische Erwartungen an die Funktionalität eines Werkzeugs sind das häufigste Risiko – Teams erwarten oft Wunder von Tools, unterschätzen Einarbeitungszeit und Wartungsaufwand.",
             reference: "Lehrplan 6.2.1"
         }
     },
@@ -823,7 +823,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Es werden folgende Testmittel angenommen:\n1. Testüberdeckungen\n2. Änderungsanforderungen\n3. Testausführungsplan\n4. Priorisierte Testbedingungen\n\nund die folgenden Testaktivitäten:\nA. Testanalyse\nB. Testentwurf\nC. Testrealisierung\nD. Testabschluss\n\nWelche Aussage trifft AM BESTEN auf das durch die Aktivitäten erzeugte Testmittel zu?",
-        hint: "Ordne: Analyse→Bedingungen, Entwurf→Überdeckung, Realisierung→Ausführungsplan, Abschluss→Änderungsanforderungen.",
+        hint: "Jede Testaktivität erzeugt bestimmte Arbeitsergebnisse. Überlege: WAS wird in welcher Phase definiert, geplant oder erstellt?",
         answers: [
             "1B, 2D, 3C, 4A",
             "1B, 2D, 3A, 4C",
@@ -832,9 +832,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 0,
         feedback: {
-            trap: "Testüberdeckungen entstehen beim Testentwurf (B), nicht beim Testabschluss (D).",
-            principle: "Testanalyse→Testbedingungen | Testentwurf→Überdeckung | Testrealisierung→Ausführungsplan | Testabschluss→Änderungsanforderungen",
-            explanation: "1. Testüberdeckungen → Testentwurf (B), 2. Änderungsanforderungen → Testabschluss (D), 3. Testausführungsplan → Testrealisierung (C), 4. Priorisierte Testbedingungen → Testanalyse (A).",
+            trap: "b) und c) ordnen Testüberdeckungen falsch dem Testabschluss (D) zu – sie entstehen beim Testentwurf (B). d) ordnet Testausführungsplan falsch dem Testentwurf (B) zu – er entsteht bei der Testrealisierung (C).",
+            principle: "Testmittel nach Aktivität: Analyse→Testbedingungen | Entwurf→Überdeckung | Realisierung→Ausführungsplan | Abschluss→Änderungsanforderungen",
+            explanation: "a) ist RICHTIG: 1. Testüberdeckungen → Testentwurf (B) – hier werden Überdeckungskriterien festgelegt. 2. Änderungsanforderungen → Testabschluss (D) – hier werden offene Punkte dokumentiert. 3. Testausführungsplan → Testrealisierung (C) – hier wird die Reihenfolge geplant. 4. Priorisierte Testbedingungen → Testanalyse (A) – hier wird das 'Was' identifiziert.",
             reference: "Lehrplan 1.4.3"
         }
     },
