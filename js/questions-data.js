@@ -511,9 +511,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "Option a) misst Testfälle, nicht Anweisungen. Option d) ist Binär, nicht prozentual.",
-            principle: "Anweisungsüberdeckung = Prozent der ausgeführten Code-Zeilen.",
-            explanation: "Anweisungsüberdeckung gibt den prozentualen Anteil der ausgeführten Anweisungen im Code an.",
+            trap: "a) misst TESTFÄLLE, nicht Code-Anweisungen – das wäre Testfortschritt. c) misst Anweisungen OHNE Fehler – irrelevant für Überdeckung. d) ist binär (Ja/Nein), nicht prozentual.",
+            principle: "Anweisungsüberdeckung = Prozent der ausgeführten CODE-ZEILEN (nicht Testfälle!).",
+            explanation: "b) ist RICHTIG: Anweisungsüberdeckung gibt den PROZENTUALEN Anteil der durch Tests ausgeführten Anweisungen im Code an. Beispiel: 80% Anweisungsüberdeckung = 80% aller Code-Zeilen wurden mindestens 1× durchlaufen.",
             reference: "Lehrplan 4.3.1"
         }
     },
@@ -533,9 +533,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 3,
         feedback: {
-            trap: "Die ersten drei Aussagen sind korrekt für White-Box. Die vierte ist falsch – fehlende Anforderungen findet man durch Anforderungsanalyse, nicht White-Box.",
-            principle: "White-Box prüft CODE-Struktur, nicht ANFORDERUNGEN.",
-            explanation: "White-Box-Tests prüfen die Codestruktur. Nicht implementierte Anforderungen sind im Code nicht sichtbar – dafür braucht man Anforderungs-Traceability.",
+            trap: "a), b), c) sind alle KORREKTE Aussagen über White-Box-Tests. Die Frage fragt nach dem, was NICHT zutrifft!",
+            principle: "White-Box prüft CODE-STRUKTUR. Was NICHT im Code ist, kann White-Box nicht finden!",
+            explanation: "d) trifft NICHT zu: White-Box-Tests analysieren den vorhandenen Code. Nicht implementierte Anforderungen existieren im Code schlicht nicht – sie sind 'unsichtbar'. Dafür braucht man Anforderungs-Traceability (Black-Box-Perspektive).",
             reference: "Lehrplan 4.3.3"
         }
     },
@@ -555,9 +555,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 0,
         feedback: {
-            trap: "Option b) erfordert eigene Entwicklererfahrung – das ist nicht notwendig. Option c) beschreibt eher Benutzbarkeitstest.",
-            principle: "Error Guessing = Erfahrung mit TYPISCHEN Fehlern nutzen, nicht eigene Fehler.",
-            explanation: "Intuitive Testfallermittlung (Error Guessing) nutzt Wissen über typische Fehler und Erfahrung mit vergangenen Fehlerzuständen.",
+            trap: "b) erfordert EIGENE Entwicklererfahrung – Error Guessing nutzt aber Wissen über TYPISCHE Fehler anderer. c) beschreibt Usability-Test aus Nutzersicht. d) beschreibt keine Testtechnik, sondern Entwicklung.",
+            principle: "Error Guessing (intuitive Testfallermittlung) = Erfahrung mit TYPISCHEN Fehlern und vergangenen Fehlerzuständen nutzen.",
+            explanation: "a) ist RICHTIG: Bei der intuitiven Testfallermittlung nutzt man Wissen über typische Fehlerquellen und Erfahrung mit in der Vergangenheit gefundenen Fehlerzuständen – nicht eigene Fehler als Entwickler!",
             reference: "Lehrplan 4.4.1"
         }
     },
@@ -577,9 +577,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 2,
         feedback: {
-            trap: "Checklistenbasiert braucht eine Checkliste. Anweisungstest braucht CODE-Zugang. Intuitive Testfallermittlung braucht weniger Domänenwissen.",
-            principle: "Exploratives Testen = Keine formale Testbasis + Fachwissen nutzen + Lernen während des Testens.",
-            explanation: "Bei fehlender Spezifikation und vorhandenem Fachwissen ist exploratives Testen ideal – man lernt die Anwendung beim Testen.",
+            trap: "a) Checklistenbasiert braucht eine CHECKLISTE – die haben wir nicht. b) Error Guessing nutzt Fehlerwissen, nicht Domänenwissen. d) Anweisungstest ist White-Box und braucht CODE-Zugang.",
+            principle: "Exploratives Testen = Lernen + Testen GLEICHZEITIG, ideal bei fehlender Spezifikation und vorhandenem Fachwissen.",
+            explanation: "c) ist RICHTIG: Exploratives Testen kombiniert Lernen und Testen. Mit detailliertem Fachwissen und guten analytischen Fähigkeiten kann man die Anwendung erkunden und dabei gleichzeitig testen – auch ohne formale Spezifikation.",
             reference: "Lehrplan 4.4.2"
         }
     },
@@ -645,9 +645,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 2,
         feedback: {
-            trap: "Risikoakzeptanz bedeutet KEINE Maßnahmen ergreifen. Risikotransfer bedeutet das Risiko an Dritte übertragen (z.B. Versicherung).",
-            principle: "Tests sind eine Form der RISIKOMINDERUNG.",
-            explanation: "Performanztests und Alpha/Beta-Tests sind aktive Maßnahmen zur Risikominderung – sie reduzieren die Wahrscheinlichkeit, dass das Problem auftritt.",
+            trap: "a) Risikoakzeptanz = NICHTS tun, Risiko bewusst hinnehmen. b) Notfallplan = Plan für den Fall, dass Risiko eintritt. d) Risikotransfer = Risiko an Dritte übertragen (Versicherung, Outsourcing).",
+            principle: "Testen ist eine AKTIVE MAßNAHME zur Risikominderung (Risk Mitigation).",
+            explanation: "c) ist RICHTIG: Performanztests und Alpha/Beta-Tests sind aktive Maßnahmen zur RISIKOMINDERUNG. Sie reduzieren die Eintrittswahrscheinlichkeit und/oder das Schadensausmaß, indem Probleme VOR dem Produktivbetrieb gefunden werden.",
             reference: "Lehrplan 5.2.4, letzter Absatz"
         }
     },
@@ -667,9 +667,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 2,
         feedback: {
-            trap: "Option a) verwechselt Abschluss- mit Fortschrittsberichten. Regelmäßig = Fortschritt, nicht Abschluss.",
-            principle: "Fortschrittsbericht = regelmäßig WÄHREND des Testens | Abschlussbericht = AM ENDE einer Stufe.",
-            explanation: "Testabschlussberichte werden erstellt, wenn eine Teststufe abgeschlossen ist, und bauen auf den Fortschrittsberichten auf.",
+            trap: "a) verwechselt Berichte – REGELMÄSSIG ist Fortschritt, nicht Abschluss. b) ist teilweise richtig, aber beschreibt eher den Abschlussbericht. d) verwechselt die Reihenfolge – Fortschrittsberichte entstehen VOR dem Abschluss.",
+            principle: "Testfortschrittsbericht = WÄHREND des Testens, regelmäßig | Testabschlussbericht = AM ENDE einer Teststufe.",
+            explanation: "c) ist RICHTIG: Testabschlussberichte werden erstellt, wenn eine Teststufe abgeschlossen wurde. Sie BAUEN AUF den Fortschrittsberichten auf und enthalten zusätzliche Abschlussdaten wie Zusammenfassung, Bewertung, offene Punkte.",
             reference: "Lehrplan 5.3.2"
         }
     },
@@ -741,9 +741,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "Option a) beschreibt Validierung (nicht Testziel), Option c) verwechselt 'Fehler initiieren' mit 'Fehlerwirkungen provozieren'.",
-            principle: "Testen provoziert Fehlerwirkungen, um Fehlerzustände zu FINDEN – nicht zu initiieren.",
-            explanation: "Ein typisches Testziel ist, Fehlerwirkungen zu provozieren und dadurch Fehlerzustände im Code zu identifizieren.",
+            trap: "a) Validierung ist ein übergeordneter Begriff, kein Testziel. c) Fehler werden nicht INITIIERT, sondern GEFUNDEN – fatale Wortverwechslung! d) Verifikation ist ebenfalls ein übergeordneter Begriff.",
+            principle: "Testziel: Fehlerwirkungen PROVOZIEREN (auslösen) um Fehlerzustände zu IDENTIFIZIEREN (finden).",
+            explanation: "b) ist RICHTIG: Testen provoziert Fehlerwirkungen (sichtbare Symptome wie Abstürze, falsche Ausgaben) und identifiziert dadurch die zugrundeliegenden Fehlerzustände im Code.",
             reference: "Lehrplan 1.1.1, Aufzählungspunkt 2"
         }
     },
@@ -763,9 +763,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 2,
         feedback: {
-            trap: "Option a) verwechselt die Rollen – Testen identifiziert nicht die Ursache, sondern findet die Fehlerwirkung.",
-            principle: "Testen FINDET Fehler, Debugging BEHEBT sie.",
-            explanation: "Beim Testen werden Fehlerwirkungen gefunden. Debugging umfasst das Analysieren, Lokalisieren und Beheben der Fehlerzustände.",
+            trap: "a) Testen identifiziert nicht die URSACHE – das ist Debugging! b) 'Negativ/positiv' ist keine fachliche Unterscheidung. d) Auch Debugging findet nicht nur die Ursache, sondern behebt sie auch.",
+            principle: "Testen = Fehlerwirkungen FINDEN | Debugging = Ursachen analysieren und Fehler BEHEBEN.",
+            explanation: "c) ist RICHTIG: Beim Testen werden Fehler (Fehlerwirkungen) GEFUNDEN. Beim Debugging werden diese Fehler dann analysiert, lokalisiert und BEHOBEN. Tester finden, Entwickler beheben.",
             reference: "Lehrplan 1.1.2"
         }
     },
@@ -785,9 +785,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "Option a) beschreibt einen anderen Grundsatz (vollständiges Testen unmöglich). Option c) ist ein unrealistisches Ziel.",
-            principle: "Trugschluss 'keine Fehler' = Auch fehlerfreie Software kann unbrauchbar sein, wenn sie Benutzerbedürfnisse nicht erfüllt.",
-            explanation: "Endnutzer bei Abnahmetests einzubeziehen stellt sicher, dass das System auch die echten Bedürfnisse erfüllt – nicht nur technisch fehlerfrei ist.",
+            trap: "a) beschreibt Grundsatz 1 (Abwesenheit von Fehlern nicht beweisbar), nicht den Trugschluss. c) ist unrealistisch – 'keine Fehler' ist unmöglich (Grundsatz 1). d) Tests modifizieren ist Pesticide Paradox (Grundsatz 5).",
+            principle: "Trugschluss 'keine Fehler': Auch technisch fehlerfreie Software kann UNBRAUCHBAR sein, wenn sie die Benutzerbedürfnisse nicht erfüllt!",
+            explanation: "b) ist RICHTIG: Endnutzer bei Abnahmetests einzubeziehen stellt sicher, dass das System die ECHTEN Bedürfnisse erfüllt – nicht nur technisch fehlerfrei ist. Genau das verhindert den Trugschluss.",
             reference: "Lehrplan 1.3, Grundsatz 7"
         }
     },
@@ -854,9 +854,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 2,
         feedback: {
-            trap: "Ablenkungen verwechseln Tester- und Testmanager-Aufgaben oder drehen die Rollen um.",
-            principle: "Agile Teams: Testmanagement teils im Team, teils extern (für teamübergreifende Aufgaben).",
-            explanation: "In agilen Teams führt das Team selbst einige Testmanagementaufgaben durch. Teamübergreifende Aufgaben werden von einem externen Testmanager koordiniert.",
+            trap: "a) dreht um – Testmanagement ist Team-Aufgabe, Testen auch (nicht extern). b) dreht die Rollen komplett um. d) verwechselt auch die Zuordnung – Analyse/Entwurf ist Tester-Aufgabe.",
+            principle: "Agile Testrollen: Testmanagement TEILS im Team, TEILS extern (für teamübergreifende Aufgaben wie Koordination mehrerer Teams).",
+            explanation: "c) ist RICHTIG: In agilen Teams werden viele Testmanagementaufgaben VOM TEAM SELBST durchgeführt. Aufgaben, die MEHRERE TEAMS betreffen, werden von einem Testmanager AUSSERHALB des Teams koordiniert.",
             reference: "Lehrplan 1.4.5"
         }
     },
@@ -898,9 +898,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 0,
         feedback: {
-            trap: "Option c) ist zu extrem – unabhängig heißt nicht 'außerhalb der Organisation'.",
-            principle: "Unabhängigkeit bringt andere Perspektiven, kann aber zu Konflikten führen.",
-            explanation: "Unabhängige Tester haben andere Perspektiven und finden andere Fehler, aber ihre Unabhängigkeit kann zu Spannungen mit Entwicklern führen.",
+            trap: "b) 'gemeinsamer SW-Hintergrund' ist falsch – das Problem ist die Betriebsblindheit. c) 'außerhalb der Organisation' ist zu extrem – das sagt der Lehrplan nicht. d) 'für Verzögerungen verantwortlich gemacht' ist kein Lehrplan-Thema.",
+            principle: "Unabhängigkeit = Vor- UND Nachteile: Andere Perspektive (gut!), aber mögliche Konflikte mit Entwicklern (Nachteil).",
+            explanation: "a) ist RICHTIG: Unabhängige Tester haben eine ANDERE Perspektive als Entwickler und finden dadurch andere Fehler. Aber: Die Unabhängigkeit kann zu einer KONTROVERSEN BEZIEHUNG führen (Silo-Denken, 'die gegen uns').",
             reference: "Lehrplan 1.5.3"
         }
     },
@@ -922,9 +922,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 3,
         feedback: {
-            trap: "Option a) beschreibt das V-Modell, gilt aber nicht für alle SDLCs.",
-            principle: "Gute Praxis: Zu JEDER Entwicklungsaktivität gibt es eine Testaktivität.",
-            explanation: "Für jede Softwareentwicklungsaktivität sollte es eine entsprechende Testaktivität geben – das gilt für alle SDLCs.",
+            trap: "a) 'Teststufe↔Entwicklungsstufe' ist V-Modell-spezifisch, nicht universell. b) 'Testziel↔Entwicklungsziel' ist keine etablierte Praxis. c) 'Testaktivität↔Benutzeraktivität' macht keinen Sinn.",
+            principle: "Universelle gute Praxis: Zu JEDER Entwicklungsaktivität gibt es eine entsprechende Testaktivität.",
+            explanation: "d) ist RICHTIG: Für jede Softwareentwicklungsaktivität (Analyse, Design, Coding...) sollte es eine entsprechende Testaktivität geben. Das gilt für ALLE SDLCs – Wasserfall, Agile, V-Modell, etc.",
             reference: "Lehrplan 2.1.2, 1. Aufzählungspunkt"
         }
     },
@@ -966,9 +966,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "Shift-Left hat nichts mit Automatisierung zu tun – es geht um FRÜHERE Testaktivitäten.",
-            principle: "Shift-Left = Testaktivitäten FRÜHER im SDLC durchführen.",
-            explanation: "Shift-Left bedeutet, Testaktivitäten früher durchzuführen, um Fehler zu finden, bevor sie teuer zu beheben werden.",
+            trap: "a), c), d) verwechseln Shift-Left mit AUTOMATISIERUNG – das ist falsch! Shift-Left hat nichts mit Automatisierung zu tun.",
+            principle: "Shift-Left = Testaktivitäten auf einen FRÜHEREN ZEITPUNKT im SDLC verlagern (nichts mit Automatisierung!).",
+            explanation: "b) ist RICHTIG: Shift-Left bedeutet, Testaktivitäten FRÜHER durchzuführen, um Fehler zu finden, bevor sie TEUER werden. Je früher ein Fehler gefunden wird, desto günstiger die Behebung.",
             reference: "Lehrplan 2.1.5"
         }
     },
@@ -988,9 +988,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 2,
         feedback: {
-            trap: "Retrospektiven sind für das TEAM, nicht für Endanwender.",
-            principle: "Retrospektiven verbessern Teamprozesse – Endanwender sind nicht Zielgruppe.",
-            explanation: "Retrospektiven fokussieren auf Team-Verbesserungen. Endanwender-Verständnis zu verbessern ist kein typisches Retrospektiv-Ergebnis.",
+            trap: "a), b), d) sind alle typische und wahrscheinliche Retrospektiv-Ergebnisse: Prozesse verbessern, Testeffizienz steigern, Testskripte durch Feedback verbessern.",
+            principle: "Retrospektiven = TEAM-interne Verbesserung. Endanwender sind NICHT die Zielgruppe!",
+            explanation: "c) ist AM WENIGSTEN wahrscheinlich: Retrospektiven sind für das ENTWICKLUNGS-/TESTTEAM, nicht für Endanwender. Das Verständnis von Endanwendern für Prozesse zu verbessern ist kein Retrospektiv-Ziel.",
             reference: "Lehrplan 2.1.6"
         }
     },
@@ -1010,9 +1010,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 3,
         feedback: {
-            trap: "Komponententests werden von ENTWICKLERN durchgeführt, aber fokussieren auf Verifikation, nicht Validierung.",
-            principle: "Abnahmetest = Validierung durch BENUTZER/STAKEHOLDER, nicht Tester.",
-            explanation: "Abnahmetests validieren, ob das System die Geschäftsanforderungen erfüllt. Sie werden typischerweise von Benutzern/Stakeholdern durchgeführt.",
+            trap: "a) Komponententest = von Entwicklern, aber VERIFIKATION, nicht Validierung. b) Komponentenintegration = noch immer Verifikation. c) Systemintegration = externe Schnittstellen testen, aber noch Verifikation.",
+            principle: "VALIDIERUNG = 'Bauen wir das RICHTIGE?' | VERIFIKATION = 'Bauen wir es RICHTIG?'. Validierung durch BENUTZER, nicht Tester!",
+            explanation: "d) ist RICHTIG: Abnahmetest fokussiert auf VALIDIERUNG (erfüllt es die Benutzerbedürfnisse?) und wird von BENUTZERN/STAKEHOLDERN durchgeführt, nicht von Testern.",
             reference: "Lehrplan 2.2.1"
         }
     },
