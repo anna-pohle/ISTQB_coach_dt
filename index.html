@@ -4513,10 +4513,21 @@
                             const chapter = syllabusData.chapters[idx];
                             if (chapter && chapter.subchapters && chapter.subchapters.length === 1) {
                                 if (!state.expandedSections) state.expandedSections = {};
+                                if (!state.expandedKeyPoints) state.expandedKeyPoints = {};
                                 state.expandedSections[idx + '-0'] = true;
+                                const section = chapter.subchapters[0];
                                 // Wenn auch nur 1 Subsektion, diese auch aufklappen
-                                if (chapter.subchapters[0].subsections && chapter.subchapters[0].subsections.length === 1) {
+                                if (section.subsections && section.subsections.length === 1) {
                                     state.expandedSections[idx + '-0-0'] = true;
+                                    // Wenn die Subsektion nur 1 KeyPoint hat, diesen auch aufklappen
+                                    const subsec = section.subsections[0];
+                                    if (subsec.keyPoints && subsec.keyPoints.length === 1) {
+                                        state.expandedKeyPoints[idx + '-0-0-0'] = true;
+                                    }
+                                }
+                                // Wenn Sektion selbst nur 1 KeyPoint hat (ohne Subsections), diesen aufklappen
+                                if ((!section.subsections || section.subsections.length === 0) && section.keyPoints && section.keyPoints.length === 1) {
+                                    state.expandedKeyPoints[idx + '-0-0'] = true;
                                 }
                             }
                         }
@@ -4541,6 +4552,17 @@
                                 const section = chapter.subchapters[sIdx];
                                 if (section.subsections && section.subsections.length === 1) {
                                     state.expandedSections[key + '-0'] = true;
+                                    // Wenn die einzige Subsektion auch nur 1 KeyPoint hat, diesen aufklappen
+                                    const subsec = section.subsections[0];
+                                    if (subsec.keyPoints && subsec.keyPoints.length === 1) {
+                                        if (!state.expandedKeyPoints) state.expandedKeyPoints = {};
+                                        state.expandedKeyPoints[cIdx + '-' + sIdx + '-0-0'] = true;
+                                    }
+                                }
+                                // Wenn Sektion selbst nur 1 KeyPoint hat (ohne Subsections), diesen aufklappen
+                                if ((!section.subsections || section.subsections.length === 0) && section.keyPoints && section.keyPoints.length === 1) {
+                                    if (!state.expandedKeyPoints) state.expandedKeyPoints = {};
+                                    state.expandedKeyPoints[cIdx + '-' + sIdx + '-0'] = true;
                                 }
                             }
                         }
@@ -4554,7 +4576,25 @@
                     if (subsectionToggle) {
                         const key = subsectionToggle.getAttribute('data-toggle-subsection');
                         if (!state.expandedSections) state.expandedSections = {};
-                        state.expandedSections[key] = !state.expandedSections[key];
+                        const willExpand = !state.expandedSections[key];
+                        state.expandedSections[key] = willExpand;
+                        
+                        // Auto-Expand: Wenn nur 1 KeyPoint, diesen auch aufklappen
+                        if (willExpand) {
+                            const parts = key.split('-').map(Number);
+                            const [cIdx, sIdx, ssIdx] = parts;
+                            const chapter = syllabusData.chapters[cIdx];
+                            if (chapter && chapter.subchapters && chapter.subchapters[sIdx]) {
+                                const section = chapter.subchapters[sIdx];
+                                if (section.subsections && section.subsections[ssIdx]) {
+                                    const subsec = section.subsections[ssIdx];
+                                    if (subsec.keyPoints && subsec.keyPoints.length === 1) {
+                                        if (!state.expandedKeyPoints) state.expandedKeyPoints = {};
+                                        state.expandedKeyPoints[key + '-0'] = true;
+                                    }
+                                }
+                            }
+                        }
                         render();
                         e.preventDefault();
                         return;
