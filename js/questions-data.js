@@ -1396,9 +1396,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 0,
         feedback: {
-            trap: "Testkonzepte definieren WAS getestet wird, nicht die konkreten TESTDATEN.",
-            principle: "Testkonzept = Strategie, Kriterien, Berichte | NICHT = konkrete Testdaten.",
-            explanation: "Konkrete Testdaten und erwartete Ergebnisse gehören nicht ins Testkonzept, sondern in die Testfälle/Testspezifikation.",
+            trap: "b), c), d) sind alle typische Inhalte eines Testkonzepts: Endekriterien (b), Berichtsstruktur (c), Begründung für Abweichungen von der Strategie (d).",
+            principle: "Testkonzept = WAS, WANN, WIE testen (Strategie) | NICHT = konkrete Testdaten und erwartete Ergebnisse.",
+            explanation: "a) ist KEIN Zweck eines Testkonzepts: Konkrete Testdaten und erwartete Ergebnisse gehören in die TESTFÄLLE/TESTSPEZIFIKATION, nicht ins strategische Testkonzept.",
             reference: "Lehrplan 5.1.1"
         }
     },
@@ -1419,9 +1419,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "Die Formel vereinfacht sich zu E(n) = A(n-1). Lies den TATSÄCHLICHEN Wert aus Iteration 4 ab.",
-            principle: "E(n) = E(n-1) × A(n-1) / E(n-1) = A(n-1). Schätzung = letzter tatsächlicher Wert.",
-            explanation: "Die Formel vereinfacht sich zu E(n) = A(n-1). Der tatsächliche Aufwand für Iteration 4 war 8,25 Personentage.",
+            trap: "a) 10,5, c) 6,5, d) 9,4 sind falsch abgelesen oder falsch berechnet. Beachte: Die Formel VEREINFACHT sich!",
+            principle: "Extrapolationsformel: E(n) = E(n-1) × A(n-1) / E(n-1) = A(n-1). Also: Nächste Schätzung = LETZTER TATSÄCHLICHER Wert!",
+            explanation: "b) ist RICHTIG: Die Formel E(n) = E(n-1) × A(n-1) / E(n-1) vereinfacht sich zu E(n) = A(n-1). Der tatsächliche Aufwand von Iteration 4 (A(4)) ist laut Grafik 8,25 Personentage → E(5) = 8,25.",
             reference: "Lehrplan 5.1.4"
         }
     },
@@ -1442,9 +1442,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 2,
         feedback: {
-            trap: "Abhängigkeiten müssen VOR Prioritäten berücksichtigt werden!",
-            principle: "Testausführungsreihenfolge: 1. Abhängigkeiten erfüllen, 2. Nach Priorität sortieren.",
-            explanation: "Unter Berücksichtigung der Abhängigkeiten und Prioritäten ist TC 6 der sechste Testfall.",
+            trap: "a), b), d) berücksichtigen entweder die Abhängigkeiten oder die Prioritäten nicht korrekt. Systematisch durcharbeiten!",
+            principle: "Testausführungsreihenfolge: ERST Abhängigkeiten erfüllen (ein TC kann erst laufen, wenn seine Vorgänger fertig sind), DANN nach Priorität sortieren.",
+            explanation: "c) ist RICHTIG: Unter Berücksichtigung aller Abhängigkeiten (→ Pfeile im Diagramm) und Prioritäten (höhere zuerst) ist TC 6 der sechste Testfall in der optimalen Reihenfolge.",
             reference: "Lehrplan 5.1.5"
         }
     },
@@ -1464,9 +1464,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "Die Pyramide zeigt SCHICHTEN von Tests, nicht Prioritäten oder Abhängigkeiten.",
-            principle: "Testpyramide = Viele kleine Tests unten (Unit), wenige große oben (E2E).",
-            explanation: "Die Testpyramide zeigt die unterschiedliche Granularität von Tests: viele kleine Unit-Tests, wenige große End-to-End-Tests.",
+            trap: "a) Prioritäten werden nicht durch die Pyramide dargestellt. c) Überdeckungskriterien sind kein Thema der Pyramide. d) Abhängigkeiten werden nicht gezeigt.",
+            principle: "Testpyramide = GRANULARITÄT: Viele KLEINE Tests unten (Unit), wenige GROßE Tests oben (E2E).",
+            explanation: "b) ist RICHTIG: Die Testpyramide zeigt die unterschiedliche GRANULARITÄT von Tests: Basis = viele kleine, schnelle Unit-Tests. Spitze = wenige große, langsame End-to-End-Tests. Die ideale Verteilung: mehr unten, weniger oben.",
             reference: "Lehrplan 5.1.6"
         }
     },
@@ -1486,9 +1486,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 3,
         feedback: {
-            trap: "Testquadranten definieren nicht die Position im SDLC (a) und nicht die Granularität (b).",
-            principle: "Testquadranten = Gruppierung nach Geschäftlich/Technisch + Team-unterstützend/Produkt-kritisierend.",
-            explanation: "Testquadranten gruppieren Tests nach verschiedenen Kriterien wie Stakeholder-Ausrichtung (geschäftlich/technisch).",
+            trap: "a) 'Position im SDLC' ist falsch – Quadranten definieren keine zeitliche Reihenfolge. b) 'Granularität' ist die Testpyramide, nicht Quadranten. c) 'zugeordnet' ist zu restriktiv – Quadranten gruppieren flexibel.",
+            principle: "Testquadranten = GRUPPIERUNG nach mehreren Kriterien: Geschäftlich/Technisch + Team-unterstützend/Produkt-kritisierend.",
+            explanation: "d) ist RICHTIG: Testquadranten GRUPPIEREN Teststufen und Testarten nach mehreren Kriterien, z.B. Ausrichtung auf Stakeholder (geschäftlich vs. technisch) und Zweck (Team unterstützen vs. Produkt kritisieren).",
             reference: "Lehrplan 5.1.7"
         }
     },
@@ -1508,9 +1508,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 2,
         feedback: {
-            trap: "Ablenkungen: 'Risikoüberwachung' und 'Risikoidentifizierung' sind allgemeines Risikomanagement. 'Überdeckungselemente' gehört zum Testentwurf, nicht zur Risikoanalyse. Die Frage fragt nach GRÜNDLICHKEIT und UMFANG!",
-            principle: "Hohes Risiko = Gründlichere Tests | Niedriges Risiko = Weniger gründlich.",
-            explanation: "Das Risikoniveau bestimmt, wie gründlich getestet wird: Hohe Risiken erfordern intensivere Tests.",
+            trap: "a) Risikoüberwachung ist ERKENNUNG, nicht Gründlichkeit. b) Risikominderung ist MASSNAHME, nicht Testumfang. d) Überdeckungselemente gehören zum TESTENTWURF, nicht zur Risikoanalyse.",
+            principle: "Risikoniveau → Testgründlichkeit: HOHES Risiko = GRÜNDLICHERE Tests | NIEDRIGES Risiko = weniger gründlich.",
+            explanation: "c) ist RICHTIG: Das bewertete Risikoniveau hilft direkt bei der Wahl der Testgründlichkeit: Hohe Risiken erfordern intensive Tests (mehr Testfälle, tiefere Überdeckung). Niedrige Risiken erlauben weniger Aufwand.",
             reference: "Lehrplan 5.2.3"
         }
     },
@@ -1530,9 +1530,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 3,
         feedback: {
-            trap: "Fortschrittsberichte werden nicht im Testentwurf oder bei der Testanalyse erstellt.",
-            principle: "Testfortschrittsberichte dienen der ÜBERWACHUNG und STEUERUNG – Teil der Testplanung.",
-            explanation: "Testfortschrittsberichte werden bei der Testüberwachung und -steuerung genutzt, die Teil der Testplanung ist.",
+            trap: "a) Testentwurf erstellt Testfälle, nicht Berichte. b) Testabschluss erstellt ABSCHLUSS-Berichte. c) Testanalyse identifiziert Testbedingungen, nicht Berichte.",
+            principle: "Testfortschrittsberichte dienen der ÜBERWACHUNG und STEUERUNG – das ist Teil der TESTPLANUNG.",
+            explanation: "d) ist RICHTIG: Testfortschrittsberichte werden bei der Testüberwachung und -steuerung genutzt, die zur Testplanung gehört. Sie informieren Stakeholder über den aktuellen Stand und ermöglichen Korrekturmaßnahmen.",
             reference: "Lehrplan 5.3.2"
         }
     },
@@ -1552,9 +1552,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 3,
         feedback: {
-            trap: "Fehlerstatus ist Teil des FEHLERMANAGEMENTS, nicht des Konfigurationsmanagements.",
-            principle: "Konfigurationsmanagement = Versionierung, Änderungsverfolgung | Fehlermanagement = Fehlerstatus.",
-            explanation: "Fehlerstatus gehört zum Fehlermanagement, nicht zum Konfigurationsmanagement.",
+            trap: "a), b), c) sind alle Beispiele für Konfigurationsmanagement: Commits versionieren (a), Änderungen an Testumgebung verfolgen (b), Anforderungen referenzieren (c).",
+            principle: "Konfigurationsmanagement = VERSIONIERUNG, Änderungsverfolgung | FEHLERMANAGEMENT = Fehlerstatus, Fehlerlebenszyklus.",
+            explanation: "d) ist KEIN Beispiel für Konfigurationsmanagement: Fehlerstatus (offen, in Arbeit, behoben...) gehört zum FEHLERMANAGEMENT (Defect Management), nicht zum Konfigurationsmanagement.",
             reference: "Lehrplan 5.4.1"
         }
     },
@@ -1574,9 +1574,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "Das Testobjekt (c) ist angegeben (WebShop v0.99). Es fehlt aber die TESTUMGEBUNG!",
-            principle: "Fehlerbericht muss Testumgebung enthalten – ohne sie ist Reproduktion schwierig.",
-            explanation: "Es fehlen die Testumgebungsinformationen (Browser, Betriebssystem, etc.), die für die Reproduktion des Fehlers wichtig sind.",
+            trap: "a) Name/Datum sind weniger kritisch für Reproduktion. c) Testobjekt ist angegeben (WebShop v0.99). d) Stakeholder-Auswirkungen sind optional.",
+            principle: "Fehlerbericht MUSS die TESTUMGEBUNG enthalten – sonst ist Reproduktion oft unmöglich (verschiedene Browser, OS...).",
+            explanation: "b) ist RICHTIG: Es fehlen die TESTUMGEBUNGSINFORMATIONEN: Welcher Browser? Welches Betriebssystem? Welche Versionen? Ohne diese Infos kann der Entwickler den Fehler möglicherweise nicht reproduzieren.",
             reference: "Lehrplan 5.5.1"
         }
     },
