@@ -2871,6 +2871,28 @@ const examQuestions = Object.freeze([
             explanation: "Der Testabschlussbericht dokumentiert, was gut lief, was verbessert werden kann, und welche Erkenntnisse für zukünftige Projekte relevant sind.",
             reference: "Lehrplan 5.3.1, Seite 64-65"
         }
+    },
+    {
+        id: "custom-1.4.4-2",
+        source: "Übungsfrage basierend auf CTFL v4.0.2 Lehrplan",
+        lo: "FL-1.4.4",
+        kLevel: 2,
+        chapter: 1,
+        text: "Beachten Sie die folgenden Testaktivitäten:\n\n1. Auswählen von Regressionstests\n2. Bewertung der Vollständigkeit der Testdurchführung\n3. Identifizieren, welche User-Storys offene Fehlerberichte haben\n4. Bewertung, ob die Qualität und Anzahl der Tests für jede Anforderung mit dem Grad des Produktrisikos vereinbar sind\n\nBetrachten Sie die folgenden Möglichkeiten, wie die Verfolgbarkeit beim Testen helfen kann:\n\nA. Verbessern der Verständlichkeit von Teststatusberichten, um den Status der Elemente der Testbasis einzubeziehen\nB. Testaktivitäten nachvollziehbarer/prüfbarer machen\nC. Bereitstellung von Informationen zur Beurteilung der Prozessqualität\nD. Analysieren der Auswirkungen von Änderungen\n\nWelche der folgenden Zuordnungen passt AM BESTEN zu den aufgeführten Testaktivitäten und den Möglichkeiten, wie die Verfolgbarkeit diese Aktivitäten jeweils unterstützen kann?",
+        hint: "Regressionstests → Änderungsauswirkung. Vollständigkeit → prüfbar. User-Storys + Fehler → Statusberichte. Tests vs. Risiko → Prozessqualität.",
+        answers: [
+            "1D, 2B, 3C, 4A",
+            "1B, 2D, 3A, 4C",
+            "1D, 2C, 3A, 4B",
+            "1D, 2B, 3A, 4C"
+        ],
+        correct: 3,
+        feedback: {
+            trap: "1→D ist klar (Änderungen → Regressionstests). Die Falle: 3→A (Statusberichte zeigen User-Story-Status inkl. Fehler), NICHT C (Prozessqualität).",
+            principle: "Verfolgbarkeit: Änderungsauswirkung(D)→Regression | Prüfbarkeit(B)→Vollständigkeit | Statusberichte(A)→Testbasis-Status | Prozessqualität(C)→Risiko-Abgleich",
+            explanation: "1. Regressionstests brauchen Änderungsauswirkungsanalyse (D). 2. Vollständigkeit bewerten = nachvollziehbar/prüfbar (B). 3. User-Storys mit Fehlern = Teststatusberichte (A). 4. Tests vs. Risiko = Prozessqualität (C).",
+            reference: "Lehrplan 1.4.4, Seite 27"
+        }
     }
 ]);
 
