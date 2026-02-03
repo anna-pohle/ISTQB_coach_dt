@@ -1162,18 +1162,18 @@ const examQuestions = Object.freeze([
         kLevel: 3,
         chapter: 4,
         text: "Sie testen einen PIN-Validator, der gültige PINs akzeptiert und ungültige PINs ablehnt. Eine PIN ist eine Folge von Ziffern. Eine PIN ist gültig, wenn sie aus vier Ziffern besteht, von denen mindestens zwei unterschiedlich sind.\n\nWelche der folgenden Optionen ist ein Satz von Eingabetestdaten, der alle identifizierten Äquivalenzklassen abdeckt?",
-        hint: "ÄK: zu kurz | 4 Ziffern alle gleich (ungültig) | 4 Ziffern mit ≥2 verschiedenen (gültig) | zu lang. Welche deckt alle?",
+        hint: "ÄK: zu kurz | 4 Ziffern alle gleich (ungültig) | 4 Ziffern mit ≥2 verschiedenen (gültig) | zu lang. Welche Option deckt ALLE 4 ab?",
         answers: [
             "112, 1111, 1234, 123456",
             "1, 123, 1111, 1234",
             "12, 112, 1112, 11112",
             "1, 111, 1111, 11111"
         ],
-        correct: 1,
+        correct: 0,
         feedback: {
-            trap: "Option d) deckt nur ungültige Längen und identische Ziffern ab – es fehlt ein gültiger Fall mit unterschiedlichen Ziffern.",
-            principle: "Äquivalenzklassen: zu kurz | 4 Ziffern identisch | 4 Ziffern unterschiedlich | zu lang.",
-            explanation: "Option b) deckt alle Klassen ab: 1 (zu kurz), 123 (zu kurz), 1111 (4 identische=ungültig), 1234 (4 mit ≥2 unterschiedlichen=gültig).",
+            trap: "Option b) hat keine 'zu lange' PIN – nur zwei 'zu kurze'. Option c) hat zwar alle Längen, aber 1112 ist GÜLTIG (4 Ziffern mit 2 verschiedenen). Option d) fehlt ein gültiger Fall.",
+            principle: "4 Äquivalenzklassen: zu kurz (<4) | 4 Ziffern alle identisch | 4 Ziffern mit ≥2 verschiedenen | zu lang (>4).",
+            explanation: "Option a) deckt alle 4 Klassen ab: 112 (zu kurz), 1111 (4 identische=ungültig), 1234 (4 mit ≥2 unterschiedlichen=gültig), 123456 (zu lang).",
             reference: "Lehrplan 4.2.1"
         }
     },
