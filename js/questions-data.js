@@ -1648,9 +1648,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 2,
         feedback: {
-            trap: "Optionen a), b) und d) sind typische Testziele laut Lehrplan.",
-            principle: "Testziele beziehen sich auf SOFTWAREQUALITÄT, nicht auf Testumgebung.",
-            explanation: "Die Verringerung des Risikos einer unzureichenden Testumgebung ist kein typisches Testziel. Stattdessen wird im Lehrplan das Verringern des Risikos unzureichender SOFTWAREQUALITÄT genannt.",
+            trap: "a) Fehlerwirkungen auslösen = typisches Testziel. b) Vertrauen schaffen = typisches Testziel. d) Vertragliche/gesetzliche Erfüllung = typisches Testziel. Alle drei stehen im Lehrplan!",
+            principle: "Testziele beziehen sich auf SOFTWARE-Qualität, NICHT auf Testinfrastruktur/Testumgebung.",
+            explanation: "c) ist KEIN typisches Testziel: Der Lehrplan nennt 'Verringerung des Risikos unzureichender SOFTWARE-Qualität' – nicht Testumgebung! Die Testumgebung ist ein Mittel zum Zweck, kein Testziel.",
             reference: "Lehrplan 1.1.1"
         }
     },
@@ -1670,9 +1670,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 3,
         feedback: {
-            trap: "Grundursache = Ablenkung | Fehlerwirkung = Akzeptanz ungültiger Werte | Fehlhandlung = Denkfehler",
-            principle: "Fehlerzustand = Problem IM CODE selbst.",
-            explanation: "Die fehlerhaft programmierte Logik im Code ist ein Fehlerzustand (Defect). Die Grundursache war die Ablenkung, die Fehlerwirkung ist das Akzeptieren ungültiger Werte.",
+            trap: "a) Grundursache = das klingelnde Telefon (WARUM der Fehler passierte). b) Fehlerwirkung = Akzeptanz ungültiger Werte (SICHTBARES Symptom). c) Fehlhandlung = der Denkfehler des Entwicklers (menschlicher Irrtum).",
+            principle: "Fehlerkette: Grundursache → Fehlhandlung → Fehlerzustand (im Code) → Fehlerwirkung (sichtbar).",
+            explanation: "d) ist RICHTIG: Die fehlerhaft programmierte Logik im Code ist der FEHLERZUSTAND (Defect/Bug). Er liegt IM CODE und ist das Ergebnis der Fehlhandlung. Die Fehlerwirkung entsteht erst, wenn dieser Code ausgeführt wird.",
             reference: "Lehrplan 1.2.3"
         }
     },
@@ -1692,9 +1692,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 3,
         feedback: {
-            trap: "a) = Testentwurf | b) = Testrealisierung | c) = Testabschluss",
-            principle: "Testanalyse = Analyse der Testbasis auf testbare Merkmale.",
-            explanation: "Die Bewertung der Testbasis hinsichtlich Testbarkeit gehört zur Testanalyse. Infrastruktur gehört zum Testentwurf, Testsuiten zur Testrealisierung, Lessons Learned zum Testabschluss.",
+            trap: "a) Infrastruktur/Werkzeuge → TESTENTWURF oder Testrealisierung. b) Testsuiten erstellen → TESTREALISIERUNG. c) Lessons Learned → TESTABSCHLUSS.",
+            principle: "Testanalyse = WAS soll getestet werden? Dazu gehört: Testbasis analysieren, TESTBARKEIT bewerten.",
+            explanation: "d) ist RICHTIG: Die Bewertung der Testbasis hinsichtlich Testbarkeit ist eine TESTANALYSE-Aktivität. Hier wird geprüft, ob die Anforderungen überhaupt testbar formuliert sind.",
             reference: "Lehrplan 1.4.1"
         }
     },
@@ -1714,9 +1714,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "Das Pareto-Prinzip (80/20-Regel) beschreibt genau die Häufung von Fehlern.",
-            principle: "Fehlerclusterung = Kleine Anzahl von Komponenten enthält meiste Fehler.",
-            explanation: "Der Grundsatz 'Fehlerzustände treten gehäuft auf' besagt, dass eine kleine Anzahl von Komponenten die meisten Fehlerzustände enthält – genau das Pareto-Prinzip.",
+            trap: "a) Kontextabhängigkeit beschreibt, dass Testen je nach Situation anders ist. c) Abnutzung beschreibt Pesticide Paradox. d) Trugschluss beschreibt, dass fehlerfreie Software trotzdem unbrauchbar sein kann.",
+            principle: "Grundsatz 4: Fehlerzustände treten GEHÄUFT auf = Pareto-Prinzip (80/20-Regel).",
+            explanation: "b) ist RICHTIG: Das Pareto-Prinzip (80% der Fehler in 20% der Komponenten) beschreibt genau den Grundsatz 'Fehlerzustände treten gehäuft auf' – wenige Bereiche enthalten die meisten Fehler.",
             reference: "Lehrplan 1.3, Grundsatz 4"
         }
     },
@@ -1736,9 +1736,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 3,
         feedback: {
-            trap: "Testwissen hilft beim Finden, Sorgfalt beim Dokumentieren – aber WEITERGABE erfordert Kommunikation.",
-            principle: "Kommunikation = Schlüssel für effektive Informationsweitergabe an Stakeholder.",
-            explanation: "Kommunikationsfähigkeit ist besonders wichtig für die effektive Weitergabe von Informationen an andere Stakeholder wie Entwickler.",
+            trap: "a) Testwissen hilft beim FINDEN von Fehlern. b) Kritisches Denken hilft beim ANALYSIEREN. c) Sorgfalt hilft beim DOKUMENTIEREN. Aber WEITERGABE = Kommunikation!",
+            principle: "WEITERGABE von Informationen an andere Menschen erfordert KOMMUNIKATIONSFÄHIGKEIT.",
+            explanation: "d) ist RICHTIG: Kommunikationsfähigkeit ist besonders wichtig für die effektive WEITERGABE von Informationen. Fehler konstruktiv zu berichten, ohne Entwickler zu demotivieren, erfordert gute Kommunikation.",
             reference: "Lehrplan 1.5.1"
         }
     },
@@ -1758,9 +1758,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 0,
         feedback: {
-            trap: "Testskript = Anweisungen (B), Test-Charta = Ziel/Agenda (D).",
-            principle: "Testsuite=Sammlung(A) | Testfall=erwartete Ergebnisse(C) | Testskript=Anweisungen(B) | Test-Charta=Ziel(D)",
-            explanation: "1. Testsuite → A (Menge von Testfällen), 2. Testfall → C (erwartete Ergebnisse), 3. Testskript → B (Anweisungen), 4. Test-Charta → D (Ziel/Agenda).",
+            trap: "b), c), d) ordnen falsch zu. Merkhilfe: Suite=Sammlung, Fall=Ergebnis, Skript=Anweisungen, Charta=Ziel.",
+            principle: "Testarbeitsergebnisse: Testsuite=Sammlung(A) | Testfall=erwartete Ergebnisse(C) | Testskript=Anweisungen(B) | Test-Charta=Ziel/Agenda(D)",
+            explanation: "a) ist RICHTIG: 1→A (Testsuite = Menge von Testfällen), 2→C (Testfall = enthält erwartete Ergebnisse), 3→B (Testskript = Anweisungen), 4→D (Test-Charta = Ziel und Agenda für explorative Sitzung).",
             reference: "Lehrplan 1.4.3"
         }
     },
@@ -1780,9 +1780,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 2,
         feedback: {
-            trap: "Auswirkungsanalyse liefert KEINE Qualitätsinfo (a), und Restrisiko wird anders analysiert (d).",
-            principle: "Verfolgbarkeit = Änderungsauswirkung verstehen + Regressionstests auswählen.",
-            explanation: "Verfolgbarkeit hilft am besten bei der Auswirkungsanalyse von Änderungen und der Auswahl geeigneter Testfälle für Regressionstests.",
+            trap: "a) Auswirkungsanalyse liefert keine Qualitätsinfos über das System. b) Vollständigkeit von Testfällen ist anders zu messen. d) Restrisiko-Analyse nutzt Verfolgbarkeit, aber das ist nicht der BESTE Nutzen.",
+            principle: "Verfolgbarkeit = WELCHE Tests müssen bei Änderungen wiederholt werden? → Auswirkungsanalyse + Regressionstestauswahl.",
+            explanation: "c) ist RICHTIG: Verfolgbarkeit hilft AM BESTEN bei: 1) Auswirkungsanalyse (welche Tests betrifft eine Änderung?) und 2) Auswahl geeigneter Testfälle für Regressionstests (welche Tests müssen wiederholt werden?).",
             reference: "Lehrplan 1.4.4"
         }
     },
@@ -1802,9 +1802,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "Whole-Team ≠ beliebige Aufgaben (a) oder separate Arbeit (c) oder feste Rollen (d).",
-            principle: "Whole-Team = Gemeinsame Qualitätsverantwortung im gesamten Team.",
-            explanation: "Beim Whole-Team-Ansatz ist jedes Teammitglied für die Qualität verantwortlich. Es geht um gemeinsame Verantwortung, nicht um beliebige oder separate Aufgaben.",
+            trap: "a) 'Beliebige Aufgabe' ist falsch – es geht um Qualität, nicht beliebige Aufgaben. c) 'Separate Arbeit' widerspricht dem Teamgedanken. d) 'Feste Rollen' ist traditionell, nicht Whole-Team.",
+            principle: "Whole-Team-Ansatz = JEDES Teammitglied ist für QUALITÄT verantwortlich (gemeinsame Verantwortung).",
+            explanation: "b) ist RICHTIG: Der Hauptvorteil des Whole-Team-Ansatzes ist die gemeinsame Qualitätsverantwortung. Nicht nur Tester, sondern ALLE sind für Qualität zuständig – das verbessert die Teamdynamik und Produktqualität.",
             reference: "Lehrplan 1.5.2"
         }
     },
@@ -1826,9 +1826,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 0,
         feedback: {
-            trap: "Statische Tests (b) und Testplanung (c) können IMMER früh erfolgen. Abnahmetests (d) brauchen ein fertiges Produkt.",
-            principle: "Sequenziell = Code erst spät verfügbar = Dynamische Tests erst spät möglich.",
-            explanation: "In sequenziellen SDLC-Modellen wird ausführbarer Code erst in späteren Phasen erstellt. Daher können dynamische Tests nicht früh durchgeführt werden.",
+            trap: "b) Statische Tests (Reviews) brauchen keinen Code – IMMER früh möglich. c) Testplanung braucht keinen Code – IMMER früh möglich. d) Abnahmetests brauchen ein FERTIGES Produkt – NIE früh möglich.",
+            principle: "Sequenziell = Code erst SPÄT verfügbar = DYNAMISCHE Tests (die Code ausführen) erst SPÄT möglich.",
+            explanation: "a) ist RICHTIG: In sequenziellen SDLC-Modellen (Wasserfall, V-Modell) wird Code erst in späteren Phasen erstellt. Dynamische Tests (Unit-Tests, etc.) brauchen ausführbaren Code und können daher nicht früh durchgeführt werden.",
             reference: "Lehrplan 2.1.1"
         }
     },
@@ -1848,9 +1848,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "Es gibt zu JEDER Entwicklungsaktivität eine Testaktivität (nicht a). Reviews sind wichtig (nicht d).",
-            principle: "Gute Praxis: Unterschiedliche Testziele, Testumfänge und Testtiefen pro Teststufe.",
-            explanation: "Tester sollten unterschiedliche Testziele für jede Teststufe definieren und passende Testumfänge und Testtiefen festlegen. Das gilt für alle SDLCs.",
+            trap: "a) Zu JEDER Entwicklungsaktivität gehört eine Testaktivität – es gibt keine 'ohne'. c) Testanalyse soll FRÜH beginnen (Shift-Left!). d) Tester SOLLTEN Reviews durchführen – das ist wertvoll.",
+            principle: "Gute Praxis für ALLE SDLCs: Jede Teststufe hat eigene ZIELE, UMFÄNGE und TIEFEN.",
+            explanation: "b) ist RICHTIG: Tester sollten für jede Teststufe unterschiedliche Testziele definieren (Unit ≠ System ≠ Abnahme) und passende Testumfänge und Testtiefen festlegen. Das gilt für alle SDLCs.",
             reference: "Lehrplan 2.1.2"
         }
     },
@@ -1870,9 +1870,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 2,
         feedback: {
-            trap: "TDD verwendet Testcode, nicht natürliche Sprache. ATDD nutzt Akzeptanzkriterien, aber nicht unbedingt Given/When/Then.",
-            principle: "BDD = Gegeben/Wenn/Dann-Format (Gherkin-Syntax).",
-            explanation: "BDD (Behavior-Driven Development) verwendet das Gegeben/Wenn/Dann-Format, um das erwartete Verhalten in natürlicher Sprache zu beschreiben.",
+            trap: "a) TDD verwendet Testcode (z.B. JUnit), nicht natürliche Sprache. b) ATDD nutzt Akzeptanzkriterien, aber nicht zwingend Given/When/Then. d) CI/CD ist kein Test-First-Ansatz.",
+            principle: "BDD (Behavior-Driven Development) = GEGEBEN/WENN/DANN-Format (Gherkin-Syntax) in natürlicher Sprache.",
+            explanation: "c) ist RICHTIG: BDD verwendet das Gegeben/Wenn/Dann-Format (auch Gherkin genannt), um das erwartete Verhalten in NATÜRLICHER SPRACHE zu beschreiben. Beispiel: 'Gegeben ein angemeldeter Benutzer, Wenn er auf Logout klickt, Dann wird er abgemeldet.'",
             reference: "Lehrplan 2.1.3"
         }
     },
@@ -1892,9 +1892,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 0,
         feedback: {
-            trap: "DevOps erhöht den Fokus auf NICHT-funktionale Tests (nicht b). Regressionstests werden NICHT minimiert (c).",
-            principle: "DevOps = Schnellere Releases, kürzere Time-to-Market.",
-            explanation: "DevOps ermöglicht schnellere Produktfreigaben und kürzere Markteinführungszeiten durch Zusammenarbeit von Entwicklung und Betrieb.",
+            trap: "b) DevOps erhöht den Fokus auf NICHT-funktionale Tests, nicht nur funktionale. c) Regressionstests werden NICHT minimiert – sie werden automatisiert und häufiger ausgeführt. d) Automatisierung ist nicht automatisch kostengünstig.",
+            principle: "DevOps = Entwicklung + Betrieb zusammen = SCHNELLERE Releases, KÜRZERE Time-to-Market.",
+            explanation: "a) ist RICHTIG: Der Hauptvorteil von DevOps ist die schnellere Produktfreigabe und kürzere Markteinführungszeit durch enge Zusammenarbeit von Entwicklung und Betrieb mit automatisierten Pipelines.",
             reference: "Lehrplan 2.1.4"
         }
     },
@@ -1914,9 +1914,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "Auch wenn es eine Geschäftsanforderung ist (a), wird hier das WIE (Performanz) getestet, nicht das WAS (Funktion).",
-            principle: "Performanztest = Nicht-funktionaler Test = Prüft WIE das System funktioniert.",
-            explanation: "Das Messen der Bearbeitungszeit ist ein Performanztest – eine Art des nicht-funktionalen Testens, das prüft, wie das System unter bestimmten Bedingungen funktioniert.",
+            trap: "a) Obwohl es eine Geschäftsanforderung ist, wird hier das WIE (Performanz) getestet, nicht das WAS (Funktion). c) Die Zeit IST definiert (10 Sek.) – nicht explorativ. d) Strukturell = White-Box, nicht Zeitmessung.",
+            principle: "Funktional = WAS macht es? | Nicht-funktional = WIE GUT macht es das? (Performanz, Sicherheit, Usability...)",
+            explanation: "b) ist RICHTIG: Das Messen der Bearbeitungszeit (95% in <10 Sek.) ist ein PERFORMANZTEST – eine Art des NICHT-FUNKTIONALEN Testens. Es prüft nicht WAS das System tut, sondern WIE SCHNELL es das tut.",
             reference: "Lehrplan 2.2.2"
         }
     },
@@ -1936,9 +1936,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 3,
         feedback: {
-            trap: "Option a) macht falsche Annahmen über Fehlernachtests. Option b) vertauscht die Definitionen.",
-            principle: "Regression = Keine negativen Seiteneffekte | Fehlernachtest = Fehler wirklich behoben.",
-            explanation: "Regressionstests prüfen, dass Änderungen keine negativen Auswirkungen auf unveränderte Bereiche haben. Fehlernachtests prüfen, dass der ursprüngliche Fehler behoben wurde.",
+            trap: "a) Fehlernachtests nehmen nicht unbedingt ab – neue Fehler können gefunden werden. b) vertauscht die Definitionen komplett. c) Betriebsumgebung ist nicht das Ziel von Regressionstests.",
+            principle: "Regression = Keine NEGATIVEN Seiteneffekte durch Änderungen | Fehlernachtest = POSITIVE Wirkung: Fehler wirklich behoben.",
+            explanation: "d) ist RICHTIG: Regressionstests prüfen, dass Änderungen keine NEGATIVEN Auswirkungen auf unveränderte Bereiche haben. Fehlernachtests prüfen die POSITIVE Auswirkung: Der ursprüngliche Fehler ist behoben.",
             reference: "Lehrplan 2.2.3"
         }
     },
@@ -1960,9 +1960,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 2,
         feedback: {
-            trap: "Testfälle (a), Anforderungen (b) und Dokumentation (d) können alle statisch geprüft werden.",
-            principle: "Rechtlich geschützter Code von Drittanbietern darf nicht analysiert werden.",
-            explanation: "Ausführbarer Code von Drittanbietern, der rechtlich geschützt ist, darf nicht mit statischen Tests geprüft werden – man hat keinen Zugang zum Quellcode.",
+            trap: "a) Testfälle und Testskripte können statisch geprüft werden (Review). b) Anforderungen und Akzeptanzkriterien können statisch geprüft werden. d) Projektdokumentation und Modelle können statisch geprüft werden.",
+            principle: "Statische Tests brauchen ZUGANG zum Arbeitsprodukt. Rechtlich geschützter Code ist nicht zugänglich!",
+            explanation: "c) ist RICHTIG: Ausführbarer Code von Drittanbietern, der rechtlich geschützt ist, KANN NICHT statisch geprüft werden – man hat keinen Zugang zum Quellcode und darf ihn nicht analysieren.",
             reference: "Lehrplan 3.1.1"
         }
     },
@@ -1982,9 +1982,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 3,
         feedback: {
-            trap: "Fehlerwirkungen (a) und Performanz (b) erfordern AUSFÜHRUNG = dynamischer Test.",
-            principle: "Statischer Test = Lücken in Verfolgbarkeit/Überdeckung leichter finden.",
-            explanation: "Lücken in der Überdeckung von Anforderungen (z.B. IT-Sicherheit) werden durch statische Tests leichter gefunden als durch dynamische Tests.",
+            trap: "a) FEHLERWIRKUNGEN erfordern Ausführung = dynamischer Test. b) PERFORMANZ messen erfordert Ausführung = dynamischer Test. c) 'Ausschließliches Ziel' ist zu eng – statisch hat mehrere Ziele.",
+            principle: "Statischer Test = LÜCKEN in Anforderungsüberdeckung leichter finden (z.B. fehlende Sicherheitsanforderungen).",
+            explanation: "d) ist RICHTIG: Unzureichende Überdeckung von IT-Sicherheitsanforderungen (oder anderen Anforderungen) kann durch statische Tests LEICHTER aufgedeckt werden – durch Verfolgbarkeitsanalyse, bevor Code existiert.",
             reference: "Lehrplan 3.1.3"
         }
     },
@@ -2004,9 +2004,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "Technisches Review wird vom MODERATOR geleitet (a). Arbeitsergebnisse werden VOR der Sitzung verteilt (c).",
-            principle: "Formales Review = Strukturierter Prozess mit mehreren Aktivitäten.",
-            explanation: "Formale Reviews folgen einem strukturierten Prozess mit Aktivitäten wie Planung, Reviewbeginn, individuelles Review, Reviewsitzung, Kommunikation/Analyse, Behebung und Berichterstattung.",
+            trap: "a) Technisches Review wird vom MODERATOR geleitet, nicht vom Autor! c) Arbeitsergebnisse werden VOR der Sitzung verteilt, nicht während. d) Fehlerzustände aus Reviews WERDEN gemeldet – sie sind wertvoll!",
+            principle: "Formales Review (z.B. Inspektion) = STRUKTURIERTER PROZESS mit mehreren Aktivitäten.",
+            explanation: "b) ist RICHTIG: Der Reviewprozess besteht aus mehreren Aktivitäten: 1) Planung, 2) Reviewbeginn, 3) Individuelles Review, 4) Reviewsitzung, 5) Kommunikation und Analyse, 6) Behebung, 7) Berichterstattung.",
             reference: "Lehrplan 3.2.2"
         }
     },
@@ -2026,9 +2026,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "Überarbeitung = Autor (a). Sitzungsleitung = Moderator (c). Aufzeichnung = Protokollant (d).",
-            principle: "Management entscheidet, WAS geprüft wird (Auswahl und Priorisierung).",
-            explanation: "Das Management kann entscheiden, was geprüft werden soll, indem es Arbeitsprodukte basierend auf Anforderungen, Risiken und Geschäftszielen auswählt und priorisiert.",
+            trap: "a) Überarbeitung nach Review = AUTOR. c) Sitzungsleitung/Mediation = MODERATOR. d) Aufzeichnung = PROTOKOLLANT.",
+            principle: "Management-Aufgabe bei Reviews: ENTSCHEIDEN, WAS geprüft wird (Auswahl und Priorisierung von Arbeitsprodukten).",
+            explanation: "b) ist RICHTIG: Das Management kann entscheiden, WAS geprüft werden soll, indem es Arbeitsprodukte basierend auf Anforderungen, Risiken und Geschäftszielen auswählt und priorisiert.",
             reference: "Lehrplan 3.2.3"
         }
     },
@@ -2050,9 +2050,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "Interne Struktur prüfen (a) = White-Box. Erfahrung nutzen (c) = erfahrungsbasiert.",
-            principle: "Black-Box = Implementierungsunabhängig = Kein Quellcode-Zugang nötig.",
-            explanation: "Black-Box-Testverfahren können unabhängig von der Implementierung durchgeführt werden – der Tester braucht keine Kenntnis des Quellcodes.",
+            trap: "a) Interne Struktur prüfen = WHITE-BOX. c) Erfahrung nutzen = ERFAHRUNGSBASIERT. d) Ohne Anpassung bei Verhaltensänderung ist FALSCH – Tests müssen angepasst werden!",
+            principle: "Black-Box-Vorteil = IMPLEMENTIERUNGSUNABHÄNGIG = Kein Quellcode-Zugang nötig, Tests können früher beginnen.",
+            explanation: "b) ist RICHTIG: Black-Box-Tests können UNABHÄNGIG von der Implementierung durchgeführt werden – der Tester braucht keine Kenntnis des Quellcodes und kann Tests schon anhand der Spezifikation entwerfen.",
             reference: "Lehrplan 4.1.1"
         }
     },
@@ -2072,9 +2072,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 3,
         feedback: {
-            trap: "Die ÄKs sind: 0-1000, 1001-2000, 2001-4000, 4001-6000, >6000. Zähle, wie viele verschiedene ÄKs jede Option abdeckt!",
-            principle: "Höchste ÄK-Überdeckung = Werte aus möglichst vielen verschiedenen Klassen.",
-            explanation: "Option d) deckt 4 verschiedene ÄKs ab: 666/999 (ÄK1), 2222 (ÄK3), 5555 (ÄK4), 6666 (ÄK5) = 80% Überdeckung. Die anderen Optionen decken nur 3 ÄKs ab.",
+            trap: "a) 0,1000,2000,3000,4000 deckt ÄK1 (2×), ÄK2 (1×), ÄK3 (2×) = nur 3 ÄKs. b) deckt ÄK1, ÄK3, ÄK4 = 3 ÄKs. c) deckt ÄK2, ÄK3, ÄK4 = 3 ÄKs.",
+            principle: "5 ÄKs: ≤1000 | 1001-2000 | 2001-4000 | 4001-6000 | >6000. Höchste Überdeckung = Werte aus VIELEN VERSCHIEDENEN Klassen!",
+            explanation: "d) ist RICHTIG: 666/999 (beide ÄK1), 2222 (ÄK3), 5555 (ÄK4), 6666 (ÄK5) = 4 verschiedene ÄKs = 80% Überdeckung. Es fehlt nur ÄK2 (1001-2000)!",
             reference: "Lehrplan 4.2.1"
         }
     },
@@ -2094,9 +2094,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 0,
         feedback: {
-            trap: "2-Wert-GWA hat 10 Grenzwerte (0, 50, 51, 70, 71, 90, 91, 100 + Nachbarn -1, 101). Die Testfälle decken 6 davon ab.",
-            principle: "2-Wert-GWA: Grenzwert + direkter Nachbar. Überdeckung = getestete GW / alle GW.",
-            explanation: "Bei 10 Überdeckungselementen und 6 getesteten Werten (0, 50, 70, 90, 91, 100) ergibt sich 60% Überdeckung. -1 und 101 fehlen, sowie 51 und 71.",
+            trap: "b) 75% wäre 7,5 von 10 – nicht erreichbar. c) 33,3% wäre nur 3-4 Werte. d) 100% bräuchte alle 10 Grenzwerte.",
+            principle: "2-Wert-GWA: 10 Überdeckungselemente = -1, 0, 50, 51, 70, 71, 90, 91, 100, 101. Überdeckung = getestete / alle.",
+            explanation: "a) ist RICHTIG: Die Testfälle 91, 50, 70, 100, 90, 0 decken 6 von 10 Überdeckungselementen ab → 60%. Es fehlen: -1, 51, 71, 101.",
             reference: "Lehrplan 4.2.2"
         }
     },
@@ -2117,9 +2117,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 3,
         feedback: {
-            trap: "Nur MITGLIEDER können ein T-Shirt erhalten. Bei R8 ist es ein Nicht-Mitglied!",
-            principle: "Entscheidungstabelle muss die Anforderungen korrekt abbilden.",
-            explanation: "R8 ist falsch: Nur Mitglieder können ein T-Shirt erhalten. Ein Nicht-Mitglied (R8) darf kein T-Shirt bekommen, auch nicht bei der 15. Ausleihe.",
+            trap: "R4, R2, R6 entsprechen den Anforderungen. Prüfe jede Regel: Wer bekommt was? Nur MITGLIEDER bekommen T-Shirts!",
+            principle: "Entscheidungstabelle muss ALLE Anforderungen korrekt abbilden. Anforderung: 'Nach 15 Ausleihen erhalten MITGLIEDER ein T-Shirt.'",
+            explanation: "d) R8 ist FALSCH: Anforderung sagt 'Mitglieder erhalten T-Shirt'. R8 ist ein NICHT-Mitglied – darf also KEIN T-Shirt erhalten, auch nicht bei der 15. Ausleihe!",
             reference: "Lehrplan 4.2.3"
         }
     },
@@ -2140,9 +2140,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "Übergänge 'test' und 'run' können nicht im selben Testfall vorkommen. Nach 'run' gibt es zwei Wege zu OFF.",
-            principle: "100% Übergangsüberdeckung = Jeder Pfeil im Diagramm mindestens einmal.",
-            explanation: "Mindestens 3 Testfälle sind nötig: z.B. TF1: test→done, TF2: run→error→done, TF3: run→pause→resume→pause→done. So werden alle Übergänge abgedeckt.",
+            trap: "a) 2 reicht nicht – 'test' und 'run' schließen sich aus, man braucht mindestens 2 für diese. c) 4 ist mehr als nötig. d) 7 ist viel mehr als nötig.",
+            principle: "0-Switch-Überdeckung (100% gültige Übergänge) = JEDER Pfeil im Diagramm mindestens 1× durchlaufen.",
+            explanation: "b) ist RICHTIG: Mindestens 3 Testfälle sind nötig. Z.B.: TF1: INIT→test→TEST→done→OFF, TF2: INIT→run→RUN→error→OFF, TF3: INIT→run→RUN→pause→PAUSE→resume→RUN→pause→PAUSE→done→OFF. So werden alle Übergänge abgedeckt.",
             reference: "Lehrplan 4.2.4"
         }
     },
@@ -2162,9 +2162,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 0,
         feedback: {
-            trap: "100% Anweisungsüberdeckung garantiert NICHT 100% Zweigüberdeckung (c). Mehr Testfälle heißt nicht höhere Überdeckung (b).",
-            principle: "100% Anweisungsüberdeckung = JEDE Anweisung mindestens einmal ausgeführt.",
-            explanation: "Bei 100% Anweisungsüberdeckung wurde jede Anweisung im Code mindestens einmal ausgeführt. Das garantiert aber keine vollständige Zweig- oder Pfadüberdeckung.",
+            trap: "b) Mehr Testfälle heißt NICHT automatisch höhere Überdeckung – sie könnten dieselben Anweisungen testen. c) 100% Anweisung ≠ 100% Zweig – false-Zweige könnten fehlen! d) Alle Kombinationen ist Pfadüberdeckung, nicht Anweisung.",
+            principle: "100% Anweisungsüberdeckung = JEDE Code-Anweisung wurde mindestens 1× ausgeführt (aber nicht jeder Zweig!).",
+            explanation: "a) ist RICHTIG (etwas ungenau formuliert): Bei 100% Anweisungsüberdeckung wurde JEDE Anweisung (nicht 'beliebig ausgewählt') mindestens einmal ausgeführt. Das garantiert aber KEINE vollständige Zweig- oder Pfadüberdeckung!",
             reference: "Lehrplan 4.3.1"
         }
     },
@@ -2184,9 +2184,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 3,
         feedback: {
-            trap: "Ohne Testfall keine Überdeckung (a). Ein Testfall findet nicht alle Fehler (b). 100% Anweisung ≠ 100% Zweig (c).",
-            principle: "100% Zweigüberdeckung = Alle Entscheidungsergebnisse (true/false) ausgeführt.",
-            explanation: "Bei 100% Zweigüberdeckung werden alle Entscheidungsergebnisse (alle Zweige) ausgeführt. Das schließt 100% Anweisungsüberdeckung ein, aber nicht umgekehrt.",
+            trap: "a) Ohne TESTAUSFÜHRUNG kann man KEINE Überdeckung erreichen – Code muss laufen! b) Ein Testfall deckt Fehlerzustände nicht garantiert auf. c) FALSCH! 100% Anweisung garantiert NICHT 100% Zweig (false-Zweige können fehlen).",
+            principle: "100% Zweigüberdeckung = Alle Entscheidungsergebnisse (true UND false für jedes if) ausgeführt → schließt 100% Anweisung EIN.",
+            explanation: "d) ist RICHTIG: Bei 100% Zweigüberdeckung werden ALLE Entscheidungsergebnisse jedes bedingten Kontrollübergangs ausgeführt (true UND false). Das schließt 100% Anweisungsüberdeckung EIN, aber nicht umgekehrt!",
             reference: "Lehrplan 4.3.2"
         }
     },
@@ -2206,9 +2206,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 0,
         feedback: {
-            trap: "Durchgeführte Schritte = Testsitzungsblätter (b). Bewertung = Nachbesprechung (d).",
-            principle: "Test-Charta = Anweisung von Testzielen und möglichen Testideen.",
-            explanation: "Die Test-Charta legt die Testziele für die Testsitzung fest. Sie ist eine Anweisung von Testzielen und möglichen Testideen, wie getestet werden soll.",
+            trap: "b) Durchgeführte Schritte = TESTSITZUNGSBLÄTTER (Session Sheets), nicht Charta. c) Fragen-Format ist möglich, aber nicht der Hauptzweck. d) Bewertung nach der Sitzung = NACHBESPRECHUNG (Debriefing).",
+            principle: "Test-Charta = VOR der Sitzung: Anweisung von TESTZIELEN und möglichen TESTIDEEN.",
+            explanation: "a) ist RICHTIG: Die Test-Charta legt die TESTZIELE für die Testsitzung fest. Sie ist eine Anweisung, die beschreibt, WAS und WIE getestet werden soll – vor Beginn der Sitzung.",
             reference: "Lehrplan 4.4.2"
         }
     },
