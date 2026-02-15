@@ -4875,6 +4875,10 @@
                         state.correctAnswers++;
                         state.points += CONFIG.POINTS_PER_CORRECT;
                         state.chapterStats[chapter].correct++;
+                    } else {
+                        // Track wrong answer for review (Exam mode)
+                        if (!quiz.wrongAnswers) quiz.wrongAnswers = [];
+                        quiz.wrongAnswers.push(quiz.currentIndex);
                     }
                     
                     saveState();
@@ -4970,10 +4974,26 @@
             if (addWrongBookmarksBtn) {
                 addWrongBookmarksBtn.addEventListener('click', () => {
                     const quiz = state.currentQuiz;
-                    if (!quiz || !quiz.wrongAnswers) return;
+                    if (!quiz || !quiz.questions || !quiz.answers) return;
+                    
+                    // Berechne falsche Antworten direkt aus quiz.answers (statt quiz.wrongAnswers)
+                    const wrongIndices = [];
+                    quiz.questions.forEach((q, idx) => {
+                        if (quiz.answers[idx] === undefined || quiz.answers[idx] === null) return;
+                        const isMultipleChoice = Array.isArray(q.multipleCorrect) && q.multipleCorrect.length > 1;
+                        let isCorrect = false;
+                        if (isMultipleChoice) {
+                            const selected = Array.isArray(quiz.answers[idx]) ? [...quiz.answers[idx]].sort() : [];
+                            const correct = [...q.multipleCorrect].sort();
+                            isCorrect = selected.length === correct.length && selected.every((v, i) => v === correct[i]);
+                        } else {
+                            isCorrect = quiz.answers[idx] === q.correct;
+                        }
+                        if (!isCorrect) wrongIndices.push(idx);
+                    });
                     
                     let added = 0;
-                    quiz.wrongAnswers.forEach(idx => {
+                    wrongIndices.forEach(idx => {
                         const q = quiz.questions[idx];
                         if (!q || !q.lo) return;
                         
@@ -5080,9 +5100,11 @@
                 const key = e.key.toLowerCase();
                 
                 if (keyMap.hasOwnProperty(key)) {
-                    const btn = document.querySelector(`.answer-btn[data-answer="${keyMap[key]}"]`);
-                    if (btn && !btn.disabled) {
-                        btn.click();
+                    // Select by DISPLAY position (nth button), not by original data-answer index
+                    const allBtns = document.querySelectorAll('.answer-btn');
+                    const displayIdx = keyMap[key];
+                    if (displayIdx < allBtns.length && !allBtns[displayIdx].disabled) {
+                        allBtns[displayIdx].click();
                         e.preventDefault();
                     }
                 }
