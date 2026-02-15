@@ -3388,7 +3388,8 @@ const examQuestions = Object.freeze([
         kLevel: 3,
         chapter: 4,
         text: "Gegeben sei ein Zustandsdiagramm für die Software eines Batterieladegerätes mit den Zuständen: Start, Warten, Aus, Erhaltungsladen, Laden, Niedrig, Hoch.\n\nWelcher der folgenden Testfälle enthält sowohl gültige als auch ungültige Übergänge?",
-        hint: "Prüfe jeden Übergang: Existiert er im Diagramm? Ein ungültiger Übergang ist einer, der nicht definiert ist.",
+        hint: "Prüfe JEDEN einzelnen Übergang (Pfeil) im Testfall: Existiert er im Diagramm? Ein ungültiger Übergang = ein Pfeil, der im Diagramm NICHT vorhanden ist.",
+        image: "images/b_q23.png",
         answers: [
             "Start → Warten → Aus → Warten → Erhaltungsladen → Warten",
             "Start → Warten → Erhaltungsladen → Laden → Hoch → Laden",
@@ -3397,9 +3398,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 3,
         feedback: {
-            trap: "Ohne das genaue Diagramm ist es schwer zu sagen, aber typischerweise gibt es keinen direkten Übergang von Warten zu Laden.",
-            principle: "Ungültige Übergänge = Übergänge, die im Zustandsdiagramm nicht definiert sind.",
-            explanation: "Der Testfall d) enthält den Übergang Warten → Laden, der möglicherweise nicht direkt existiert (man muss erst über Erhaltungsladen gehen).",
+            trap: "a) Start→Warten→Aus→Warten→Erhaltungsladen→Warten: ALLE Übergänge existieren im Diagramm → nur gültig. b) Start→Warten→Erhaltungsladen→Laden→Hoch→Laden: ALLE existieren → nur gültig. c) ...→Laden→Niedrig→Laden: ALLE existieren → nur gültig.",
+            principle: "Um von Warten zu Laden zu kommen, MUSS man über Erhaltungsladen gehen. Der direkte Übergang Warten → Laden existiert NICHT im Diagramm = ungültiger Übergang.",
+            explanation: "d) enthält den UNGÜLTIGEN Übergang 'Warten → Laden' (dieser Pfeil fehlt im Diagramm!). Alle anderen Übergänge in d) sind gültig (Start→Warten, Warten→Aus, Aus→Warten, Laden→Niedrig, Niedrig→Laden). Damit enthält nur d) SOWOHL gültige ALS AUCH ungültige Übergänge.",
             reference: "Lehrplan 4.2.4"
         }
     },
@@ -3831,7 +3832,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Tester leiten aus denselben Testbedingungen jeweils unterschiedliche Testfälle ab.\n\nWelcher Grundsatz des Testens wird dadurch am besten verdeutlicht?",
-        hint: "Unterschiedliche Tester, unterschiedliche Testfälle – was sagt das über Testen aus?",
+        hint: "Verschiedene Tester → verschiedene Testfälle. Welcher Grundsatz betont, dass VARIATION beim Testen wichtig ist? (Denke an das Gegenmittel zum Pestizid-Paradoxon.)",
         answers: [
             "Tests nutzen sich ab.",
             "'Keine Fehler' bedeutet ein brauchbares System.",
@@ -3840,10 +3841,10 @@ const examQuestions = Object.freeze([
         ],
         correct: 0,
         feedback: {
-            trap: "Die Frage ist etwas irreführend. Verschiedene Tester = verschiedene Perspektiven, aber keiner der Grundsätze passt perfekt. 'Tests nutzen sich ab' ist am nächsten, da es um Variation geht.",
-            principle: "Variation in Tests ist wichtig, um neue Fehler zu finden.",
-            explanation: "Wenn verschiedene Tester unterschiedliche Testfälle ableiten, zeigt das die Notwendigkeit von Variation – ähnlich wie bei 'Tests nutzen sich ab'.",
-            reference: "Lehrplan 1.3.1"
+            trap: "Die Frage fragt INDIREKT nach Grundsatz 5. Wenn verschiedene Tester verschiedene Testfälle erstellen, zeigt das: Es gibt MEHR als einen Weg zu testen → Variation ist wichtig → Tests nutzen sich ab, wenn man sie nicht variiert. 'Fehlerhäufung' (Grundsatz 4) klingt verlockend, hat aber nichts mit verschiedenen Testern zu tun.",
+            principle: "Grundsatz 5 (Pestizid-Paradoxon): Dieselben Tests finden irgendwann keine neuen Fehler mehr → Variation nötig. Dass verschiedene Tester verschiedene Testfälle ableiten, ZEIGT diese Variation.",
+            explanation: "Offizielle GTB-Antwort: 'Tests nutzen sich ab' (Grundsatz 5). Die Argumentation: Wenn verschiedene Tester aus denselben Testbedingungen unterschiedliche Testfälle ableiten, beweist das, dass es VIELE mögliche Tests gibt. Immer dieselben zu verwenden (= keine Variation) führt zum Pestizid-Paradoxon. ACHTUNG: Diese Frage ist auch unter Experten umstritten, da der Zusammenhang indirekt ist.",
+            reference: "Lehrplan 1.3.1, Grundsatz 5 – GTB Sample Exam D, Frage 3"
         }
     },
     {
@@ -4272,19 +4273,20 @@ const examQuestions = Object.freeze([
         lo: "FL-4.2.4",
         kLevel: 3,
         chapter: 4,
-        text: "Sie wenden den Zustandsübergangstest auf ein Zimmerreservierungssystem an mit vier Zuständen (S1-S4) und fünf Ereignissen.\n\nWelcher der folgenden Testfälle (Abfolge von Ereignissen) erreicht die GRÖßTMÖGLICHE ÜBERDECKUNG GÜLTIGER ÜBERGÄNGE?",
-        hint: "Zähle, wie viele verschiedene Übergänge jeder Testfall abdeckt.",
+        text: "Sie wenden den Zustandsübergangstest auf ein Zimmerreservierungssystem an, das durch die folgende Zustandsübergangstabelle modelliert wird. Es gibt vier Zustände (S1-S4) und fünf Ereignisse.\n\nWelcher der folgenden Testfälle (Abfolge von Ereignissen) erreicht die GRÖßTMÖGLICHE ÜBERDECKUNG GÜLTIGER ÜBERGÄNGE?\n\n(Alle Testfälle beginnen im Zustand S1: Anfrage)",
+        hint: "Verfolge jeden Testfall Schritt für Schritt durch die Tabelle: In welchem Zustand bist du? Welches Ereignis kommt? In welchen Zustand gehst du? Zähle die VERSCHIEDENEN (nicht doppelten!) Übergänge.",
+        image: "images/d_q23.png",
         answers: [
             "Nicht verfügbar, Verfügbar, Zimmer wechseln, Nicht verfügbar, Stornieren",
             "Verfügbar, Zimmer wechseln, Nicht verfügbar, Verfügbar, Bezahlen",
             "Verfügbar, Zimmer wechseln, Verfügbar, Zimmer wechseln, Nicht verfügbar",
             "Nicht verfügbar, Stornieren, Zimmer wechseln, Verfügbar, Bezahlen"
         ],
-        correct: 0,
+        correct: 1,
         feedback: {
-            trap: "Ohne das genaue Zustandsdiagramm ist es schwer zu sagen, aber Option a) deckt typischerweise die meisten Übergänge ab.",
-            principle: "Maximale Überdeckung = möglichst viele verschiedene Übergänge in einem Testfall.",
-            explanation: "Option a) deckt 5 verschiedene Übergänge ab und erreicht damit die größtmögliche Überdeckung.",
+            trap: "a) S1→S3→S2→S1→S3→S4 = 4 verschiedene Übergänge (S1→S3 wird doppelt durchlaufen). c) S1→S2→S1→S2→S1→S3 = nur 3 verschiedene Übergänge (S1→S2 und S2→S1 werden je 2× wiederholt). d) S1→S3→S4, dann S4+'Zimmer wechseln'=UNGÜLTIG (S4 hat keine Übergänge!).",
+            principle: "Maximale Überdeckung = möglichst viele VERSCHIEDENE Übergänge in einem Testfall. Insgesamt gibt es 7 gültige Übergänge in der Tabelle.",
+            explanation: "b) Verfügbar, Zimmer wechseln, Nicht verfügbar, Verfügbar, Bezahlen → S1→S2→S1→S3→S2→S4 = 5 VERSCHIEDENE Übergänge (S1→S2, S2→S1, S1→S3, S3→S2, S2→S4). Das ist die höchste Überdeckung aller Optionen (5 von 7 = 71%).",
             reference: "Lehrplan 4.2.4"
         }
     },
@@ -5159,7 +5161,8 @@ const examQuestions = Object.freeze([
         kLevel: 3,
         chapter: 4,
         text: "Betrachten Sie ein Zustandsdiagramm für eine Zapfsäule mit Kreditkarte. Jeder Test beginnt im Anfangszustand 'Warten auf Kunden' und endet, wenn ein Übergang im Anfangszustand ankommt.\n\nWie viele Tests benötigen Sie, um jeden Übergang im Zustandsdiagramm abzudecken?",
-        hint: "Zähle die Übergänge und finde die minimale Anzahl von Testpfaden.",
+        hint: "Zähle alle Pfeile (Übergänge) im Diagramm. Dann finde die minimale Anzahl von Pfaden, die von 'Warten auf Kunden' starten und dort wieder enden, sodass JEDER Pfeil mindestens 1× durchlaufen wird.",
+        image: "images/e_q23.png",
         answers: [
             "4",
             "7",
@@ -5168,9 +5171,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 0,
         feedback: {
-            trap: "Ohne das genaue Diagramm ist es schwer zu sagen, aber typischerweise sind 4 Tests für vollständige Übergangsüberdeckung nötig.",
-            principle: "Minimale Anzahl Tests für Übergangsüberdeckung = Anzahl unabhängiger Pfade.",
-            explanation: "Für eine typische Zapfsäulen-Zustandsmaschine werden 4 Tests benötigt, um alle Übergänge abzudecken.",
+            trap: "b) 7 – das wäre die Anzahl der Übergänge, aber NICHT die Anzahl der Tests. Mehrere Übergänge können in EINEM Test abgedeckt werden! c) 1 – ein einziger Test kann nicht alle Pfade zurück zu 'Warten auf Kunden' abdecken. d) Unendlich – Zustandsübergangstest ist endlich, da die Anzahl der Übergänge endlich ist.",
+            principle: "Minimale Testanzahl für 0-Switch-Überdeckung = Anzahl VERSCHIEDENER Pfade vom Startzustand zurück zum Startzustand, die zusammen ALLE Übergänge abdecken.",
+            explanation: "Das Diagramm hat 4 verschiedene Rückkehr-Pfade zu 'Warten auf Kunden': (1) Karte ungültig, (2) Abbruch bei Kraftstoffwahl, (3) Timeout beim Tanken, (4) Normale Transaktion. Jeder Pfad deckt mindestens einen einzigartigen Übergang ab → 4 Tests nötig.",
             reference: "Lehrplan 4.2.4"
         }
     },
