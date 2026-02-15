@@ -4009,7 +4009,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 2,
         text: "Welche der folgenden Aussagen beschreibt AM BESTEN eine typische Herausforderung bei der Einführung von DevOps?",
-        hint: "DevOps-Herausforderungen: Automatisierung, Pipeline-Integration, Kulturwandel.",
+        hint: "DevOps = Automatisierung + CI/CD-Pipeline. Denke nach: Was ist bei der EINFÜHRUNG schwierig? Was löst DevOps gerade NICHT, sondern erfordert es erst?",
         answers: [
             "Sicherstellen, dass nicht-funktionale Anforderungen ausreichend berücksichtigt werden.",
             "Umgang mit häufig wechselnden Testumgebungen.",
@@ -4018,10 +4018,10 @@ const examQuestions = Object.freeze([
         ],
         correct: 3,
         feedback: {
-            trap: "a) Nicht DevOps-spezifisch. b) Testumgebungen sind ein Thema, aber nicht die Hauptherausforderung. c) DevOps reduziert manuelle Tests.",
-            principle: "DevOps-Herausforderung: Testautomatisierung in CI/CD-Pipeline integrieren.",
-            explanation: "Die Integration der Testautomatisierung in die Bereitstellungspipeline ist eine typische Herausforderung bei der DevOps-Einführung.",
-            reference: "Lehrplan 2.1.4"
+            trap: "a) FALSCH: DevOps ERHÖHT sogar die Sichtbarkeit nicht-funktionaler Qualitätsmerkmale (Performance, Zuverlässigkeit) – das ist ein Vorteil, keine Herausforderung! b) FALSCH: CI/CD-Prozesse in DevOps schaffen gerade STABILE Testumgebungen – wechselnde Umgebungen sind also kein DevOps-Problem. c) FALSCH: DevOps REDUZIERT den Bedarf an manuellen Tests durch Automatisierung – mehr manuelle Tester wäre das Gegenteil von DevOps.",
+            principle: "DevOps bringt viele Vorteile, aber die EINFÜHRUNG selbst ist die Herausforderung: Delivery-Pipeline definieren + aufsetzen, CI/CD-Tools einführen + warten, Testautomatisierung aufbauen + pflegen.",
+            explanation: "Die DevOps-Implementierung birgt Risiken und Herausforderungen: Man muss die Bereitstellungspipeline definieren und aufsetzen, CI/CD-Tools einführen und warten sowie die Testautomatisierung etablieren und pflegen. Das ist ein erheblicher Initialaufwand, bevor DevOps seine Vorteile ausspielen kann.",
+            reference: "Lehrplan 2.1.4, 4. Absatz"
         }
     },
     {
