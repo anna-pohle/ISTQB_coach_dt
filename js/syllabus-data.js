@@ -365,8 +365,8 @@ const syllabusData = Object.freeze({
                             keyPoints: [
                                 {
                                     title: "Warum Verfolgbarkeit?",
-                                    content: "Verfolgbarkeit zwischen Testbasis, Testmitteln, Testergebnissen und Fehlerzuständen ermöglicht effektive Testüberwachung und -steuerung.",
-                                    coachNote: "Welcher Testfall prüft welche Anforderung? Welcher Bug gehört wozu?"
+                                    content: "Verfolgbarkeit zwischen Testbasis, Testmitteln, Testergebnissen und Fehlerzuständen ermöglicht effektive Testüberwachung und -steuerung. Welcher Testfall prüft welche Anforderung? Welcher Bug gehört wozu?",
+                                    coachNote: "Stell dir eine Tabelle vor: Zeilen = Anforderungen, Spalten = Testfälle, Kreuz = 'wird getestet'. Verfolgbarkeit ist genau diese Verknüpfung."
                                 },
                                 {
                                     title: "Überdeckungsbewertung",
@@ -374,9 +374,14 @@ const syllabusData = Object.freeze({
                                     coachNote: "Beispiel: Verfolgbarkeit von Testfällen zu Anforderungen zeigt, ob alle Anforderungen durch Testfälle abgedeckt sind."
                                 },
                                 {
-                                    title: "Nutzen der Verfolgbarkeit",
-                                    content: "Ermöglicht Auswirkungsanalyse bei Änderungen, erleichtert Audits, hilft bei IT-Governance. Macht Testberichte für Stakeholder verständlicher.",
-                                    coachNote: "🎯 Prüfungsfokus:\n\nVerfolgbarkeit ermöglicht:\n• Überdeckungsbewertung\n• Auswirkungsanalyse bei Änderungen\n• Restrisiko-Bewertung\n• Verständliche Testberichte"
+                                    title: "Die 4 konkreten Nutzen der Verfolgbarkeit",
+                                    content: "Laut Lehrplan unterstützt Verfolgbarkeit beim Testen in vier Bereichen:\n\n1. Auswirkungsanalyse von Änderungen → Welche Tests sind bei einer Änderung betroffen? Welche Regressionstests müssen ausgewählt werden?\n\n2. Testaktivitäten prüfbar (auditierbar) machen → Wurde alles getestet? Ist die Testdurchführung vollständig?\n\n3. Verständlichkeit von Teststatusberichten verbessern → Den Status der Testbasis-Elemente (z.B. User-Storys inkl. offener Fehler) im Bericht sichtbar machen.\n\n4. Informationen zur Beurteilung der Prozessqualität liefern → Passt die Anzahl und Qualität der Tests zum jeweiligen Produktrisiko?",
+                                    coachNote: "🎯 Prüfungs-Eselsbrücke – Zuordnung merken:\n\n• Regressionstests auswählen → Änderungsauswirkung (Was hat sich geändert?)\n• Vollständigkeit bewerten → Prüfbarkeit/Auditierbarkeit (Können wir es nachweisen?)\n• User-Storys mit offenen Bugs → Teststatusbericht (Was steht im Bericht?)\n• Tests vs. Risiko → Prozessqualität (Ist unser Testprozess angemessen?)\n\nEliminierungs-Trick: 'Regression → Änderung' ist die klarste Zuordnung – damit fallen schon die meisten falschen Optionen weg!"
+                                },
+                                {
+                                    title: "Weitere Nutzen",
+                                    content: "Verfolgbarkeit hilft zusätzlich bei der IT-Governance und Compliance (z.B. in regulierten Branchen) sowie bei der Bewertung des Restrisikos nach dem Testen.",
+                                    coachNote: "In der Prüfung: Restrisiko-Bewertung ist ein weiterer Nutzen, aber die 4 Hauptnutzen oben sind die häufigsten Prüfungsfragen!"
                                 }
                             ]
                         },

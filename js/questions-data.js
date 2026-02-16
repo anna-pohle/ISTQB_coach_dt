@@ -2879,7 +2879,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Beachten Sie die folgenden Testaktivitäten:\n\n1. Auswählen von Regressionstests\n2. Bewertung der Vollständigkeit der Testdurchführung\n3. Identifizieren, welche User-Storys offene Fehlerberichte haben\n4. Bewertung, ob die Qualität und Anzahl der Tests für jede Anforderung mit dem Grad des Produktrisikos vereinbar sind\n\nBetrachten Sie die folgenden Möglichkeiten, wie die Verfolgbarkeit beim Testen helfen kann:\n\nA. Verbessern der Verständlichkeit von Teststatusberichten, um den Status der Elemente der Testbasis einzubeziehen\nB. Testaktivitäten nachvollziehbarer/prüfbarer machen\nC. Bereitstellung von Informationen zur Beurteilung der Prozessqualität\nD. Analysieren der Auswirkungen von Änderungen\n\nWelche der folgenden Zuordnungen passt AM BESTEN zu den aufgeführten Testaktivitäten und den Möglichkeiten, wie die Verfolgbarkeit diese Aktivitäten jeweils unterstützen kann?",
-        hint: "Regressionstests → Änderungsauswirkung. Vollständigkeit → prüfbar. User-Storys + Fehler → Statusberichte. Tests vs. Risiko → Prozessqualität.",
+        hint: "Fang mit der klarsten Zuordnung an: Was braucht man, um Regressionstests auszuWÄHLEN? → Man muss wissen, was sich geÄNDERT hat! Damit fallen schon falsche Optionen weg.",
         answers: [
             "1D, 2B, 3C, 4A",
             "1B, 2D, 3A, 4C",
