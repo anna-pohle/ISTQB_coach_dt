@@ -825,9 +825,29 @@ const syllabusData = Object.freeze({
                             quote: "Reviewprozess: Planung, Reviewbeginn, individuelles Review, Kommunikation und Analyse, Behebung und Berichterstattung.",
                             keyPoints: [
                                 {
-                                    title: "Schritte",
-                                    content: "1. Planung 2. Reviewbeginn 3. Individuelles Review 4. Kommunikation und Analyse 5. Behebung 6. Berichterstattung",
-                                    coachNote: "Merke die Reihenfolge: Erst individuell prüfen, dann gemeinsam besprechen!"
+                                    title: "1. Planung (Planning)",
+                                    content: "Umfang, Ziel, Qualitätsmerkmale und Endekriterien des Reviews werden festgelegt. Ressourcen (Zeit, Personen) werden eingeplant.",
+                                    coachNote: "Schlüsselwort: 'Kriterien festlegen' oder 'Ziel definieren' = IMMER Planung"
+                                },
+                                {
+                                    title: "2. Reviewbeginn (Review Initiation)",
+                                    content: "Das Arbeitsergebnis wird allen Beteiligten zugänglich gemacht. Alle haben Zugang zum zu prüfenden Dokument.",
+                                    coachNote: "Schlüsselwort: 'zugänglich machen' oder 'verteilen' = IMMER Reviewbeginn"
+                                },
+                                {
+                                    title: "3. Individuelles Review",
+                                    content: "Jeder Gutachter prüft das Arbeitsergebnis ALLEINE und identifiziert Anomalien (potenzielle Fehler, Fragen, Verbesserungsvorschläge).",
+                                    coachNote: "Schlüsselwort: 'Anomalien identifizieren' oder 'alleine prüfen' = IMMER individuelles Review"
+                                },
+                                {
+                                    title: "4. Kommunikation und Analyse",
+                                    content: "Die gefundenen Anomalien werden im Team GEMEINSAM analysiert und diskutiert. Status, Verantwortlichkeit und nächste Schritte werden festgelegt.",
+                                    coachNote: "Schlüsselwort: 'analysieren und diskutieren' = IMMER Kommunikation und Analyse"
+                                },
+                                {
+                                    title: "5. Behebung und Berichterstattung",
+                                    content: "Gefundene Fehler werden behoben, nötige Aktualisierungen durchgeführt. Der Reviewbericht dokumentiert die Ergebnisse.",
+                                    coachNote: "🎯 Prüfungs-Eselsbrücke – Reihenfolge merken:\n\n📋 P-B-I-K-B = 'Planen, Beginnen, Individuell lesen, Kommunizieren, Beheben'\n\nOder als Geschichte:\n1. PLANEN → Was prüfen wir? (Kriterien)\n2. BEGINNEN → Dokument verteilen\n3. INDIVIDUELL → Jeder liest alleine\n4. KOMMUNIZIEREN → Gemeinsam besprechen\n5. BEHEBEN → Fehler fixen\n\n💡 Eliminierungstrick bei Zuordnungsfragen:\n• 'Diskutieren' → Kommunikation (klarste Zuordnung)\n• 'Alleine Anomalien finden' → Individuell\n• Dann bleiben nur Planung und Beginn übrig"
                                 }
                             ]
                         },

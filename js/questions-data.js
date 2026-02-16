@@ -3256,7 +3256,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 3,
         text: "Die folgenden Aufgaben des Reviewprozesses werden beschrieben:\n\n1. Die zu bewertenden Qualitätsmerkmale und die Endekriterien werden festgelegt.\n2. Das Arbeitsergebnis wird allen Beteiligten zugänglich gemacht.\n3. Anomalien im Arbeitsergebnis werden identifiziert.\n4. Anomalien werden analysiert und diskutiert.\n\nOrdnen Sie diese Aufgabenbeschreibungen den folgenden Review-Aktivitäten zu:\nA. Individuelles Review\nB. Reviewbeginn\nC. Planung\nD. Kommunikation und Analyse\n\nWelche der folgenden Zuordnungen ist KORREKT?",
-        hint: "Planung = Kriterien festlegen. Reviewbeginn = Dokument verteilen. Individuelles Review = Anomalien finden.",
+        hint: "Fang mit der klarsten Zuordnung an: 'Anomalien analysieren und DISKUTIEREN' → das ist eindeutig Kommunikation (4→D). Dann: 'Anomalien ALLEINE identifizieren' → Individuelles Review (3→A). Damit fallen die meisten Optionen weg.",
         answers: [
             "1B, 2C, 3D, 4A",
             "1B, 2D, 3C, 4A",
@@ -3265,9 +3265,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 3,
         feedback: {
-            trap: "Die Reihenfolge ist: Planung → Reviewbeginn → Individuelles Review → Kommunikation.",
-            principle: "Reviewprozess: Planung(C) → Beginn(B) → Individuell(A) → Kommunikation(D).",
-            explanation: "1→C (Kriterien = Planung), 2→B (Verteilen = Beginn), 3→A (Anomalien finden = Individuell), 4→D (Diskutieren = Kommunikation).",
+            trap: "a) und b) haben 1→B (Kriterien = Beginn?) – FALSCH: Kriterien festlegen ist Planung, nicht Beginn! c) hat 2→A (Zugänglich machen = Individuell?) – FALSCH: Dokument verteilen = Reviewbeginn, nicht individuelles Review!",
+            principle: "Reviewprozess-Reihenfolge: P-B-I-K = Planen → Beginnen → Individuell lesen → Kommunizieren. Jeder Schritt hat EIN Schlüsselwort: Kriterien → Planung | Verteilen → Beginn | Anomalien finden → Individuell | Diskutieren → Kommunikation.",
+            explanation: "1→C: 'Qualitätsmerkmale und Endekriterien festlegen' = PLANUNG (was und wie wird geprüft?). 2→B: 'Allen Beteiligten zugänglich machen' = REVIEWBEGINN (Dokument wird verteilt). 3→A: 'Anomalien identifizieren' = INDIVIDUELLES REVIEW (jeder liest alleine). 4→D: 'Anomalien analysieren und diskutieren' = KOMMUNIKATION UND ANALYSE (gemeinsame Besprechung).",
             reference: "Lehrplan 3.2.2"
         }
     },
