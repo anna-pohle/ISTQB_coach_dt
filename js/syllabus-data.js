@@ -689,14 +689,34 @@ const syllabusData = Object.freeze({
                     quote: "Wartungstest konzentriert sich auf die Prüfung der Änderungen am System sowie auf das Testen der nicht geänderten Teile, die von den Änderungen betroffen sein könnten.",
                     keyPoints: [
                         {
-                            title: "Anlässe",
-                            content: "Änderungen, Migration, Retirement. Wartungstest prüft die geänderte Umgebung und Regression.",
+                            title: "Was ist Wartungstest?",
+                            content: "Wartungstest prüft Änderungen an einem bereits ausgelieferten System. Er umfasst sowohl das Testen der Änderung selbst als auch das Testen der nicht geänderten Teile, die betroffen sein könnten (Regressionstest).",
                             coachNote: "Regressionstest bei Wartung: Altes Verhalten darf nicht kaputtgehen."
-                        },
+                        }
+                    ],
+                    subsections: [
                         {
-                            title: "Fehlernachtest vs. Regressionstest",
-                            content: "Fehlernachtest: Prüft, ob der Fehler behoben ist. Regressionstest: Prüft, ob keine Seiteneffekte entstanden.",
-                            coachNote: "🎯 Prüfungsfalle – REIHENFOLGE:\n\n1️⃣ ERST Fehlernachtest\n   → Ist der Fehler wirklich behoben?\n\n2️⃣ DANN Regressionstest\n   → Wurden andere Bereiche beschädigt?\n\n❌ FALSCH:\n• 'Nur Fehlernachtest' → Seiteneffekte ungeprüft!\n• 'Erst Regression, dann Nachtest' → Reihenfolge falsch!\n\n💡 Merke: Regression befasst sich mit NEGATIVEN Auswirkungen auf UNVERÄNDERTE Bereiche"
+                            id: "2.3.1",
+                            title: "Auslöser für Wartungstest",
+                            page: 35,
+                            quote: "Die Auslöser für die Wartung und den Wartungstest lassen sich in drei Kategorien einteilen: Änderungen, Migration und Außerbetriebnahme.",
+                            keyPoints: [
+                                {
+                                    title: "Die 3 Auslöser für Wartungstest",
+                                    content: "1. Änderungen (Modifications): Geplante Erweiterungen, korrektive Änderungen (Bugfixes), Hotfixes auf die Produktivversion.\n\n2. Migration/Upgrades: Wechsel der Betriebsplattform, z.B. neues Betriebssystem, neue Datenbank, neue Hardware. Hier muss das System in der neuen Umgebung getestet werden.\n\n3. Außerbetriebnahme (Retirement): Stillegung eines Systems. Hier wird z.B. die Wiederherstellbarkeit archivierter Daten getestet oder die Migration zu einem Nachfolgesystem.",
+                                    coachNote: "🎯 Prüfungsfalle – Wartungstest vs. 'normale' Tests:\n\n✅ IST ein Wartungstest-Auslöser:\n• Hotfix auf Produktion → Änderung\n• Migration auf neue Plattform → Upgrade\n• System wird abgeschaltet → Retirement\n• Fehlerhafte Funktion entfernt → Korrektur\n\n❌ ist KEIN Wartungstest-Auslöser:\n• 'Wartbarkeit der Software testen' → Das ist ein nicht-funktionaler Test (Qualitätsmerkmal), kein Wartungstest!\n• 'Neue Funktion implementieren' → Das ist Entwicklung, nicht Wartung!\n\n💡 Eselsbrücke: Wartungstest ≠ Wartbarkeit testen!\nWartungstest = nach einer ÄNDERUNG am bestehenden System\nWartbarkeit = ein Qualitätsmerkmal (wie leicht KANN man ändern?)"
+                                },
+                                {
+                                    title: "Umfang des Wartungstests",
+                                    content: "Der Umfang hängt von Risiko, Größe und Art der Änderung ab. Auswirkungsanalyse (Impact Analysis) bestimmt, welche Bereiche betroffen sind und welche Regressionstests nötig sind.",
+                                    coachNote: "Merke: Je größer die Änderung, desto mehr Regression nötig."
+                                },
+                                {
+                                    title: "Fehlernachtest vs. Regressionstest",
+                                    content: "Fehlernachtest: Prüft, ob der Fehler behoben ist. Regressionstest: Prüft, ob keine Seiteneffekte entstanden.",
+                                    coachNote: "🎯 Prüfungsfalle – REIHENFOLGE:\n\n1️⃣ ERST Fehlernachtest\n   → Ist der Fehler wirklich behoben?\n\n2️⃣ DANN Regressionstest\n   → Wurden andere Bereiche beschädigt?\n\n❌ FALSCH:\n• 'Nur Fehlernachtest' → Seiteneffekte ungeprüft!\n• 'Erst Regression, dann Nachtest' → Reihenfolge falsch!\n\n💡 Merke: Regression befasst sich mit NEGATIVEN Auswirkungen auf UNVERÄNDERTE Bereiche"
+                                }
+                            ]
                         }
                     ]
                 }

@@ -3190,7 +3190,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 2,
         text: "Welche der folgenden Entscheidungen sollte KEIN Auslöser für Wartungstests sein?",
-        hint: "Wartungstest = nach Änderungen, Migration, Hotfixes. Was ist KEIN Änderungsauslöser?",
+        hint: "Die 3 Auslöser für Wartungstest sind: (1) Änderungen/Hotfixes, (2) Migration/Upgrade, (3) Außerbetriebnahme. Welche Option fällt in KEINE dieser 3 Kategorien?",
         answers: [
             "Die Entscheidung, die Wartbarkeit der Software zu testen.",
             "Die Entscheidung, das System nach der Migration auf eine neue Betriebsplattform zu testen.",
@@ -3199,9 +3199,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 0,
         feedback: {
-            trap: "b), c), d) sind alle Auslöser für Wartungstests: Migration, Außerbetriebnahme, Hotfixes.",
-            principle: "Wartbarkeit testen ≠ Wartungstest. Wartbarkeit ist ein Qualitätsmerkmal.",
-            explanation: "Das Testen der Wartbarkeit ist kein Wartungstest – es ist ein nicht-funktionaler Test. Wartungstests werden durch Änderungen ausgelöst.",
+            trap: "b) Migration auf neue Plattform → Auslöser-Kategorie 2 (Migration/Upgrade). c) Wiederherstellbarkeit nach Außerbetriebnahme → Auslöser-Kategorie 3 (Retirement). d) Hotfix auf Produktion → Auslöser-Kategorie 1 (Änderungen/Korrekturen).",
+            principle: "ACHTUNG Wortfalle: 'Wartbarkeit testen' ≠ 'Wartungstest'! Wartbarkeit (maintainability) ist ein nicht-funktionales Qualitätsmerkmal – wie leicht KANN man die Software ändern? Wartungstest ist das Testen NACH einer tatsächlichen Änderung.",
+            explanation: "a) ist KEIN Wartungstest-Auslöser: 'Die Wartbarkeit testen' bedeutet, zu prüfen wie leicht der Code geändert werden kann (z.B. Modularität, Lesbarkeit). Das ist ein ganz normaler nicht-funktionaler Test, der jederzeit während der Entwicklung stattfinden kann – es gibt keine vorausgehende 'Wartungsänderung' als Auslöser.",
             reference: "Lehrplan 2.3.1"
         }
     },
