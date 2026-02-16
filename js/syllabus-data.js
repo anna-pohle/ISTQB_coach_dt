@@ -1423,6 +1423,16 @@ const syllabusData = Object.freeze({
                                     coachNote: "🎯 Extrapolations-Formel:\n\nE(n) = E(n-1) × A(n-1) / E(n-1)\n\nVereinfacht: E(n) = A(n-1)\n\nDie nächste Schätzung = letzter TATSÄCHLICHER Wert"
                                 },
                                 {
+                                    title: "Verhältnisschätzung (Ratio-based)",
+                                    content: "Testaufwand wird anhand historischer Projekte geschätzt: Man berechnet das Verhältnis von durchschnittlichem Testaufwand zu durchschnittlichem Entwicklungsaufwand und wendet es auf das neue Projekt an.\n\nFormel: Verhältnis = Ø Testaufwand ÷ Ø Entwicklungsaufwand\nNeuer Testaufwand = Neuer Entwicklungsaufwand × Verhältnis",
+                                    coachNote: "🎯 WICHTIG: Die Frage sagt 'Durchschnittsdaten verwenden' → Erst BEIDE Durchschnitte berechnen, DANN das Verhältnis bilden!\n\n❌ NICHT: Verhältnis pro Projekt berechnen und dann mitteln (das gibt ein anderes Ergebnis!)"
+                                },
+                                {
+                                    title: "📝 Rechenbeispiel: Verhältnisschätzung",
+                                    content: "4 historische Projekte:\n• P1: Entwicklung 800.000€, Test 40.000€\n• P2: Entwicklung 1.200.000€, Test 130.000€\n• P3: Entwicklung 600.000€, Test 70.000€\n• P4: Entwicklung 1.000.000€, Test 120.000€\n\nNeues Projekt: Entwicklungsaufwand 800.000€. Testaufwand = ?",
+                                    coachNote: "📊 LÖSUNG:\n\nSchritt 1: Ø Entwicklung = (800k + 1.200k + 600k + 1.000k) ÷ 4 = 900.000€\nSchritt 2: Ø Test = (40k + 130k + 70k + 120k) ÷ 4 = 90.000€\nSchritt 3: Verhältnis = 90.000 ÷ 900.000 = 10%\nSchritt 4: Neuer Testaufwand = 800.000 × 10% = 80.000€\n\n✅ Ergebnis: 80.000€\n\n⚠️ Typischer Prüfungsfehler:\nVerhältnis PRO Projekt berechnen und mitteln → gibt ~79.000€\n→ FALSCH! Die Frage sagt explizit 'Durchschnittsdaten verwenden'."
+                                },
+                                {
                                     title: "Drei-Punkt-Schätzung",
                                     content: "E = (O + 4×W + P) ÷ 6. Optimistisch, Wahrscheinlichste (4-fach gewichtet) und Pessimistisch.",
                                     coachNote: "Formel auswendig lernen! Die wahrscheinlichste Schätzung wird 4-fach gewichtet."
