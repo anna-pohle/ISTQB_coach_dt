@@ -1184,7 +1184,7 @@ const examQuestions = Object.freeze([
         kLevel: 3,
         chapter: 4,
         text: "Ein Entwickler wurde gebeten, die folgende Geschäftsregel zu implementieren:\n\nEINGABE: Wert (Ganzzahl)\nWENN (Wert ≤ 100 ODER Wert ≥ 200) DANN schreibe 'Wert falsch'\nELSE schreibe 'Wert OK'\n\nSie entwerfen die Testfälle mit Hilfe einer 2-Wert-Grenzwertanalyse. Welcher der folgenden Sätze von Testeingaben erreicht die größte Überdeckung?",
-        hint: "Gültig = 101-199. Grenzen: 100↔101 (untere) und 199↔200 (obere). 2-Wert = Grenze + direkter Nachbar.",
+        hint: "Gültig = 101-199. Alle 4 Grenzwerte: 100, 101, 199, 200. Keine Option deckt alle ab – wähle die mit der GRÖSSTEN Überdeckung.",
         answers: [
             "100, 150, 200, 201",
             "99, 100, 200, 201",
@@ -1193,9 +1193,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 3,
         feedback: {
-            trap: "a) testet 201 statt 199 – falsche obere Grenze. b) 99 und 201 sind KEINE direkten Nachbarn der Grenzen. c) konzentriert sich nur auf untere Grenze, ignoriert obere (199/200).",
-            principle: "Gültiger Bereich: 101-199. Grenzen: 100↔101 (unten), 199↔200 (oben). 2-Wert = Grenze + direkter Nachbar.",
-            explanation: "d) ist RICHTIG: Testet alle 4 Grenzwerte der 2-Wert-GWA: 100 (ungültig, Grenze unten), 101 (gültig, Grenze unten), 199 (gültig, Grenze oben), 200 (ungültig, Grenze oben). 150 ist ein repräsentativer Wert im gültigen Bereich.",
+            trap: "a) testet 201 statt 199 – nur 2 von 4 Grenzwerten. b) 99 und 201 sind KEINE Grenzwerte der 2-Wert-GWA – nur 2/4. c) nur untere Grenze (100, 101), obere komplett ignoriert – nur 2/4.",
+            principle: "Gültiger Bereich: 101-199. 2-Wert-GWA braucht 4 Grenzwerte: 100, 101, 199, 200. Die Frage fragt nach der GRÖSSTEN Überdeckung unter den Optionen.",
+            explanation: "d) ist RICHTIG: {101, 199, 200} deckt 3 von 4 Grenzwerten ab – mehr als jede andere Option. Es fehlt nur 100 (ungültig, Grenze unten). Vergleich: a) hat {100, 200} = 2/4, b) hat {100, 200} = 2/4, c) hat {100, 101} = 2/4. 150 ist ein repräsentativer Wert im gültigen Bereich.",
             reference: "Lehrplan 4.2.2"
         }
     },
