@@ -2362,7 +2362,7 @@
             }
         }
         
-        function selectWeightedQuestions(count) {
+        function selectExamQuestions(count) {
             const byChapter = {};
             questions.forEach(q => {
                 if (!byChapter[q.chapter]) byChapter[q.chapter] = [];
@@ -2399,7 +2399,7 @@
         
         function getQuestionsForQuiz() {
             if (state.quizMode === 'exam') {
-                return selectWeightedQuestions(state.examSize);
+                return selectExamQuestions(state.examSize);
             }
             
             let qs = state.selectedChapter === 0 
@@ -4969,14 +4969,14 @@
                 });
             }
             
-            // Add wrong answers as bookmarks
+            // Add wrong answers as bookmarks (ohne render() pro Lesezeichen aufzurufen)
             const addWrongBookmarksBtn = document.getElementById('add-wrong-bookmarks');
             if (addWrongBookmarksBtn) {
                 addWrongBookmarksBtn.addEventListener('click', () => {
                     const quiz = state.currentQuiz;
                     if (!quiz || !quiz.questions || !quiz.answers) return;
+                    if (!state.bookmarks) state.bookmarks = [];
                     
-                    // Berechne falsche Antworten direkt aus quiz.answers (statt quiz.wrongAnswers)
                     const wrongIndices = [];
                     quiz.questions.forEach((q, idx) => {
                         if (quiz.answers[idx] === undefined || quiz.answers[idx] === null) return;
@@ -5000,13 +5000,11 @@
                         let sectionId = q.lo.replace('FL-', '');
                         const chapterId = parseInt(sectionId.split('.')[0], 10);
                         
-                        // Finde den Titel des Abschnitts (mit Fallback zu übergeordnetem Abschnitt)
                         const chapterData = syllabusData.chapters.find(c => c.id === chapterId);
                         let title = '';
                         let foundExact = false;
                         
                         if (chapterData && chapterData.subchapters) {
-                            // Versuche exakte Übereinstimmung
                             for (const sub of chapterData.subchapters) {
                                 if (sub.id === sectionId) {
                                     title = sub.title;
@@ -5023,32 +5021,38 @@
                                 }
                             }
                             
-                            // Fallback: Verwende übergeordneten Abschnitt (z.B. "5.1" für "5.1.4")
                             if (!foundExact) {
                                 const parentId = sectionId.split('.').slice(0, 2).join('.');
                                 for (const sub of chapterData.subchapters) {
                                     if (sub.id === parentId) {
                                         title = sub.title;
-                                        sectionId = parentId;  // WICHTIG: Auch sectionId anpassen!
+                                        sectionId = parentId;
                                         break;
                                     }
                                 }
                             }
                         }
                         
-                        // Letzter Fallback: Kapitel-Titel
                         if (!title) {
                             title = chapterData ? chapterData.title : 'Kapitel ' + chapterId;
                         }
                         
-                        // Prüfe ob bereits Lesezeichen existiert (mit ggf. gekürzter sectionId)
                         if (isBookmarked(chapterId, sectionId)) return;
                         
-                        toggleBookmark(chapterId, sectionId, title, true);
+                        // Direkt zu state.bookmarks hinzufügen OHNE toggleBookmark/render()
+                        state.bookmarks.push({
+                            chapterId,
+                            sectionId,
+                            title,
+                            timestamp: Date.now(),
+                            isAuto: true
+                        });
                         added++;
                     });
                     
-                    // Button als erledigt markieren
+                    // Einmal speichern (kein render(), Button bleibt im DOM)
+                    saveState();
+                    
                     addWrongBookmarksBtn.innerHTML = '✓ ' + added + ' Lesezeichen hinzugefügt';
                     addWrongBookmarksBtn.style.background = 'rgba(16,185,129,0.15)';
                     addWrongBookmarksBtn.style.borderColor = 'var(--accent-success)';
