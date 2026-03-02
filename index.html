@@ -1934,20 +1934,47 @@
         }
         
         /**
+         * Zählt "seltene" Fragen: gesehen, aber seit >7 Tagen nicht mehr.
+         */
+        function getRarestCount(chapterId) {
+            const seen = state.seenQuestions || {};
+            const now = Date.now();
+            const threshold = 7 * 24 * 60 * 60 * 1000;
+            let pool = questions;
+            if (chapterId && chapterId !== 0) {
+                pool = questions.filter(q => q.chapter === chapterId);
+            }
+            return pool.filter(q => {
+                const ts = seen[q.id];
+                return ts && (now - ts) > threshold;
+            }).length;
+        }
+        
+        /**
          * Validiert questionFilter und practiceSize gegen den aktuellen unseen-Pool.
          * Wird bei jedem Render aufgerufen um inkonsistente States zu verhindern.
          */
         function validateQuestionFilter() {
             const unseenCount = getUnseenCount(state.selectedChapter);
+            const rarestCount = getRarestCount(state.selectedChapter);
+            
             if (state.questionFilter === 'unseen' && unseenCount === 0) {
                 state.questionFilter = 'all';
             }
-            if (state.questionFilter === 'unseen') {
-                if (unseenCount < 10) {
-                    state.practiceSize = unseenCount;
-                } else if (state.practiceSize > unseenCount) {
-                    const validSizes = [10, 20, 30, 40].filter(s => s <= unseenCount);
-                    state.practiceSize = validSizes.length > 0 ? validSizes[validSizes.length - 1] : unseenCount;
+            if (state.questionFilter === 'rarest' && rarestCount === 0) {
+                state.questionFilter = 'all';
+            }
+            
+            const isLimited = state.questionFilter === 'unseen' || state.questionFilter === 'rarest';
+            const poolSize = state.questionFilter === 'unseen' ? unseenCount 
+                           : state.questionFilter === 'rarest' ? rarestCount : 0;
+            
+            if (isLimited) {
+                if (poolSize < 10) {
+                    state.practiceSize = poolSize;
+                } else if (state.practiceSize > poolSize) {
+                    const validSizes = [10, 20, 30, 40].filter(s => s <= poolSize);
+                    state.practiceSize = validSizes.length > 0 ? validSizes[validSizes.length - 1] : poolSize;
                 }
             }
         }
@@ -2451,6 +2478,15 @@
                 const seen = state.seenQuestions || {};
                 qs = qs.filter(q => !seen[q.id]);
                 return shuffleArray(qs).slice(0, state.practiceSize);
+            }
+            
+            if (state.questionFilter === 'rarest') {
+                const seen = state.seenQuestions || {};
+                const now = Date.now();
+                const threshold = 7 * 24 * 60 * 60 * 1000;
+                qs = qs.filter(q => seen[q.id] && (now - seen[q.id]) > threshold);
+                qs.sort((a, b) => (seen[a.id] || 0) - (seen[b.id] || 0));
+                return qs.slice(0, state.practiceSize);
             }
             
             return selectQuestionsWithSpacedRepetition(qs, state.practiceSize);
@@ -3521,22 +3557,26 @@
                         
                         ${state.quizMode === 'practice' ? (() => {
                             const unseenCount = getUnseenCount(state.selectedChapter);
+                            const rarestCount = getRarestCount(state.selectedChapter);
                             const isUnseen = state.questionFilter === 'unseen';
+                            const isRarest = state.questionFilter === 'rarest';
+                            const isFiltered = isUnseen || isRarest;
+                            const poolSize = isUnseen ? unseenCount : isRarest ? rarestCount : 0;
                             
                             // Dynamische Größen-Buttons
                             let sizeButtonsHtml = '';
-                            if (isUnseen && unseenCount < 10) {
+                            if (isFiltered && poolSize < 10) {
                                 sizeButtonsHtml = `
                                     <button class="size-btn active" 
-                                            data-practice-size="${unseenCount}"
+                                            data-practice-size="${poolSize}"
                                             role="radio"
                                             aria-checked="true"
                                             style="min-width:160px;flex:none;">
-                                        Alle verbleibenden (${unseenCount})
+                                        Alle verbleibenden (${poolSize})
                                     </button>`;
                             } else {
-                                const sizes = isUnseen 
-                                    ? [10, 20, 30, 40].filter(s => s <= unseenCount)
+                                const sizes = isFiltered 
+                                    ? [10, 20, 30, 40].filter(s => s <= poolSize)
                                     : [10, 20, 30, 40];
                                 sizeButtonsHtml = sizes.map(size => `
                                     <button class="size-btn ${state.practiceSize === size ? 'active' : ''}" 
@@ -3548,29 +3588,43 @@
                                 `).join('');
                             }
                             
+                            // Kapitel-Suffix je nach Filter
+                            function chapterSuffix(chId) {
+                                if (isUnseen) return ` – ${getUnseenCount(chId)} neue`;
+                                if (isRarest) return ` – ${getRarestCount(chId)} seltene`;
+                                return '';
+                            }
+                            function chapterDisabled(chId) {
+                                if (isUnseen) return getUnseenCount(chId) === 0;
+                                if (isRarest) return getRarestCount(chId) === 0;
+                                return false;
+                            }
+                            
+                            // Fragenpool-Optionen
+                            const showFilter = unseenCount > 0 || rarestCount > 0;
+                            
                             return `
                             <div class="chapter-select">
                                 <label for="chapter-selector">Kapitel wählen</label>
                                 <select id="chapter-selector">
-                                    <option value="0" ${state.selectedChapter === 0 ? 'selected' : ''}>Alle Kapitel (gemischt)${isUnseen ? ` – ${getUnseenCount(0)} neue` : ''}</option>
+                                    <option value="0" ${state.selectedChapter === 0 ? 'selected' : ''}>Alle Kapitel (gemischt)${chapterSuffix(0)}</option>
                                     ${chapters.map(ch => {
                                         const acc = getChapterAccuracy(ch.id);
                                         const accText = acc !== null ? ` (${acc}%)` : ' (–)';
-                                        const chUnseen = isUnseen ? getUnseenCount(ch.id) : 0;
-                                        const unseenSuffix = isUnseen ? ` – ${chUnseen} neue` : '';
-                                        return `<option value="${ch.id}" ${state.selectedChapter === ch.id ? 'selected' : ''}${isUnseen && chUnseen === 0 ? ' disabled' : ''}>
-                                            ${ch.id}. ${escapeHtml(ch.title)}${accText}${unseenSuffix}
+                                        return `<option value="${ch.id}" ${state.selectedChapter === ch.id ? 'selected' : ''}${chapterDisabled(ch.id) ? ' disabled' : ''}>
+                                            ${ch.id}. ${escapeHtml(ch.title)}${accText}${chapterSuffix(ch.id)}
                                         </option>`;
                                     }).join('')}
                                 </select>
                             </div>
                             
-                            ${unseenCount > 0 ? `
+                            ${showFilter ? `
                             <div class="chapter-select" style="margin-top:0;">
                                 <label for="question-filter-selector">Fragenpool</label>
                                 <select id="question-filter-selector">
                                     <option value="all" ${state.questionFilter === 'all' ? 'selected' : ''}>Alle Fragen (Spaced Repetition)</option>
-                                    <option value="unseen" ${state.questionFilter === 'unseen' ? 'selected' : ''}>Nur neue Fragen (${unseenCount} verbleibend)</option>
+                                    ${unseenCount > 0 ? `<option value="unseen" ${state.questionFilter === 'unseen' ? 'selected' : ''}>Nur neue Fragen (${unseenCount} verbleibend)</option>` : ''}
+                                    ${rarestCount > 0 ? `<option value="rarest" ${state.questionFilter === 'rarest' ? 'selected' : ''}>Seltenste Fragen (${rarestCount} länger als 7d)</option>` : ''}
                                 </select>
                             </div>
                             ` : ''}
@@ -3585,7 +3639,7 @@
                                 </div>
                             </div>
                             
-                            ${weakestInfo && !isUnseen ? `
+                            ${weakestInfo && !isFiltered ? `
                                 <div style="margin-top:16px;padding:12px;background:rgba(239,68,68,0.1);border-radius:var(--radius-md);border-left:3px solid var(--accent-error);">
                                     <div style="font-size:0.8rem;color:var(--accent-error);font-weight:600;">💡 Empfehlung</div>
                                     <div style="font-size:0.85rem;color:var(--text-secondary);margin-top:4px;">
@@ -3619,7 +3673,7 @@
                         `}
                         
                         <button class="start-btn" id="start-quiz" onclick="window._startQuiz && window._startQuiz()"
-                            ${state.questionFilter === 'unseen' && getUnseenCount(state.selectedChapter) === 0 ? 'disabled style="opacity:0.5;cursor:not-allowed;"' : ''}>
+                            ${(state.questionFilter === 'unseen' && getUnseenCount(state.selectedChapter) === 0) || (state.questionFilter === 'rarest' && getRarestCount(state.selectedChapter) === 0) ? 'disabled style="opacity:0.5;cursor:not-allowed;"' : ''}>
                             ${state.quizMode === 'exam' ? '🎓 Prüfung starten' : '📝 Quiz starten'}
                         </button>
                     </div>
