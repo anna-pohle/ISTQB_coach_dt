@@ -3750,9 +3750,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 2,
         feedback: {
-            trap: "Häufiger Fehler: VMs (3) zu DevOps (C) zuordnen. DevOps-Werkzeuge steuern Arbeitsabläufe (CI/CD-Pipelines, Deployment). VMs hingegen stellen Infrastruktur bereit (mehr Testumgebungen parallel) – das ist Skalierbarkeit, nicht Prozesssteuerung.",
-            principle: "Denke in 4 Kategorien: Prozess-Steuerung (DevOps=C), Team-Kommunikation (Zusammenarbeit=D), Infrastruktur-Kapazität (Skalierbarkeit=B), Code-/Dokument-Prüfung (Statisch=A).",
-            explanation: "1→C: Arbeitsabläufe verfolgen = DevOps (CI/CD-Pipelines orchestrieren den Workflow). 2→D: Kommunikation = Zusammenarbeit (Chat, Shared Boards). 3→B: VMs = Skalierbarkeit (mehr parallele Testumgebungen bereitstellen, NICHT Prozesssteuerung). 4→A: Review-Auswertungen = Statische Testwerkzeuge (analysieren Artefakte ohne Ausführung). Eselsbrücke: 'Prozess–Team–Infra–Analyse' → C–D–B–A.",
+            trap: "Häufige Falle: VMs klingen nach DevOps, gehören aber zu Skalierbarkeit. DevOps = Prozesse steuern (Pipelines). VMs = mehr Kapazität bereitstellen (parallele Umgebungen). Frage dich: Steuert es einen Ablauf, oder stellt es Ressourcen bereit?",
+            principle: "Jede Kategorie hat ein Kernkonzept: DevOps = Abläufe orchestrieren. Zusammenarbeit = Menschen verbinden. Skalierbarkeit = Kapazität vervielfachen. Statisch = Artefakte prüfen ohne auszuführen.",
+            explanation: "Arbeitsabläufe verfolgen → DevOps: CI/CD-Pipelines orchestrieren den Workflow von Build bis Deployment. Kommunikation → Zusammenarbeit: Chat-Tools, Shared Boards verbinden das Team. VMs → Skalierbarkeit: Mehr parallele Testumgebungen = mehr Kapazität, NICHT Prozesssteuerung. Review-Auswertungen → Statisch: Reviews analysieren Artefakte (Code, Dokumente) ohne sie auszuführen.",
             reference: "Lehrplan 6.1.1"
         }
     },
