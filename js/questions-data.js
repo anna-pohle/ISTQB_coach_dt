@@ -3741,7 +3741,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 6,
         text: "Berücksichtigen Sie die folgenden Beschreibungen:\n\n1. Unterstützung der Verfolgung von Arbeitsabläufen\n2. Kommunikation erleichtern\n3. Virtuelle Maschinen\n4. Unterstützung von Auswertungen bei Reviews\n\nund die folgenden Kategorien von Testwerkzeugen:\n\nA. Statische Testwerkzeuge\nB. Werkzeuge zur Unterstützung der Skalierbarkeit\nC. DevOps-Werkzeuge\nD. Werkzeuge für die Zusammenarbeit\n\nWelche Zuordnung ist AM BESTEN?",
-        hint: "Workflows = DevOps. Kommunikation = Zusammenarbeit. VMs = Skalierbarkeit. Reviews = Statisch.",
+        hint: "Frage dich bei jeder Beschreibung: Geht es um Prozesse/Pipelines, um Teamarbeit, um Infrastruktur/Kapazität oder um Code-/Dokument-Analyse? Achtung: VMs sind keine Prozess-Tools!",
         answers: [
             "1A, 2B, 3C, 4D",
             "1B, 2D, 3C, 4A",
@@ -3750,9 +3750,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 2,
         feedback: {
-            trap: "Die Zuordnungen müssen logisch passen: Workflows gehören zu DevOps (C), nicht zu statischen Tools (A).",
-            principle: "1→C (Workflows=DevOps), 2→D (Kommunikation=Zusammenarbeit), 3→B (VMs=Skalierbarkeit), 4→A (Reviews=Statisch).",
-            explanation: "Arbeitsabläufe werden durch DevOps-Werkzeuge unterstützt. Kommunikation durch Zusammenarbeitswerkzeuge. VMs für Skalierbarkeit. Reviews durch statische Testwerkzeuge.",
+            trap: "Häufiger Fehler: VMs (3) zu DevOps (C) zuordnen. DevOps-Werkzeuge steuern Arbeitsabläufe (CI/CD-Pipelines, Deployment). VMs hingegen stellen Infrastruktur bereit (mehr Testumgebungen parallel) – das ist Skalierbarkeit, nicht Prozesssteuerung.",
+            principle: "Denke in 4 Kategorien: Prozess-Steuerung (DevOps=C), Team-Kommunikation (Zusammenarbeit=D), Infrastruktur-Kapazität (Skalierbarkeit=B), Code-/Dokument-Prüfung (Statisch=A).",
+            explanation: "1→C: Arbeitsabläufe verfolgen = DevOps (CI/CD-Pipelines orchestrieren den Workflow). 2→D: Kommunikation = Zusammenarbeit (Chat, Shared Boards). 3→B: VMs = Skalierbarkeit (mehr parallele Testumgebungen bereitstellen, NICHT Prozesssteuerung). 4→A: Review-Auswertungen = Statische Testwerkzeuge (analysieren Artefakte ohne Ausführung). Eselsbrücke: 'Prozess–Team–Infra–Analyse' → C–D–B–A.",
             reference: "Lehrplan 6.1.1"
         }
     },
