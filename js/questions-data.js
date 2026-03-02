@@ -3950,7 +3950,8 @@ const examQuestions = Object.freeze([
             "Entwickler gehen davon aus, dass Tester die alleinige Verantwortung für Qualität tragen.",
             "Tester bringen eine andere Sichtweise als Entwickler ein."
         ],
-        correct: [1, 4],
+        correct: 1,
+        multipleCorrect: [1, 4],
         feedback: {
             trap: "a) Standort ist kein Vorteil an sich. c) Konfrontation ist ein NACHTEIL. d) Alleinige Verantwortung ist ein NACHTEIL.",
             principle: "Vorteile der Unabhängigkeit: Andere Perspektive, Annahmen hinterfragen.",
@@ -4215,7 +4216,8 @@ const examQuestions = Object.freeze([
             "BY=2011, CY=2029 (D=18)",
             "BY=2000, CY=2000 (D=0)"
         ],
-        correct: [1, 3],
+        correct: 1,
+        multipleCorrect: [1, 3],
         feedback: {
             trap: "a) D=64 ist 'Kein Rabatt', bereits abgedeckt. c) D=-65 ist 'Fehlermeldung', bereits abgedeckt. e) D=0 ist 'Kinder-/Jugendrabatt'.",
             principle: "Fehlende Klassen: Kinder/Jugend (0≤D<18) und Rentner (D≥65).",
@@ -4437,7 +4439,8 @@ const examQuestions = Object.freeze([
             "Testfälle haben mindestens 80% Anweisungsüberdeckung erreicht.",
             "Alle Testanalysten sind nach ISTQB Foundation Level zertifiziert."
         ],
-        correct: [1, 3],
+        correct: 1,
+        multipleCorrect: [1, 3],
         feedback: {
             trap: "a), c), e) sind Eingangskriterien oder irrelevant.",
             principle: "Endekriterien: Budget aufgebraucht, Überdeckung erreicht, Zeit abgelaufen.",
@@ -4548,7 +4551,8 @@ const examQuestions = Object.freeze([
             "Schlechte Werkzeugunterstützung",
             "Antwortzeiten zu lang"
         ],
-        correct: [1, 4],
+        correct: 1,
+        multipleCorrect: [1, 4],
         feedback: {
             trap: "a), c), d) sind Projektrisiken (Scope Creep, Budget, Werkzeuge).",
             principle: "Produktrisiko = Qualitätsprobleme des Produkts (Architektur, Performance).",
@@ -4637,7 +4641,8 @@ const examQuestions = Object.freeze([
             "Nicht-funktionale Testwerkzeuge",
             "Testentwurfs- und Implementierungswerkzeuge"
         ],
-        correct: [1, 3],
+        correct: 1,
+        multipleCorrect: [1, 3],
         feedback: {
             trap: "a), c), e) unterstützen nicht direkt die Testausführung.",
             principle: "Testausführung: DevOps-Werkzeuge (CI/CD) und nicht-funktionale Testwerkzeuge (Performance).",

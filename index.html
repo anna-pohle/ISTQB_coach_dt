@@ -2304,6 +2304,14 @@
         }
         const questions = window.examQuestions || [];
         
+        // Normalize multi-answer questions: ensure multipleCorrect exists when correct is an array
+        questions.forEach(q => {
+            if (Array.isArray(q.correct) && !q.multipleCorrect) {
+                q.multipleCorrect = q.correct;
+                q.correct = q.correct[0];
+            }
+        });
+        
         // ========================================================================
         // QUIZ LOGIC
         // ========================================================================
