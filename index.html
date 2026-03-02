@@ -1559,7 +1559,9 @@
             // Hochkontrast-Modus
             highContrast: false,
             // Dashboard-Modal
-            activeDashboard: null
+            activeDashboard: null,
+            // Fragenpool-Filter: 'all' (Spaced Repetition) oder 'unseen' (nur neue)
+            questionFilter: 'all'
         });
         
         // Storage keys - centralized to prevent typos
@@ -1919,6 +1921,37 @@
             render();
         }
         
+        /**
+         * Berechnet die Anzahl ungesehener Fragen, optional nach Kapitel gefiltert.
+         */
+        function getUnseenCount(chapterId) {
+            const seen = state.seenQuestions || {};
+            let pool = questions;
+            if (chapterId && chapterId !== 0) {
+                pool = questions.filter(q => q.chapter === chapterId);
+            }
+            return pool.filter(q => !seen[q.id]).length;
+        }
+        
+        /**
+         * Validiert questionFilter und practiceSize gegen den aktuellen unseen-Pool.
+         * Wird bei jedem Render aufgerufen um inkonsistente States zu verhindern.
+         */
+        function validateQuestionFilter() {
+            const unseenCount = getUnseenCount(state.selectedChapter);
+            if (state.questionFilter === 'unseen' && unseenCount === 0) {
+                state.questionFilter = 'all';
+            }
+            if (state.questionFilter === 'unseen') {
+                if (unseenCount < 10) {
+                    state.practiceSize = unseenCount;
+                } else if (state.practiceSize > unseenCount) {
+                    const validSizes = [10, 20, 30, 40].filter(s => s <= unseenCount);
+                    state.practiceSize = validSizes.length > 0 ? validSizes[validSizes.length - 1] : unseenCount;
+                }
+            }
+        }
+
         /**
          * Spaced Repetition: Trackt Fragen basierend auf Ergebnis, Confidence UND Hinweis
          * @param {string} questionId - ID der Frage
@@ -2406,7 +2439,12 @@
                 ? [...questions] 
                 : questions.filter(q => q.chapter === state.selectedChapter);
             
-            // Spaced Repetition: Priorisiere früher falsch beantwortete Fragen
+            if (state.questionFilter === 'unseen') {
+                const seen = state.seenQuestions || {};
+                qs = qs.filter(q => !seen[q.id]);
+                return shuffleArray(qs).slice(0, state.practiceSize);
+            }
+            
             return selectQuestionsWithSpacedRepetition(qs, state.practiceSize);
         }
         
@@ -3473,7 +3511,36 @@
                             </button>
                         </div>
                         
-                        ${state.quizMode === 'practice' ? `
+                        ${state.quizMode === 'practice' ? (() => {
+                            const unseenCount = getUnseenCount(state.selectedChapter);
+                            const isUnseen = state.questionFilter === 'unseen';
+                            
+                            // Dynamische Größen-Buttons
+                            let sizeButtonsHtml = '';
+                            if (isUnseen && unseenCount < 10) {
+                                sizeButtonsHtml = `
+                                    <button class="size-btn active" 
+                                            data-practice-size="${unseenCount}"
+                                            role="radio"
+                                            aria-checked="true"
+                                            style="min-width:160px;flex:none;">
+                                        Alle verbleibenden (${unseenCount})
+                                    </button>`;
+                            } else {
+                                const sizes = isUnseen 
+                                    ? [10, 20, 30, 40].filter(s => s <= unseenCount)
+                                    : [10, 20, 30, 40];
+                                sizeButtonsHtml = sizes.map(size => `
+                                    <button class="size-btn ${state.practiceSize === size ? 'active' : ''}" 
+                                            data-practice-size="${size}"
+                                            role="radio"
+                                            aria-checked="${state.practiceSize === size}">
+                                        ${size}
+                                    </button>
+                                `).join('');
+                            }
+                            
+                            return `
                             <div class="chapter-select">
                                 <label for="chapter-selector">Kapitel wählen</label>
                                 <select id="chapter-selector">
@@ -3488,32 +3555,35 @@
                                 </select>
                             </div>
                             
+                            ${unseenCount > 0 ? `
+                            <div class="chapter-select" style="margin-top:0;">
+                                <label for="question-filter-selector">Fragenpool</label>
+                                <select id="question-filter-selector">
+                                    <option value="all" ${state.questionFilter === 'all' ? 'selected' : ''}>Alle Fragen (Spaced Repetition)</option>
+                                    <option value="unseen" ${state.questionFilter === 'unseen' ? 'selected' : ''}>Nur neue Fragen (${unseenCount} verbleibend)</option>
+                                </select>
+                            </div>
+                            ` : ''}
+                            
                             <div class="exam-size-selector">
                                 <label>Anzahl Fragen</label>
                                 <div class="size-options" role="radiogroup" aria-label="Fragenanzahl">
-                                    ${[10, 20, 30, 40].map(size => `
-                                        <button class="size-btn ${state.practiceSize === size ? 'active' : ''}" 
-                                                data-practice-size="${size}"
-                                                role="radio"
-                                                aria-checked="${state.practiceSize === size}">
-                                            ${size}
-                                        </button>
-                                    `).join('')}
+                                    ${sizeButtonsHtml}
                                 </div>
                                 <div style="font-size:0.75rem;color:var(--text-muted);margin-top:8px;text-align:center;">
                                     ⏱️ Zeitlimit: ${Math.round(state.practiceSize * 1.5)} Min (aufwärts zählend)
                                 </div>
                             </div>
                             
-                            ${weakestInfo ? `
+                            ${weakestInfo && !isUnseen ? `
                                 <div style="margin-top:16px;padding:12px;background:rgba(239,68,68,0.1);border-radius:var(--radius-md);border-left:3px solid var(--accent-error);">
                                     <div style="font-size:0.8rem;color:var(--accent-error);font-weight:600;">💡 Empfehlung</div>
                                     <div style="font-size:0.85rem;color:var(--text-secondary);margin-top:4px;">
                                         Dein schwächstes Kapitel: <strong>${weakestInfo.title}</strong> (${getChapterAccuracy(weakestChapter)}%)
                                     </div>
                                 </div>
-                            ` : ''}
-                        ` : `
+                            ` : ''}`;
+                        })() : `
                             <div class="exam-size-selector">
                                 <label>Anzahl Fragen</label>
                                 <div class="size-options" role="radiogroup" aria-label="Fragenanzahl">
@@ -3538,7 +3608,8 @@
                             </div>
                         `}
                         
-                        <button class="start-btn" id="start-quiz" onclick="window._startQuiz && window._startQuiz()">
+                        <button class="start-btn" id="start-quiz" onclick="window._startQuiz && window._startQuiz()"
+                            ${state.questionFilter === 'unseen' && getUnseenCount(state.selectedChapter) === 0 ? 'disabled style="opacity:0.5;cursor:not-allowed;"' : ''}>
                             ${state.quizMode === 'exam' ? '🎓 Prüfung starten' : '📝 Quiz starten'}
                         </button>
                     </div>
@@ -4220,6 +4291,7 @@
         
         function render() {
             if (!appContainer) return;
+            validateQuestionFilter();
             
             let content = '';
             switch (state.currentView) {
@@ -4648,6 +4720,9 @@
             document.querySelectorAll('.mode-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     state.quizMode = btn.dataset.mode;
+                    if (btn.dataset.mode === 'exam') {
+                        state.questionFilter = 'all';
+                    }
                     render();
                 });
             });
@@ -4793,6 +4868,21 @@
             if (chapterSel) {
                 chapterSel.addEventListener('change', (e) => {
                     state.selectedChapter = parseInt(e.target.value, 10);
+                    render();
+                });
+            }
+            
+            // Question filter selector (Fragenpool)
+            const filterSel = document.getElementById('question-filter-selector');
+            if (filterSel) {
+                filterSel.addEventListener('change', (e) => {
+                    state.questionFilter = e.target.value;
+                    if (state.questionFilter === 'all') {
+                        if (![10, 20, 30, 40].includes(state.practiceSize)) {
+                            state.practiceSize = 10;
+                        }
+                    }
+                    render();
                 });
             }
             
