@@ -3624,18 +3624,13 @@
                                 `).join('');
                             }
                             
-                            // Kapitel-Suffix je nach Filter
-                            function chapterSuffix(chId) {
-                                if (isUnseen) return ` – ${getUnseenCount(chId)} neue`;
-                                if (isRarest) return ` – ${getRarestCount(chId)} seltene`;
-                                if (isMostWrong) return ` – ${getMostWrongCount(chId)} oft falsch beantwortete Fragen`;
-                                return '';
-                            }
-                            function chapterDisabled(chId) {
-                                if (isUnseen) return getUnseenCount(chId) === 0;
-                                if (isRarest) return getRarestCount(chId) === 0;
-                                if (isMostWrong) return getMostWrongCount(chId) === 0;
-                                return false;
+                            // Kapitel-Info je nach Filter
+                            function chapterInfo(chId) {
+                                if (isUnseen) return { text: ` (${getUnseenCount(chId)} neue)`, disabled: getUnseenCount(chId) === 0 };
+                                if (isRarest) return { text: ` (${getRarestCount(chId)} länger als 7 Tage her)`, disabled: getRarestCount(chId) === 0 };
+                                if (isMostWrong) return { text: ` (${getMostWrongCount(chId)} oft falsch beantwortet)`, disabled: getMostWrongCount(chId) === 0 };
+                                const acc = chId === 0 ? null : getChapterAccuracy(chId);
+                                return { text: acc !== null ? ` (durchschnittlich ${acc}% korrekt)` : ' (–)', disabled: false };
                             }
 
                             // Fragenpool-Optionen
@@ -3645,12 +3640,11 @@
                             <div class="chapter-select">
                                 <label for="chapter-selector">Kapitel wählen</label>
                                 <select id="chapter-selector">
-                                    <option value="0" ${state.selectedChapter === 0 ? 'selected' : ''}>Alle Kapitel (gemischt)${chapterSuffix(0)}</option>
+                                    <option value="0" ${state.selectedChapter === 0 ? 'selected' : ''}>Alle Kapitel (gemischt)${chapterInfo(0).text}</option>
                                     ${chapters.map(ch => {
-                                        const acc = getChapterAccuracy(ch.id);
-                                        const accText = acc !== null ? ` (${acc}%)` : ' (–)';
-                                        return `<option value="${ch.id}" ${state.selectedChapter === ch.id ? 'selected' : ''}${chapterDisabled(ch.id) ? ' disabled' : ''}>
-                                            ${ch.id}. ${escapeHtml(ch.title)}${accText}${chapterSuffix(ch.id)}
+                                        const info = chapterInfo(ch.id);
+                                        return `<option value="${ch.id}" ${state.selectedChapter === ch.id ? 'selected' : ''}${info.disabled ? ' disabled' : ''}>
+                                            ${ch.id}. ${escapeHtml(ch.title)}${info.text}
                                         </option>`;
                                     }).join('')}
                                 </select>
