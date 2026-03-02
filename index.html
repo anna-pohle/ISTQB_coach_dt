@@ -3628,7 +3628,7 @@
                             function chapterSuffix(chId) {
                                 if (isUnseen) return ` – ${getUnseenCount(chId)} neue`;
                                 if (isRarest) return ` – ${getRarestCount(chId)} seltene`;
-                                if (isMostWrong) return ` – ${getMostWrongCount(chId)} fehlerhafte`;
+                                if (isMostWrong) return ` – ${getMostWrongCount(chId)} oft falsch beantwortete Fragen`;
                                 return '';
                             }
                             function chapterDisabled(chId) {
@@ -3663,7 +3663,7 @@
                                     <option value="all" ${state.questionFilter === 'all' ? 'selected' : ''}>Alle Fragen (Spaced Repetition)</option>
                                     ${unseenCount > 0 ? `<option value="unseen" ${state.questionFilter === 'unseen' ? 'selected' : ''}>Nur neue Fragen (${unseenCount} verbleibend)</option>` : ''}
                                     ${rarestCount > 0 ? `<option value="rarest" ${state.questionFilter === 'rarest' ? 'selected' : ''}>Seltenste Fragen (${rarestCount} länger als 7d)</option>` : ''}
-                                    ${mostWrongCount > 0 ? `<option value="mostWrong" ${state.questionFilter === 'mostWrong' ? 'selected' : ''}>Häufigste Fehler (${mostWrongCount} Fragen)</option>` : ''}
+                                    ${mostWrongCount > 0 ? `<option value="mostWrong" ${state.questionFilter === 'mostWrong' ? 'selected' : ''}>Am häufigsten falsch beantwortet (${mostWrongCount} Fragen)</option>` : ''}
                                 </select>
                             </div>
                             ` : ''}
