@@ -1606,35 +1606,24 @@
                 .trim();
         }
         
-        // Hints for practice mode (derived from feedback.principle)
+        // Hints for practice mode (prefer q.hint, fall back to feedback.principle)
         function getHintForQuestion(q) {
-            // Bessere Hints: Zeige NUR das Prinzip als Hilfe, NICHT den Trap!
-            // Der Trap enthält oft Buchstaben-Referenzen, die nach dem Shuffle irreführend sind.
-            if (q.feedback) {
-                const parts = [];
-                
-                // Das Prinzip gibt den Schlüssel zur richtigen Antwort
-                if (q.feedback.principle) {
-                    const principle = q.feedback.principle;
-                    // Wenn das Prinzip eine klare Formel/Zuordnung hat, zeige es
-                    if (principle.includes('=') || principle.includes('→')) {
-                        parts.push('💡 <strong>Merke:</strong> ' + escapeHtml(principle));
-                    } else {
-                        parts.push('💡 <strong>Denke daran:</strong> ' + escapeHtml(principle));
-                    }
-                }
-                
-                // Referenz zur Selbstprüfung
-                if (q.feedback.reference && parts.length > 0) {
-                    parts.push('<small style="opacity:0.7">📖 ' + escapeHtml(q.feedback.reference) + '</small>');
-                }
-                
-                if (parts.length > 0) {
-                    return parts.join('<br><br>');
-                }
+            const parts = [];
+
+            if (q.hint) {
+                parts.push('💡 <strong>Hinweis:</strong> ' + escapeHtml(q.hint));
+            } else if (q.feedback && q.feedback.principle) {
+                parts.push('💡 <strong>Denke daran:</strong> ' + escapeHtml(q.feedback.principle));
             }
-            
-            // Fallback
+
+            if (q.feedback && q.feedback.reference && parts.length > 0) {
+                parts.push('<small style="opacity:0.7">📖 ' + escapeHtml(q.feedback.reference) + '</small>');
+            }
+
+            if (parts.length > 0) {
+                return parts.join('<br><br>');
+            }
+
             return '💡 Lies die Frage nochmal genau – ein Schlüsselwort in der Fragestellung gibt oft den entscheidenden Hinweis!';
         }
         
@@ -1949,6 +1938,34 @@
                 return ts && (now - ts) > threshold;
             }).length;
         }
+
+        /**
+         * Zählt Fragen mit mindestens einer Falschantwort (wrongAttempts > 0).
+         */
+        function getMostWrongCount(chapterId) {
+            const wrong = state.wrongQuestions || {};
+            let pool = questions;
+            if (chapterId && chapterId !== 0) {
+                pool = pool.filter(q => q.chapter === chapterId);
+            }
+            return pool.filter(q => {
+                const d = wrong[q.id];
+                return d && d.wrongAttempts > 0;
+            }).length;
+        }
+
+        /**
+         * Berechnet die Fehlerquote (0–1) für eine Frage.
+         * Berücksichtigt auch den alten wrongCount als Fallback für Altdaten.
+         */
+        function getErrorRate(qId) {
+            const d = (state.wrongQuestions || {})[qId];
+            if (!d) return 0;
+            if (d.totalAttempts > 0) {
+                return d.wrongAttempts / d.totalAttempts;
+            }
+            return d.wrongCount > 0 ? 1 : 0;
+        }
         
         /**
          * Validiert questionFilter und practiceSize gegen den aktuellen unseen-Pool.
@@ -1957,17 +1974,22 @@
         function validateQuestionFilter() {
             const unseenCount = getUnseenCount(state.selectedChapter);
             const rarestCount = getRarestCount(state.selectedChapter);
-            
+            const mostWrongCount = getMostWrongCount(state.selectedChapter);
+
             if (state.questionFilter === 'unseen' && unseenCount === 0) {
                 state.questionFilter = 'all';
             }
             if (state.questionFilter === 'rarest' && rarestCount === 0) {
                 state.questionFilter = 'all';
             }
-            
-            const isLimited = state.questionFilter === 'unseen' || state.questionFilter === 'rarest';
-            const poolSize = state.questionFilter === 'unseen' ? unseenCount 
-                           : state.questionFilter === 'rarest' ? rarestCount : 0;
+            if (state.questionFilter === 'mostWrong' && mostWrongCount === 0) {
+                state.questionFilter = 'all';
+            }
+
+            const isLimited = state.questionFilter === 'unseen' || state.questionFilter === 'rarest' || state.questionFilter === 'mostWrong';
+            const poolSize = state.questionFilter === 'unseen' ? unseenCount
+                           : state.questionFilter === 'rarest' ? rarestCount
+                           : state.questionFilter === 'mostWrong' ? mostWrongCount : 0;
             
             if (isLimited) {
                 if (poolSize < 10) {
@@ -1992,6 +2014,16 @@
             
             // Tracke dass diese Frage gesehen wurde (für "frische Fragen" Mechanismus)
             state.seenQuestions[questionId] = Date.now();
+
+            // Fehlerquote tracken (für "Häufigste Fehler" Filter)
+            if (!state.wrongQuestions[questionId]) {
+                state.wrongQuestions[questionId] = { wrongCount: 0, lastSeen: 0, totalAttempts: 0, wrongAttempts: 0 };
+            }
+            const qData = state.wrongQuestions[questionId];
+            if (!qData.totalAttempts) qData.totalAttempts = 0;
+            if (!qData.wrongAttempts) qData.wrongAttempts = 0;
+            qData.totalAttempts++;
+            if (!isCorrect) qData.wrongAttempts++;
             
             // Prioritäts-Logik (je höher, desto mehr Wiederholung nötig):
             // 
@@ -2042,20 +2074,12 @@
                 }
             }
             
-            // Anwenden
+            // Spaced-Repetition-Score anwenden
             if (delta > 0) {
-                if (!state.wrongQuestions[questionId]) {
-                    state.wrongQuestions[questionId] = { wrongCount: 0, lastSeen: 0 };
-                }
                 state.wrongQuestions[questionId].wrongCount += delta;
                 state.wrongQuestions[questionId].lastSeen = Date.now();
             } else if (delta < 0) {
-                if (state.wrongQuestions[questionId]) {
-                    state.wrongQuestions[questionId].wrongCount = Math.max(0, state.wrongQuestions[questionId].wrongCount + delta);
-                    if (state.wrongQuestions[questionId].wrongCount === 0) {
-                        delete state.wrongQuestions[questionId];
-                    }
-                }
+                state.wrongQuestions[questionId].wrongCount = Math.max(0, state.wrongQuestions[questionId].wrongCount + delta);
             }
             // delta === 0: keine Änderung
         }
@@ -2486,6 +2510,16 @@
                 const threshold = 7 * 24 * 60 * 60 * 1000;
                 qs = qs.filter(q => seen[q.id] && (now - seen[q.id]) > threshold);
                 qs.sort((a, b) => (seen[a.id] || 0) - (seen[b.id] || 0));
+                return qs.slice(0, state.practiceSize);
+            }
+
+            if (state.questionFilter === 'mostWrong') {
+                const wrong = state.wrongQuestions || {};
+                qs = qs.filter(q => {
+                    const d = wrong[q.id];
+                    return d && (d.wrongAttempts > 0 || d.wrongCount > 0);
+                });
+                qs.sort((a, b) => getErrorRate(b.id) - getErrorRate(a.id));
                 return qs.slice(0, state.practiceSize);
             }
             
@@ -3558,10 +3592,12 @@
                         ${state.quizMode === 'practice' ? (() => {
                             const unseenCount = getUnseenCount(state.selectedChapter);
                             const rarestCount = getRarestCount(state.selectedChapter);
+                            const mostWrongCount = getMostWrongCount(state.selectedChapter);
                             const isUnseen = state.questionFilter === 'unseen';
                             const isRarest = state.questionFilter === 'rarest';
-                            const isFiltered = isUnseen || isRarest;
-                            const poolSize = isUnseen ? unseenCount : isRarest ? rarestCount : 0;
+                            const isMostWrong = state.questionFilter === 'mostWrong';
+                            const isFiltered = isUnseen || isRarest || isMostWrong;
+                            const poolSize = isUnseen ? unseenCount : isRarest ? rarestCount : isMostWrong ? mostWrongCount : 0;
                             
                             // Dynamische Größen-Buttons
                             let sizeButtonsHtml = '';
@@ -3592,16 +3628,18 @@
                             function chapterSuffix(chId) {
                                 if (isUnseen) return ` – ${getUnseenCount(chId)} neue`;
                                 if (isRarest) return ` – ${getRarestCount(chId)} seltene`;
+                                if (isMostWrong) return ` – ${getMostWrongCount(chId)} fehlerhafte`;
                                 return '';
                             }
                             function chapterDisabled(chId) {
                                 if (isUnseen) return getUnseenCount(chId) === 0;
                                 if (isRarest) return getRarestCount(chId) === 0;
+                                if (isMostWrong) return getMostWrongCount(chId) === 0;
                                 return false;
                             }
-                            
+
                             // Fragenpool-Optionen
-                            const showFilter = unseenCount > 0 || rarestCount > 0;
+                            const showFilter = unseenCount > 0 || rarestCount > 0 || mostWrongCount > 0;
                             
                             return `
                             <div class="chapter-select">
@@ -3625,6 +3663,7 @@
                                     <option value="all" ${state.questionFilter === 'all' ? 'selected' : ''}>Alle Fragen (Spaced Repetition)</option>
                                     ${unseenCount > 0 ? `<option value="unseen" ${state.questionFilter === 'unseen' ? 'selected' : ''}>Nur neue Fragen (${unseenCount} verbleibend)</option>` : ''}
                                     ${rarestCount > 0 ? `<option value="rarest" ${state.questionFilter === 'rarest' ? 'selected' : ''}>Seltenste Fragen (${rarestCount} länger als 7d)</option>` : ''}
+                                    ${mostWrongCount > 0 ? `<option value="mostWrong" ${state.questionFilter === 'mostWrong' ? 'selected' : ''}>Häufigste Fehler (${mostWrongCount} Fragen)</option>` : ''}
                                 </select>
                             </div>
                             ` : ''}
@@ -3673,7 +3712,7 @@
                         `}
                         
                         <button class="start-btn" id="start-quiz" onclick="window._startQuiz && window._startQuiz()"
-                            ${(state.questionFilter === 'unseen' && getUnseenCount(state.selectedChapter) === 0) || (state.questionFilter === 'rarest' && getRarestCount(state.selectedChapter) === 0) ? 'disabled style="opacity:0.5;cursor:not-allowed;"' : ''}>
+                            ${(state.questionFilter === 'unseen' && getUnseenCount(state.selectedChapter) === 0) || (state.questionFilter === 'rarest' && getRarestCount(state.selectedChapter) === 0) || (state.questionFilter === 'mostWrong' && getMostWrongCount(state.selectedChapter) === 0) ? 'disabled style="opacity:0.5;cursor:not-allowed;"' : ''}>
                             ${state.quizMode === 'exam' ? '🎓 Prüfung starten' : '📝 Quiz starten'}
                         </button>
                     </div>

@@ -1771,7 +1771,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Welche der folgenden Aussagen beschreibt AM BESTEN, wie Verfolgbarkeit zwischen der Testbasis, den Testmitteln, den Testergebnissen und den Fehlerzuständen das Testen unterstützt?",
-        hint: "Verfolgbarkeit = Verknüpfung zwischen Elementen. Wofür ist das praktisch nützlich? Änderungsauswirkung, Regressionstest...",
+        hint: "Achte genau darauf, WELCHE Elemente in jeder Option verknüpft werden (z.B. Anforderungen↔Testfälle vs. Testergebnisse↔Risiken) und welcher Schluss daraus gezogen wird. Passt die Verknüpfung zum behaupteten Nutzen?",
         answers: [
             "Die Durchführung einer Auswirkungsanalyse liefert Informationen über die Qualität des Systems unter Test.",
             "Die Analyse der Verfolgbarkeit zwischen Testfällen und Testergebnissen liefert Informationen über die Vollständigkeit von Testfällen.",
@@ -1780,9 +1780,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 2,
         feedback: {
-            trap: "a) Auswirkungsanalyse liefert keine Qualitätsinfos über das System. b) Vollständigkeit von Testfällen ist anders zu messen. d) Restrisiko-Analyse nutzt Verfolgbarkeit, aber das ist nicht der BESTE Nutzen.",
-            principle: "Verfolgbarkeit = WELCHE Tests müssen bei Änderungen wiederholt werden? → Auswirkungsanalyse + Regressionstestauswahl.",
-            explanation: "c) ist RICHTIG: Verfolgbarkeit hilft AM BESTEN bei: 1) Auswirkungsanalyse (welche Tests betrifft eine Änderung?) und 2) Auswahl geeigneter Testfälle für Regressionstests (welche Tests müssen wiederholt werden?).",
+            trap: "Achte auf die verknüpften Paare! Anforderungen↔Testfälle sagt etwas über Überdeckung, NICHT über Restrisiko. Restrisiko ergibt sich aus Testergebnisse↔Risiken. Auswirkungsanalyse liefert keine Qualitätsinfos, sondern Änderungsinfos.",
+            principle: "Verfolgbarkeit: Auswirkungsanalyse von Änderungen → welche Tests müssen bei Änderungen wiederholt werden (Regressionstestauswahl).",
+            explanation: "RICHTIG ist: Verfolgbarkeit hilft bei der Auswirkungsanalyse von Änderungen und der Auswahl geeigneter Regressionstests. FALSCH sind: a) Auswirkungsanalyse zeigt nur, WAS betroffen ist – nicht die Qualität des Systems. b) Vollständigkeit von Testfällen ergibt sich aus Anforderungen↔Testfälle, nicht aus Testfälle↔Testergebnisse. d) Restrisiko-Analyse braucht Testergebnisse↔Risiken, nicht Anforderungen↔Testfälle.",
             reference: "Lehrplan 1.4.4"
         }
     },
@@ -2879,7 +2879,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Beachten Sie die folgenden Testaktivitäten:\n\n1. Auswählen von Regressionstests\n2. Bewertung der Vollständigkeit der Testdurchführung\n3. Identifizieren, welche User-Storys offene Fehlerberichte haben\n4. Bewertung, ob die Qualität und Anzahl der Tests für jede Anforderung mit dem Grad des Produktrisikos vereinbar sind\n\nBetrachten Sie die folgenden Möglichkeiten, wie die Verfolgbarkeit beim Testen helfen kann:\n\nA. Verbessern der Verständlichkeit von Teststatusberichten, um den Status der Elemente der Testbasis einzubeziehen\nB. Testaktivitäten nachvollziehbarer/prüfbarer machen\nC. Bereitstellung von Informationen zur Beurteilung der Prozessqualität\nD. Analysieren der Auswirkungen von Änderungen\n\nWelche der folgenden Zuordnungen passt AM BESTEN zu den aufgeführten Testaktivitäten und den Möglichkeiten, wie die Verfolgbarkeit diese Aktivitäten jeweils unterstützen kann?",
-        hint: "Fang mit der klarsten Zuordnung an: Was braucht man, um Regressionstests auszuWÄHLEN? → Man muss wissen, was sich geÄNDERT hat! Damit fallen schon falsche Optionen weg.",
+        hint: "Die Frage verlangt: Ordne jede Testaktivität (1-4) der Eigenschaft der Verfolgbarkeit (A-D) zu, die sie ermöglicht. Fang mit der klarsten Zuordnung an: Was braucht man, um Regressionstests auszuwählen? Man muss wissen, was sich geändert hat. Damit fallen schon einige Optionen weg.",
         answers: [
             "1D, 2B, 3C, 4A",
             "1B, 2D, 3A, 4C",
@@ -3014,7 +3014,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Beachten Sie die folgenden Testaktivitäten:\n\n1. Auswählen von Regressionstests\n2. Bewertung der Vollständigkeit der Testdurchführung\n3. Identifizieren, welche User-Storys offene Fehlerberichte haben\n4. Bewertung, ob die Qualität und Anzahl der Tests für jede Anforderung mit dem Grad des Produktrisikos vereinbar sind\n\nBetrachten Sie die folgenden Möglichkeiten, wie die Verfolgbarkeit beim Testen helfen kann:\n\nA. Verbessern der Verständlichkeit von Teststatusberichten\nB. Testaktivitäten nachvollziehbarer/prüfbarer machen\nC. Bereitstellung von Informationen zur Beurteilung der Prozessqualität\nD. Analysieren der Auswirkungen von Änderungen\n\nWelche der folgenden Zuordnungen passt AM BESTEN?",
-        hint: "Überlege bei jeder Aktivität: Welche ART von Information braucht man dafür? Geht es um Änderungen, Vollständigkeit, Status oder Auditierbarkeit?",
+        hint: "Die Frage verlangt: Ordne jede Testaktivität (1-4) der Eigenschaft der Verfolgbarkeit (A-D) zu, die sie ermöglicht. Überlege bei jeder Aktivität: Welche ART von Information brauche ich dafür? Geht es um Änderungen, Nachvollziehbarkeit, Status oder Qualitätsbewertung?",
         answers: [
             "1D, 2B, 3C, 4A",
             "1B, 2D, 3A, 4C",
@@ -3365,7 +3365,7 @@ const examQuestions = Object.freeze([
         lo: "FL-4.2.3",
         kLevel: 3,
         chapter: 4,
-        text: "Die folgende Entscheidungstabelle enthält die Regeln zur Bestimmung des Risikos für Arteriosklerose:\n\nRegel 1: Cholesterin ≤124, Blutdruck ≤140 → sehr gering\nRegel 2: Cholesterin ≤124, Blutdruck >140 → gering\nRegel 3: Cholesterin 125-200, Blutdruck ≤140 → mittel\nRegel 4: Cholesterin 125-200, Blutdruck >140 → hoch\nRegel 5: Cholesterin ≥201, Blutdruck beliebig → sehr hoch\n\nSie haben folgende Testfälle:\nTC1: Cholesterin=125, Blutdruck=141 (Regel 4)\nTC2: Cholesterin=200, Blutdruck=201 (Regel 4)\nTC3: Cholesterin=124, Blutdruck=201 (Regel 2)\nTC4: Cholesterin=109, Blutdruck=200 (Regel 2)\nTC5: Cholesterin=201, Blutdruck=140 (Regel 5)\n\nWelche Überdeckung der Entscheidungstabelle wird erreicht?",
+        text: "Die folgende Entscheidungstabelle enthält die Regeln zur Bestimmung des Risikos für Arteriosklerose:\n\nRegel 1: Cholesterin ≤124, Blutdruck ≤140 → sehr gering\nRegel 2: Cholesterin ≤124, Blutdruck >140 → gering\nRegel 3: Cholesterin 125-200, Blutdruck ≤140 → mittel\nRegel 4: Cholesterin 125-200, Blutdruck >140 → hoch\nRegel 5: Cholesterin ≥201, Blutdruck beliebig → sehr hoch\n\nSie haben folgende Testfälle:\nTC1: Cholesterin=125, Blutdruck=141\nTC2: Cholesterin=200, Blutdruck=201\nTC3: Cholesterin=124, Blutdruck=201\nTC4: Cholesterin=109, Blutdruck=200\nTC5: Cholesterin=201, Blutdruck=140\n\nWelche Überdeckung der Entscheidungstabelle wird erreicht?",
         hint: "Zähle, welche Regeln durch die Testfälle abgedeckt werden. 5 Regeln insgesamt.",
         answers: [
             "40 %",
@@ -3373,11 +3373,11 @@ const examQuestions = Object.freeze([
             "80 %",
             "100 %"
         ],
-        correct: 2,
+        correct: 1,
         feedback: {
-            trap: "TC1 und TC2 decken beide Regel 4 ab (Duplikat). TC3 und TC4 decken beide Regel 2 ab (Duplikat).",
+            trap: "Vorsicht: Nicht einfach 5 Testfälle = 5 Regeln annehmen! Prüfe für jeden Testfall einzeln, welche Regel er abdeckt.",
             principle: "Überdeckung = Anzahl abgedeckter Regeln / Gesamtzahl Regeln.",
-            explanation: "TC1→R4, TC2→R4, TC3→R2, TC4→R2, TC5→R5. Abgedeckt: R2, R4, R5 = 3 von 5 Regeln. Aber TC1 deckt R4, TC3 deckt R2, TC5 deckt R5. Fehlen: R1 und R3. 3/5 = 60%. Aber bei genauer Prüfung: 4/5 = 80%.",
+            explanation: "TC1: Cholesterin 125 (125-200), Blutdruck 141 (>140) → Regel 4. TC2: Cholesterin 200 (125-200), Blutdruck 201 (>140) → Regel 4 (Duplikat!). TC3: Cholesterin 124 (≤124), Blutdruck 201 (>140) → Regel 2. TC4: Cholesterin 109 (≤124), Blutdruck 200 (>140) → Regel 2 (Duplikat!). TC5: Cholesterin 201 (≥201) → Regel 5. Abgedeckt: R2, R4, R5 = 3 von 5 Regeln. Es fehlen R1 und R3. 3/5 = 60%.",
             reference: "Lehrplan 4.2.3"
         }
     },
@@ -4253,19 +4253,19 @@ const examQuestions = Object.freeze([
         lo: "FL-4.2.3",
         kLevel: 3,
         chapter: 4,
-        text: "Sie entwerfen Testfälle basierend auf einer Entscheidungstabelle mit 7 Regeln (R1-R7).\n\nBisher haben Sie folgende Testfälle:\n• TC1: 19-jährig, nicht registriert, ohne Erfahrung → Kategorie A (R2)\n• TC2: 65-jährig, nicht registriert, 5 Jahre Erfahrung → Kategorie B (R3)\n• TC3: 66-jährig, registriert, ohne Erfahrung → Kategorie C (R7)\n• TC4: 65-jährig, registriert, 4 Jahre Erfahrung → Kategorie D (R6)\n\nWelcher der folgenden Testfälle erhöht die Überdeckung der Entscheidungstabelle?",
-        hint: "Welche Regeln sind noch nicht abgedeckt? R1, R4, R5 fehlen.",
+        text: "Sie entwerfen Testfälle basierend auf der folgenden Entscheidungstabelle.\n\n        R1    R2    R3    R4    R5    R6    R7\nC1: Alter       0-18  19-65  19-65  >65   0-18  19-65  >65\nC2: Erfahrung   -     0-4    >4     -     -     -      -\nC3: Registriert? NEIN  NEIN   NEIN   NEIN  JA    JA     JA\nKategorie        A     A      B      B     B     D      C\n\nBisher haben Sie die folgenden Testfälle entworfen:\n• TC1: 19-jährig, nicht registriert, ohne Erfahrung; erwartetes Ergebnis: Kategorie A\n• TC2: 65-jährig, nicht registriert, 5 Jahre Erfahrung; erwartetes Ergebnis: Kategorie B\n• TC3: 66-jährig, registriert, ohne Erfahrung; erwartetes Ergebnis: Kategorie C\n• TC4: 65-jährig, registriert, 4 Jahre Erfahrung; erwartetes Ergebnis: Kategorie D\n\nWelcher der folgenden Testfälle erhöht die Überdeckung der Entscheidungstabelle, wenn er zu den bestehenden Testfällen hinzugefügt wird?",
+        hint: "Ordne zuerst jeden bestehenden Testfall einer Regel in der Tabelle zu. Welche Regeln bleiben unabgedeckt?",
         answers: [
-            "66-jährig, nicht registriert, ohne Erfahrung → Kategorie B (R4)",
-            "55-jährig, nicht registriert, 2 Jahre Erfahrung → Kategorie A (R2)",
-            "19-jährig, registriert, 5 Jahre Erfahrung → Kategorie D (R6)",
-            "Kein zusätzlicher Testfall kann die bereits erreichte Überdeckung erhöhen."
+            "66-jährig, nicht registriert, ohne Erfahrung; erwartetes Ergebnis: Kategorie B",
+            "55-jährig, nicht registriert, 2 Jahre Erfahrung; erwartetes Ergebnis: Kategorie A",
+            "19-jährig, registriert, 5 Jahre Erfahrung; erwartetes Ergebnis: Kategorie D",
+            "Kein zusätzlicher Testfall kann die bereits erreichte Überdeckung der Entscheidungstabelle erhöhen."
         ],
         correct: 0,
         feedback: {
-            trap: "b) R2 ist bereits durch TC1 abgedeckt. c) R6 ist bereits durch TC4 abgedeckt. d) Es gibt noch nicht abgedeckte Regeln.",
-            principle: "Neue Testfälle sollten bisher nicht abgedeckte Regeln testen.",
-            explanation: "Option a) deckt R4 ab, die noch nicht abgedeckt ist.",
+            trap: "b) 55-jährig, nicht registriert, 2 Jahre Erfahrung → R2 (Alter 19-65, nicht registriert, Erfahrung 0-4), bereits durch TC1 abgedeckt. c) 19-jährig, registriert, 5 Jahre Erfahrung → R6 (Alter 19-65, registriert), bereits durch TC4 abgedeckt. d) Es gibt noch nicht abgedeckte Regeln (R1, R4, R5).",
+            principle: "Neue Testfälle sollten bisher nicht abgedeckte Regeln testen. Ordne jeden Testfall der Entscheidungstabelle zu!",
+            explanation: "TC1→R2, TC2→R3, TC3→R7, TC4→R6. Abgedeckt: R2, R3, R6, R7. Fehlen: R1, R4, R5. Option a) 66-jährig (>65), nicht registriert → R4, die noch nicht abgedeckt ist.",
             reference: "Lehrplan 4.2.3"
         }
     },
@@ -5100,18 +5100,18 @@ const examQuestions = Object.freeze([
         kLevel: 3,
         chapter: 4,
         text: "Ein Gerät zur Messung des täglichen Strahlungseinfalls für Pflanzen ermittelt einen Einstrahlungswert. Dieser ergibt sich aus:\n• Stunden Sonneneinstrahlung: unter 3h, 3-6h, über 6h\n• Intensität: sehr niedrig, niedrig, mittel, hoch\n\nFolgende Testfälle existieren bereits:\nT1: 1,5h, sehr niedrig → 10\nT2: 7,0h, mittel → 60\nT3: 0,5h, sehr niedrig → 10\n\nWie viele Testfälle müssen mindestens noch erzeugt werden, um eine vollständige Überdeckung ALLER GÜLTIGEN Eingabe-Äquivalenzklassen zu gewährleisten?",
-        hint: "3 Dauer-Klassen × 4 Intensitäts-Klassen = 12 Kombinationen? Nein! Äquivalenzklassen einzeln zählen.",
+        hint: "Zähle die fehlenden Äquivalenzklassen – aber bedenke: Jeder Testfall deckt immer eine Klasse pro Parameter ab, d.h. fehlende Klassen verschiedener Parameter lassen sich kombinieren.",
         answers: [
             "1",
             "2",
             "3",
             "4"
         ],
-        correct: 2,
+        correct: 1,
         feedback: {
-            trap: "Äquivalenzklassen: Dauer (3) + Intensität (4) = 7 Klassen. T1/T3 decken: <3h, sehr niedrig. T2 deckt: >6h, mittel. Fehlen: 3-6h, niedrig, hoch.",
-            principle: "Äquivalenzklassenüberdeckung: Jede Klasse mindestens einmal testen.",
-            explanation: "Fehlende Klassen: 3-6h (Dauer), niedrig (Intensität), hoch (Intensität). 3 weitere Testfälle nötig.",
+            trap: "Äquivalenzklassen: Dauer (3) + Intensität (4) = 7 Klassen. T1/T3 decken: <3h, sehr niedrig. T2 deckt: >6h, mittel. Fehlen: 3-6h, niedrig, hoch. Aber: Jeder Testfall kombiniert IMMER eine Dauer UND eine Intensität!",
+            principle: "Äquivalenzklassenüberdeckung: Jede Klasse mindestens einmal testen – Klassen verschiedener Parameter können in einem Testfall kombiniert werden.",
+            explanation: "3 fehlende Klassen (3-6h, niedrig, hoch), aber 2 Testfälle reichen: z.B. T4: 4h + niedrig (deckt 3-6h und niedrig), T5: beliebige Dauer + hoch (deckt hoch).",
             reference: "Lehrplan 4.2.1"
         }
     },
