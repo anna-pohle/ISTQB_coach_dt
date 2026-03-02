@@ -5315,11 +5315,32 @@
                 }
             });
             
-            // Register Service Worker
+            // Register Service Worker with forced update check
             if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('sw.js')
-                    .then(() => console.log('SW registered'))
+                navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' })
+                    .then(reg => {
+                        console.log('SW registered');
+                        reg.update();
+                        setInterval(() => reg.update(), 60 * 60 * 1000);
+
+                        reg.addEventListener('updatefound', () => {
+                            const newSW = reg.installing;
+                            if (!newSW) return;
+                            newSW.addEventListener('statechange', () => {
+                                if (newSW.state === 'activated' && navigator.serviceWorker.controller) {
+                                    console.log('Neue Version verfügbar – lade neu…');
+                                    window.location.reload();
+                                }
+                            });
+                        });
+                    })
                     .catch(err => console.log('SW registration failed:', err));
+
+                navigator.serviceWorker.addEventListener('controllerchange', () => {
+                    if (document.visibilityState === 'visible') {
+                        window.location.reload();
+                    }
+                });
             }
         }
         
