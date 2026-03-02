@@ -1950,7 +1950,7 @@
             }
             return pool.filter(q => {
                 const d = wrong[q.id];
-                return d && d.wrongAttempts > 0;
+                return d && (d.wrongAttempts > 0 || d.wrongCount > 0);
             }).length;
         }
 
