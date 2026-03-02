@@ -142,7 +142,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Welche der folgenden Aussagen vergleicht AM BESTEN die verschiedenen Rollen beim Testen?",
-        hint: "Tester = praktische Testarbeit (Analyse, Entwurf, Ausführung). Testmanager = Koordination, Planung, Berichterstattung.",
+        hint: "Überlege: Wer sitzt am Schreibtisch und plant, und wer sitzt vor dem System und testet? Eine Rolle ist strategisch, die andere operativ.",
         answers: [
             "Die Rolle des Testens führt Testfälle aus, die Testmanagementrolle plant und überwacht die Testaktivitäten und meldet die Abweichungen an alle Tester.",
             "Die Rolle des Testens führt die Aktivitäten der Testanalyse sowie des Testentwurfs aus und erstellt und führt Testfälle aus, die Testmanagementrolle koordiniert die Testressourcen und berichtet an die Stakeholder.",
@@ -658,7 +658,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 5,
         text: "Welche der folgenden Aussagen zum Zweck und Inhalt von Testberichten ist zutreffend?",
-        hint: "Unterscheide: Fortschrittsbericht = WÄHREND des Testens, regelmäßig. Abschlussbericht = AM ENDE einer Teststufe.",
+        hint: "Einer wird regelmäßig während der Arbeit erstellt, der andere nur einmal ganz am Ende. Überlege, welcher Bericht LAUFENDE Infos liefert.",
         answers: [
             "Testabschlussberichte werden in regelmäßigen Abständen erstellt und verteilt, um die Stakeholder hinsichtlich des Fortschrittes zu informieren.",
             "Ein Testfortschrittsbericht beinhaltet u. a. die Bewertung der Qualität des Produkts sowie etwaige Abweichungen vom Zeitplan.",
@@ -754,7 +754,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Welche der folgenden Aussagen beschreibt den Unterschied zwischen Testen und Debugging AM BESTEN?",
-        hint: "Testen = FINDEN. Debugging = BEHEBEN. Wer macht was?",
+        hint: "Eine Aktivität deckt Probleme auf, die andere analysiert und behebt sie. Überlege, wer typischerweise welche durchführt.",
         answers: [
             "Testen identifiziert die Ursache von Fehlerzuständen, während beim Debugging die Fehlerzustände analysiert und behoben werden.",
             "Testen ist eine negative Aktivität, während Debugging eine positive Aktivität ist.",
@@ -1094,7 +1094,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 3,
         text: "Unter Berücksichtigung der folgenden Reviewarten:\n1. Technisches Review\n2. Informelles Review\n3. Inspektion\n4. Walkthrough\n\nund den folgenden Beschreibungen:\nA. Konzentriert auf Ziele wie Aufbau von Vertrauen, Generierung neuer Ideen und Schulung von Gutachtern unter Leitung des Autors.\nB. Dient in erster Linie der Erkennung potenzieller Mängel und erfordert keine formelle Dokumentation.\nC. Das Hauptziel besteht darin, eine maximale Anzahl potenzieller Fehlerzustände zu erkennen und Metriken zu sammeln, um die Prozessverbesserung zu unterstützen.\nD. Das Ziel ist es, durch qualifizierte Gutachter einen Konsens zu erzielen, Entscheidungen für Probleme zu treffen und neue Ideen zu generieren.\n\nWelche Zuordnung trifft AM BESTEN zu?",
-        hint: "Merke: Walkthrough=Autor leitet(A), Informell=ohne Doku(B), Inspektion=Metriken(C), Technisch=Konsens(D).",
+        hint: "Jede Reviewart hat ein Alleinstellungsmerkmal. Welche ist die formellste mit Metriken? Welche hat keinen definierten Prozess? Wer leitet bei welcher?",
         answers: [
             "1A, 2B, 3C, 4D",
             "1D, 2B, 3C, 4A",
@@ -1363,7 +1363,7 @@ const examQuestions = Object.freeze([
         kLevel: 3,
         chapter: 4,
         text: "Sie verwenden abnahmetestgetriebene Entwicklung und entwerfen Testfälle basierend auf folgender User-Story:\n\nAls regulärer oder spezieller Benutzer möchte ich meine elektronische Etagenkarte nutzen können, um Zugang zu bestimmten Etagen zu erhalten.\n\nAkzeptanzkriterium:\nAC1: Reguläre Benutzer haben Zugang zu den Etagen 1 bis 3.\nAC2: Etage 4 ist ausschließlich für spezielle Benutzer zugänglich.\nAC3: Spezielle Benutzer verfügen über alle Zugriffsrechte regulärer Benutzer.\n\nWelcher Testfall eignet sich AM BESTEN, um AC3 zu testen?",
-        hint: "AC3 prüfen = Spezielle Benutzer haben reguläre Rechte. Also: Spezieller Benutzer → welche Etagen testen?",
+        hint: "Lies AC3 genau: Welche Rechte hat ein spezieller Benutzer laut diesem Kriterium? Daraus ergibt sich, was du testen musst.",
         answers: [
             "Prüfen Sie, ob ein regulärer Benutzer Zugang zu den Etagen 1 und 3 hat.",
             "Stellen Sie sicher, dass ein regulärer Benutzer keinen Zugang zur Etage 4 hat.",
@@ -1749,7 +1749,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Ordnen Sie die richtige Beschreibung zu:\nA. Eine Menge von Testfällen oder Testskripten, die in einem bestimmten Testzyklus ausgeführt werden sollen\nB. Eine Abfolge von Anweisungen für die Durchführung eines Tests\nC. Enthält die erwarteten Ergebnisse\nD. Die Dokumentation eines Ziels und der Agenda einer Testsitzung\n\nzu den Testarbeitsergebnissen:\n1. Testsuite\n2. Testfall\n3. Testskript\n4. Test-Charta",
-        hint: "Testsuite=Sammlung, Testfall=erwartete Ergebnisse, Testskript=Anweisungen, Test-Charta=Ziel/Agenda.",
+        hint: "Was unterscheidet einen Testfall von einem Testskript? Was macht eine Testsuite besonders? Und was beschreibt nur das Ziel, nicht die konkreten Schritte?",
         answers: [
             "1A, 2C, 3B, 4D",
             "1D, 2B, 3A, 4C",
@@ -1905,7 +1905,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 2,
         text: "Sie arbeiten als Tester in einem Projekt an einer mobilen Anwendung für Essensbestellungen. Eine Kundenanforderung mit hoher Priorität lautet:\n\n'In 95 % der Fälle muss die Bestellung in weniger als 10 Sekunden bearbeitet werden.'\n\nSie haben Testfälle erstellt, die Bearbeitungszeit gemessen und mit den Anforderungen verglichen.\n\nWelche Art von Test haben Sie durchgeführt?",
-        hint: "Zeit messen = Performanz = nicht-funktionaler Test. Funktional = WAS macht es, nicht-funktional = WIE gut.",
+        hint: "Geht es in der Anforderung um WELCHE Funktion das System ausführt, oder um eine EIGENSCHAFT (z.B. Geschwindigkeit) der Ausführung?",
         answers: [
             "Funktional, da die Testfälle die geschäftlichen Anforderungen des Kunden an das System abdecken.",
             "Nicht-funktional, da die Testfälle die Performanz des Systems messen.",
@@ -2017,7 +2017,7 @@ const examQuestions = Object.freeze([
         kLevel: 1,
         chapter: 3,
         text: "Welche Aufgaben kann das Management bei einem formalen Review (z. B. Inspektion) übernehmen?",
-        hint: "Rollen: Autor=Überarbeitung, Moderator=Sitzungsleitung, Protokollant=Aufzeichnung. Was macht MANAGEMENT?",
+        hint: "Drei Rollen haben klar definierte Aufgaben IM Review selbst. Was kann jemand beitragen, der NICHT am Review-Tisch sitzt, aber Einfluss auf Ressourcen hat?",
         answers: [
             "Gegebenenfalls Überarbeitung des Review-Objekts nach dem Review",
             "Entscheiden, was überprüft werden soll",
@@ -2263,7 +2263,7 @@ const examQuestions = Object.freeze([
         kLevel: 3,
         chapter: 4,
         text: "Sie verwenden abnahmetestgesteuerte Entwicklung (ATDD) und entwerfen Testfälle basierend auf folgender User-Story:\n\n'Als regulärer oder spezieller Benutzer möchte ich meine elektronische Etagenkarte für den Zutritt zu bestimmten Etagen nutzen können.'\n\nAkzeptanzkriterien:\nAC1: Normale Benutzer haben Zugang zu den Etagen 1 bis 3.\nAC2: Etage 4 ist nur für spezielle Benutzer zugänglich.\nAC3: Spezielle Benutzer haben alle Zugriffsrechte von regulären Benutzern.\n\nWelcher Testfall ist DER SINNVOLLSTE, um AC3 zu testen?",
-        hint: "AC3 testen = SPEZIELLER Benutzer hat REGULÄRE Rechte. Also: Spezieller Benutzer → Etagen 1-3 prüfen.",
+        hint: "Lies AC3 genau: Welche Rechte hat ein spezieller Benutzer laut diesem Kriterium? Leite daraus die nötigen Testschritte ab.",
         answers: [
             "Überprüfen Sie, ob ein regulärer Benutzer Zugang zu den Etagen 1 und 3 hat.",
             "Stellen Sie sicher, dass ein regulärer Benutzer keinen Zugang zur Etage 4 hat.",
@@ -2353,7 +2353,7 @@ const examQuestions = Object.freeze([
         kLevel: 3,
         chapter: 5,
         text: "Folgende Prioritäten und Abhängigkeiten der Testfälle sind gegeben:\n\nTF1: Hoch, technisch abhängig von TF4\nTF2: Niedrig, keine Abhängigkeiten\nTF3: Hoch, logisch abhängig von TF4\nTF4: Mittel, keine Abhängigkeiten\nTF5: Niedrig, logisch abhängig von TF2\nTF6: Mittel, technisch abhängig von TF5\n\nWelcher Testausführungsplan berücksichtigt AM BESTEN Prioritäten und Abhängigkeiten?",
-        hint: "Erst ABHÄNGIGKEITEN erfüllen, dann PRIORITÄT. TF1+TF3 hängen von TF4 ab. TF6→TF5→TF2 ist eine Kette.",
+        hint: "Kann ein Testfall laufen, wenn sein Vorgänger noch nicht ausgeführt wurde? Starte bei dem Testfall, von dem NICHTS abhängt, und arbeite dich vor.",
         answers: [
             "TF1 – TF3 – TF4 – TF6 – TF2 – TF5",
             "TF4 – TF3 – TF1 – TF2 – TF5 – TF6",
@@ -2397,7 +2397,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 5,
         text: "Welche der folgenden Aussagen stellt ein Projektrisiko dar?",
-        hint: "Unterscheide: Projektrisiko = betrifft PROJEKT (Ressourcen, Zeit). Produktrisiko = betrifft PRODUKT (Qualität).",
+        hint: "Betrifft das Risiko die QUALITÄT des Ergebnisses oder den VERLAUF des Projekts? Eins schadet dem Nutzer, das andere dem Zeitplan.",
         answers: [
             "Das Management versetzt zwei erfahrene Tester in ein anderes Projekt.",
             "Das System entspricht nicht den Standards der funktionalen Sicherheit.",
@@ -2583,7 +2583,7 @@ const examQuestions = Object.freeze([
         kLevel: 1,
         chapter: 1,
         text: "In einem Meeting werden die Begriffe 'Testen' und 'Qualitätssicherung (QS)' synonym verwendet. Ein erfahrener Kollege korrigiert dies.\n\nWelche der folgenden Aussagen beschreibt den Unterschied zwischen Testen und QS korrekt?",
-        hint: "QS = Prozess verbessern (PRÄVENTIV). Testen = Produkt prüfen (KORRIGIEREND). Die Begriffe werden oft verwechselt!",
+        hint: "Eine Aktivität verbessert den PROZESS, die andere prüft das ERGEBNIS. Die Begriffe werden oft verwechselt – achte genau darauf, WAS jeweils verbessert wird.",
         answers: [
             "Testen ist prozessorientiert und verhindert Fehler; QS ist produktorientiert und findet Fehler.",
             "Testen ist eine Form der Qualitätssteuerung (QC), die produktorientiert ist; QS ist prozessorientiert und präventiv.",
@@ -2605,7 +2605,7 @@ const examQuestions = Object.freeze([
         kLevel: 1,
         chapter: 1,
         text: "Ihr Unternehmen möchte die Qualität der Software verbessern, indem Fehler von vornherein vermieden werden, anstatt sie später zu finden.\n\nWelcher Ansatz entspricht dieser Zielsetzung AM BESTEN?",
-        hint: "Fehler VERMEIDEN = präventiv = Prozesse verbessern. Fehler FINDEN = korrigierend = Testen.",
+        hint: "Gibt es einen Unterschied zwischen 'Fehler gar nicht erst entstehen lassen' und 'Fehler im fertigen Produkt aufdecken'? Welche Maßnahme gehört wozu?",
         answers: [
             "Die Anzahl der Regressionstests erhöhen.",
             "Mehr dynamische Tests auf Systemebene durchführen.",
@@ -2651,7 +2651,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Ein Testteam plant seinen Testprozess für ein neues Projekt. Die Geschäftsdomäne ist medizinische Software mit strengen regulatorischen Anforderungen.\n\nWelcher der folgenden Faktoren sollte den Testprozess in diesem Fall AM STÄRKSTEN beeinflussen?",
-        hint: "Medizinische Software = sicherheitskritisch = hohe Risiken = strenge Anforderungen an Dokumentation und Nachweisbarkeit.",
+        hint: "Was ist das Besondere an der Domäne 'medizinische Software'? Überlege, welche Konsequenzen Fehler hier haben und was das für den Testprozess bedeutet.",
         answers: [
             "Die persönlichen Präferenzen des Testmanagers bezüglich der Testwerkzeuge.",
             "Die Produktrisiken und regulatorischen Anforderungen der Domäne.",
@@ -2697,7 +2697,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 5,
         text: "Während der Iterationsplanung in einem Scrum-Team soll eine User-Story geschätzt werden. Der Tester meldet Bedenken bezüglich der Testbarkeit an.\n\nWelche der folgenden Aussagen beschreibt AM BESTEN, warum dieser Beitrag wichtig ist?",
-        hint: "Tester prüfen, ob User-Storys TESTBAR sind. Unklare Akzeptanzkriterien = nicht testbar = Problem!",
+        hint: "Was ist die wichtigste Eigenschaft, die ein Tester bei einer User-Story prüfen sollte? Was passiert, wenn die Akzeptanzkriterien unklar sind?",
         answers: [
             "Die Testbarkeit hat keinen Einfluss auf den Aufwand der User-Story.",
             "Tester sollten erst nach Abschluss der Entwicklung auf Testbarkeitsprobleme hinweisen.",
@@ -2813,7 +2813,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 5,
         text: "Der Testmanager sammelt täglich Informationen über den Testfortschritt: ausgeführte Testfälle, gefundene Fehler, Überdeckungsmetriken.\n\nWelche Testaktivität führt der Testmanager damit AM EHESTEN durch?",
-        hint: "Informationen SAMMELN = Überwachung. Auf Basis der Infos HANDELN = Steuerung.",
+        hint: "Eine Aktivität ist passiv (beobachten und dokumentieren), die andere aktiv (eingreifen und korrigieren). Was tut der Testmanager hier?",
         answers: [
             "Teststeuerung",
             "Testüberwachung",
@@ -2926,7 +2926,7 @@ const examQuestions = Object.freeze([
         kLevel: 1,
         chapter: 1,
         text: "Was ist der Unterschied zwischen Testen und Qualitätssicherung?",
-        hint: "QS = prozessorientiert, präventiv. Testen = produktorientiert, korrigierend.",
+        hint: "Eines ist vorbeugend (verhindert Fehler), das andere aufdeckend (findet Fehler). Überlege: Was verbessert den PROZESS, was prüft das PRODUKT?",
         answers: [
             "Testen ist ein prozessorientierter, präventiver Ansatz, während Qualitätssicherung ein produktorientierter, korrigierender Ansatz ist.",
             "Qualitätssicherung ist prozessorientiert und zielt auf deren Verbesserung, während Testen durch produktorientierte Maßnahmen auf angemessene Qualität zielt.",
@@ -3014,7 +3014,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Beachten Sie die folgenden Testaktivitäten:\n\n1. Auswählen von Regressionstests\n2. Bewertung der Vollständigkeit der Testdurchführung\n3. Identifizieren, welche User-Storys offene Fehlerberichte haben\n4. Bewertung, ob die Qualität und Anzahl der Tests für jede Anforderung mit dem Grad des Produktrisikos vereinbar sind\n\nBetrachten Sie die folgenden Möglichkeiten, wie die Verfolgbarkeit beim Testen helfen kann:\n\nA. Verbessern der Verständlichkeit von Teststatusberichten\nB. Testaktivitäten nachvollziehbarer/prüfbarer machen\nC. Bereitstellung von Informationen zur Beurteilung der Prozessqualität\nD. Analysieren der Auswirkungen von Änderungen\n\nWelche der folgenden Zuordnungen passt AM BESTEN?",
-        hint: "Regressionstests → Änderungsauswirkung. Vollständigkeit → prüfbar. User-Storys + Fehler → Statusberichte.",
+        hint: "Überlege bei jeder Aktivität: Welche ART von Information braucht man dafür? Geht es um Änderungen, Vollständigkeit, Status oder Auditierbarkeit?",
         answers: [
             "1D, 2B, 3C, 4A",
             "1B, 2D, 3A, 4C",
@@ -3080,7 +3080,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 2,
         text: "Welche der folgenden Aussagen über die Wahl des Softwareentwicklungslebenszyklus und dessen Beziehung zum Testen ist KORREKT?",
-        hint: "Sequenziell = spätes dynamisches Testen. Agil = frühe Automatisierung. Was passt?",
+        hint: "Bei welchem Modell gibt es früh ausführbaren Code? Und bei welchem wird der Code erst spät fertig? Überlege, was das für den Testzeitpunkt bedeutet.",
         answers: [
             "In der agilen Softwareentwicklung ersetzt die Automatisierung von Systemtests die Notwendigkeit von Regressionstests.",
             "Wenn ein sequenzielles Entwicklungsmodell verwendet wird, wird das dynamische Testen typischerweise in einer späteren Phase des Lebenszyklus durchgeführt.",
@@ -3256,7 +3256,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 3,
         text: "Die folgenden Aufgaben des Reviewprozesses werden beschrieben:\n\n1. Die zu bewertenden Qualitätsmerkmale und die Endekriterien werden festgelegt.\n2. Das Arbeitsergebnis wird allen Beteiligten zugänglich gemacht.\n3. Anomalien im Arbeitsergebnis werden identifiziert.\n4. Anomalien werden analysiert und diskutiert.\n\nOrdnen Sie diese Aufgabenbeschreibungen den folgenden Review-Aktivitäten zu:\nA. Individuelles Review\nB. Reviewbeginn\nC. Planung\nD. Kommunikation und Analyse\n\nWelche der folgenden Zuordnungen ist KORREKT?",
-        hint: "Fang mit der klarsten Zuordnung an: 'Anomalien analysieren und DISKUTIEREN' → das ist eindeutig Kommunikation (4→D). Dann: 'Anomalien ALLEINE identifizieren' → Individuelles Review (3→A). Damit fallen die meisten Optionen weg.",
+        hint: "Fang mit der klarsten Zuordnung an: Bei welcher Aufgabe ist das Schlüsselwort 'diskutieren' ein Hinweis auf die passende Aktivität? Und welche Aufgabe macht man typischerweise ALLEINE? Damit fallen schon mehrere Optionen weg.",
         answers: [
             "1B, 2C, 3D, 4A",
             "1B, 2D, 3C, 4A",
@@ -3278,7 +3278,7 @@ const examQuestions = Object.freeze([
         kLevel: 1,
         chapter: 3,
         text: "Der generische Reviewprozess kennt unter anderem die folgenden Rollen:\n\n1. Protokollant\n2. Reviewleiter\n3. Moderator\n4. Manager\n\nIm Rahmen von Reviews können diese Rollen folgende Verantwortlichkeiten übernehmen:\n\nA. Sorgt für die effektive Durchführung von Reviewsitzungen\nB. Zeichnet Reviewinformationen auf\nC. Entscheidet, was geprüft werden soll, und stellt Ressourcen zur Verfügung\nD. Übernimmt die Gesamtverantwortung für das Review\n\nWelche der folgenden Zuordnungen ist KORREKT?",
-        hint: "Protokollant = aufzeichnen. Moderator = effektive Sitzung. Manager = Ressourcen. Reviewleiter = Gesamtverantwortung.",
+        hint: "Jede Rolle hat EINE zentrale Verantwortung. Überlege: Wer sorgt für den reibungslosen Ablauf? Wer dokumentiert? Wer stellt sicher, dass alle die nötigen Mittel haben?",
         answers: [
             "1A, 2B, 3D, 4C",
             "1A, 2C, 3B, 4D",
@@ -3300,7 +3300,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 4,
         text: "Welche der folgenden Aussagen beschreibt KORREKT die Zuordnung von Verfahrensgrundlagen zu Entscheidungstabellen- und Zweigtests?",
-        hint: "Entscheidungstabelle = Spezifikation (Black-Box). Zweigtest = Kontrollfluss (White-Box).",
+        hint: "Eines basiert auf Anforderungsdokumenten, das andere auf dem Quellcode. Überlege: Wann muss man den Code sehen, und wann reicht die Spezifikation?",
         answers: [
             "Beim Entscheidungstabellentest werden die Testfälle aus den Entscheidungsergebnissen im Code abgeleitet. Beim Zweigtest werden die Testfälle aus der Kenntnis des Kontrollflusses des Testelements abgeleitet.",
             "Beim Entscheidungstabellentest werden die Testfälle aus der Spezifikation abgeleitet, die die Geschäftslogik beschreibt. Beim Zweigtest basieren die Testfälle auf der Antizipation potenzieller Fehler im Quellcode.",
@@ -3499,7 +3499,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 4,
         text: "Betrachten Sie das folgende Akzeptanzkriterium für eine User-Story, das aus der Perspektive eines Online-Shop-Inhabers geschrieben wurde:\n\nAngenommen, der Benutzer ist eingeloggt und befindet sich auf der Startseite:\nWenn der Benutzer auf die Schaltfläche 'Artikel hinzufügen' klickt,\nDann sollte das Formular 'Artikel anlegen' erscheinen,\nUnd der Benutzer sollte in der Lage sein, einen Namen und einen Preis für den neuen Artikel einzugeben.\n\nIn welchem Format ist dieses Akzeptanzkriterium geschrieben?",
-        hint: "Gegeben/Wenn/Dann = Gherkin-Format = szenarioorientiert.",
+        hint: "Welches Format nutzt natürlichsprachige Szenarien mit einer klaren Struktur aus Vorbedingung, Aktion und erwartetem Ergebnis?",
         answers: [
             "Regelorientiert",
             "Szenarioorientiert",
@@ -3609,7 +3609,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 5,
         text: "Welches der folgenden Elemente wird im Testquadrantenmodell dem Testquadranten Q1 ('technologieorientiert' und 'Unterstützung des Teams') zugeordnet?",
-        hint: "Q1 = technologieorientiert + Team unterstützen = Komponententests, Integrationstests.",
+        hint: "Q1 liegt unten links: technisch UND teamunterstützend. Welche Testart schreiben Entwickler typischerweise selbst, um ihren eigenen Code abzusichern?",
         answers: [
             "Gebrauchstauglichkeitstests",
             "Smoke-Tests",
@@ -3810,7 +3810,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Ein Designer erstellt das Layout einer Benutzeroberfläche, berücksichtigt dabei jedoch nicht die Bedürfnisse behinderter Nutzer – möglicherweise aufgrund von Müdigkeit. Ein Entwickler implementiert dieses Design, verzichtet aber aus Zeitgründen auf eine geeignete Ausnahmebehandlung für Bonusberechnungen.\n\nNach der Einführung des Systems beschweren sich einige Nutzer über die eingeschränkte Barrierefreiheit, woraufhin das Unternehmen von der Aufsichtsbehörde mit einer Geldstrafe belegt wird. Der Fehler in der Bonusberechnung bleibt zunächst unbemerkt.\n\nWelche der folgenden Aussagen IST KORREKT?",
-        hint: "Fehlerkette: Grundursache → Fehlhandlung → Fehlerzustand → Fehlerwirkung. Was ist was?",
+        hint: "Was kam ZUERST: der Denkfehler des Designers, die falsche Aktion, der Bug im Code oder das sichtbare Problem beim Nutzer? Denke die Kausalkette durch.",
         answers: [
             "Die fehlerhafte Bonusberechnung ist ein sporadisch auftretender Fehlerzustand.",
             "Die verhängte Geldstrafe wegen mangelnder Barrierefreiheit stellt einen Ausfall dar.",
@@ -3832,7 +3832,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Tester leiten aus denselben Testbedingungen jeweils unterschiedliche Testfälle ab.\n\nWelcher Grundsatz des Testens wird dadurch am besten verdeutlicht?",
-        hint: "Verschiedene Tester → verschiedene Testfälle. Welcher Grundsatz betont, dass VARIATION beim Testen wichtig ist? (Denke an das Gegenmittel zum Pestizid-Paradoxon.)",
+        hint: "Dass verschiedene Tester verschiedene Testfälle ableiten, zeigt eine wichtige Eigenschaft des Testens. Welcher der 7 Grundsätze hängt mit dem Thema VIELFALT zusammen?",
         answers: [
             "Tests nutzen sich ab.",
             "'Keine Fehler' bedeutet ein brauchbares System.",
@@ -3854,7 +3854,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Gegeben sind die folgenden Testaufgaben:\n\n1. Testfälle aus Testbedingungen ableiten\n2. Wiederverwendbare Testware identifizieren\n3. Testfälle in Testabläufen organisieren\n4. Testbasis und Testobjekt bewerten\n\nUnd die folgenden Testaktivitäten:\nA. Testanalyse\nB. Testentwurf\nC. Testrealisierung\nD. Testabschluss\n\nWelche der folgenden Zuordnungen passt AM BESTEN?",
-        hint: "Testfälle ableiten = Testentwurf. Testfälle organisieren = Testrealisierung. Testbasis bewerten = Testanalyse.",
+        hint: "Die Testaktivitäten folgen einer logischen Reihenfolge: Erst verstehen (WAS?), dann entwerfen (WIE?), dann organisieren (WOMIT?). Welche Aufgabe gehört zu welchem Schritt?",
         answers: [
             "1B, 2A, 3D, 4C",
             "1B, 2D, 3C, 4A",
@@ -4053,7 +4053,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 2,
         text: "Welcher der folgenden Tests gehört AM EHESTEN zu den Funktionstests?",
-        hint: "Funktionstest = WAS das System tut. Nicht-funktional = WIE gut es das tut.",
+        hint: "Prüft der Test, OB eine bestimmte Funktion korrekt ausgeführt wird, oder WIE GUT das System insgesamt performt?",
         answers: [
             "Der Test überprüft, ob die Sortierfunktion eine Liste korrekt in aufsteigender Reihenfolge sortiert.",
             "Der Test überprüft, ob die Sortierfunktion das Sortieren innerhalb einer Sekunde abschließt.",
@@ -4141,7 +4141,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 3,
         text: "Nachfolgend finden Sie fünf Beschreibungen typischer Aktivitäten im Rahmen eines strukturierten Reviews:\n\n1. Entdeckte Anomalien werden diskutiert und bezüglich Status und Folgemaßnahmen bewertet.\n2. Probleme werden erfasst und notwendige Anpassungen vorgenommen.\n3. Gutachter entwickeln Vorschläge und identifizieren mögliche Anomalien.\n4. Ziel und Zeitplan werden definiert.\n5. Die Teilnehmenden erhalten Zugriff auf das zu prüfende Dokument.\n\nWelche der folgenden Optionen entspricht der korrekten Reihenfolge?",
-        hint: "Reviewprozess: Planung → Beginn → Individuell → Kommunikation → Überarbeitung.",
+        hint: "Was muss passieren, BEVOR man ein Dokument individuell prüfen kann? Und was kommt NACH der individuellen Prüfung? Denke die logische Reihenfolge durch.",
         answers: [
             "4 – 3 – 5 – 2 – 1",
             "4 – 5 – 3 – 1 – 2",
@@ -4185,7 +4185,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 4,
         text: "Sie testen eine E-Commerce-Webanwendung und erhalten die folgende Anforderung:\n\nREQ 05-017: Wenn die Gesamtkosten der Einkäufe 100€ überschreiten, erhält der Kunde einen Rabatt von 5% auf zukünftige Einkäufe. Andernfalls erhält der Kunde keinen Rabatt.\n\nWelche Testverfahren eignen sich AM BESTEN zur Ableitung von Testfällen aus dieser Anforderung?",
-        hint: "Anforderung = Spezifikation = Black-Box-Verfahren.",
+        hint: "Die Testbasis ist eine Anforderung. Brauchst du den Quellcode, um daraus Testfälle abzuleiten, oder reicht das Anforderungsdokument?",
         answers: [
             "White-Box-Testverfahren",
             "Black-Box-Testverfahren",
@@ -4540,7 +4540,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 5,
         text: "Welche der folgenden Optionen stellen Produktrisiken dar?\n\nWählen Sie ZWEI Optionen!",
-        hint: "Produktrisiko = Risiko bezüglich des Produkts selbst. Projektrisiko = Risiko bezüglich des Projekts.",
+        hint: "Frage dich bei jeder Option: Schadet es dem NUTZER des Produkts direkt, oder gefährdet es den PROJEKTVERLAUF (Zeit, Budget, Ressourcen)?",
         answers: [
             "Umfangserweiterung",
             "Schlechte Architektur",
@@ -4699,7 +4699,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Welche der folgenden Aussagen beschreibt den Unterschied zwischen Testen und Debugging am BESTEN?",
-        hint: "Testen = Fehler FINDEN. Debugging = Fehler ANALYSIEREN und BEHEBEN.",
+        hint: "Wer deckt das Problem auf, und wer behebt es? Sind das immer dieselben Personen? Überlege, wo die Verantwortung jeweils liegt.",
         answers: [
             "Testen identifiziert die Ursache von Fehlerzuständen. Debugging analysiert die Fehlerzustände und schlägt Präventionsmaßnahmen vor.",
             "Dynamisches Testen zeigt Fehlerwirkungen auf, die durch Fehlerzustände verursacht werden. Debugging analysiert und behebt den zugehörigen Fehlerzustand.",
@@ -4787,7 +4787,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Welche der folgenden Aussagen beschreibt am BESTEN die Unterschiede zwischen der Rolle des Testmanagements und der Rolle des Testens?",
-        hint: "Testmanagement = Planung, Steuerung, Berichterstattung. Testen = Analyse, Entwurf, Durchführung.",
+        hint: "Wer entscheidet, WAS getestet wird und berichtet darüber? Und wer führt die Tests tatsächlich DURCH? Überlege den Unterschied zwischen Strategie und Ausführung.",
         answers: [
             "Die Rolle des Testmanagements konzentriert sich auf Testanalyse, Testentwurf, Testrealisierung und Testdurchführung, während die Rolle des Testens die Gesamtverantwortung übernimmt.",
             "Die Rolle des Testmanagements und die Rolle des Testens sind identisch und können von derselben Person gleichzeitig übernommen werden.",
@@ -4919,7 +4919,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 2,
         text: "Sie sind als Tester in einem Projekt eingesetzt, das nach dem iterativ-inkrementellen Entwicklungsmodell vorgeht.\n\nWelche der folgenden Aussagen sollten Sie in dieser Situation unbedingt berücksichtigen?",
-        hint: "Iterativ-inkrementell = häufige Releases = Regressionstests wichtig!",
+        hint: "Bei häufigen Releases gibt es viele kleine Änderungen. Was passiert, wenn eine neue Änderung alte Funktionen kaputt macht? Welche Testart fängt das ab?",
         answers: [
             "Sie planen den Test als einmalige Aktivität, wenn alle Inkremente umgesetzt wurden.",
             "Statische Tests sollten ausschließlich auf Komponententestebene stattfinden.",
@@ -5073,7 +5073,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 4,
         text: "Im Vorfeld einer Sitzung zur Iterationsplanung analysieren Sie eine User-Story und deren Akzeptanzkriterien. Daraus leiten Sie entsprechende Testfälle ab, um das Prinzip des frühen Testens anzuwenden.\n\nWelches Testverfahren bzw. welchen Testansatz wenden Sie an?",
-        hint: "Akzeptanzkriterien = Spezifikation = Black-Box-Verfahren.",
+        hint: "Wenn du Testfälle aus Akzeptanzkriterien ableitest: Siehst du dabei den Quellcode, oder arbeitest du nur mit den Anforderungen?",
         answers: [
             "White-Box-Testen",
             "Black-Box-Testen",
@@ -5338,7 +5338,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 5,
         text: "Gegeben seien die folgenden Beispiele für Eingangs- und Endekriterien für einen Systemtest:\n\n1. Das geplante Testbudget ist aufgebraucht.\n2. Mehr als 95% der geplanten Testfälle sind vollständig durchgeführt.\n3. Die Testumgebung für den Performanztest ist eingerichtet und verifiziert.\n4. Es sind keine Prio-1-Fehlerzustände und maximal 4 Prio-2-Fehlerzustände offen.\n5. Die Designspezifikation ist durch ein technisches Review geprüft und freigegeben.\n6. Der Unittest ist abgeschlossen und freigegeben.\n\nWelche der folgenden Kombinationen ordnet die Beispiele am BESTEN als Eingangs- und Endekriterien ein?",
-        hint: "Eingangskriterien = was muss VOR dem Test erfüllt sein. Endekriterien = wann ist der Test fertig.",
+        hint: "Das eine muss VORHER erfüllt sein, damit man überhaupt anfangen darf. Das andere beschreibt, wann man AUFHÖREN darf. Prüfe jedes Beispiel: Ist es eine Voraussetzung oder ein Ziel?",
         answers: [
             "Eingangskriterien: 5, 6; Endekriterien: 1, 2, 3, 4",
             "Eingangskriterien: 2, 3, 4; Endekriterien: 1, 5, 6",
@@ -5514,7 +5514,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 6,
         text: "Gegeben seien folgende Testaktivitäten:\n1. Performanzmessung und IT-Sicherheitsprüfungen\n2. Testautomatisierung\n3. Management der Testaktivitäten\n4. Testentwurf und Testrealisierung\n\nund Testwerkzeuge:\nA. Werkzeuge zur Testdurchführung\nB. Testwerkzeuge für nicht-funktionale Tests\nC. Werkzeuge zur Vorbereitung von Testfällen und Testdaten\nD. Fehlermanagementwerkzeuge\n\nWelche Zuordnung der Werkzeuge zu den Aktivitäten trifft am BESTEN zu?",
-        hint: "Performance = nicht-funktional. Automatisierung = Testdurchführung. Management = Fehlermanagement.",
+        hint: "Überlege bei jeder Aktivität: Ist sie technisch-prüfend, werkzeuggestützt-ausführend oder organisatorisch-verwaltend? Dann ordne die passende Kategorie zu.",
         answers: [
             "1 – D, 2 – C, 3 – B, 4 – A",
             "1 – B, 2 – A, 3 – C, 4 – D",
