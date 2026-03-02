@@ -3552,12 +3552,14 @@
                             <div class="chapter-select">
                                 <label for="chapter-selector">Kapitel wählen</label>
                                 <select id="chapter-selector">
-                                    <option value="0" ${state.selectedChapter === 0 ? 'selected' : ''}>Alle Kapitel (gemischt)</option>
+                                    <option value="0" ${state.selectedChapter === 0 ? 'selected' : ''}>Alle Kapitel (gemischt)${isUnseen ? ` – ${getUnseenCount(0)} neue` : ''}</option>
                                     ${chapters.map(ch => {
                                         const acc = getChapterAccuracy(ch.id);
                                         const accText = acc !== null ? ` (${acc}%)` : ' (–)';
-                                        return `<option value="${ch.id}" ${state.selectedChapter === ch.id ? 'selected' : ''}>
-                                            ${ch.id}. ${escapeHtml(ch.title)}${accText}
+                                        const chUnseen = isUnseen ? getUnseenCount(ch.id) : 0;
+                                        const unseenSuffix = isUnseen ? ` – ${chUnseen} neue` : '';
+                                        return `<option value="${ch.id}" ${state.selectedChapter === ch.id ? 'selected' : ''}${isUnseen && chUnseen === 0 ? ' disabled' : ''}>
+                                            ${ch.id}. ${escapeHtml(ch.title)}${accText}${unseenSuffix}
                                         </option>`;
                                     }).join('')}
                                 </select>
