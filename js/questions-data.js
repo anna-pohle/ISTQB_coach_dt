@@ -1252,7 +1252,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 4,
         text: "Sie möchten Verzweigungstests auf den Code anwenden, der durch ein Kontrollflussdiagramm dargestellt wird.\n\n[Siehe Diagramm im Bild]\n\nWie viele Überdeckungselemente müssen Sie testen?",
-        hint: "Zähle die Entscheidungsknoten (Rauten) und deren ausgehende Kanten. Jede Entscheidung hat 2 Ausgänge (true/false).",
+        hint: "Beim Zweigtest sind Überdeckungselemente ALLE Kanten im Kontrollflussgraph – nicht nur die Entscheidungsausgänge. Zähle alle Pfeile im Diagramm.",
         image: "images/c_q24.png",
         answers: [
             "2",
@@ -1409,7 +1409,7 @@ const examQuestions = Object.freeze([
         kLevel: 3,
         chapter: 5,
         text: "Zu Beginn jeder Iteration schätzt das Team den Arbeitsaufwand (in Personentagen). Das Team verwendet folgendes Schätzmodell basierend auf Extrapolation:\n\nE(n) = E(n-1) × A(n-1) / E(n-1)\n\n[Siehe Grafik mit geschätztem und tatsächlichem Aufwand für Iterationen 1-4]\n\nWie hoch ist der geschätzte Arbeitsaufwand für Iteration Nr. 5?",
-        hint: "Extrapolation: E(5) = E(4) × A(4) / E(4). Vereinfacht: E(5) = A(4). Lies den tatsächlichen Aufwand von Iteration 4 ab.",
+        hint: "Extrapolation mit Gewichtung: E(5) = (3×A(4) + A(3)) / 4. Lies die tatsächlichen Aufwände von Iteration 3 und 4 aus der Grafik ab.",
         image: "images/c_q31.png",
         answers: [
             "10,5 Personentage",
@@ -1521,7 +1521,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 5,
         text: "Bei welcher der folgenden Aktivitäten im Testprozess werden Testfortschrittsberichte AM MEISTEN genutzt?",
-        hint: "Fortschrittsberichte dienen der ÜBERWACHUNG und STEUERUNG. Welche Aktivität beinhaltet das?",
+        hint: "Fortschrittsberichte werden laufend erstellt, aber bei welcher Aktivität werden sie AM MEISTEN genutzt? Denke an den Testabschlussbericht.",
         answers: [
             "Testentwurf",
             "Testabschluss",
@@ -3433,7 +3433,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 4,
         text: "Die Formel für die Zweigüberdeckungsmetrik ist definiert als ZÜ = (X / Y) * 100 %.\n\nWas bedeuten X und Y in dieser Formel?",
-        hint: "Zweigüberdeckung misst, wie viele Zweige (Entscheidungsergebnisse) ausgeführt wurden.",
+        hint: "Zweige umfassen ALLE Kanten im Kontrollflussgraph – nicht nur bedingte (Entscheidungsergebnisse), sondern auch unbedingte Übergänge.",
         answers: [
             "X = Anzahl der von den Testfällen ausgeführten Entscheidungsergebnisse, Y = Gesamtzahl der Entscheidungsergebnisse im Code",
             "X = Anzahl der durch die Testfälle ausgeführten bedingten Zweige, Y = Gesamtzahl der Zweige im Code",
@@ -4120,7 +4120,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 3,
         text: "Welche der folgenden Aussagen beschreibt den Wert des statischen Testens AM BESTEN?",
-        hint: "Statisches Testen findet ANDERE Fehlerarten als dynamisches Testen.",
+        hint: "Statische Tests decken Fehler auf, die dynamische Tests NICHT finden können (z.B. Codierstandards, Designprobleme). Was sagt das über den Wert?",
         answers: [
             "Die bei statischen Tests gefundenen Fehlertypen unterscheiden sich von denen, die durch dynamische Tests gefunden werden können.",
             "Dynamische Tests können alle Fehler erkennen, die auch bei statischen Tests gefunden werden, sowie weitere.",
