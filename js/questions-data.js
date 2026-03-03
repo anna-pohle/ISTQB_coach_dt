@@ -5123,7 +5123,7 @@ const examQuestions = Object.freeze([
         kLevel: 3,
         chapter: 4,
         text: "Eine Smart-Home-App misst die durchschnittliche Temperatur und gibt Feedback:\n\n• Bis 10°C: Eiskalt!\n• 11-15°C: Ganz schön schattig!\n• 16-19°C: Cool!\n• 20-22°C: Zu warm!\n• Über 22°C: Sauna!\n\nWelches der folgenden Testsets liefert die HÖCHSTE Überdeckung von Grenzwerten bei 2-Wert-Grenzwertanalyse?",
-        hint: "2-Wert-GWA: Für jede Grenze 2 Werte. Grenzen: 10/11, 15/16, 19/20, 22/23.",
+        hint: "Erst die 8 Grenzwerte identifizieren: bei jeder Grenze den letzten Wert der einen Klasse und den ersten Wert der nächsten. Dann für jede Option zählen: wie viele dieser 8 Werte sind enthalten? Achtung: 0°C, 9°C, 100°C etc. sind KEINE Grenzwerte!",
         answers: [
             "0°C, 11°C, 20°C, 22°C, 23°C",
             "9°C, 15°C, 19°C, 23°C, 100°C",
@@ -5132,9 +5132,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 2,
         feedback: {
-            trap: "Grenzen sind: 10/11, 15/16, 19/20, 22/23. Option deckt: 10, 16, 19, 22, 23 = 5 Grenzwerte.",
-            principle: "2-Wert-GWA: Grenze und ein Nachbarwert für jede Grenze.",
-            explanation: "Option deckt die meisten Grenzwerte ab: 10 (Grenze), 16 (Grenze), 19 (Grenze), 22 (Grenze), 23 (Grenze).",
+            trap: "Die 8 Grenzwerte sind: 10, 11, 15, 16, 19, 20, 22, 23. Vergleich: {0, 11, 20, 22, 23} = 4/8 (0°C ist KEIN Grenzwert!). {9, 15, 19, 23, 100} = 3/8. {14, 15, 18, 19, 21, 22} = 3/8 (14, 18, 21 sind keine Grenzwerte).",
+            principle: "2-Wert-GWA: Pro Grenze genau 2 Werte – den letzten der einen Klasse und den ersten der nächsten. Nur diese 8 Werte zählen: 10, 11, 15, 16, 19, 20, 22, 23.",
+            explanation: "{10, 16, 19, 22, 23} deckt 5 von 8 Grenzwerten ab – mehr als jede andere Option. 10 = oberer Rand von 'Eiskalt', 16 = unterer Rand von 'Cool', 19 = oberer Rand von 'Cool', 22 = oberer Rand von 'Zu warm', 23 = unterer Rand von 'Sauna'.",
             reference: "Lehrplan 4.2.2"
         }
     },
