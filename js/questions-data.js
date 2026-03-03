@@ -3966,7 +3966,7 @@ const examQuestions = Object.freeze([
         kLevel: 1,
         chapter: 2,
         text: "Welche der folgenden Optionen ist eine bewährte Testpraxis, die auf alle Softwareentwicklungslebenszyklen angewendet wird?",
-        hint: "Bewährte Praktiken: Jede Teststufe hat eigene Ziele. Was gilt IMMER?",
+        hint: "Gefragt ist, was für ALLE Lebenszyklen gilt – egal ob agil, sequenziell oder iterativ. Prüfe jede Option: Ist sie wirklich IMMER anwendbar, oder nur in bestimmten Modellen?",
         answers: [
             "Jede Teststufe verfolgt eigene, eindeutig definierte Testziele.",
             "Testrealisierung und -ausführung sollten während der jeweiligen Entwicklungsphase beginnen.",
@@ -3975,9 +3975,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 0,
         feedback: {
-            trap: "Nicht immer möglich. Gut, aber nicht universell. Nicht immer der Fall.",
-            principle: "Jede Teststufe hat eigene, spezifische Testziele.",
-            explanation: "Eine bewährte Praxis ist, dass jede Teststufe (Komponenten-, Integrations-, System-, Abnahmetest) eigene, klar definierte Testziele hat.",
+            trap: "Testrealisierung/-ausführung während der Entwicklungsphase: stimmt nicht generell, Ausführung kommt später. Testentwurf bei ersten Entwürfen: riskant, da sich das Design noch ändern kann. Dynamisch=statisch: keine direkte Symmetrie – z.B. hat statische Analyse kein dynamisches Pendant.",
+            principle: "Bewährte Praxis für ALLE Lebenszyklen: Jede Teststufe hat eigene, spezifische Testziele, damit unterschiedliche Aspekte geprüft werden und keine unnötige Duplizierung entsteht.",
+            explanation: "KORREKT: Egal ob agil, sequenziell oder iterativ – jede Teststufe (Komponenten-, Integrations-, System-, Abnahmetest) verfolgt eigene, eindeutig definierte Testziele. Das verhindert Überschneidungen und stellt sicher, dass alle Aspekte abgedeckt werden.",
             reference: "Lehrplan 2.1.2"
         }
     },
