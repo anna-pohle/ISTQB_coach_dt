@@ -798,7 +798,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Welche der folgenden Testaktivitäten beinhalten AM EHESTEN die Anwendung der Grenzwertanalyse und der Äquivalenzklassenbildung?",
-        hint: "Testverfahren (GWA, ÄK) = Testentwurf. Aber vorher: Testbedingungen definieren = Testanalyse. Welche zwei?",
+        hint: "Überlege: Bei welcher Aktivität werden Testverfahren wie GWA/ÄK konkret ANGEWENDET, um Testfälle zu entwerfen? Und: Bevor man ein Verfahren anwenden kann, muss man erst die Testbedingungen (z.B. 'Temperatur als Eingabe') aus der Testbasis IDENTIFIZIEREN – welche Aktivität ist das?",
         warning: "Diese Frage hat ZWEI richtige Antworten!",
         answers: [
             "Testrealisierung",
@@ -810,9 +810,9 @@ const examQuestions = Object.freeze([
         correct: 1,
         multipleCorrect: [1, 4],
         feedback: {
-            trap: "Testrealisierung erstellt Testfälle, wendet aber keine Testverfahren an. Testdurchführung führt nur aus.",
-            principle: "Testverfahren wie GWA und ÄK werden im TESTENTWURF angewendet, Testbedingungen in der TESTANALYSE definiert.",
-            explanation: "Testentwurf (Testverfahren anwenden) und Testanalyse (Testbedingungen für ÄK/GWA identifizieren) nutzen diese Verfahren.",
+            trap: "Testrealisierung klingt verlockend, aber dort werden Testfälle nur in ausführbare Testskripte UMGESETZT und Testdaten vorbereitet – die Verfahren (GWA/ÄK) wurden vorher schon angewendet. Testdurchführung = nur noch ausführen. Testüberwachung = Fortschritt messen.",
+            principle: "Der Weg: Testanalyse (WAS testen? → Testbedingungen identifizieren, z.B. 'Temperatureingabe') → Testentwurf (WIE testen? → GWA/ÄK anwenden, Testfälle entwerfen) → Testrealisierung (Testfälle in Skripte umsetzen).",
+            explanation: "Testanalyse identifiziert die Testbedingungen (z.B. 'Eingabefeld Temperatur hat Bereiche'), Testentwurf wendet darauf die Verfahren an (z.B. GWA → Grenzwerte 10/11 testen). Beide Aktivitäten brauchen also GWA/ÄK.",
             reference: "Lehrplan 1.4.1"
         }
     },
@@ -4758,9 +4758,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "'Fehlerzustand analysieren' ist Teil des Debuggings, nicht des Testens. 'Version zuordnen' ist Teil des Konfigurationsmanagements, nicht der Testrealisierung. 'User-Story schreiben' ist keine Testaktivität, sondern wird vom Product Owner gemeinsam mit Fachbereichsvertretern und Testern durchgeführt.",
-            principle: "Testrealisierung umfasst u.a. das Erstellen von Testdaten, Testskripten und Testabläufen sowie das Einrichten der Testumgebung.",
-            explanation: "KORREKT ist 'Testdaten entwerfen': Das Erstellen (Entwerfen) von Testdaten ist eine Aufgabe der Testrealisierung (siehe CTFL-Lehrplan V4.0, Abschnitt 1.4.1).",
+            trap: "'Fehlerzustand analysieren' ist Debugging, nicht Testen. 'Version zuordnen' ist Konfigurationsmanagement. 'User-Story schreiben' ist keine Testaktivität. Achtung: 'Testdaten entwerfen' ≠ 'Testfälle entwerfen'! Testfälle entwerfen = Testentwurf (mit GWA/ÄK). Testdaten erstellen = Testrealisierung (konkrete Werte/Dateien vorbereiten).",
+            principle: "Testrealisierung = Testfälle in ausführbare Form bringen: Testdaten erstellen, Testskripte schreiben, Testumgebung einrichten. Die intellektuelle Arbeit (Verfahren anwenden) war schon im Testentwurf.",
+            explanation: "KORREKT: 'Testdaten entwerfen' gehört zur Testrealisierung – dort werden die konkreten Eingabedaten, Dateien und DB-Einträge erstellt, die man für die Ausführung der (im Testentwurf entworfenen) Testfälle braucht.",
             reference: "Lehrplan 1.4.1"
         }
     },
