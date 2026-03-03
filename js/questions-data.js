@@ -1193,9 +1193,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 3,
         feedback: {
-            trap: "testet 201 statt 199 – nur 2 von 4 Grenzwerten. 99 und 201 sind KEINE Grenzwerte der 2-Wert-GWA – nur 2/4. nur untere Grenze (100, 101), obere komplett ignoriert – nur 2/4.",
-            principle: "Gültiger Bereich: 101-199. 2-Wert-GWA braucht 4 Grenzwerte: 100, 101, 199, 200. Die Frage fragt nach der GRÖSSTEN Überdeckung unter den Optionen.",
-            explanation: "RICHTIG: {101, 199, 200} deckt 3 von 4 Grenzwerten ab – mehr als jede andere Option. Es fehlt nur 100 (ungültig, Grenze unten). Vergleich: hat {100, 200} = 2/4, hat {100, 200} = 2/4, hat {100, 101} = 2/4. 150 ist ein repräsentativer Wert im gültigen Bereich.",
+            trap: "Die 4 Grenzwerte: 100, 101, 199, 200. Vergleich: {100, 150, 200, 201} → nur 100, 200 = 2/4 (201 ist kein GW!). {99, 100, 200, 201} → nur 100, 200 = 2/4 (99 und 201 sind keine GW!). {98, 99, 100, 101} → nur 100, 101 = 2/4 (obere Grenze ignoriert!).",
+            principle: "Partitionen: {≤100}, {101-199}, {≥200}. Die 4 Grenzwerte der 2-Wert-GWA: 100, 101, 199, 200. Werte wie 99 oder 201 liegen INNERHALB einer Partition – keine Grenzwerte!",
+            explanation: "{101, 150, 199, 200} deckt 3 von 4 Grenzwerten ab (101, 199, 200) = 75% – mehr als jede andere Option (alle anderen nur 50%). Es fehlt nur 100. 150 ist kein Grenzwert, sondern ein Wert aus der Mitte des gültigen Bereichs.",
             reference: "Lehrplan 4.2.2"
         }
     },
