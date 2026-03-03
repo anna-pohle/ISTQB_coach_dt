@@ -3843,6 +3843,8 @@
                     if (quiz.answered) {
                         if (isCorrect) btnClass += ' correct';
                         else if (isSelected) btnClass += ' wrong';
+                    } else if (isSelected) {
+                        btnClass += ' selected';
                     }
                 }
                 
@@ -4006,6 +4008,16 @@
             
             // Build hint section for practice mode
             const hintSection = isPractice && !quiz.confirmed ? renderHintSection(q, quiz, isMultipleChoice) : '';
+
+            // Exam mode: confirm button for multiple-choice questions
+            const examConfirmSection = !isPractice && isMultipleChoice && !quiz.answered ? (() => {
+                const selected = Array.isArray(quiz.selectedAnswer) ? quiz.selectedAnswer : [];
+                const requiredCount = q.multipleCorrect.length;
+                const countInfo = ` (${selected.length}/${requiredCount} gewählt)`;
+                return selected.length > 0
+                    ? `<button class="start-btn" id="confirm-answer" style="margin-top:12px;">✓ Antwort bestätigen${countInfo}</button>`
+                    : '';
+            })() : '';
             
             // Build confidence section for practice mode (after confirming)
             const confidenceSection = isPractice && quiz.confirmed ? renderConfidenceSectionWithHint(q, quiz, isMultipleChoice) : '';
@@ -4030,6 +4042,7 @@
                             ${renderAnswerButtons(q, quiz, isPractice, isMultipleChoice, selectedAnswers)}
                         </div>
                         ${hintSection}
+                        ${examConfirmSection}
                         ${confidenceSection}
                     </article>
                     
@@ -4872,7 +4885,7 @@
                 });
             }
             
-            // Confirm answer button (Practice mode)
+            // Confirm answer button (Practice + Exam mode for multiple-choice)
             const confirmBtn = document.getElementById('confirm-answer');
             if (confirmBtn) {
                 confirmBtn.addEventListener('click', () => {
