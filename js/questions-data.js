@@ -1408,8 +1408,8 @@ const examQuestions = Object.freeze([
         lo: "FL-5.1.4",
         kLevel: 3,
         chapter: 5,
-        text: "Zu Beginn jeder Iteration schätzt das Team den Arbeitsaufwand (in Personentagen). Das Team verwendet folgendes Schätzmodell basierend auf Extrapolation:\n\nE(n) = E(n-1) × A(n-1) / E(n-1)\n\n[Siehe Grafik mit geschätztem und tatsächlichem Aufwand für Iterationen 1-4]\n\nWie hoch ist der geschätzte Arbeitsaufwand für Iteration Nr. 5?",
-        hint: "Extrapolation mit Gewichtung: E(5) = (3×A(4) + A(3)) / 4. Lies die tatsächlichen Aufwände von Iteration 3 und 4 aus der Grafik ab.",
+        text: "Zu Beginn jeder Iteration schätzt das Team den Arbeitsaufwand (in Personentagen). Ab der dritten Iteration verwendet das Team folgendes Extrapolationsmodell zur Aufwandsschätzung:\n\nE(n) = (3 × A(n-1) + A(n-2)) / 4\n\nDie Grafik zeigt die geschätzten (E) und tatsächlichen (A) Werte für die ersten vier Iterationen.\n\nWie hoch ist der geschätzte Arbeitsaufwand für Iteration Nr. 5?",
+        hint: "Lies die TATSÄCHLICHEN Aufwände (grüne Balken) der letzten beiden Iterationen ab: A(4) und A(3). Setze sie in die Formel ein: E(5) = (3×A(4) + A(3)) / 4.",
         image: "images/c_q31.png",
         answers: [
             "10,5 Personentage",
@@ -1419,9 +1419,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 2,
         feedback: {
-            trap: "'10,5' und '9,4' sind falsch berechnet – die Grafik genau ablesen! '8,25' ergibt sich, wenn man die Formel falsch vereinfacht (E(n)=A(n-1)). Die richtige Formel gewichtet mehrere historische Werte.",
-            principle: "Extrapolation: Der Testaufwand wird durch ein mathematisches Modell auf Basis historischer Daten geschätzt. Die Formel lautet: E(5) = (3×A(4) + A(3)) / 4.",
-            explanation: "'6,5' ist RICHTIG: Aus der Grafik: A(4)=6 und A(3)=8. Eingesetzt in die Formel: E(5) = (3×6 + 8) / 4 = 26 / 4 = 6,5 Personentage.",
+            trap: "Die Falle: '8,25' ist der GESCHÄTZTE Wert E(4) aus der Grafik (blauer Balken), nicht der tatsächliche A(4). Wer geschätzt und tatsächlich verwechselt, landet bei 8,25. '10,5' und '9,4' entstehen durch falsches Ablesen der Grafik.",
+            principle: "Extrapolation: E(n) = (3 × A(n-1) + A(n-2)) / 4. Immer die TATSÄCHLICHEN Werte (grüne Balken) ablesen, nicht die geschätzten!",
+            explanation: "'6,5' ist RICHTIG: Aus der Grafik: A(4) = 6 und A(3) = 8 (grüne Balken). Eingesetzt: E(5) = (3×6 + 8) / 4 = 26 / 4 = 6,5 Personentage.",
             reference: "Lehrplan 5.1.4"
         }
     },

@@ -1809,8 +1809,8 @@
                 console.warn('Failed to load state from localStorage:', e);
             }
 
-            // Einmalige Migration: Korrigierte Fragen zurücksetzen (v83 – mit saveState-Fix)
-            const MIGRATION_KEY = 'istqb_migration_v83_corrected';
+            // Einmalige Migration: Korrigierte Fragen zurücksetzen (v84 – inkl. c-31 Grafik-Fix)
+            const MIGRATION_KEY = 'istqb_migration_v84_corrected';
             if (!localStorage.getItem(MIGRATION_KEY)) {
                 const correctedIds = [
                     'gtb-b-20','gtb-b-21','gtb-b-25','gtb-b-34',
@@ -1825,7 +1825,7 @@
                 localStorage.setItem(STORAGE_KEYS.SEEN_QUESTIONS, JSON.stringify(state.seenQuestions));
                 localStorage.setItem(STORAGE_KEYS.WRONG_QUESTIONS, JSON.stringify(state.wrongQuestions));
                 localStorage.setItem(MIGRATION_KEY, Date.now().toString());
-                console.log('Migration v83: ' + correctedIds.length + ' korrigierte Fragen zurückgesetzt');
+                console.log('Migration v84: ' + correctedIds.length + ' korrigierte Fragen zurückgesetzt');
             }
         }
         
