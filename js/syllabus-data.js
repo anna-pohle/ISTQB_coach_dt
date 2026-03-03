@@ -276,28 +276,28 @@ const syllabusData = Object.freeze({
                                 },
                                 {
                                     title: "3. Analyse",
-                                    content: "Was testen wir? (Testbasis analysieren, Testbedingungen definieren).",
-                                    coachNote: "🎯 Prüfungsfalle – Aktivitäten zuordnen:\n\n• 'Testbedingung aufnehmen?' → Testanalyse\n• 'Grenzwerte ermitteln' → Testentwurf\n• 'Aufwand schätzen' → Testplanung\n• 'Warum weicht Ergebnis ab?' → Testdurchführung"
+                                    content: "WAS testen wir? Testbasis analysieren und Testbedingungen definieren (z.B. 'Temperatur in verschiedenen Bereichen prüfen').",
+                                    coachNote: "🎯 Testanalyse = WAS soll getestet werden?\n\nErgebnis: Priorisierte TESTBEDINGUNGEN\n\nBeispiel Smart-Home-App:\n→ 'Die Temperaturbereiche müssen korrekt bewertet werden'\n→ 'Grenzfälle zwischen den Bereichen prüfen'\n\n⚠️ Häufige Prüfungsfalle:\n• 'Testbedingung identifizieren' → Testanalyse\n• 'Grenzwerte ermitteln/Testfälle entwerfen' → Testentwurf (NICHT Analyse!)\n• 'Testdaten erstellen' → Testrealisierung (NICHT Analyse!)"
                                 },
                                 {
                                     title: "4. Entwurf",
-                                    content: "Wie testen wir? (Testfälle und Testdaten erstellen).",
-                                    coachNote: "Merke: WAS testen? = Testanalyse. WIE testen? = Testentwurf."
+                                    content: "WIE testen wir? Testverfahren (GWA, ÄK, Entscheidungstabellen) anwenden und Testfälle entwerfen.",
+                                    coachNote: "🎯 Testentwurf = WIE soll getestet werden?\n\nErgebnis: TESTFÄLLE und Überdeckungskriterien\n\nBeispiel Smart-Home-App:\n→ GWA anwenden: Testfall mit 10°C (Grenze), 11°C (Grenze)\n→ ÄK anwenden: je ein Wert pro Bereich\n\n📌 Testentwurf ≠ Testrealisierung!\n• Testentwurf = Testfälle ENTWERFEN (Logik)\n• Testrealisierung = Testdaten ERSTELLEN (Vorbereitung)"
                                 },
                                 {
                                     title: "5. Realisierung",
-                                    content: "Alles bereitmachen. Testumgebung aufbauen, Testsuiten zusammenstellen.",
-                                    coachNote: "Ready to rumble?"
+                                    content: "Alles vorbereiten: Testdaten erstellen, Testskripte schreiben, Testumgebung einrichten, Testsuiten zusammenstellen.",
+                                    coachNote: "🎯 Testrealisierung = VORBEREITEN für die Durchführung\n\nErgebnis: Testdaten, Testskripte, Testausführungsplan\n\nBeispiel Smart-Home-App:\n→ Konkrete Testdaten erstellen: {10, 11, 15, 16, ...}\n→ Testskript schreiben: Eingabe → Erwartung\n→ Testumgebung aufsetzen\n\n⚠️ Prüfungsfalle:\n'Testdaten entwerfen' = Testrealisierung (NICHT Testentwurf!)\n'Testfälle entwerfen' = Testentwurf (NICHT Testrealisierung!)"
                                 },
                                 {
                                     title: "6. Durchführung",
-                                    content: "Tests laufen lassen, Ergebnisse protokollieren, Fehler melden.",
-                                    coachNote: "Action! 🎬"
+                                    content: "Tests ausführen, Ergebnisse protokollieren, Ist vs. Soll vergleichen, Abweichungen als Fehler melden.",
+                                    coachNote: "🎯 Testdurchführung = Tests LAUFEN LASSEN\n\nErgebnis: Testergebnisse, Fehlerberichte\n\n📌 Hier wird nur AUSGEFÜHRT, nicht mehr entworfen!"
                                 },
                                 {
                                     title: "7. Abschluss",
-                                    content: "Bericht schreiben, Lessons Learned, alles archivieren.",
-                                    coachNote: "Deckel drauf."
+                                    content: "Testabschlussbericht erstellen, Lessons Learned sammeln, Testware archivieren, Testumgebung aufräumen.",
+                                    coachNote: "🎯 Testabschluss = AUFRÄUMEN und LERNEN\n\nErgebnis: Testabschlussbericht, Lessons Learned\n\n📌 Testfortschrittsberichte fließen hier in den Testabschlussbericht ein.\n\n⚠️ Prüfungsfrage: 'Wann werden Testfortschrittsberichte AM MEISTEN genutzt?'\n→ Beim TESTABSCHLUSS (nicht bei der Planung!)"
                                 }
                             ]
                         },
@@ -371,7 +371,7 @@ const syllabusData = Object.freeze({
                                 {
                                     title: "Überdeckungsbewertung",
                                     content: "Genaue Verfolgbarkeit unterstützt die Bewertung der Überdeckung. Messbare Überdeckungskriterien dienen als Key-Performance-Indikatoren (KPIs).",
-                                    coachNote: "Beispiel: Verfolgbarkeit von Testfällen zu Anforderungen zeigt, ob alle Anforderungen durch Testfälle abgedeckt sind."
+                                    coachNote: "🎯 DAS ist der wichtigste Nutzen für die Prüfung:\n\nVerfolgbarkeit = 'Wurde die angestrebte Überdeckung erreicht?'\n\nBeispiel: Anforderung R1 → Testfall TC1, TC2\n→ Wenn TC1 und TC2 bestanden → R1 ist abgedeckt\n→ Wenn TC3 keiner Anforderung zugeordnet → überflüssig?\n→ Wenn R4 keinen Testfall hat → Lücke!\n\n⚠️ Prüfungsfalle:\n'Welchen Mehrwert bietet Verfolgbarkeit?'\n✅ 'Effizienter bestimmen, ob die angestrebte Überdeckung erreicht wurde'\n❌ 'Feststellen, welcher Tester die meisten Fehler gefunden hat'"
                                 },
                                 {
                                     title: "Die 4 konkreten Nutzen der Verfolgbarkeit",
@@ -523,8 +523,13 @@ const syllabusData = Object.freeze({
                             id: "2.1.2",
                             title: "SDLC und gute Praktiken für das Testen",
                             page: 29,
-                            quote: "Gute Praktiken: Zu jeder Entwicklungsaktivität gibt es eine entsprechende Testaktivität. Testen beginnt früh.",
+                            quote: "Gute Praktiken: Zu jeder Entwicklungsaktivität gibt es eine entsprechende Testaktivität. Testen beginnt früh. Jede Teststufe verfolgt eigene Ziele.",
                             keyPoints: [
+                                {
+                                    title: "Bewährte Testpraktiken (für ALLE SDLCs)",
+                                    content: "Der Lehrplan nennt mehrere bewährte Praktiken, die in ALLEN Lebenszyklusmodellen gelten:\n\n• Zu jeder Entwicklungsaktivität gibt es eine entsprechende Testaktivität\n• Jede Teststufe verfolgt spezifische, eigene Testziele\n• Testanalyse und -entwurf einer Teststufe beginnen bereits in der zugehörigen Entwicklungsphase\n• Tester sind frühzeitig in die Reviewaktivitäten eingebunden",
+                                    coachNote: "🎯 Prüfungsfalle – Bewährte Testpraxis:\n\nGefragt: 'Welche Praxis gilt für ALLE SDLCs?'\n\n✅ 'Jede Teststufe verfolgt eigene Testziele' → IMMER wahr\n\n❌ Eliminierungshilfe:\n• 'Mit dem Testentwurf beginnen, sobald erste Entwürfe verfügbar sind' → zu spezifisch für sequenziell\n• 'Für jede dynamische Testaktivität gibt es eine statische' → falsche Zuordnung\n• 'Realisierung und Ausführung in der jeweiligen Entwicklungsphase beginnen' → gilt nicht IMMER\n\n💡 Schlüsselwort 'ALLE': Nur die allgemeinste Aussage ist richtig!"
+                                },
                                 {
                                     title: "Frühe Testaktivitäten",
                                     content: "Testplanung und Testanalyse können beginnen, sobald Dokumente der Testbasis verfügbar sind.",
@@ -540,18 +545,18 @@ const syllabusData = Object.freeze({
                             keyPoints: [
                                 {
                                     title: "TDD (Testgetriebene Entwicklung)",
-                                    content: "Tests werden zuerst geschrieben, dann wird Code implementiert, um die Tests zu bestehen.",
-                                    coachNote: "TDD = Tests ZUERST, dann Code."
+                                    content: "Tests werden ZUERST geschrieben, dann wird Code implementiert, um die Tests zu bestehen. Die Tests STEUERN aktiv die Entwicklung.",
+                                    coachNote: "🎯 TDD-Kernidee:\n\n1. Test schreiben (der noch fehlschlägt)\n2. Code schreiben (nur so viel, dass der Test besteht)\n3. Refactoring\n\nDas ist Test-First: Tests STEUERN die Codierung."
                                 },
                                 {
                                     title: "ATDD (Abnahmetestgetriebene Entwicklung)",
-                                    content: "Tests werden aus Akzeptanzkriterien als Teil des Systementwurfs abgeleitet.",
-                                    coachNote: "ATDD = Tests aus AKZEPTANZKRITERIEN."
+                                    content: "Abnahmetests werden VOR der Implementierung erstellt. Das Team (Kunden, Entwickler, Tester) schreibt gemeinsam Tests im GEGEBEN/WENN/DANN-Format, die dann die Entwicklung treiben.",
+                                    coachNote: "🎯 ATDD = Akzeptanztests TREIBEN die Entwicklung\n\nFormat: GEGEBEN (Ausgangslage) → WENN (Aktion) → DANN (Erwartung)\n\nBeispiel:\nGEGEBEN: Ich bin als Admin angemeldet\nWENN: Ich 'Serverleistung überprüfen' wähle\nDANN: Wird mir eine Performanz-Übersicht angezeigt\n\n⚠️ Prüfungsfalle: Bei ATDD-Fragen auf VOLLSTÄNDIGE Szenarien achten – alle drei Teile (GEGEBEN/WENN/DANN) müssen zur User-Story passen!"
                                 },
                                 {
                                     title: "BDD (Verhaltensgetriebene Entwicklung)",
-                                    content: "Tests beschreiben das gewünschte Verhalten im GIVEN/WHEN/THEN-Format.",
-                                    coachNote: "🎯 Prüfungsfalle – Test-First-Ansätze:\n\n• TDD → Komponententests ZUERST\n• ATDD → Tests aus Akzeptanzkriterien\n• BDD → GIVEN/WHEN/THEN Format\n\n❌ 'Komponententestgetriebene Entwicklung' gibt es nicht!"
+                                    content: "Tests beschreiben das gewünschte Verhalten im GIVEN/WHEN/THEN-Format. Fokus auf gemeinsames Verständnis durch natürlichsprachliche Spezifikationen.",
+                                    coachNote: "🎯 Prüfungsfalle – Was ist Test-First und was NICHT?\n\nTest-First (Tests STEUERN die Entwicklung):\n• TDD → Tests VOR dem Code, steuern die Codierung\n• BDD → Verhalten VOR dem Code definiert\n• ATDD → Abnahmetests VOR der Implementierung\n\n❌ KEIN Test-First:\n'Tests aus Akzeptanzkriterien ABLEITEN und teilweise automatisieren'\n→ Das beschreibt einen normalen Testprozess!\n→ Tests werden NACH den Kriterien erstellt, nicht VOR dem Code\n→ Sie STEUERN die Entwicklung nicht aktiv\n\n💡 Schlüsselfrage: Werden Tests VOR dem Code geschrieben UND steuern sie die Codierung? Nur dann = Test-First!"
                                 }
                             ]
                         },
@@ -635,7 +640,7 @@ const syllabusData = Object.freeze({
                                 {
                                     title: "Testobjekt pro Stufe",
                                     content: "Komponententest: Komponente. Integrationstest: Schnittstellen. Systemtest: System. Abnahmetest: System im Einsatzkontext.",
-                                    coachNote: "🎯 Prüfungsfalle – Teststufen zuordnen:\n\n• Isolierte Komponente → Komponententest\n• Kommunikation zwischen Komp. → Integrationstest\n• Geschäftsanforderungen → ABNAHMETEST (nicht System!)\n• User-Story → Systemtest"
+                                    coachNote: "🎯 Prüfungsfalle – Teststufen zuordnen:\n\n• Isolierte Komponente → Komponententest\n• Kommunikation zwischen Komp. → Integrationstest\n• Geschäftsanforderungen → ABNAHMETEST (nicht System!)\n• User-Story → Systemtest\n\n💡 Eselsbrücke – Wer testet was?\n• Komponente: ENTWICKLER (White-Box)\n• Integration: ENTWICKLER + TESTER\n• System: TESTER (unabhängig)\n• Abnahme: KUNDE/FACHBEREICH"
                                 }
                             ]
                         },
@@ -837,7 +842,7 @@ const syllabusData = Object.freeze({
                                 {
                                     title: "3. Individuelles Review",
                                     content: "Jeder Gutachter prüft das Arbeitsergebnis ALLEINE und identifiziert Anomalien (potenzielle Fehler, Fragen, Verbesserungsvorschläge).",
-                                    coachNote: "Schlüsselwort: 'Anomalien identifizieren' oder 'alleine prüfen' = IMMER individuelles Review"
+                                    coachNote: "🎯 Schlüsselwörter:\n• 'Anomalien identifizieren' = individuelles Review\n• 'alleine prüfen' = individuelles Review\n• 'Vorschläge entwickeln' = individuelles Review\n\n⚠️ Prüfungsfalle:\n'Gutachter entwickeln Vorschläge' → INDIVIDUELL (nicht Kommunikation!)\n'Anomalien werden diskutiert' → KOMMUNIKATION (nicht individuell!)"
                                 },
                                 {
                                     title: "4. Kommunikation und Analyse",
@@ -1012,7 +1017,7 @@ const syllabusData = Object.freeze({
                                 {
                                     title: "Prinzip",
                                     content: "Eingaben in Klassen einteilen, die gleiches Verhalten erwarten lassen. Ein repräsentativer Wert pro Klasse reduziert Testfälle.",
-                                    coachNote: "🎯 Prüfungsfokus – Minimale Testfälle:\n\nRegel: EIN Wert pro Äquivalenzklasse\n(auch ungültige Klassen!)\n\n❌ FALSCH:\n• 'mehr als die minimale Anzahl'\n• Klassen vergessen\n\n💡 Frage: 'Wie viele Testfälle minimal?'\n→ Klassen zählen, je 1 Wert"
+                                    coachNote: "🎯 Prüfungsfokus – Minimale Testfälle:\n\nRegel: EIN Wert pro Äquivalenzklasse\n(auch ungültige Klassen!)\n\n💡 Frage: 'Wie viele Testfälle minimal?'\n→ Klassen zählen, je 1 Wert\n\n⚠️ ÄK und GWA zusammen in der Prüfung:\n• ÄK-Testfälle: repräsentative Werte AUS den Klassen\n• GWA-Testfälle: Werte AN den Grenzen ZWISCHEN den Klassen\n→ GWA ergänzt ÄK, ersetzt sie nicht!"
                                 },
                                 {
                                     title: "📝 Rechenbeispiel: Fitness-App",
@@ -1031,13 +1036,13 @@ const syllabusData = Object.freeze({
                             keyPoints: [
                                 {
                                     title: "2-Wert vs. 3-Wert",
-                                    content: "2-Wert: Grenzwert + ein Nachbar aus angrenzender Klasse. 3-Wert: Grenzwert + beide Nachbarn.",
-                                    coachNote: "🎯 Prüfung – Grenzwertanalyse:\n\n2-Wert-Analyse:\n• Grenzwert + EIN Nachbar aus angrenzender Klasse\n• NICHT beide Nachbarn (das wäre 3-Wert!)\n\n❌ FALSCH:\n• 'keine Grenzwerte'\n• 'nur gültige Werte'"
+                                    content: "2-Wert-GWA: Pro Grenze gibt es ZWEI Überdeckungselemente – den letzten Wert der einen Klasse und den ersten Wert der nächsten Klasse. 3-Wert-GWA: Grenzwert + beide direkten Nachbarn.",
+                                    coachNote: "🎯 So identifizierst du Grenzwerte richtig:\n\n1. Äquivalenzklassen aus der Spezifikation ableiten\n2. An JEDER Grenze zwischen zwei Klassen: die zwei direkt benachbarten Werte sind die Grenzwerte\n\nBeispiel: Bis 10°C / 11-15°C / 16-19°C / 20-22°C / Über 22°C\n→ Grenzen: 10|11, 15|16, 19|20, 22|23\n→ 8 Grenzwerte bei 2-Wert-GWA\n\n⚠️ Typische Prüfungsfehler:\n• 0°C als Grenzwert zählen → FALSCH (kein Klassenwechsel bei 0!)\n• Werte ZWISCHEN den Grenzen als Grenzwerte zählen\n• Ungültige Randbereiche vergessen (z.B. -1, 101)\n\n💡 Tipp: Erst ALLE Grenzen aufschreiben, dann für jede Option zählen, wie viele davon abgedeckt werden."
                                 },
                                 {
                                     title: "📝 Rechenbeispiel: Notenberechnung",
                                     content: "Punkte 0-100 mit Grenzen:\n• 0-50: nicht bestanden\n• 51-70: ausreichend\n• 71-90: gut\n• 91-100: sehr gut",
-                                    coachNote: "📊 LÖSUNG (2-Wert-GWA):\n\nGrenzen identifizieren: 0|50|51|70|71|90|91|100\nPlus ungültige Nachbarn: -1 und 101\n\n10 Überdeckungselemente:\n-1, 0, 50, 51, 70, 71, 90, 91, 100, 101\n\n⚠️ Typische Prüfungsfrage:\n'Testfälle 0, 50, 70, 90, 91, 100 gegeben.\nWie hoch ist die 2-Wert-GWA-Überdeckung?'\n\n→ 6 von 10 = 60%\n(Es fehlen: -1, 51, 71, 101)"
+                                    coachNote: "📊 LÖSUNG (2-Wert-GWA):\n\nSchritt 1 – Äquivalenzklassen + ungültige Bereiche:\nUngültig: <0 | 0-50 | 51-70 | 71-90 | 91-100 | Ungültig: >100\n\nSchritt 2 – Grenzen zwischen den Klassen:\n• <0 | 0 → Grenzwerte: -1, 0\n• 50 | 51 → Grenzwerte: 50, 51\n• 70 | 71 → Grenzwerte: 70, 71\n• 90 | 91 → Grenzwerte: 90, 91\n• 100 | >100 → Grenzwerte: 100, 101\n\n10 Überdeckungselemente:\n-1, 0, 50, 51, 70, 71, 90, 91, 100, 101\n\n⚠️ Prüfungsrechnung:\n'Wie viele der gegebenen Testfälle sind Grenzwerte?'\n→ Jeden Testwert gegen die 10 Überdeckungselemente prüfen\n→ Überdeckung = Treffer / 10 × 100%"
                                 }
                             ]
                         },
@@ -1270,17 +1275,17 @@ const syllabusData = Object.freeze({
                                 {
                                     title: "Test-First-Ansatz",
                                     content: "ATDD ist ein Test-First-Ansatz: Testfälle werden VOR der Implementierung der User-Story erstellt. Verschiedene Perspektiven (Kunden, Entwickler, Tester) wirken mit.",
-                                    coachNote: "ATDD = Tests ZUERST, dann Implementierung."
+                                    coachNote: "🎯 ATDD = Tests ZUERST, dann Implementierung\n\nDie Testfälle werden im GEGEBEN/WENN/DANN-Format geschrieben und treiben aktiv die Entwicklung."
                                 },
                                 {
                                     title: "Spezifikationsworkshop",
                                     content: "Erster Schritt: User-Story und Akzeptanzkriterien werden gemeinsam analysiert, diskutiert und geschrieben. Unvollständigkeiten und Mehrdeutigkeiten werden behoben.",
-                                    coachNote: "Workshop = gemeinsames Verständnis schaffen."
+                                    coachNote: "Workshop = gemeinsames Verständnis schaffen. Drei Perspektiven: Kunde (WAS), Entwickler (WIE), Tester (WAS WENN NICHT)."
                                 },
                                 {
                                     title: "Testfälle erstellen",
                                     content: "Testfälle basieren auf Akzeptanzkriterien und dienen als Beispiele für die Funktionsweise. Erst positive Testfälle, dann negative, dann nicht-funktionale.",
-                                    coachNote: "🎯 Prüfungsfokus – ATDD-Reihenfolge:\n\n1. Positive Testfälle (Happy Path)\n2. Negative Testfälle (Fehler/Ausnahmen)\n3. Nicht-funktionale Tests (Performance, etc.)"
+                                    coachNote: "🎯 Prüfungsfokus – ATDD-Testfälle:\n\nFormat: GEGEBEN/WENN/DANN\n\n1. Positive Testfälle (Happy Path)\n2. Negative Testfälle (Fehler/Ausnahmen)\n3. Nicht-funktionale Tests (Performance, etc.)\n\n⚠️ Prüfungsfalle bei ATDD-Fragen:\nAlle drei Teile (GEGEBEN/WENN/DANN) müssen zur User-Story passen!\n• Richtige ROLLE? (z.B. Admin, nicht Benutzer)\n• Richtige AKTION? (was die Story verlangt)\n• Richtiges ERGEBNIS? (nicht nur irgendein Output)"
                                 },
                                 {
                                     title: "Automatisierung",
@@ -1419,8 +1424,8 @@ const syllabusData = Object.freeze({
                                 },
                                 {
                                     title: "Extrapolation",
-                                    content: "Schätzung basierend auf historischen Daten. Man nutzt vergangene Werte um zukünftige vorherzusagen.",
-                                    coachNote: "🎯 Extrapolations-Formel:\n\nE(n) = E(n-1) × A(n-1) / E(n-1)\n\nVereinfacht: E(n) = A(n-1)\n\nDie nächste Schätzung = letzter TATSÄCHLICHER Wert"
+                                    content: "Schätzung basierend auf historischen Daten. Man nutzt vergangene tatsächliche Werte, um zukünftige Aufwände vorherzusagen. Die Formel gewichtet mehrere historische Iterationen.",
+                                    coachNote: "🎯 Extrapolation in der Prüfung:\n\nDie Formel variiert je nach Aufgabe – sie wird IN der Frage angegeben!\nTypisches Muster: E(n) = (3×A(n-1) + A(n-2)) / 4\n\nDabei ist:\n• E(n) = geschätzter Aufwand für nächste Iteration\n• A(n-1) = TATSÄCHLICHER Aufwand der letzten Iteration\n• A(n-2) = TATSÄCHLICHER Aufwand der vorletzten Iteration\n\n⚠️ Typische Prüfungsfehler:\n• Falsche Werte aus der Grafik ablesen\n• Die Formel vereinfachen statt korrekt einsetzen\n• E-Werte (geschätzt) statt A-Werte (tatsächlich) verwenden\n\n💡 Tipp: Grafik GENAU ablesen und Werte sauber in die Formel einsetzen!"
                                 },
                                 {
                                     title: "Verhältnisschätzung (Ratio-based)",
@@ -1578,13 +1583,13 @@ const syllabusData = Object.freeze({
                                 },
                                 {
                                     title: "Testfortschrittsbericht",
-                                    content: "Wird regelmäßig erstellt (täglich, wöchentlich). Enthält: Testzeitraum, Fortschritt inkl. Abweichungen, Hindernisse, Testmetriken, neue Risiken, geplante Tests.",
-                                    coachNote: "Fortschrittsbericht = laufende Information während des Testens."
+                                    content: "Wird regelmäßig erstellt (täglich, wöchentlich) während der Testüberwachung und -steuerung. Enthält: Testzeitraum, Fortschritt inkl. Abweichungen, Hindernisse, Testmetriken, neue Risiken, geplante Tests.",
+                                    coachNote: "🎯 Testfortschrittsbericht:\n\nERSTELLT bei: Testüberwachung/-steuerung (laufend)\nAM MEISTEN GENUTZT bei: TESTABSCHLUSS\n→ Dort fließen die Fortschrittsberichte in den Testabschlussbericht ein!\n\n⚠️ Prüfungsfalle:\n'Bei welcher Aktivität werden Testfortschrittsberichte AM MEISTEN genutzt?'\n→ TESTABSCHLUSS (nicht Planung, nicht Entwurf, nicht Analyse!)\n\nBegründung:\n• Bei der Planung existieren sie noch gar nicht\n• Beim Entwurf/Analyse werden sie nicht primär genutzt\n• Beim Abschluss werden sie zusammengefasst und ausgewertet"
                                 },
                                 {
                                     title: "Testabschlussbericht",
-                                    content: "Wird beim Abschluss erstellt. Enthält: Zusammenfassung, Bewertung gegen Testziele und Endekriterien, Abweichungen vom Plan, Hindernisse, Metriken, Restrisiken, Lessons Learned.",
-                                    coachNote: "🎯 Prüfungsfalle – Berichtsarten:\n\nTestFORTSCHRITTSbericht:\n• Regelmäßig (täglich/wöchentlich)\n• Für laufende Steuerung\n\nTestABSCHLUSSbericht:\n• Einmalig am Ende\n• Lessons Learned, Restrisiken"
+                                    content: "Wird beim Abschluss einer Teststufe oder eines Testprojekts erstellt. Fasst Informationen aus Testfortschrittsberichten zusammen. Enthält: Bewertung gegen Testziele und Endekriterien, Abweichungen, Restrisiken, Lessons Learned.",
+                                    coachNote: "🎯 Prüfungsfalle – Berichtsarten:\n\nTestFORTSCHRITTSbericht:\n• Regelmäßig (täglich/wöchentlich)\n• Erstellt bei Testüberwachung\n• Mehrere pro Projekt\n\nTestABSCHLUSSbericht:\n• Einmalig am Ende\n• FASST Fortschrittsberichte ZUSAMMEN\n• Lessons Learned, Restrisiken\n• Grundlage für Freigabe-Entscheidung"
                                 },
                                 {
                                     title: "Zielgruppenanpassung",
@@ -1652,7 +1657,7 @@ const syllabusData = Object.freeze({
                         {
                             title: "Überblick",
                             content: "Risikomanagement umfasst: Risikoidentifizierung, Risikobewertung und Risikosteuerung.",
-                            coachNote: "Risiko = Wahrscheinlichkeit × Auswirkung"
+                            coachNote: "🎯 Die 3 Schritte des Risikomanagements:\n\n1. IDENTIFIZIERUNG → Was KÖNNTE schiefgehen?\n   (Brainstorming, Checklisten, Erfahrung)\n\n2. BEWERTUNG → WIE SCHLIMM wäre es?\n   Risikoniveau = Wahrscheinlichkeit × Auswirkung\n\n3. STEUERUNG → Was TUN wir dagegen?\n   → Hohes Risiko: gründlicher testen, früher testen\n   → Niedriges Risiko: weniger gründlich\n\n💡 Merke: Risikoanalyse = Identifizierung + Bewertung. Risikosteuerung = Maßnahmen ergreifen."
                         }
                     ],
                     subsections: [

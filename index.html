@@ -1484,7 +1484,7 @@
     <div class="app-container" id="app" role="main" aria-live="polite" aria-atomic="false"></div>
     <div id="sr-announcer" class="sr-only" aria-live="assertive" aria-atomic="true"></div>
     
-    <script src="js/syllabus-data.js?v=36"></script>
+    <script src="js/syllabus-data.js?v=37"></script>
     <script src="js/questions-data.js?v=33"></script>
     <script>
     'use strict';
@@ -3372,7 +3372,10 @@
                 html += '<div class="bookmarks-panel">';
                 html += '<svg width="0" height="0"><defs><linearGradient id="bookmark-gradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#00d4aa"/><stop offset="100%" style="stop-color:#7c3aed"/></linearGradient></defs></svg>';
                 html += '<div class="bookmarks-panel-header"><div class="bookmarks-panel-title">' + getBookmarkSvgGradient() + ' <span class="title-text">Meine Lesezeichen (' + state.bookmarks.length + ')</span></div>';
-                html += '<label class="bookmark-filter-toggle"><input type="checkbox" id="bookmark-filter-checkbox" ' + (state.showOnlyBookmarked ? 'checked' : '') + '> Nur Lesezeichen anzeigen</label></div>';
+                html += '<div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">';
+                html += '<label class="bookmark-filter-toggle"><input type="checkbox" id="bookmark-filter-checkbox" ' + (state.showOnlyBookmarked ? 'checked' : '') + '> Nur Lesezeichen anzeigen</label>';
+                html += '<button id="clear-all-bookmarks" style="background:transparent;border:1px solid var(--accent-error);color:var(--accent-error);padding:4px 10px;border-radius:var(--radius-sm);font-size:0.75rem;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background=\'rgba(239,68,68,0.1)\'" onmouseout="this.style.background=\'transparent\'">Alle löschen</button>';
+                html += '</div></div>';
                 html += '<div class="bookmarks-list">';
                 
                 sortedBookmarks.forEach((b) => {
@@ -3840,12 +3843,7 @@
                         btnClass += ' selected';
                     }
                 } else {
-                    if (quiz.answered) {
-                        if (isCorrect) btnClass += ' correct';
-                        else if (isSelected) btnClass += ' wrong';
-                    } else if (isSelected) {
-                        btnClass += ' selected';
-                    }
+                    if (isSelected) btnClass += ' selected';
                 }
                 
                 const disabled = isPractice ? quiz.confirmed : quiz.answered;
@@ -3912,10 +3910,12 @@
          * @returns {string} HTML string
          */
         function renderFeedbackCard(q, quiz, isPractice, isMultipleChoice) {
-            const isAnswered = isPractice ? quiz.confirmed : quiz.answered;
+            if (!isPractice) return '';
+
+            const isAnswered = quiz.confirmed;
             const isWrong = !isAnswerCorrect(q, quiz, isMultipleChoice);
             const wasUnsure = quiz.confidence === 'guessed' || quiz.confidence === 'unsure';
-            
+
             if (!isAnswered || (!isWrong && !wasUnsure)) return '';
             
             let selectedAnswerText = '';
@@ -4022,9 +4022,9 @@
             // Build confidence section for practice mode (after confirming)
             const confidenceSection = isPractice && quiz.confirmed ? renderConfidenceSectionWithHint(q, quiz, isMultipleChoice) : '';
             
-            // Build next button
-            const nextButton = (isPractice ? quiz.confirmed : quiz.answered) 
-                ? `<button class="next-btn" id="next-question">${quiz.currentIndex < quiz.questions.length - 1 ? 'Nächste Frage →' : 'Ergebnis anzeigen'}</button>` 
+            // Build next button (only practice mode – exam auto-advances)
+            const nextButton = isPractice && quiz.confirmed
+                ? `<button class="next-btn" id="next-question">${quiz.currentIndex < quiz.questions.length - 1 ? 'Nächste Frage →' : 'Ergebnis anzeigen'}</button>`
                 : '';
             
             return `
@@ -4446,6 +4446,14 @@
             // Navigation
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
+                    const quiz = state.currentQuiz;
+                    if (quiz && !quiz.finished && state.currentView === 'quiz' && btn.dataset.view !== 'quiz') {
+                        if (!confirm('Du hast eine laufende Prüfung/Übung. Wenn du den Tab wechselst, geht dein Fortschritt verloren. Wirklich wechseln?')) {
+                            return;
+                        }
+                        state.currentQuiz = null;
+                        if (timerInterval) clearInterval(timerInterval);
+                    }
                     state.currentView = btn.dataset.view;
                     render();
                 });
@@ -4494,6 +4502,18 @@
                 bookmarkFilterCheckbox.addEventListener('change', () => {
                     state.showOnlyBookmarked = bookmarkFilterCheckbox.checked;
                     render();
+                });
+            }
+
+            const clearAllBookmarksBtn = document.getElementById('clear-all-bookmarks');
+            if (clearAllBookmarksBtn) {
+                clearAllBookmarksBtn.addEventListener('click', () => {
+                    if (confirm('Alle ' + state.bookmarks.length + ' Lesezeichen wirklich löschen?')) {
+                        state.bookmarks = [];
+                        state.showOnlyBookmarked = false;
+                        saveState();
+                        render();
+                    }
                 });
             }
             
@@ -4957,7 +4977,37 @@
                     }
                     
                     saveState();
-                    render();
+                    
+                    const isPractice = state.quizMode === 'practice';
+                    if (!isPractice) {
+                        render();
+                        setTimeout(() => {
+                            if (!quiz) return;
+                            if (quiz.currentIndex < quiz.questions.length - 1) {
+                                quiz.currentIndex++;
+                                quiz.answered = false;
+                                quiz.confirmed = false;
+                                quiz.selectedAnswer = null;
+                                quiz.hintShown = false;
+                                quiz.confidence = null;
+                                resetQuestionTimer();
+                            } else {
+                                quiz.finished = true;
+                                if (timerInterval) clearInterval(timerInterval);
+                                window.scrollTo(0, 0);
+                                const answeredCount = quiz.timeUp ? quiz.currentIndex : quiz.questions.length;
+                                const pct = answeredCount === 0 ? 0 : Math.round((quiz.score / answeredCount) * 100);
+                                if (pct >= 65 && !state.achievements.includes('exam_passed')) {
+                                    state.achievements.push('exam_passed');
+                                    state.points += 100;
+                                    saveState();
+                                }
+                            }
+                            render();
+                        }, 400);
+                    } else {
+                        render();
+                    }
                 });
             }
             
@@ -5120,7 +5170,7 @@
                             }
                         }
                         render();
-                    }, 800); // Brief pause to show correct/wrong
+                    }, 400);
                     
                     render();
                 });
