@@ -5302,10 +5302,10 @@ const examQuestions = Object.freeze([
         text: "Bitte betrachten Sie die folgende User-Story:\n\n'Als Systemadministrator möchte ich die Performanz des Servers überwachen können, um über einen Performanztest sicherzustellen, dass das System effizient läuft.'\n\nWelcher Testfall eignet sich am BESTEN für eine abnahmetestgetriebene Entwicklung der User-Story?",
         hint: "ATDD: Gegeben/Wenn/Dann-Format, korrekte Rolle (Systemadministrator), vollständige Vorbedingungen.",
         answers: [
-            "Login als Systemadministrator; wähle den Server aus; überprüfe die Serverleistung. GEGEBEN: Ich bin als Systemadministrator angemeldet UND GEGEBEN: Ich habe den Server ausgewählt, WENN ich 'Serverleistung überprüfen' auswähle, DANN wird mir eine Übersicht über die Performanz angezeigt.",
-            "Login als Benutzer; führe eine Aufgabe aus; überprüfe die Serverleistung. GEGEBEN: Ich bin als Benutzer angemeldet...",
-            "Login als Systemadministrator; wähle den Server aus; führe einen Performanztest durch. GEGEBEN: Ich bin als Systemadministrator angemeldet...",
-            "Login als Systemadministrator; führe einen Performanztest durch; überprüfe die Serverleistung. GEGEBEN: Ich bin als Systemadministrator angemeldet..."
+            "Login als Systemadministrator; wähle den Server aus; überprüfe die Serverleistung. GEGEBEN: Ich bin als Systemadministrator angemeldet UND GEGEBEN: Ich habe den Server ausgewählt, WENN ich \u2018Serverleistung überprüfen\u2019 auswähle, DANN wird mir eine Übersicht über die Performanz des Servers angezeigt.",
+            "Login als Benutzer; führe eine Aufgabe aus; überprüfe die Serverleistung. GEGEBEN: Ich bin als Benutzer angemeldet UND GEGEBEN: Ich habe eine Aufgabe ausgeführt, WENN ich \u2018Serverleistung überprüfen\u2019 auswähle, DANN wird mir eine Übersicht über die Performanz des Servers angezeigt.",
+            "Login als Systemadministrator; wähle den Server aus; führe einen Performanztest durch. GEGEBEN: Ich bin als Systemadministrator angemeldet UND GEGEBEN: Ich habe den Server ausgewählt, WENN ich \u2018Performanztest durchführen\u2019 auswähle, DANN wird ein Performanztest durchgeführt und ich erhalte eine Übersicht über die Ergebnisse.",
+            "Login als Systemadministrator; führe einen Performanztest durch; überprüfe die Serverleistung. GEGEBEN: Ich bin als Systemadministrator angemeldet UND GEGEBEN: Ich habe einen Performanztest durchgeführt, WENN ich \u2018Serverleistung überprüfen\u2019 auswähle, DANN wird mir eine Übersicht über die Performanz des Servers angezeigt."
         ],
         correct: 2,
         feedback: {
