@@ -1808,6 +1808,23 @@
             } catch (e) {
                 console.warn('Failed to load state from localStorage:', e);
             }
+
+            // Einmalige Migration: Korrigierte Fragen zurücksetzen (v82)
+            const MIGRATION_KEY = 'istqb_migration_v82_corrected';
+            if (!localStorage.getItem(MIGRATION_KEY)) {
+                const correctedIds = [
+                    'gtb-b-20','gtb-b-21','gtb-b-25','gtb-b-34',
+                    'gtb-c-22','gtb-c-24','gtb-c-31','gtb-c-32','gtb-c-36',
+                    'gtb-d-16','gtb-d-20','gtb-d-32',
+                    'gtb-e-4','gtb-e-29'
+                ];
+                correctedIds.forEach(id => {
+                    if (state.seenQuestions) delete state.seenQuestions[id];
+                    if (state.wrongQuestions) delete state.wrongQuestions[id];
+                });
+                localStorage.setItem(MIGRATION_KEY, Date.now().toString());
+                console.log('Migration v82: ' + correctedIds.length + ' korrigierte Fragen zurückgesetzt');
+            }
         }
         
         function saveState() {

@@ -1216,9 +1216,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 3,
         feedback: {
-            trap: "a) (T,T,F) entspricht keiner Regel – das zeigt eine Auslassung, keinen Widerspruch. b) (T,F,T) passt nur zu R2, kein Widerspruch möglich. c) Beide Kombinationen (T,T,T) und (F,T,T) passen nur zu R1, also kein Widerspruch zwischen Regeln.",
+            trap: "(T,T,F) entspricht keiner Regel – das zeigt eine Auslassung, keinen Widerspruch. (T,F,T) passt nur zu R2, kein Widerspruch möglich. Beide Kombinationen (T,T,T) und (F,T,T) passen nur zu R1, also kein Widerspruch zwischen Regeln.",
             principle: "Widerspruch in Entscheidungstabellen = Eine Bedingungskombination passt zu MEHREREN Regeln mit UNTERSCHIEDLICHEN Aktionen.",
-            explanation: "d) ist RICHTIG: Die Kombination (F,F,F) passt sowohl zu R2 als auch zu R3, aber R2 und R3 haben unterschiedliche Aktionen ('Zusätzliche Fahrstunden anfordern' vs. 'Antrag auf Wiederholung der Prüfung'). Das zeigt einen Widerspruch zwischen den Regeln.",
+            explanation: "(F,F,F) ist RICHTIG: Die Kombination passt sowohl zu R2 als auch zu R3, aber R2 und R3 haben unterschiedliche Aktionen ('Zusätzliche Fahrstunden anfordern' vs. 'Antrag auf Wiederholung der Prüfung'). Das zeigt einen Widerspruch zwischen den Regeln.",
             reference: "Lehrplan 4.2.3"
         }
     },
@@ -1262,9 +1262,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 2,
         feedback: {
-            trap: "a) 2 wäre viel zu wenig – das sind nur die Entscheidungsknoten, nicht die Kanten. b) 4 zählt nur die Ausgänge der Entscheidungsknoten, vergisst aber die anderen Kanten im Kontrollfluss. d) 7 ist knapp daneben – systematisch alle Kanten zählen!",
+            trap: "'2' wäre viel zu wenig – das sind nur die Entscheidungsknoten, nicht die Kanten. '4' zählt nur die Ausgänge der Entscheidungsknoten, vergisst aber die anderen Kanten im Kontrollfluss. '7' ist knapp daneben – systematisch alle Kanten zählen!",
             principle: "Zweigtest: Überdeckungselemente = ALLE KANTEN im Kontrollflussdiagramm, nicht nur die Entscheidungsausgänge.",
-            explanation: "c) ist RICHTIG: Beim Zweigtest werden die Überdeckungselemente durch die Kanten des Kontrollflussdiagramms dargestellt. Im gegebenen Diagramm gibt es insgesamt 8 Kanten – das sind die zu testenden Überdeckungselemente.",
+            explanation: "'8' ist RICHTIG: Beim Zweigtest werden die Überdeckungselemente durch die Kanten des Kontrollflussdiagramms dargestellt. Im gegebenen Diagramm gibt es insgesamt 8 Kanten – das sind die zu testenden Überdeckungselemente.",
             reference: "Lehrplan 4.3.2"
         }
     },
@@ -1419,9 +1419,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 2,
         feedback: {
-            trap: "a) 10,5 und d) 9,4 sind falsch berechnet – die Grafik genau ablesen! b) 8,25 ergibt sich, wenn man die Formel falsch vereinfacht (E(n)=A(n-1)). Die richtige Formel gewichtet mehrere historische Werte.",
+            trap: "'10,5' und '9,4' sind falsch berechnet – die Grafik genau ablesen! '8,25' ergibt sich, wenn man die Formel falsch vereinfacht (E(n)=A(n-1)). Die richtige Formel gewichtet mehrere historische Werte.",
             principle: "Extrapolation: Der Testaufwand wird durch ein mathematisches Modell auf Basis historischer Daten geschätzt. Die Formel lautet: E(5) = (3×A(4) + A(3)) / 4.",
-            explanation: "c) ist RICHTIG: Aus der Grafik: A(4)=6 und A(3)=8. Eingesetzt in die Formel: E(5) = (3×6 + 8) / 4 = 26 / 4 = 6,5 Personentage.",
+            explanation: "'6,5' ist RICHTIG: Aus der Grafik: A(4)=6 und A(3)=8. Eingesetzt in die Formel: E(5) = (3×6 + 8) / 4 = 26 / 4 = 6,5 Personentage.",
             reference: "Lehrplan 5.1.4"
         }
     },
@@ -1530,9 +1530,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "a) Testentwurf erstellt Testfälle – Fortschrittsberichte werden dort nicht hauptsächlich genutzt. c) Testanalyse identifiziert Testbedingungen, nicht Berichte. d) Bei der Testplanung existieren Fortschrittsberichte noch gar nicht, da die Tests noch nicht laufen.",
+            trap: "Testentwurf erstellt Testfälle – Fortschrittsberichte werden dort nicht hauptsächlich genutzt. Testanalyse identifiziert Testbedingungen, nicht Berichte. Bei der Testplanung existieren Fortschrittsberichte noch gar nicht, da die Tests noch nicht laufen.",
             principle: "Testfortschrittsberichte werden bei der Testüberwachung/-steuerung erstellt und fließen beim TESTABSCHLUSS in den Testabschlussbericht ein.",
-            explanation: "b) ist RICHTIG: Beim Testabschluss wird ein Testabschlussbericht erstellt, der Informationen aus Testfortschrittsberichten und anderen Daten zusammenfasst. Testfortschrittsberichte werden also AM MEISTEN beim Testabschluss genutzt, wenn ein Projekt, eine Teststufe oder Testart abgeschlossen wird.",
+            explanation: "Testabschluss ist RICHTIG: Beim Testabschluss wird ein Testabschlussbericht erstellt, der Informationen aus Testfortschrittsberichten und anderen Daten zusammenfasst. Testfortschrittsberichte werden also AM MEISTEN beim Testabschluss genutzt, wenn ein Projekt, eine Teststufe oder Testart abgeschlossen wird.",
             reference: "Lehrplan 5.3.2"
         }
     },
@@ -3353,7 +3353,7 @@ const examQuestions = Object.freeze([
         ],
         correct: 2,
         feedback: {
-            trap: "a) Nur die Grenzen selbst (11, 12, 13), entspricht der 3-Wert-GWA für eine einzelne Äquivalenzklasse um den Wert 12. b) Nur je ein beliebiger Wert aus jeder Äquivalenzklasse – das ist reine Äquivalenzklassenbildung, nicht GWA. d) Entspricht der 2-Wert-Grenzwertanalyse (Grenzwert und ein Nachbar), nicht der 3-Wert-GWA.",
+            trap: "'11, 12, 13' entspricht nur den Grenzen selbst – 3-Wert-GWA für eine einzelne Äquivalenzklasse um 12. '9, 13, 15' enthält nur je einen beliebigen Wert pro Äquivalenzklasse – reine Äquivalenzklassenbildung, nicht GWA. '10, 11, 12, 13, 14' entspricht der 2-Wert-Grenzwertanalyse (Grenzwert und ein Nachbar), nicht der 3-Wert-GWA.",
             principle: "3-Wert-GWA: Für jeden Grenzwert werden der Grenzwert selbst und seine beiden Nachbarn (Grenze-1 und Grenze+1) als Testdaten verwendet.",
             explanation: "Die Grenzwerte sind 10, 11, 13 und 14. Bei der 3-Wert-GWA werden jeweils beide Nachbarn benötigt: 10→(9,10,11), 11→(10,11,12), 13→(12,13,14), 14→(13,14,15). Zusammengefasst ergibt sich: 9, 10, 11, 12, 13, 14, 15.",
             reference: "Lehrplan 4.2.2"
@@ -3442,7 +3442,7 @@ const examQuestions = Object.freeze([
         ],
         correct: 2,
         feedback: {
-            trap: "a) 'Entscheidungsergebnisse' sind nur bedingte Zweige – beim Zweigtest zählen aber auch unbedingte Zweige (geradliniger Code). b) und d) sprechen von 'bedingten Zweigen', lassen aber unbedingte Zweige außer Acht.",
+            trap: "'Entscheidungsergebnisse' sind nur bedingte Zweige – beim Zweigtest zählen aber auch unbedingte Zweige (geradliniger Code). Die Varianten mit 'bedingten Zweigen' lassen unbedingte Zweige außer Acht.",
             principle: "Zweigüberdeckung = ausgeführte Zweige (bedingt + unbedingt) / Gesamtzahl aller Zweige im Code.",
             explanation: "Ein Zweig ist jeder Kontrollübergang im Kontrollflussgraph – sowohl bedingt (Entscheidungsergebnis) als auch unbedingt (geradliniger Code). Daher ist X = Anzahl der ausgeführten Zweige und Y = Gesamtzahl der Zweige im Code die korrekte Definition.",
             reference: "Lehrplan 4.3.2"
@@ -3640,7 +3640,7 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "a) IT-Sicherheitstests mit hohem Überdeckungsgrad bei hohem Risiko ist eine sinnvolle Risikominderungsmaßnahme. c) Zusätzliche Gebrauchstauglichkeitstests wegen bekannter UI-Probleme ist eine korrekte Risikominderung. d) Ein Performanztest-Experte bei kritischer Ladezeit ist eine geeignete Maßnahme mit passender Expertenwahl.",
+            trap: "IT-Sicherheitstests mit hohem Überdeckungsgrad bei hohem Risiko sind sinnvoll. Zusätzliche Gebrauchstauglichkeitstests wegen bekannter UI-Probleme sind korrekte Risikominderung. Ein Performanztest-Experte bei kritischer Ladezeit ist eine geeignete Maßnahme. Nur die Aussage zur unklaren Qualität beschreibt keine Risikosteuerung, sondern weitere Risikoanalyse.",
             principle: "Risikosteuerung im Testen zielt auf Risikominderung ab – z.B. durch geeignete Testverfahren, höhere Überdeckung oder erfahrene Tester. Eine zusätzliche Risikoanalyse gehört nicht zur Risikosteuerung.",
             explanation: "Wenn die geforderte Qualität eines Moduls unklar ist, ist zwar eine zusätzliche Risikoanalyse notwendig, aber dies ist keine Maßnahme der Risikosteuerung in der Testplanung. Die Testplanung sollte auf konkrete Risikominderung abzielen, nicht auf weitere Analyse.",
             reference: "Lehrplan 5.2.4"
@@ -4129,7 +4129,7 @@ const examQuestions = Object.freeze([
         ],
         correct: 2,
         feedback: {
-            trap: "a) ist zwar teilweise richtig, beschreibt aber nicht den WERT des statischen Testens. b) ist falsch – dynamische Tests können NICHT alle Fehler finden, die statische Tests aufdecken (z.B. Verstöße gegen Codierstandards). d) ist übertrieben – statische Tests können keine Laufzeitfehler finden.",
+            trap: "Die Aussage über unterscheidende Fehlertypen ist zwar teilweise richtig, beschreibt aber nicht den WERT des statischen Testens. Die Aussage, dass dynamische Tests alle Fehler erkennen können, ist falsch – sie können NICHT alle Fehler finden, die statische Tests aufdecken (z.B. Verstöße gegen Codierstandards). Die Aussage, dass statische Tests alle Fehler erkennen können, ist übertrieben – statische Tests können keine Laufzeitfehler finden.",
             principle: "Statische und dynamische Tests sind komplementär – statische Tests finden Fehler, die dynamische Tests nicht aufdecken können.",
             explanation: "Statische Tests können viele Fehler frühzeitig und ohne Codeausführung finden (z.B. Designprobleme, Verstöße gegen Standards). Dynamische Tests entdecken nur Fehler, die bei der Ausführung auftreten – nicht aber rein strukturelle oder dokumentationsbezogene Mängel. Daher erkennen dynamische Tests nur einige, aber nicht alle Fehler, die durch statische Tests gefunden werden können.",
             reference: "Lehrplan 3.1.2"
@@ -4757,9 +4757,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "a) Das Analysieren eines Fehlerzustands ist Teil des Debuggings, nicht des Testens. c) Einem Testobjekt eine Version zuordnen ist Teil des Konfigurationsmanagements, nicht der Testrealisierung. d) Das Schreiben einer User-Story ist keine Testaktivität, sondern wird vom Product Owner gemeinsam mit Fachbereichsvertretern und Testern durchgeführt.",
+            trap: "'Fehlerzustand analysieren' ist Teil des Debuggings, nicht des Testens. 'Version zuordnen' ist Teil des Konfigurationsmanagements, nicht der Testrealisierung. 'User-Story schreiben' ist keine Testaktivität, sondern wird vom Product Owner gemeinsam mit Fachbereichsvertretern und Testern durchgeführt.",
             principle: "Testrealisierung umfasst u.a. das Erstellen von Testdaten, Testskripten und Testabläufen sowie das Einrichten der Testumgebung.",
-            explanation: "b) ist KORREKT: Das Erstellen (Entwerfen) von Testdaten ist eine Aufgabe der Testrealisierung (siehe CTFL-Lehrplan V4.0, Abschnitt 1.4.1).",
+            explanation: "KORREKT ist 'Testdaten entwerfen': Das Erstellen (Entwerfen) von Testdaten ist eine Aufgabe der Testrealisierung (siehe CTFL-Lehrplan V4.0, Abschnitt 1.4.1).",
             reference: "Lehrplan 1.4.1"
         }
     },
@@ -5308,9 +5308,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 2,
         feedback: {
-            trap: "a) Obwohl die Rolle des Systemadministrators korrekt ist, fehlt die spezifische Aktion des Durchführens eines Performanztests – es wird nur 'Serverleistung überprüfen' gewählt. b) Verwendet die falsche Rolle (Benutzer statt Systemadministrator), was ein Schlüsselaspekt der User-Story ist. d) Das Ausführen des Performanztests fehlt als explizite Aktion im WENN-Schritt.",
+            trap: "Die Option mit 'Serverleistung überprüfen' hat zwar die korrekte Rolle, fehlt aber die spezifische Aktion des Durchführens eines Performanztests. Die Option mit falscher Rolle (Benutzer statt Systemadministrator) verfehlt einen Schlüsselaspekt der User-Story. Die Option ohne explizites Auswählen des Servers lässt das Ausführen des Performanztests als Aktion im WENN-Schritt vermissen.",
             principle: "ATDD: Der Testfall muss die User-Story vollständig abbilden – korrekte Rolle, alle relevanten Aktionen und das erwartete Ergebnis im Gegeben/Wenn/Dann-Format.",
-            explanation: "c) ist KORREKT: Diese Option beinhaltet sowohl die Rolle des Systemadministrators als auch die spezifischen Aktionen des Auswählens des Servers und des Durchführens eines Performanztests, was der User-Story entspricht (siehe CTFL-Lehrplan V4.0, Abschnitt 4.5.3).",
+            explanation: "KORREKT ist die Option mit Serverauswahl und explizitem Durchführen eines Performanztests – sie beinhaltet sowohl die Rolle des Systemadministrators als auch die spezifischen Aktionen, was der User-Story entspricht (siehe CTFL-Lehrplan V4.0, Abschnitt 4.5.3).",
             reference: "Lehrplan 4.5.3"
         }
     },
