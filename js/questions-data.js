@@ -1214,11 +1214,11 @@ const examQuestions = Object.freeze([
             "C1 = T, C2 = T, C3 = T und C1 = F, C2 = T, C3 = T",
             "C1 = F, C2 = F, C3 = F"
         ],
-        correct: 2,
+        correct: 3,
         feedback: {
-            trap: "a), b), d) sind jeweils einzelne Kombinationen – sie zeigen keinen Widerspruch zwischen ZWEI Regeln. Widerspruch braucht ZWEI Kombinationen mit gleichem Ergebnis aber unterschiedlicher Aktion.",
-            principle: "Widerspruch in Entscheidungstabellen = Gleiche Bedingungskombination führt zu VERSCHIEDENEN Aktionen.",
-            explanation: "c) ist RICHTIG: Die Testdaten zeigen den Widerspruch, indem sie zwei Kombinationen testen (C1=T,C2=T,C3=T und C1=F,C2=T,C3=T), die zur gleichen Aktion führen sollten, aber die Tabelle widersprüchlich definiert ist.",
+            trap: "a) (T,T,F) entspricht keiner Regel – das zeigt eine Auslassung, keinen Widerspruch. b) (T,F,T) passt nur zu R2, kein Widerspruch möglich. c) Beide Kombinationen (T,T,T) und (F,T,T) passen nur zu R1, also kein Widerspruch zwischen Regeln.",
+            principle: "Widerspruch in Entscheidungstabellen = Eine Bedingungskombination passt zu MEHREREN Regeln mit UNTERSCHIEDLICHEN Aktionen.",
+            explanation: "d) ist RICHTIG: Die Kombination (F,F,F) passt sowohl zu R2 als auch zu R3, aber R2 und R3 haben unterschiedliche Aktionen ('Zusätzliche Fahrstunden anfordern' vs. 'Antrag auf Wiederholung der Prüfung'). Das zeigt einen Widerspruch zwischen den Regeln.",
             reference: "Lehrplan 4.2.3"
         }
     },
@@ -1260,11 +1260,11 @@ const examQuestions = Object.freeze([
             "8",
             "7"
         ],
-        correct: 1,
+        correct: 2,
         feedback: {
-            trap: "a) 2 wäre nur Anzahl der Entscheidungen, nicht der Zweige. c) 8 und d) 7 sind zu hoch – systematisch die Kanten zählen!",
-            principle: "Zweigtest: Überdeckungselemente = ZWEIGE (Kanten) = Ausgänge aus Entscheidungsknoten (jede Raute hat 2: true/false).",
-            explanation: "b) ist RICHTIG: Im Diagramm gibt es 2 Entscheidungsknoten (Rauten). Jede Entscheidung hat 2 Ausgänge (true, false). Also: 2 × 2 = 4 Überdeckungselemente (Zweige).",
+            trap: "a) 2 wäre viel zu wenig – das sind nur die Entscheidungsknoten, nicht die Kanten. b) 4 zählt nur die Ausgänge der Entscheidungsknoten, vergisst aber die anderen Kanten im Kontrollfluss. d) 7 ist knapp daneben – systematisch alle Kanten zählen!",
+            principle: "Zweigtest: Überdeckungselemente = ALLE KANTEN im Kontrollflussdiagramm, nicht nur die Entscheidungsausgänge.",
+            explanation: "c) ist RICHTIG: Beim Zweigtest werden die Überdeckungselemente durch die Kanten des Kontrollflussdiagramms dargestellt. Im gegebenen Diagramm gibt es insgesamt 8 Kanten – das sind die zu testenden Überdeckungselemente.",
             reference: "Lehrplan 4.3.2"
         }
     },
@@ -1417,11 +1417,11 @@ const examQuestions = Object.freeze([
             "6,5 Personentage",
             "9,4 Personentage"
         ],
-        correct: 1,
+        correct: 2,
         feedback: {
-            trap: "a) 10,5, c) 6,5, d) 9,4 sind falsch abgelesen oder falsch berechnet. Beachte: Die Formel VEREINFACHT sich!",
-            principle: "Extrapolationsformel: E(n) = E(n-1) × A(n-1) / E(n-1) = A(n-1). Also: Nächste Schätzung = LETZTER TATSÄCHLICHER Wert!",
-            explanation: "b) ist RICHTIG: Die Formel E(n) = E(n-1) × A(n-1) / E(n-1) vereinfacht sich zu E(n) = A(n-1). Der tatsächliche Aufwand von Iteration 4 (A(4)) ist laut Grafik 8,25 Personentage → E(5) = 8,25.",
+            trap: "a) 10,5 und d) 9,4 sind falsch berechnet – die Grafik genau ablesen! b) 8,25 ergibt sich, wenn man die Formel falsch vereinfacht (E(n)=A(n-1)). Die richtige Formel gewichtet mehrere historische Werte.",
+            principle: "Extrapolation: Der Testaufwand wird durch ein mathematisches Modell auf Basis historischer Daten geschätzt. Die Formel lautet: E(5) = (3×A(4) + A(3)) / 4.",
+            explanation: "c) ist RICHTIG: Aus der Grafik: A(4)=6 und A(3)=8. Eingesetzt in die Formel: E(5) = (3×6 + 8) / 4 = 26 / 4 = 6,5 Personentage.",
             reference: "Lehrplan 5.1.4"
         }
     },
@@ -1440,11 +1440,11 @@ const examQuestions = Object.freeze([
             "TC 6",
             "TC 2"
         ],
-        correct: 2,
+        correct: 0,
         feedback: {
-            trap: "a), b), d) berücksichtigen entweder die Abhängigkeiten oder die Prioritäten nicht korrekt. Systematisch durcharbeiten!",
-            principle: "Testausführungsreihenfolge: ERST Abhängigkeiten erfüllen (ein TC kann erst laufen, wenn seine Vorgänger fertig sind), DANN nach Priorität sortieren.",
-            explanation: "c) ist RICHTIG: Unter Berücksichtigung aller Abhängigkeiten (→ Pfeile im Diagramm) und Prioritäten (höhere zuerst) ist TC 6 der sechste Testfall in der optimalen Reihenfolge.",
+            trap: "b) TC 5 hat zwar hohe Priorität, wird aber schon als fünfter ausgeführt. c) TC 6 hat niedrigste Priorität und kommt erst als siebter. d) TC 2 wird schon als vierter ausgeführt, da TC 5 davon abhängt.",
+            principle: "Testausführungsreihenfolge: ERST Abhängigkeiten erfüllen (ein TC kann erst laufen, wenn seine Vorgänger fertig sind), DANN nach Priorität sortieren (höchste zuerst).",
+            explanation: "a) ist RICHTIG: Die korrekte Reihenfolge unter Berücksichtigung von Abhängigkeiten und Prioritäten ist: TC 4 → TC 7 → TC 1 → TC 2 → TC 5 → TC 3 → TC 6. TC 3 ist somit der sechste Testfall, da er höhere Priorität als TC 6 hat und keine unerfüllten Abhängigkeiten mehr bestehen.",
             reference: "Lehrplan 5.1.5"
         }
     },
@@ -1528,11 +1528,11 @@ const examQuestions = Object.freeze([
             "Testanalyse",
             "Testplanung"
         ],
-        correct: 3,
+        correct: 1,
         feedback: {
-            trap: "a) Testentwurf erstellt Testfälle, nicht Berichte. b) Testabschluss erstellt ABSCHLUSS-Berichte. c) Testanalyse identifiziert Testbedingungen, nicht Berichte.",
-            principle: "Testfortschrittsberichte dienen der ÜBERWACHUNG und STEUERUNG – das ist Teil der TESTPLANUNG.",
-            explanation: "d) ist RICHTIG: Testfortschrittsberichte werden bei der Testüberwachung und -steuerung genutzt, die zur Testplanung gehört. Sie informieren Stakeholder über den aktuellen Stand und ermöglichen Korrekturmaßnahmen.",
+            trap: "a) Testentwurf erstellt Testfälle – Fortschrittsberichte werden dort nicht hauptsächlich genutzt. c) Testanalyse identifiziert Testbedingungen, nicht Berichte. d) Bei der Testplanung existieren Fortschrittsberichte noch gar nicht, da die Tests noch nicht laufen.",
+            principle: "Testfortschrittsberichte werden bei der Testüberwachung/-steuerung erstellt und fließen beim TESTABSCHLUSS in den Testabschlussbericht ein.",
+            explanation: "b) ist RICHTIG: Beim Testabschluss wird ein Testabschlussbericht erstellt, der Informationen aus Testfortschrittsberichten und anderen Daten zusammenfasst. Testfortschrittsberichte werden also AM MEISTEN beim Testabschluss genutzt, wenn ein Projekt, eine Teststufe oder Testart abgeschlossen wird.",
             reference: "Lehrplan 5.3.2"
         }
     },
@@ -3351,11 +3351,11 @@ const examQuestions = Object.freeze([
             "9, 10, 11, 12, 13, 14, 15",
             "10, 11, 12, 13, 14"
         ],
-        correct: 3,
+        correct: 2,
         feedback: {
-            trap: "a) Nur die Grenzen selbst, nicht die Nachbarwerte. b) Nur 3 Werte, nicht alle Grenzwerte. c) Zu viele Werte, 9 und 15 sind überflüssig.",
-            principle: "3-Wert-GWA: Grenze-1, Grenze, Grenze+1 für jede Grenze.",
-            explanation: "Grenzen sind 11 und 13. 3-Wert-GWA erfordert: 10, 11, 12 (für Grenze 11) und 12, 13, 14 (für Grenze 13). Zusammen: 10, 11, 12, 13, 14.",
+            trap: "a) Nur die Grenzen selbst (11, 12, 13), entspricht der 3-Wert-GWA für eine einzelne Äquivalenzklasse um den Wert 12. b) Nur je ein beliebiger Wert aus jeder Äquivalenzklasse – das ist reine Äquivalenzklassenbildung, nicht GWA. d) Entspricht der 2-Wert-Grenzwertanalyse (Grenzwert und ein Nachbar), nicht der 3-Wert-GWA.",
+            principle: "3-Wert-GWA: Für jeden Grenzwert werden der Grenzwert selbst und seine beiden Nachbarn (Grenze-1 und Grenze+1) als Testdaten verwendet.",
+            explanation: "Die Grenzwerte sind 10, 11, 13 und 14. Bei der 3-Wert-GWA werden jeweils beide Nachbarn benötigt: 10→(9,10,11), 11→(10,11,12), 13→(12,13,14), 14→(13,14,15). Zusammengefasst ergibt sich: 9, 10, 11, 12, 13, 14, 15.",
             reference: "Lehrplan 4.2.2"
         }
     },
@@ -3440,11 +3440,11 @@ const examQuestions = Object.freeze([
             "X = Anzahl der von den Testfällen ausgeführten Zweige, Y = Gesamtzahl der Zweige im Code",
             "X = Anzahl der von den Testfällen ausgeführten bedingten Zweige, Y = Gesamtzahl der Entscheidungsergebnisse im Code"
         ],
-        correct: 0,
+        correct: 2,
         feedback: {
-            trap: "b), c), d) verwenden ungenaue Terminologie. 'Zweige' und 'Entscheidungsergebnisse' sind synonym im ISTQB-Kontext.",
-            principle: "Zweigüberdeckung = ausgeführte Entscheidungsergebnisse / alle Entscheidungsergebnisse.",
-            explanation: "X ist die Anzahl der ausgeführten Entscheidungsergebnisse (Zweige), Y ist die Gesamtzahl aller Entscheidungsergebnisse im Code.",
+            trap: "a) 'Entscheidungsergebnisse' sind nur bedingte Zweige – beim Zweigtest zählen aber auch unbedingte Zweige (geradliniger Code). b) und d) sprechen von 'bedingten Zweigen', lassen aber unbedingte Zweige außer Acht.",
+            principle: "Zweigüberdeckung = ausgeführte Zweige (bedingt + unbedingt) / Gesamtzahl aller Zweige im Code.",
+            explanation: "Ein Zweig ist jeder Kontrollübergang im Kontrollflussgraph – sowohl bedingt (Entscheidungsergebnis) als auch unbedingt (geradliniger Code). Daher ist X = Anzahl der ausgeführten Zweige und Y = Gesamtzahl der Zweige im Code die korrekte Definition.",
             reference: "Lehrplan 4.3.2"
         }
     },
@@ -3638,11 +3638,11 @@ const examQuestions = Object.freeze([
             "Die Benutzer hatten Probleme mit der Benutzungsschnittstelle des bestehenden Systems, so dass zusätzliche Gebrauchstauglichkeitstests für das Nachfolgesystem geplant sind.",
             "Die Ladezeit von Webseiten ist entscheidend für den Erfolg der neuen Website, daher wird ein Experte für Performanztests in das Projekt einbezogen."
         ],
-        correct: 0,
+        correct: 1,
         feedback: {
-            trap: "b), c), d) sind alle korrekte Beispiele für risikobasierte Testplanung.",
-            principle: "Endekriterien sollten qualitativ sein, nicht nur quantitativ (Anzahl Testfälle).",
-            explanation: "'99 bestandene Testfälle' ist ein willkürliches Kriterium, das nicht direkt mit der Risikominderung zusammenhängt.",
+            trap: "a) IT-Sicherheitstests mit hohem Überdeckungsgrad bei hohem Risiko ist eine sinnvolle Risikominderungsmaßnahme. c) Zusätzliche Gebrauchstauglichkeitstests wegen bekannter UI-Probleme ist eine korrekte Risikominderung. d) Ein Performanztest-Experte bei kritischer Ladezeit ist eine geeignete Maßnahme mit passender Expertenwahl.",
+            principle: "Risikosteuerung im Testen zielt auf Risikominderung ab – z.B. durch geeignete Testverfahren, höhere Überdeckung oder erfahrene Tester. Eine zusätzliche Risikoanalyse gehört nicht zur Risikosteuerung.",
+            explanation: "Wenn die geforderte Qualität eines Moduls unklar ist, ist zwar eine zusätzliche Risikoanalyse notwendig, aber dies ist keine Maßnahme der Risikosteuerung in der Testplanung. Die Testplanung sollte auf konkrete Risikominderung abzielen, nicht auf weitere Analyse.",
             reference: "Lehrplan 5.2.4"
         }
     },
@@ -4127,11 +4127,11 @@ const examQuestions = Object.freeze([
             "Dynamische Tests erkennen einige, aber nicht alle Fehler, die durch statische Tests gefunden werden können.",
             "Statische Tests können alle Fehler erkennen, die durch dynamische Tests gefunden werden, sowie zusätzliche."
         ],
-        correct: 0,
+        correct: 2,
         feedback: {
-            trap: "b), c), d) sind alle falsch – statische und dynamische Tests finden UNTERSCHIEDLICHE Fehlerarten.",
-            principle: "Statische und dynamische Tests sind komplementär, nicht ersetzbar.",
-            explanation: "Die bei statischen Tests gefundenen Fehlertypen (z.B. Inkonsistenzen, fehlende Anforderungen) unterscheiden sich von denen, die durch dynamische Tests gefunden werden.",
+            trap: "a) ist zwar teilweise richtig, beschreibt aber nicht den WERT des statischen Testens. b) ist falsch – dynamische Tests können NICHT alle Fehler finden, die statische Tests aufdecken (z.B. Verstöße gegen Codierstandards). d) ist übertrieben – statische Tests können keine Laufzeitfehler finden.",
+            principle: "Statische und dynamische Tests sind komplementär – statische Tests finden Fehler, die dynamische Tests nicht aufdecken können.",
+            explanation: "Statische Tests können viele Fehler frühzeitig und ohne Codeausführung finden (z.B. Designprobleme, Verstöße gegen Standards). Dynamische Tests entdecken nur Fehler, die bei der Ausführung auftreten – nicht aber rein strukturelle oder dokumentationsbezogene Mängel. Daher erkennen dynamische Tests nur einige, aber nicht alle Fehler, die durch statische Tests gefunden werden können.",
             reference: "Lehrplan 3.1.2"
         }
     },
@@ -4217,11 +4217,11 @@ const examQuestions = Object.freeze([
             "BY=2000, CY=2000 (D=0)"
         ],
         correct: 1,
-        multipleCorrect: [1, 3],
+        multipleCorrect: [1, 4],
         feedback: {
-            trap: "a) D=64 ist 'Kein Rabatt', bereits abgedeckt. c) D=-65 ist 'Fehlermeldung', bereits abgedeckt. e) D=0 ist 'Kinder-/Jugendrabatt'.",
-            principle: "Fehlende Klassen: Kinder/Jugend (0≤D<18) und Rentner (D≥65).",
-            explanation: "b) D=65 deckt Rentnerrabatt ab. d) D=18 deckt 'Kein Rabatt' ab (Grenze). Für Kinder/Jugend brauchen wir D=0 bis 17.",
+            trap: "a) D=64 liegt in der bereits abgedeckten Klasse 'Kein Rabatt' (18≤D<65). c) D=-65 gehört zur Klasse 'Fehlermeldung', die bereits abgedeckt ist. d) D=18 liegt ebenfalls in der Klasse 'Kein Rabatt' (18≤D<65), die bereits durch den bestehenden Testfall (D=30) abgedeckt ist.",
+            principle: "4 Äquivalenzklassen: D<0 (Fehler), 0≤D<18 (Kinder/Jugend), 18≤D<65 (Kein Rabatt), D≥65 (Rentner). Bereits abgedeckt: 'Kein Rabatt' und 'Fehlermeldung'. Fehlend: 'Kinder/Jugend' und 'Rentner'.",
+            explanation: "b) BY=1900, CY=1965 → D=65 gehört zur Klasse 'Rentnerrabatt' (D≥65), die noch nicht abgedeckt ist. e) BY=2000, CY=2000 → D=0 gehört zur Klasse 'Kinder-/Jugendrabatt' (0≤D<18), die noch nicht abgedeckt ist. Beide Testdaten decken die fehlenden Äquivalenzklassen ab.",
             reference: "Lehrplan 4.2.1"
         }
     },
@@ -4476,19 +4476,19 @@ const examQuestions = Object.freeze([
         lo: "FL-5.1.5",
         kLevel: 3,
         chapter: 5,
-        text: "Die Tabelle zeigt die Nachverfolgbarkeitsmatrix zwischen Testfällen und Anforderungen:\n\nTC1 deckt Req1, Req2, Req3, Req4 ab.\nTC2 deckt Req2, Req5, Req6 ab.\nTC3 deckt Req3, Req7 ab.\nTC4 deckt Req4 ab.\n\nDie Testfälle sollen mithilfe des Verfahrens der zusätzlichen Überdeckung priorisiert werden.\n\nWelcher Testfall sollte ALS LETZTER ausgeführt werden?",
-        hint: "Zusätzliche Überdeckung: Starte mit dem, der am meisten abdeckt. Dann der nächste mit den meisten NEUEN.",
+        text: "Die Tabelle zeigt die Nachverfolgbarkeitsmatrix zwischen Testfällen und Anforderungen. Ein „X" bedeutet, dass ein Testfall die Anforderung überdeckt.\n\n          Req1  Req2  Req3  Req4  Req5  Req6  Req7\nTC1    X            X       X                          X\nTC2    X                              X                X\nTC3                                    X      X\nTC4             X\n\nDie Testfälle sollen mithilfe des Verfahrens der zusätzlichen Überdeckung priorisiert und anschließend alle ausgeführt werden.\n\nWelcher Testfall sollte gemäß diesem Verfahren ALS LETZTER ausgeführt werden?",
+        hint: "Zusätzliche Überdeckung: Starte mit dem Testfall, der am meisten abdeckt. Dann wähle den nächsten mit den meisten NEUEN (noch nicht abgedeckten) Anforderungen.",
         answers: [
             "TC1",
             "TC2",
             "TC3",
             "TC4"
         ],
-        correct: 3,
+        correct: 1,
         feedback: {
-            trap: "TC1 deckt am meisten ab (4 Req), also zuerst. Dann TC2 (3 neue: Req5, Req6, Req7). Dann TC3 (Req7 neu). TC4 zuletzt (Req4 bereits durch TC1).",
-            principle: "Zusätzliche Überdeckung: Testfall mit den meisten NEUEN Anforderungen zuerst.",
-            explanation: "TC1 (4 Req) → TC2 (Req5, Req6 neu) → TC3 (Req7 neu) → TC4 (keine neuen Req). TC4 wird als letzter ausgeführt.",
+            trap: "TC1 wird NICHT als Letzter ausgeführt – er deckt 4 von 7 Anforderungen ab und kommt zuerst. TC4 wird NICHT zuletzt ausgeführt – er deckt Req2 ab, die einzige nach TC1+TC3 verbleibende Anforderung, und kommt als Dritter.",
+            principle: "Zusätzliche Überdeckung: In jedem Schritt den Testfall mit der höchsten NEUEN Überdeckung auswählen.",
+            explanation: "1. TC1 deckt 4 Req ab (Req1, Req3, Req4, Req7) → zuerst. Verbleibend: Req2, Req5, Req6.\n2. TC3 deckt 2 neue Req ab (Req5, Req6) → zweiter. Verbleibend: Req2.\n3. TC4 deckt 1 neue Req ab (Req2) → dritter.\n4. TC2 hat keine neuen Req mehr → wird ALS LETZTER ausgeführt.",
             reference: "Lehrplan 5.1.5"
         }
     },
@@ -4755,11 +4755,11 @@ const examQuestions = Object.freeze([
             "Einem Testobjekt eine Version zuordnen.",
             "Schreiben einer User-Story."
         ],
-        correct: 2,
+        correct: 1,
         feedback: {
-            trap: "a) Fehleranalyse = Testdurchführung/Debugging. b) Testdaten entwerfen = Testentwurf. d) User-Story = Entwicklung.",
-            principle: "Testrealisierung: Testumgebung einrichten, Versionen zuordnen, Testabläufe erstellen.",
-            explanation: "Einem Testobjekt eine Version zuordnen ist eine Aufgabe der Testrealisierung (Konfigurationsmanagement).",
+            trap: "a) Das Analysieren eines Fehlerzustands ist Teil des Debuggings, nicht des Testens. c) Einem Testobjekt eine Version zuordnen ist Teil des Konfigurationsmanagements, nicht der Testrealisierung. d) Das Schreiben einer User-Story ist keine Testaktivität, sondern wird vom Product Owner gemeinsam mit Fachbereichsvertretern und Testern durchgeführt.",
+            principle: "Testrealisierung umfasst u.a. das Erstellen von Testdaten, Testskripten und Testabläufen sowie das Einrichten der Testumgebung.",
+            explanation: "b) ist KORREKT: Das Erstellen (Entwerfen) von Testdaten ist eine Aufgabe der Testrealisierung (siehe CTFL-Lehrplan V4.0, Abschnitt 1.4.1).",
             reference: "Lehrplan 1.4.1"
         }
     },
@@ -5306,11 +5306,11 @@ const examQuestions = Object.freeze([
             "Login als Systemadministrator; wähle den Server aus; führe einen Performanztest durch. GEGEBEN: Ich bin als Systemadministrator angemeldet...",
             "Login als Systemadministrator; führe einen Performanztest durch; überprüfe die Serverleistung. GEGEBEN: Ich bin als Systemadministrator angemeldet..."
         ],
-        correct: 0,
+        correct: 2,
         feedback: {
-            trap: "b) Falsche Rolle (Benutzer statt Systemadministrator). c), d) Performanztest durchführen ist nicht das Ziel der User-Story.",
-            principle: "ATDD-Testfall: Korrekte Rolle, Gegeben/Wenn/Dann-Format, testet die User-Story.",
-            explanation: "Option a) verwendet die korrekte Rolle (Systemadministrator) und testet das Überwachen der Performanz.",
+            trap: "a) Obwohl die Rolle des Systemadministrators korrekt ist, fehlt die spezifische Aktion des Durchführens eines Performanztests – es wird nur 'Serverleistung überprüfen' gewählt. b) Verwendet die falsche Rolle (Benutzer statt Systemadministrator), was ein Schlüsselaspekt der User-Story ist. d) Das Ausführen des Performanztests fehlt als explizite Aktion im WENN-Schritt.",
+            principle: "ATDD: Der Testfall muss die User-Story vollständig abbilden – korrekte Rolle, alle relevanten Aktionen und das erwartete Ergebnis im Gegeben/Wenn/Dann-Format.",
+            explanation: "c) ist KORREKT: Diese Option beinhaltet sowohl die Rolle des Systemadministrators als auch die spezifischen Aktionen des Auswählens des Servers und des Durchführens eines Performanztests, was der User-Story entspricht (siehe CTFL-Lehrplan V4.0, Abschnitt 4.5.3).",
             reference: "Lehrplan 4.5.3"
         }
     },
