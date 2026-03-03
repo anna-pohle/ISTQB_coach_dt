@@ -4476,8 +4476,9 @@ const examQuestions = Object.freeze([
         lo: "FL-5.1.5",
         kLevel: 3,
         chapter: 5,
-        text: "Die Tabelle zeigt die Nachverfolgbarkeitsmatrix zwischen Testfällen und Anforderungen. Ein 'X' bedeutet, dass ein Testfall die Anforderung überdeckt.\n\n          Req1  Req2  Req3  Req4  Req5  Req6  Req7\nTC1    X            X       X                          X\nTC2    X                              X                X\nTC3                                    X      X\nTC4             X\n\nDie Testfälle sollen mithilfe des Verfahrens der zusätzlichen Überdeckung priorisiert und anschließend alle ausgeführt werden.\n\nWelcher Testfall sollte gemäß diesem Verfahren ALS LETZTER ausgeführt werden?",
+        text: "Die Tabelle zeigt die Nachverfolgbarkeitsmatrix zwischen Testfällen und Anforderungen. Ein 'X' bedeutet, dass ein Testfall die Anforderung überdeckt.\n\nDie Testfälle sollen mithilfe des Verfahrens der zusätzlichen Überdeckung priorisiert und anschließend alle ausgeführt werden.\n\nWelcher Testfall sollte gemäß diesem Verfahren ALS LETZTER ausgeführt werden?",
         hint: "Zusätzliche Überdeckung: Starte mit dem Testfall, der am meisten abdeckt. Dann wähle den nächsten mit den meisten NEUEN (noch nicht abgedeckten) Anforderungen.",
+        image: "images/d_q32_matrix.png",
         answers: [
             "TC1",
             "TC2",
