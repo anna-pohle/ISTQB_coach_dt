@@ -3322,18 +3322,18 @@ const examQuestions = Object.freeze([
         kLevel: 3,
         chapter: 4,
         text: "Die Kunden der Autowaschanlage TestWash haben Karten, auf denen die Anzahl der bisher gekauften Wäschen gespeichert ist. Der Anfangswert des Zählers ist 0. Bei der Einfahrt in die Waschanlage erhöht das System den Zähler auf der Karte um eins.\n\nFür jede zehnte Wäsche gewährt das System einen Rabatt von 10 % und für jede zwanzigste Wäsche gewährt das System einen weiteren Rabatt von 40 % (d. h. insgesamt 50 % Rabatt).\n\nWelche der folgenden Eingaben (bezogen auf die Anzahl der Wäschen) erreicht die höchste Überdeckung der Äquivalenzklassen?",
-        hint: "3 Äquivalenzklassen: Kein Rabatt, 10% Rabatt (jede 10.), 50% Rabatt (jede 20.). Welche Werte decken alle ab?",
+        hint: "3 Äquivalenzklassen: Kein Rabatt (nicht ÷10), 10% Rabatt (÷10 aber nicht ÷20), 50% Rabatt (÷20). Welche Option hat je einen Vertreter aus jeder Klasse?",
         answers: [
             "19, 20, 30",
             "11, 12, 20",
             "1, 10, 50",
             "10, 29, 30, 31"
         ],
-        correct: 2,
+        correct: 0,
         feedback: {
-            trap: "a) 19=kein Rabatt, 20=50%, 30=10% → nur 3 Klassen, aber 30 ist auch 10%-Klasse. b) 11=kein Rabatt, 12=kein Rabatt, 20=50% → fehlt 10%-Klasse.",
-            principle: "Äquivalenzklassen: Kein Rabatt (1-9, 11-19, 21-29...), 10% (10, 30, 50...), 50% (20, 40, 60...).",
-            explanation: "1=kein Rabatt, 10=10% Rabatt, 50=10% Rabatt (nicht 50%!). Aber 50 ist durch 10 teilbar, nicht durch 20. Korrektur: 1, 10, 20 wäre optimal. Option c) deckt: 1=kein, 10=10%, 50=10%.",
+            trap: "c) 1, 10, 50: 50 ist durch 10 teilbar aber NICHT durch 20 → nur 10% Rabatt, nicht 50%. Es fehlt die 50%-Klasse. d) 10, 29, 30, 31: nur 10%-Rabatt und kein Rabatt – die 50%-Klasse fehlt komplett.",
+            principle: "3 Äquivalenzklassen: Kein Rabatt (nicht durch 10 teilbar), 10% Rabatt (durch 10 aber nicht durch 20 teilbar), 50% Rabatt (durch 20 teilbar).",
+            explanation: "19 ist nicht durch 10 teilbar → kein Rabatt (ÄK1). 20 ist durch 20 teilbar → 50% Rabatt (ÄK3). 30 ist durch 10 aber nicht durch 20 teilbar → 10% Rabatt (ÄK2). Alle 3 Äquivalenzklassen sind abgedeckt.",
             reference: "Lehrplan 4.2.1"
         }
     },
