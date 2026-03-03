@@ -120,7 +120,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 1,
         text: "Welche der folgenden Aussagen beschreibt AM BESTEN, wie ein Mehrwert durch Etablierung und Aufrechterhaltung der Verfolgbarkeit zwischen Testbasis und den Testmitteln erzielt wird?",
-        hint: "Verfolgbarkeit verbindet Anforderungen mit Tests. Was kann man damit MESSEN oder NACHWEISEN?",
+        hint: "Verfolgbarkeit = Anforderungen ↔ Testfälle verknüpft. Prüfe jede Option: Geht es wirklich um diese Verknüpfung? Automatisierung, Tester-Produktivität und Code-Seiteneffekte sind etwas anderes! Was bleibt übrig?",
         answers: [
             "Wartungstests können basierend auf Änderungen der ursprünglichen Anforderungen vollständig automatisiert werden.",
             "Es kann effizienter bestimmt werden, ob die angestrebte Überdeckung auch tatsächlich erreicht wurde.",
