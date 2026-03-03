@@ -4881,7 +4881,7 @@ const examQuestions = Object.freeze([
         kLevel: 1,
         chapter: 2,
         text: "Welcher der folgenden beschriebenen Entwicklungsansätze definiert Testen NICHT als Treiber der Softwareentwicklung?",
-        hint: "Test-First = Tests treiben die Entwicklung. Welcher Ansatz ist NICHT Test-First?",
+        hint: "Test-First (TDD/BDD/ATDD) bedeutet: Tests werden VOR dem Code geschrieben und STEUERN, was entwickelt wird. Welche Option beschreibt nur, dass Tests irgendwann erstellt werden – ohne dass sie zeitlich VOR dem Code stehen?",
         answers: [
             "Zuerst werden Tests erstellt. Dann wird der Code geschrieben.",
             "Die Testfälle steuern die Codierung.",
@@ -4890,9 +4890,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 3,
         feedback: {
-            trap: "beschreiben alle Test-First-Ansätze (TDD, BDD).",
-            principle: "Tests aus Akzeptanzkriterien ableiten ist NICHT Test-First, sondern normaler Testprozess.",
-            explanation: "Option beschreibt einen normalen Testprozess, bei dem Tests NACH den Akzeptanzkriterien erstellt werden – kein Test-First.",
+            trap: "'Zuerst Tests, dann Code' = TDD. 'Testfälle steuern die Codierung' = TDD. 'Verhalten durch Testfälle definiert' = BDD. Alle drei sind Test-First: Tests kommen VOR dem Code und TREIBEN die Entwicklung.",
+            principle: "Test-First = Tests zeitlich VOR dem Code, Tests STEUERN aktiv die Entwicklung. 'Tests aus Akzeptanzkriterien ableiten' sagt nichts über den Zeitpunkt – das kann auch NACH dem Code passieren.",
+            explanation: "Tests aus Akzeptanzkriterien ableiten und automatisieren ist normaler Testprozess: Die Tests basieren zwar auf Anforderungen, aber sie entstehen nicht zwingend VOR der Entwicklung und steuern sie nicht aktiv. Bei echtem Test-First (TDD, BDD, ATDD) bestimmen die Tests VORAB, was entwickelt wird.",
             reference: "Lehrplan 2.1.3"
         }
     },
