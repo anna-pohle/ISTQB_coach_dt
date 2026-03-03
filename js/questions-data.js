@@ -4142,7 +4142,7 @@ const examQuestions = Object.freeze([
         kLevel: 2,
         chapter: 3,
         text: "Nachfolgend finden Sie fünf Beschreibungen typischer Aktivitäten im Rahmen eines strukturierten Reviews:\n\n1. Entdeckte Anomalien werden diskutiert und bezüglich Status und Folgemaßnahmen bewertet.\n2. Probleme werden erfasst und notwendige Anpassungen vorgenommen.\n3. Gutachter entwickeln Vorschläge und identifizieren mögliche Anomalien.\n4. Ziel und Zeitplan werden definiert.\n5. Die Teilnehmenden erhalten Zugriff auf das zu prüfende Dokument.\n\nWelche der folgenden Optionen entspricht der korrekten Reihenfolge?",
-        hint: "Was muss passieren, BEVOR man ein Dokument individuell prüfen kann? Und was kommt NACH der individuellen Prüfung? Denke die logische Reihenfolge durch.",
+        hint: "Die 5 Review-Phasen lauten: Planung → Reviewbeginn → Individuelles Review → Kommunikation/Analyse → Überarbeitung. Ordne jede Beschreibung (1-5) einer Phase zu: Wo werden Ziele definiert? Wo bekommt man Zugriff? Wo arbeiten Gutachter allein? Wo wird diskutiert? Wo wird überarbeitet?",
         answers: [
             "4 – 3 – 5 – 2 – 1",
             "4 – 5 – 3 – 1 – 2",
@@ -4151,9 +4151,9 @@ const examQuestions = Object.freeze([
         ],
         correct: 1,
         feedback: {
-            trap: "Die Reihenfolge muss dem Reviewprozess entsprechen: Planung → Beginn → Individuell → Kommunikation → Überarbeitung.",
-            principle: "Reviewprozess: Ziele definieren (4) → Zugriff geben (5) → Anomalien finden (3) → Diskutieren (1) → Überarbeiten (2).",
-            explanation: "4 (Planung) → 5 (Reviewbeginn) → 3 (Individuelles Review) → 1 (Kommunikation) → 2 (Überarbeitung).",
+            trap: "Typischer Fehler: 5 (Zugriff) vor 4 (Ziele) setzen. Aber ohne definierte Ziele und Zeitplan weiß niemand, was geprüft werden soll. Planung kommt IMMER zuerst.",
+            principle: "Die 5 Review-Phasen in fester Reihenfolge: Planung → Reviewbeginn → Individuelles Review → Kommunikation/Analyse → Überarbeitung/Bericht.",
+            explanation: "Zuordnung: 4 (Ziel/Zeitplan = Planung) → 5 (Zugriff = Reviewbeginn) → 3 (Gutachter prüfen = Individuelles Review) → 1 (Anomalien diskutieren = Kommunikation) → 2 (Anpassungen = Überarbeitung). Also: 4–5–3–1–2.",
             reference: "Lehrplan 3.2.2"
         }
     },
